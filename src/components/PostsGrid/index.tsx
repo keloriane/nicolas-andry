@@ -83,7 +83,8 @@ const PostsGrid = ({
           <ImageParallax
             $paddingTop={[125, 125, 300, 155]}
             $height="170%"
-            $backgroundImage={urlFor(post.image).url()}
+            url={urlFor(post.image).url()}
+            height="100%"
             stiffness={1.5}
           />
           <LayerCard>

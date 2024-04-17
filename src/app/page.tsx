@@ -16,20 +16,20 @@ function getHomeData() {
 }
 
 export default async function Home() {
-  const homeData = await getHomeData();
-  const demarches = homeData.demarches;
-  const parcours = homeData.parcours;
+  const { demarches, parcours, postGrid, title, subtitle } =
+    await getHomeData();
+
   return (
     <main>
       <Menu />
       <Hero
-        title={homeData.title}
-        subtitle={homeData.subtitle}
+        title={title}
+        subtitle={subtitle}
         clash={playfare.className}
         satoshi={archivo.className}
       />
       <PostsGrid
-        posts={homeData.postGrid}
+        posts={postGrid}
         playfare={playfare.className}
         archivo={archivo.className}
       />
