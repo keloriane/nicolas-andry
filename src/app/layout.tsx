@@ -7,8 +7,8 @@ import "./globals.css";
 const archivo = Archivo({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Start Boilerplate",
-  description: "Next app starter for future projects",
+  title: "Nicolas Andry",
+  description: "Photography",
 };
 
 export default function RootLayout({

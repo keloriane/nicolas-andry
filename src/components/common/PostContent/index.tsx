@@ -1,13 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Slider from "@/components/Slider";
 import { PortableText } from "@portabletext/react";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import GridContainer from "../Container";
 import Col from "../Col";
 import * as S from "./post-content.styles";
-import { Image } from "@/types";
 
 interface Post {
   title: string;
@@ -34,7 +32,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
               categories,
               content,
               'images': images[]{
-                "url": asset->url,
+                "src": asset->url,
                 "alt": asset->alt
               }
             }
@@ -76,9 +74,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         </Col>
       </GridContainer>
 
-      <div className="slider_container">
-        <Slider images={activePost?.images || []} />
-      </div>
+      <div className="slider_container"></div>
     </S.PostCotainer>
   );
 };

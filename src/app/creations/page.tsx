@@ -6,6 +6,7 @@ import PageHeader from "@/components/common/PageHeader";
 import { playfare, archivo } from "./../font";
 import { PortableText } from "@portabletext/react";
 import PostContent from "@/components/common/PostContent";
+import ImageGallery from "@/components/ImageGallery";
 
 function getCreationData() {
   return client.fetch(
@@ -40,6 +41,7 @@ export default async function Creations() {
         title={creation.title}
         introductionText={creation.introductionText[0].children[0].text}
       />
+
       <PostContent postsTitle={postsTitle} />
     </main>
   );

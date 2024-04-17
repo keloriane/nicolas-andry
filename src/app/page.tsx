@@ -9,6 +9,7 @@ import { groq } from "next-sanity";
 import Parcours from "@/components/Parcours";
 import Contact from "@/components/Contact";
 import Menu from "@/components/common/Menu";
+import Footer from "@/components/Footer";
 
 function getHomeData() {
   return client.fetch(groq`*[_type == "home"][0]`);
@@ -36,6 +37,7 @@ export default async function Home() {
       <Procedures demarche={demarches} />
       <Parcours parcours={parcours} />
       <Contact />
+      <Footer />
     </main>
   );
 }
