@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import ProcedureCard from "./Card";
@@ -23,7 +24,11 @@ const SectionContainer = styled.section`
     margin-top: 50px;
   }
 `;
-const Procedures = () => {
+const Procedures = ({
+  demarche,
+}: {
+  demarche: [{ title: string; description: [] }];
+}) => {
   return (
     <SectionContainer>
       <Swiper
@@ -53,50 +58,11 @@ const Procedures = () => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <ProcedureCard
-            text="Interrogations concrètes sur la faisabilité d'une photographierespectueuse de la santé et de la vie sous toutes ses formes, et ce autantpendant la pratique qu'en amont et en aval de celle-ci.
- Déconstructions théoriques et pratiques des habitudes, a priori,certitudes,… 
-en vue de trouver le recul nécessaire pour bâtir (parfois)d'autres possibles.
-Réappropriation progressive, active, et collective des savoirs et dessavoirs-faire. (Re)création de ponts entre sciences et arts, photographie etcinéma, passionnées et professionnelles, etc."
-            title="Démarches recherches techniques"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProcedureCard
-            text="Interrogations concrètes sur la faisabilité d'une photographierespectueuse de la santé et de la vie sous toutes ses formes, et ce autantpendant la pratique qu'en amont et en aval de celle-ci.
-Réappropriation progressive, active, et collective des savoirs et dessavoirs-faire. (Re)création de ponts entre sciences et arts, photographie etcinéma, passionnées et professionnelles, etc."
-            title="Démarches recherches techniques"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProcedureCard
-            text="Interrogations concrètes sur la faisabilité d'une photographierespectueuse de la santé et de la vie sous toutes ses formes, et ce autantpendant la pratique qu'en amont et en aval de celle-ci.
- Déconstructions théoriques et pratiques des habitudes, a priori,certitudes,… 
-en vue de trouver le recul nécessaire pour bâtir (parfois)d'autres possibles.
-Réappropriation progressive, active, et collective des savoirs et dessavoirs-faire. (Re)création de ponts entre sciences et arts, photographie etcinéma, passionnées et professionnelles, etc."
-            title="Démarches recherches techniques"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProcedureCard
-            text="Interrogations concrètes sur la faisabilité d'une photographierespectueuse de la santé et de la vie sous toutes ses formes, et ce autantpendant la pratique qu'en amont et en aval de celle-ci.
- Déconstructions théoriques et pratiques des habitudes, a priori,certitudes,… 
-en vue de trouver le recul nécessaire pour bâtir (parfois)d'autres possibles.
-Réappropriation progressive, active, et collective des savoirs et dessavoirs-faire. (Re)création de ponts entre sciences et arts, photographie etcinéma, passionnées et professionnelles, etc."
-            title="Démarches recherches techniques"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProcedureCard
-            text="Interrogations concrètes sur la faisabilité d'une photographierespectueuse de la santé et de la vie sous toutes ses formes, et ce autantpendant la pratique qu'en amont et en aval de celle-ci.
- Déconstructions théoriques et pratiques des habitudes, a priori,certitudes,… 
-en vue de trouver le recul nécessaire pour bâtir (parfois)d'autres possibles.
-Réappropriation progressive, active, et collective des savoirs et dessavoirs-faire. (Re)création de ponts entre sciences et arts, photographie etcinéma, passionnées et professionnelles, etc."
-            title="Démarches recherches techniques"
-          />
-        </SwiperSlide>
-
+        {demarche.map((d, i) => (
+          <SwiperSlide key={i}>
+            <ProcedureCard title={d.title} text={d.description} />
+          </SwiperSlide>
+        ))}
         <div className="navigation__container">
           <Navigation />
         </div>

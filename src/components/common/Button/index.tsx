@@ -28,14 +28,14 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
 const Button = ({
   text,
   href,
-  light = false,
+  light,
   className,
   maxWidth,
 }: {
   text: string;
   href: string;
-  light?: boolean;
-  className?: string;
+  light: boolean;
+  className: string;
   maxWidth?: string;
 }) => {
   return (

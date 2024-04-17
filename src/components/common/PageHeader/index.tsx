@@ -15,10 +15,10 @@ const PageHeader: React.FC<PageHeaderType> = ({
   return (
     <S.PageHeaderContainer>
       <GridContainer colCount={24} colGap={20} className="header-wrapper">
-        <Col column={8} span={11}>
+        <Col column={[2, 2, 2, 2, 8]} span={[22, 22, 22, 22, 11]}>
           <ResponsiveText
             as="h1"
-            sizes={["20px", "24px", "60px", "104px"]}
+            sizes={["30px", "30px", "60px", "104px"]}
             className={playfare}
           >
             {title}

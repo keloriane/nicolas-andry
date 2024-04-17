@@ -1,3 +1,4 @@
+import { PortableText } from "next-sanity";
 import React from "react";
 import styled from "styled-components";
 
@@ -22,14 +23,14 @@ const HeadlineContainer = styled.div`
   padding: 5px;
   display: inline-block;
 `;
-const ProcedureCard = ({ title, text }: { title: string; text: string }) => {
+const ProcedureCard = ({ title, text }: { title: string; text: [] }) => {
   return (
     <CardContainer>
       <HeadlineContainer>
         <h3>{title}</h3>
       </HeadlineContainer>
       <div>
-        <p>{text}</p>
+        <PortableText value={text} />
       </div>
     </CardContainer>
   );

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
@@ -7,10 +8,13 @@ import RechercheImage from "@/../public/recherches-cycle1-11.jpg";
 import AtelierImagae from "@/../public/coulisses-ateliers-06.jpg";
 import ImageParallax from "../common/ImageParallax";
 import Button from "../common/Button";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "../../../sanity/lib/client";
+import { PortableText } from "next-sanity";
 
 const LayerCard = styled.div`
   width: 100%;
-  height: 80%;
+  height: 100%;
   position: absolute;
   top: 0%;
   left: 1px;
@@ -45,71 +49,51 @@ const CardWrapper = styled.div`
 const PostsGrid = ({
   playfare,
   archivo,
+  posts,
 }: {
   playfare: string;
   archivo: string;
+
+  posts: [{ image: string; title: string; description: [] }];
 }) => {
+  const builder = imageUrlBuilder(client);
+  function urlFor(source: string) {
+    return builder.image(source);
+  }
+
   return (
     <GridContainer
       colCount={24}
       colGap={20}
       rowGap={20}
-      style={{ padding: "0 20px" }}
+      style={{ padding: "0 20px", maxWidth: "1380px", margin: "100px auto" }}
     >
-      <Col column={[1, 1, 1, 1]} span={[24, 24, 8, 8]}>
-        <ImageParallax src={AtelierImagae.src} height="80%" />
-        <LayerCard>
-          <CardWrapper>
-            <h3 className={playfare}>Recherches</h3>
-            <p className={archivo}>
-              Réalisations personnelles et travaux de commandes
-            </p>
-            <Button
-              maxWidth="147px"
-              text="Découvrir"
-              href="/"
-              light
-              className={archivo}
-            ></Button>
-          </CardWrapper>
-        </LayerCard>
-      </Col>
-      <Col column={[1, 1, 9, 9]} span={[24, 24, 8, 8]}>
-        <ImageParallax src={CreationImage.src} height="80%" />
-        <LayerCard>
-          <CardWrapper>
-            <h3 className={playfare}>Création</h3>
-            <p className={archivo}>
-              Réalisations personnelles et travaux de commandes
-            </p>
-            <Button
-              maxWidth="147px"
-              text="Découvrir"
-              href="/"
-              light
-              className={archivo}
-            ></Button>
-          </CardWrapper>
-        </LayerCard>
-      </Col>
-      <Col column={[1, 1, 17, 17]} span={[24, 24, 8, 8]}>
-        <ImageParallax src={RechercheImage.src} height="80%" />
-        <LayerCard>
-          <CardWrapper>
-            <h3 className={playfare}>Atelier</h3>
-            <p className={archivo}>
-              Réalisations personnelles et travaux de commandes
-            </p>
-            <Button
-              maxWidth="147px"
-              text="Découvrir"
-              href="/"
-              light
-              className={archivo}
-            ></Button>
-          </CardWrapper>
-        </LayerCard>
-      </Col>
+      {posts.map((post, index) => (
+        <Col
+          key={index}
+          column={
+            index === 0
+              ? [1, 1, 1, 1]
+              : index === 1
+              ? [1, 1, 9, 9]
+              : [1, 1, 17, 17]
+          }
+          span={[24, 24, 8, 8]}
+        >
+          <ImageParallax
+            $paddingTop={[125, 125, 300, 155]}
+            $height="170%"
+            $backgroundImage={urlFor(post.image).url()}
+            stiffness={1.5}
+          />
+          <LayerCard>
+            <CardWrapper>
+              <h3 className={playfare}>{post.title}</h3>
+              <PortableText value={post.description} />
+            </CardWrapper>
+          </LayerCard>
+        </Col>
+      ))}
     </GridContainer>
   );
 };

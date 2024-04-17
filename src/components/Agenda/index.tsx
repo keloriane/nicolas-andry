@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import AgendaCard from "../common/AgendaCard";
 import styled from "styled-components";
@@ -73,7 +74,7 @@ const Agenda = ({ playfare }: { playfare: string }) => {
       </GridContainer>
       <GridContainer colCount={12} rowGap={75}>
         <Col column={6} span={2}>
-          <Button text="voir l'agenda" href="/" />
+          <button>hello</button>
         </Col>
       </GridContainer>
     </AgendaSection>

@@ -29,7 +29,7 @@ export function SlideNextButton({ buttonText }: SlideButtonProps) {
   const swiper = useSwiper();
 
   const handleNextSlide = () => {
-    swiper.slideNext();
+    swiper.slidePrev();
   };
 
   return (
@@ -54,7 +54,7 @@ export function SlidePrevButton({ buttonText }: SlideButtonProps) {
   const swiper = useSwiper();
 
   const handlePrevSlide = () => {
-    swiper.slidePrev();
+    swiper.slideNext();
   };
 
   return (

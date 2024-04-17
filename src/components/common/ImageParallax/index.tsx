@@ -1,79 +1,105 @@
-import React, { useLayoutEffect } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { gsap } from "gsap";
 
-type ImageParallaxProps = {
-  src: string;
+type ImageOverlayProps = {
+  backgroundImage: string;
   height: string;
 };
 
-gsap.registerPlugin(ScrollTrigger);
+type ImageWrapperProps = {
+  stiffness?: number;
+  $paddingTop: number | number[];
+  $backgroundImage: string;
+  $height: string;
+};
 
-interface ImageContainerProps {
-  height: string;
-}
+const breakpoints = [1, 420, 640, 768, 1024, 1280, 1440];
 
-const ImageContainer = styled.div<ImageContainerProps>`
-  overflow: hidden;
-  height: ${(props) => props.height};
-`;
+const handleResponsiveProps = (
+  value: number | number[] | undefined,
+  propName: string
+) => {
+  if (Array.isArray(value)) {
+    return value
+      .map((v, index) => {
+        const breakpoint =
+          breakpoints[index] || breakpoints[breakpoints.length - 1];
+        const nextBreakpoint = breakpoints[index + 1] || breakpoints[index];
+        const calculatedPaddingTop = Array.isArray(value)
+          ? value[index]
+          : value;
+        return `
+          ${propName}: ${calculatedPaddingTop}%;
+          @media (min-width: ${breakpoint}px) and (max-width: ${nextBreakpoint}px) {
+            ${propName}:  ${calculatedPaddingTop}%; /* Adjust as needed */
+          }
+        `;
+      })
+      .join(" ");
+  } else {
+    return `${propName}: ${value}%;`;
+  }
+};
 
-interface ParallaxImageProps {
-  imageHeightRatio: number;
-}
-
-const ParallaxImage = styled.img<ParallaxImageProps>`
+const ImageWrapper = styled.div<ImageWrapperProps>`
   width: 100%;
+  display: block;
+  overflow: hidden;
   position: relative;
-  top: ${(props) => `-${props.imageHeightRatio}px`};
-  object-fit: contain;
+  &:before {
+    content: "";
+    display: block;
+    ${(props) => handleResponsiveProps(props.$paddingTop, "padding-top")}
+  }
+  .overlay-img {
+    background-image: url(${(props) => props.$backgroundImage});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: -20vh;
+    height: ${(props) => props.$height};
+    width: 100%;
+  }
 `;
 
-const ImageParallax: React.FC<ImageParallaxProps> = ({ src, height }) => {
-  const [imageHeightRatio, setImageHeightRatio] = React.useState(20);
-  const imageRef = React.useRef<HTMLImageElement>(null);
+const ImageParallax: React.FC<ImageWrapperProps> = ({
+  $backgroundImage,
+  $paddingTop,
+  $height,
+  stiffness = 3,
+}) => {
+  const imageRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    const image = imageRef.current;
+  useEffect(() => {
+    const imageOverlay = imageRef.current;
+    if (!imageOverlay) return;
 
-    if (!image) return;
+    const moveImage = () => {
+      const scrollY = window.scrollY;
+      const translateY = (scrollY / 10) * stiffness; // Adjust the factor as needed for the desired parallax effect
 
-    const imageSize = image.clientHeight;
-    const yOffset = (imageSize / 100) * 30;
-    setImageHeightRatio(yOffset);
+      gsap.to(imageOverlay, { y: translateY, ease: "none", duration: 1 });
+    };
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: image,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    moveImage(); // Initial call to set initial position
 
-    tl.to(image, { y: yOffset, ease: "none" });
-    ScrollTrigger.create({
-      trigger: image,
-      start: "top bottom",
-      end: "bottom top",
-    });
+    window.addEventListener("scroll", moveImage);
 
     return () => {
-      tl.kill();
-      ScrollTrigger.killAll();
+      window.removeEventListener("scroll", moveImage);
     };
-  }, [imageRef]);
+  }, []);
 
   return (
-    <ImageContainer height={height}>
-      <ParallaxImage
-        ref={imageRef}
-        src={src}
-        alt="Parallax Image"
-        imageHeightRatio={imageHeightRatio}
-      />
-    </ImageContainer>
+    <ImageWrapper
+      $paddingTop={$paddingTop}
+      $height={$height}
+      $backgroundImage={$backgroundImage}
+    >
+      <div ref={imageRef} className="overlay-img"></div>
+    </ImageWrapper>
   );
 };
 

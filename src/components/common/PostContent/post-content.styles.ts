@@ -25,6 +25,8 @@ export const PostCotainer = styled.div`
   ul {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   .post__container {
     margin-top: 40px;

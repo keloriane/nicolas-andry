@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import ResponsiveText from "../common/ResponsiveText";
 import styled from "styled-components";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import Button from "../common/Button";
+import { theme } from "@/styles/theme";
 const TextContainer = styled.div`
   text-align: center;
   font-weight: 100;
@@ -11,9 +13,24 @@ const TextContainer = styled.div`
     line-height: 30px;
   }
 `;
-const Hero = ({ clash, satoshi }: { clash: string; satoshi: string }) => {
+
+const HeaderContainer = styled.header`
+  padding-top: 150px;
+`;
+
+const Hero = ({
+  clash,
+  satoshi,
+  title,
+  subtitle,
+}: {
+  clash: string;
+  satoshi: string;
+  title: string;
+  subtitle: string;
+}) => {
   return (
-    <header>
+    <HeaderContainer>
       <GridContainer colCount={13} rowGap={75}>
         <Col column={[2, 2, 2, 3, 3]} span={[11, 11, 12, 9, 9]}>
           <TextContainer>
@@ -22,7 +39,8 @@ const Hero = ({ clash, satoshi }: { clash: string; satoshi: string }) => {
               className={clash}
               as="h1"
             >
-              Nicolas Andry Photographie
+              {title} <br />
+              <span style={{ color: theme.colors.orange }}>{subtitle}</span>
             </ResponsiveText>
           </TextContainer>
         </Col>
@@ -40,10 +58,10 @@ const Hero = ({ clash, satoshi }: { clash: string; satoshi: string }) => {
           </TextContainer>
         </Col>
         <Col column={7} span={1}>
-          <Button text="Découvrir" href="/" />
+          <button>hello</button>
         </Col>
       </GridContainer>
-    </header>
+    </HeaderContainer>
   );
 };
 export default Hero;

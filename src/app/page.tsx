@@ -1,23 +1,41 @@
-"use client";
 import React from "react";
-
-import PageContent from "@/components/PageContent";
-import HeroShop from "@/components/HeroShop";
 import Hero from "@/components/Hero";
-import { Playfair_Display, Archivo } from "next/font/google";
-import localFont from "next/font/local";
 import PostsGrid from "@/components/PostsGrid";
 import Agenda from "@/components/Agenda";
 import Procedures from "@/components/Procedures";
 import { playfare, archivo } from "./font";
+import { client } from "../../sanity/lib/client";
+import { groq } from "next-sanity";
+import Parcours from "@/components/Parcours";
+import Contact from "@/components/Contact";
+import Menu from "@/components/common/Menu";
 
-export default function Home() {
+function getHomeData() {
+  return client.fetch(groq`*[_type == "home"][0]`);
+}
+
+export default async function Home() {
+  const homeData = await getHomeData();
+  const demarches = homeData.demarches;
+  const parcours = homeData.parcours;
   return (
     <main>
-      <Hero clash={playfare.className} satoshi={archivo.className} />
-      <PostsGrid playfare={playfare.className} archivo={archivo.className} />
+      <Menu />
+      <Hero
+        title={homeData.title}
+        subtitle={homeData.subtitle}
+        clash={playfare.className}
+        satoshi={archivo.className}
+      />
+      <PostsGrid
+        posts={homeData.postGrid}
+        playfare={playfare.className}
+        archivo={archivo.className}
+      />
       <Agenda playfare={playfare.className} />
-      <Procedures />
+      <Procedures demarche={demarches} />
+      <Parcours parcours={parcours} />
+      <Contact />
     </main>
   );
 }
