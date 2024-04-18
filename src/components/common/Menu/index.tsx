@@ -57,7 +57,7 @@ const Menu = () => {
         <nav>
           <ul>
             <li>
-              <Link href="/creations">Creéations</Link>
+              <Link href="/creations">Créations</Link>
             </li>
             <li>
               <Link href="/creations">Recherches</Link>

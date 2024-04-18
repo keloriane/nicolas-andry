@@ -29,8 +29,9 @@ export const PostCotainer = styled.div`
   ul {
     display: flex;
     justify-content: space-around;
+    gap: 60px;
     flex-wrap: wrap;
-    gap: 50px;
+
     li {
       cursor: pointer;
       &:hover {
