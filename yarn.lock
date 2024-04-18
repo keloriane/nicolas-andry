@@ -2016,6 +2016,15 @@
     get-it "^8.4.23"
     rxjs "^7.0.0"
 
+"@sanity/client@^6.15.17":
+  version "6.15.17"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-6.15.17.tgz#f5e37cb825b6dfb9f35e4080f03ca432eee2f729"
+  integrity sha512-wttOq7OcSGQ87Noisohy5uE2bY3/J22k6gnHz1YwLCsmX92xxBlvSYr5h7QvNZMNO8rJnlIBXJiX48IZxYJGvg==
+  dependencies:
+    "@sanity/eventsource" "^5.0.0"
+    get-it "^8.4.26"
+    rxjs "^7.0.0"
+
 "@sanity/codegen@3.37.2":
   version "3.37.2"
   resolved "https://registry.npmjs.org/@sanity/codegen/-/codegen-3.37.2.tgz"
@@ -2041,6 +2050,11 @@
   version "3.0.6"
   resolved "https://registry.npmjs.org/@sanity/color/-/color-3.0.6.tgz"
   integrity sha512-2TjYEvOftD0v7ukx3Csdh9QIu44P2z7NDJtlC3qITJRYV36J7R6Vfd3trVhFnN77/7CZrGjqngrtohv8VqO5nw==
+
+"@sanity/core-loader@1.6.7":
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/@sanity/core-loader/-/core-loader-1.6.7.tgz#66f81de61d06349bd10d5f1ab48d918a55f56c0d"
+  integrity sha512-bO6kUzJW0haq4Ntf+4GTTSMGrdosUAURjp7tb0EFfwcyXOzRcmBtQn9anx0P3HTjahlxq2Gbf1Iel5Yv7RNT9g==
 
 "@sanity/diff-match-patch@^3.0.0", "@sanity/diff-match-patch@^3.1.1":
   version "3.1.1"
@@ -2148,6 +2162,13 @@
     debug "^4.3.4"
     lodash "^4.17.21"
 
+"@sanity/overlays@^2.3.38":
+  version "2.3.38"
+  resolved "https://registry.yarnpkg.com/@sanity/overlays/-/overlays-2.3.38.tgz#e725c83b789754a6b46a9dc5726d79b7fab1e72f"
+  integrity sha512-nzDkaJrvfC9SmPg0LsCkRI0FyhBgyjezXzSHnVYo/0pO1M2n7pbNKaoQZbSVRSg4DMqFYhFSyWpliEPJIMr+Yw==
+  dependencies:
+    "@sanity/visual-editing" "1.8.12"
+
 "@sanity/portable-text-editor@3.37.2":
   version "3.37.2"
   resolved "https://registry.npmjs.org/@sanity/portable-text-editor/-/portable-text-editor-3.37.2.tgz"
@@ -2204,6 +2225,20 @@
   integrity sha512-h6HyF607NDn+mQ9Db1WDWO3IWiZ+E4mPSX7nQWRcXuMvKb6J8q1/QNf+7q9+vSIvgqr709tJeIx1/EiHjIIkiw==
   dependencies:
     "@sanity/uuid" "3.0.2"
+
+"@sanity/preview-url-secret@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@sanity/preview-url-secret/-/preview-url-secret-1.6.9.tgz#0829b9a6ec6de94307fb978ff3de26f3c153ace4"
+  integrity sha512-tJsjpRqqedbxTg8H56pfy4K9vmpTDd88VrXJZy7rpR14lgSCwVcoWvkMLV0jOPc+j4D2CGoJkYsgXFkG81sSUg==
+  dependencies:
+    "@sanity/uuid" "3.0.2"
+
+"@sanity/react-loader@^1.9.12":
+  version "1.9.12"
+  resolved "https://registry.yarnpkg.com/@sanity/react-loader/-/react-loader-1.9.12.tgz#3b55fce6e6bf68885de3b2bb19ac103f521cd402"
+  integrity sha512-JQIKcDIWP/W8fIuORN2jXUf2ayzusvJAAALO++XB+25mTh/PJ2ec1CjYx5+OyQ2vwVIhzq1jLj4oPoc5uj1j5Q==
+  dependencies:
+    "@sanity/core-loader" "1.6.7"
 
 "@sanity/schema@3.37.2":
   version "3.37.2"
@@ -2300,6 +2335,19 @@
   integrity sha512-81jehcCInI+e3MkLz405jgcd2axxeo9ZToHlDfLdEYGCW895a1vugKgwor6+/d/U42Ao9g9ci/Ra5pbAkqTEmA==
   dependencies:
     "@sanity/preview-url-secret" "^1.6.8"
+    "@vercel/stega" "0.1.0"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    react-is "18.2.0"
+    scroll-into-view-if-needed "^3.1.0"
+    valibot "0.30.0"
+
+"@sanity/visual-editing@1.8.12":
+  version "1.8.12"
+  resolved "https://registry.yarnpkg.com/@sanity/visual-editing/-/visual-editing-1.8.12.tgz#63520684fefa720ddba4e52f9534a0518af8a86f"
+  integrity sha512-wqhGrh3M4pZx+oRI1UXpz/PCpyPCd09n817CTSLbxGsAlmecbVC5F7SpyarifW0eE5EI12AbEcaNXGpTvaO9Yw==
+  dependencies:
+    "@sanity/preview-url-secret" "^1.6.9"
     "@vercel/stega" "0.1.0"
     react "^18.2.0"
     react-dom "^18.2.0"
@@ -4426,6 +4474,19 @@ get-it@^8.4.18, get-it@^8.4.23:
     is-retry-allowed "^2.2.0"
     is-stream "^2.0.1"
     parse-headers "^2.0.5"
+    progress-stream "^2.0.0"
+    tunnel-agent "^0.6.0"
+
+get-it@^8.4.26:
+  version "8.4.26"
+  resolved "https://registry.yarnpkg.com/get-it/-/get-it-8.4.26.tgz#4aebd97f9fe9f2597259cb463c35cc8bc3c0aaa6"
+  integrity sha512-cl5R5+auJcBw7Qm9eZ+mVRRhU3e5H65pqkBqlaJmU85HI8C91F9CE/rmj4U23+Fz3GLD2uT0W+312rbH/T8IJA==
+  dependencies:
+    decompress-response "^7.0.0"
+    follow-redirects "^1.15.6"
+    into-stream "^6.0.0"
+    is-retry-allowed "^2.2.0"
+    is-stream "^2.0.1"
     progress-stream "^2.0.0"
     tunnel-agent "^0.6.0"
 
@@ -6703,6 +6764,11 @@ semver@^7.6.0:
   integrity sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==
   dependencies:
     lru-cache "^6.0.0"
+
+server-only@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/server-only/-/server-only-0.0.1.tgz#0f366bb6afb618c37c9255a314535dc412cd1c9e"
+  integrity sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==
 
 set-function-length@^1.1.1:
   version "1.2.0"

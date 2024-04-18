@@ -2,17 +2,21 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import ResponsiveText from "../ResponsiveText";
+import { theme } from "@/styles/theme";
 
 const AgendaContainer = styled.div`
   display: flex;
   gap: 25px;
-  border-bottom: 1px solid #1c1c1c;
+
   align-items: center;
   .date__container {
-    background-color: #1e1e1e;
+    background-color: ${theme.colors.orange};
     padding: 50px 5px;
     color: #fff2e3;
     width: 80px;
+    height: 100%;
+    display: flex;
+    align-items: center;
     text-align: center;
     font-weight: 700;
   }
@@ -20,6 +24,10 @@ const AgendaContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    p {
+      color: #4c4c4c;
+      line-height: 150%;
+    }
   }
   .location__container {
     display: flex;
@@ -46,9 +54,11 @@ const AgendaCard = ({ date, details }: { date: string; details: string }) => {
           >
             Sortie:{" "}
           </ResponsiveText>
-          <ResponsiveText sizes={["12px", "12px", "16px", "16px"]}>
-            Manuel pour développer l'argentique et penser la photographie
-            autrement 
+          <ResponsiveText sizes={["12px", "12px", "16px", "16px"]} as={"p"}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+            nostrum perferendis atque, debitis esse tempore. Quaerat
+            reprehenderit eveniet libero? Pariatur, molestiae delectus! Adipisci
+            cumque accusamus impedit, doloribus alias quidem dolorem. Lorem
           </ResponsiveText>
         </div>
         <div>

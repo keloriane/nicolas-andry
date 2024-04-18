@@ -4,20 +4,25 @@ import PostsGrid from "@/components/PostsGrid";
 import Agenda from "@/components/Agenda";
 import Procedures from "@/components/Procedures";
 import { playfare, archivo } from "./font";
-import { client } from "../../sanity/lib/client";
-import { groq } from "next-sanity";
 import Parcours from "@/components/Parcours";
 import Contact from "@/components/Contact";
 import Menu from "@/components/common/Menu";
 import Footer from "@/components/Footer";
+import { loadQuery } from "../../sanity/lib/store";
+import { HOME_QUERY } from "../../sanity/lib/queries";
 
-function getHomeData() {
-  return client.fetch(groq`*[_type == "home"][0]`);
+interface HomeData {
+  title: string;
+  subtitle: string;
+  postGrid: [{ image: string; description: []; title: string }];
+  demarches: [{ title: string; description: [] }];
+  parcours: [{ year: string; description: [] }];
 }
-
 export default async function Home() {
-  const { demarches, parcours, postGrid, title, subtitle } =
-    await getHomeData();
+  const homeData = await loadQuery<HomeData>(HOME_QUERY);
+
+  console.log(homeData.data);
+  const { title, subtitle, postGrid, demarches, parcours } = homeData.data;
 
   return (
     <main>

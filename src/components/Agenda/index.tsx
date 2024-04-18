@@ -5,11 +5,16 @@ import styled from "styled-components";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import Button from "../common/Button";
+import ResponsiveText from "../common/ResponsiveText";
 
 const AgendaSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 75px;
+  .agenda_title {
+    text-align: center;
+    padding: 40px 0px;
+  }
 `;
 const AgendaContainer = styled.div`
   display: flex;
@@ -36,6 +41,11 @@ const Agenda = ({ playfare }: { playfare: string }) => {
       </GridContainer>
       <GridContainer colCount={24} colGap={20} rowGap={20}>
         <Col column={[1, 1, 1, 5, 5, 5]} span={[24, 24, 24, 16, 8, 8]}>
+          <div className="agenda_title">
+            <ResponsiveText as="h3" sizes={["18px", "24px", "30px"]}>
+              Agenda Creations
+            </ResponsiveText>
+          </div>
           <AgendaContainer>
             <div className="agenda__wrapper">
               <AgendaCard
@@ -54,6 +64,11 @@ const Agenda = ({ playfare }: { playfare: string }) => {
           </AgendaContainer>
         </Col>
         <Col column={[1, 1, 1, 5, 13, 13]} span={[24, 24, 24, 16, 8, 8]}>
+          <div className="agenda_title">
+            <ResponsiveText as="h3" sizes={["18px", "24px", "30px"]}>
+              Agenda Ateliers
+            </ResponsiveText>
+          </div>
           <AgendaContainer>
             <div className="agenda__wrapper">
               <AgendaCard

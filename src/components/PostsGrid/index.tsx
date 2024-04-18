@@ -11,6 +11,7 @@ import Button from "../common/Button";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../sanity/lib/client";
 import { PortableText } from "next-sanity";
+import Image from "next/image";
 
 const LayerCard = styled.div`
   width: 100%;
@@ -46,6 +47,14 @@ const CardWrapper = styled.div`
     font-size: 19px;
   }
 `;
+
+const PostGridContainer = styled.div`
+  .image-grid-item {
+    width: 100%;
+    height: 600px;
+  }
+`;
+
 const PostsGrid = ({
   playfare,
   archivo,
@@ -62,40 +71,48 @@ const PostsGrid = ({
   }
 
   return (
-    <GridContainer
-      colCount={24}
-      colGap={20}
-      rowGap={20}
-      style={{ padding: "0 20px", maxWidth: "1380px", margin: "100px auto" }}
-    >
-      {posts.map((post, index) => (
-        <Col
-          key={index}
-          column={
-            index === 0
-              ? [1, 1, 1, 1]
-              : index === 1
-              ? [1, 1, 9, 9]
-              : [1, 1, 17, 17]
-          }
-          span={[24, 24, 8, 8]}
-        >
-          <ImageParallax
-            $paddingTop={[125, 125, 300, 155]}
-            $height="170%"
-            url={urlFor(post.image).url()}
-            height="100%"
-            stiffness={1.5}
-          />
-          <LayerCard>
-            <CardWrapper>
-              <h3 className={playfare}>{post.title}</h3>
-              <PortableText value={post.description} />
-            </CardWrapper>
-          </LayerCard>
-        </Col>
-      ))}
-    </GridContainer>
+    <PostGridContainer>
+      <GridContainer
+        colCount={24}
+        colGap={20}
+        rowGap={20}
+        style={{ padding: "0 20px", maxWidth: "1380px", margin: "100px auto" }}
+      >
+        {posts.map((post, index) => (
+          <Col
+            className="image-grid-item"
+            key={index}
+            column={
+              index === 0
+                ? [1, 1, 1, 1]
+                : index === 1
+                ? [1, 1, 9, 9]
+                : [1, 1, 17, 17]
+            }
+            span={[24, 24, 8, 8]}
+          >
+            {/* <ImageParallax
+                $paddingTop={[125, 125, 300, 155]}
+                $height="170%"
+                $backgroundImage={urlFor(post.image).url()}
+                stiffness={1.5}
+              /> */}
+            <Image
+              src={urlFor(post.image).url()}
+              alt={post.title}
+              fill
+              objectFit="cover"
+            />
+            <LayerCard>
+              <CardWrapper>
+                <h3 className={playfare}>{post.title}</h3>
+                <PortableText value={post.description} />
+              </CardWrapper>
+            </LayerCard>
+          </Col>
+        ))}
+      </GridContainer>
+    </PostGridContainer>
   );
 };
 export default PostsGrid;

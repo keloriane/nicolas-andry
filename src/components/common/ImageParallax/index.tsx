@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { gsap } from "gsap";
-import Image from "next/image";
 
 type ImageOverlayProps = {
+  backgroundImage: string;
   height: string;
-  url: string;
 };
 
 type ImageWrapperProps = {
   stiffness?: number;
   $paddingTop: number | number[];
+  $backgroundImage: string;
   $height: string;
 };
 
@@ -52,22 +52,35 @@ const ImageWrapper = styled.div<ImageWrapperProps>`
     display: block;
     ${(props) => handleResponsiveProps(props.$paddingTop, "padding-top")}
   }
+  .overlay-img {
+    background-image: url(${(props) => props.$backgroundImage});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: -20vh;
+    height: ${(props) => props.$height};
+    width: 100%;
+  }
 `;
 
-const ImageParallax: React.FC<ImageWrapperProps & ImageOverlayProps> = ({
-  height,
-  url,
+const ImageParallax: React.FC<ImageWrapperProps> = ({
+  $backgroundImage,
   $paddingTop,
+  $height,
   stiffness = 3,
 }) => {
-  const imageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const imageOverlay = imageRef.current;
+    if (!imageOverlay) return;
+
     const moveImage = () => {
       const scrollY = window.scrollY;
       const translateY = (scrollY / 10) * stiffness; // Adjust the factor as needed for the desired parallax effect
 
-      gsap.to(imageRef.current, { y: translateY, ease: "none", duration: 1 });
+      gsap.to(imageOverlay, { y: translateY, ease: "none", duration: 1 });
     };
 
     moveImage(); // Initial call to set initial position
@@ -80,16 +93,12 @@ const ImageParallax: React.FC<ImageWrapperProps & ImageOverlayProps> = ({
   }, []);
 
   return (
-    <ImageWrapper $paddingTop={$paddingTop} $height={height}>
-      <Image
-        src={url}
-        alt="Your Image"
-        layout="fill"
-        objectFit="cover"
-        quality={100}
-        ref={imageRef}
-        fill
-      />
+    <ImageWrapper
+      $paddingTop={$paddingTop}
+      $height={$height}
+      $backgroundImage={$backgroundImage}
+    >
+      <div ref={imageRef} className="overlay-img"></div>
     </ImageWrapper>
   );
 };
