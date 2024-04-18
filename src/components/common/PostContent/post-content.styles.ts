@@ -3,6 +3,9 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCotainer = styled.div`
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
   h2,
   h3 {
     font-family: ${playfare.style.fontFamily};
@@ -19,7 +22,6 @@ export const PostCotainer = styled.div`
     line-height: 30px;
   }
   nav {
-    padding: 20px;
     width: 100%;
     border-top: 1px solid #1e1e1e;
     padding-top: 55px;
@@ -28,10 +30,16 @@ export const PostCotainer = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
+    li {
+      cursor: pointer;
+      &:hover {
+        color: ${theme.colors.orange};
+      }
+    }
   }
   .post__container {
-    margin-top: 40px;
+    margin: 100px 0;
   }
   .slider_container {
     margin-top: 40px;

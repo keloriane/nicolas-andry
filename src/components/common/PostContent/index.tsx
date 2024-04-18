@@ -12,6 +12,7 @@ import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import { theme } from "@/styles/theme";
 
 interface Post {
   title: string;
@@ -25,11 +26,14 @@ interface PostContentProps {
 }
 
 const ImageGridContainer = styled.div`
+  border-top: 1px solid ${theme.colors.black};
+  padding-top: 50px;
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px; /* Adjust the gap between images */
   width: 100%;
-  max-width: 1000px;
+  max-width: 1280px;
   margin: auto;
   .react-photo-album {
     max-width: 1280px;
@@ -89,9 +93,14 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   return (
     <S.PostCotainer className="post_content">
       <GridContainer colCount={24} colGap={20} className="post__container">
-        <Col column={4} span={18}>
+        <Col column={[2, 2, 2, 2]} span={[22, 22, 22, 22]}>
           <nav>
             <ul>
+              {postsTitle.map((post, index) => (
+                <li key={index} onClick={() => onPostClick(post.slug)}>
+                  {post.title}
+                </li>
+              ))}
               {postsTitle.map((post, index) => (
                 <li key={index} onClick={() => onPostClick(post.slug)}>
                   {post.title}
@@ -103,7 +112,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       </GridContainer>
 
       <GridContainer colCount={24} colGap={20} className="post__container">
-        <Col column={2} span={11}>
+        <Col column={[2, 2, 2, 2]} span={[22, 22, 11, 11]}>
           <PortableText value={activePost?.content || []} />
         </Col>
       </GridContainer>
@@ -113,7 +122,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           <PhotoAlbum
             layout="columns"
             columns={4}
-            
             photos={formattedImages}
             onClick={({ index: current }) => {
               setOpen(true);
@@ -127,7 +135,14 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           index={index}
           open={open}
           close={() => setOpen(false)}
-        
+          styles={{
+            container: { backgroundColor: "rgb(1, 22, 26)" },
+            thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
+            thumbnail: { background: "rgb(1, 22, 26)" },
+          }}
+          render={{
+            iconClose: () => <button className="yarl__button"> fermer</button>,
+          }}
           slides={formattedImages}
           plugins={[Thumbnails]}
         />
