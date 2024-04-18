@@ -6,7 +6,18 @@ import post from "./schemaTypes/post";
 import author from "./schemaTypes/author";
 import creations from "./schemaTypes/creations";
 import home from "./schemaTypes/home";
+import agenda from "./schemaTypes/agenda";
+import recherches from "./schemaTypes/recherches";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post, author, category, blockContent, creations, home],
+  types: [
+    post,
+    author,
+    category,
+    blockContent,
+    creations,
+    home,
+    agenda,
+    recherches,
+  ],
 };

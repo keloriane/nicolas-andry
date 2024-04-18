@@ -21,7 +21,6 @@ interface HomeData {
 export default async function Home() {
   const homeData = await loadQuery<HomeData>(HOME_QUERY);
 
-  console.log(homeData.data);
   const { title, subtitle, postGrid, demarches, parcours } = homeData.data;
 
   return (

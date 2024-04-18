@@ -1,4 +1,5 @@
 import { playfare } from "@/app/font";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCotainer = styled.div`
@@ -7,6 +8,7 @@ export const PostCotainer = styled.div`
     font-family: ${playfare.style.fontFamily};
   }
   h3 {
+    color: ${theme.colors.orange};
     font-size: 34px;
   }
   h2 {

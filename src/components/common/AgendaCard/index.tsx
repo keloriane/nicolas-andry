@@ -55,10 +55,7 @@ const AgendaCard = ({ date, details }: { date: string; details: string }) => {
             Sortie:{" "}
           </ResponsiveText>
           <ResponsiveText sizes={["12px", "12px", "16px", "16px"]} as={"p"}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            nostrum perferendis atque, debitis esse tempore. Quaerat
-            reprehenderit eveniet libero? Pariatur, molestiae delectus! Adipisci
-            cumque accusamus impedit, doloribus alias quidem dolorem. Lorem
+            {details}
           </ResponsiveText>
         </div>
         <div>
@@ -83,7 +80,9 @@ const AgendaCard = ({ date, details }: { date: string; details: string }) => {
             </ResponsiveText>
           </div>
         </div>
-        <Link href="/">inscriptions:contact@nicolas-andry.be</Link>
+        <Link href="mailto:contact@nicolas-andry.be">
+          inscriptions:contact@nicolas-andry.be
+        </Link>
       </div>
     </AgendaContainer>
   );

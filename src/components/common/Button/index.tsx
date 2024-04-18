@@ -1,3 +1,4 @@
+import { theme } from "@/styles/theme";
 import Link from "next/link";
 import React from "react";
 import styled, { css } from "styled-components";
@@ -7,8 +8,9 @@ interface ButtonContainerProps {
   maxWidth?: string;
 }
 
-const ButtonContainer = styled.div<ButtonContainerProps>`
-  border: 1px solid black;
+const ButtonContainer = styled.span<ButtonContainerProps>`
+  border: 1px solid ${theme.colors.black};
+  color: ${theme.colors.black};
   width: 100%;
   padding: 15px 17px;
   font-size: 20px;
@@ -16,6 +18,11 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
   text-align: center;
   font-weight: 100;
   max-width: ${(props) => props.maxWidth};
+  transition: all 0.2s ease-in;
+  &:hover {
+    border: 1px solid ${theme.colors.orangeDarker};
+    color: ${theme.colors.orangeDarker};
+  }
 
   ${(props) =>
     props.light &&
@@ -28,20 +35,20 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
 const Button = ({
   text,
   href,
-  light,
+
   className,
   maxWidth,
 }: {
   text: string;
   href: string;
-  light: boolean;
-  className: string;
+
+  className?: string;
   maxWidth?: string;
 }) => {
   return (
-    <ButtonContainer light={light} className={className} maxWidth={maxWidth}>
-      <Link href={href}>{text}</Link>
-    </ButtonContainer>
+    <Link href={href}>
+      <ButtonContainer>{text}</ButtonContainer>
+    </Link>
   );
 };
 

@@ -89,7 +89,7 @@ const Agenda = ({ playfare }: { playfare: string }) => {
       </GridContainer>
       <GridContainer colCount={12} rowGap={75}>
         <Col column={6} span={2}>
-          <button>hello</button>
+          <Button text="Voir l'agenda" href="/" />
         </Col>
       </GridContainer>
     </AgendaSection>

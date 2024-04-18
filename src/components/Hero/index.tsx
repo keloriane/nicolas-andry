@@ -58,7 +58,7 @@ const Hero = ({
           </TextContainer>
         </Col>
         <Col column={7} span={1}>
-          <button>hello</button>
+          <Button href="/" text="Découvrir" />
         </Col>
       </GridContainer>
     </HeaderContainer>
