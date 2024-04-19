@@ -3,11 +3,6 @@ import React from "react";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import styled from "styled-components";
-import CreationImage from "@/../public/monsnochrome-04.jpg";
-import RechercheImage from "@/../public/recherches-cycle1-11.jpg";
-import AtelierImagae from "@/../public/coulisses-ateliers-06.jpg";
-import ImageParallax from "../common/ImageParallax";
-import Button from "../common/Button";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../sanity/lib/client";
 import { PortableText } from "next-sanity";
@@ -100,8 +95,9 @@ const PostsGrid = ({
             <Image
               src={urlFor(post.image).url()}
               alt={post.title}
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100%, (max-width: 1200px) 50%, 33%"
               fill
-              objectFit="cover"
             />
             <LayerCard>
               <CardWrapper>

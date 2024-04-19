@@ -17,11 +17,14 @@ interface HomeData {
   postGrid: [{ image: string; description: []; title: string }];
   demarches: [{ title: string; description: [] }];
   parcours: [{ year: string; description: [] }];
+  imageProfile: string;
 }
 export default async function Home() {
   const homeData = await loadQuery<HomeData>(HOME_QUERY);
 
   const { title, subtitle, postGrid, demarches, parcours } = homeData.data;
+
+  console.log(homeData.data);
 
   return (
     <main>
@@ -39,7 +42,7 @@ export default async function Home() {
       />
       <Agenda playfare={playfare.className} />
       <Procedures demarche={demarches} />
-      <Parcours parcours={parcours} />
+      <Parcours parcours={parcours} imageProfile={homeData.data.imageProfile} />
       <Contact />
       <Footer />
     </main>

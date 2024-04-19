@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "@/../public/Footer/4/Group 41.svg";
 import Image from "next/image";
+import { WebsiteCarbonBadge } from "react-websitecarbon-badge";
 
 const FooterContainer = styled.footer`
   width: 100vw;
@@ -67,7 +68,9 @@ const Footer = () => {
               </ul>
             </nav>
           </div>
-          <div className="carbon_badge">badge</div>
+          <div className="carbon_badge">
+            <WebsiteCarbonBadge co2="0.12" percentage="89" />
+          </div>
         </div>
         <div className="line"></div>
         <div className="footer_copyright">

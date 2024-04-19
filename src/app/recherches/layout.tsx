@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import { Archivo } from "next/font/google";
 import StyledComponentsRegistry from "@/lib/registry";
 import "./../globals.css";
+import PageHeader from "@/components/common/PageHeader";
+import PostProvider from "@/providers/PostProvider";
 
 const archivo = Archivo({ subsets: ["latin"] });
 

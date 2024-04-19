@@ -1,10 +1,8 @@
 import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
-
 import PageHeader from "@/components/common/PageHeader";
 import { playfare, archivo } from "./../font";
-
 import PostContent from "@/components/common/PostContent";
 
 function getCreationData() {
@@ -28,7 +26,7 @@ function getCreationData() {
   );
 }
 
-export default async function Creations() {
+export default async function Recherches() {
   const creations = await getCreationData();
   const creation = creations[0];
   const postsTitle = creation.posts;
@@ -40,7 +38,6 @@ export default async function Creations() {
         title={creation.title}
         introductionText={creation.introductionText[0].children[0].text}
       />
-
       <PostContent postsTitle={postsTitle} />
     </main>
   );

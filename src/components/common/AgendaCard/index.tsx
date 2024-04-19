@@ -12,7 +12,7 @@ const AgendaContainer = styled.div`
   .date__container {
     background-color: ${theme.colors.orange};
     padding: 50px 5px;
-    color: #fff2e3;
+    color: ${theme.colors.black};
     width: 80px;
     height: 100%;
     display: flex;

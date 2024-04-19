@@ -5,6 +5,8 @@ import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import { theme } from "@/styles/theme";
 import { PortableText } from "next-sanity";
+import Image from "next/image";
+import { urlFor } from "@/lib/imageBuilder";
 
 const ParcoursContainer = styled.section`
   .main-wrapper {
@@ -19,7 +21,6 @@ const ParcoursContainer = styled.section`
     gap: 30px;
     padding-top: 12.5px;
     padding-bottom: 12.5px;
-    border-bottom: 1px solid ${theme.colors.black};
   }
   .parcour-container {
     display: flex;
@@ -42,19 +43,32 @@ const ParcoursContainer = styled.section`
 
 const Parcours = ({
   parcours,
+  imageProfile,
 }: {
   parcours: [{ year: string; description: [] }];
+  imageProfile: string;
 }) => {
   return (
     <ParcoursContainer>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
         <Col column={2} span={9}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-            explicabo earum ratione praesentium ipsa reprehenderit ab vitae,
-            nemo recusandae odio incidunt ex facilis, molestiae sed cum impedit
-            neque eaque rem.
-          </p>
+          <div className="text_container">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Aspernatur explicabo earum ratione praesentium ipsa reprehenderit
+              ab vitae, nemo recusandae odio incidunt ex facilis, molestiae sed
+              cum impedit neque eaque rem.
+            </p>
+          </div>
+          <div className="profile_pic">
+            <Image
+              src={urlFor(imageProfile).url()}
+              alt={"post.title"}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
         </Col>
         <Col column={12} span={13}>
           <div className="parcour-container">

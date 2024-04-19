@@ -1,9 +1,9 @@
+import { theme } from "@/styles/theme";
 import { PortableText } from "next-sanity";
 import React from "react";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
-  border: 1px solid black;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -16,10 +16,10 @@ const CardContainer = styled.div`
 `;
 
 const HeadlineContainer = styled.div`
-  background-color: black;
-  color: #fff;
+  background-color: ${theme.colors.orange};
+  color: ${theme.colors.black};
   font-weight: 600;
-  width: 197px;
+  width: max-content;
   padding: 5px;
   display: inline-block;
 `;

@@ -13,6 +13,10 @@ import "swiper/css";
 import { FreeMode, Pagination } from "swiper/modules";
 import Navigation from "./Navigation";
 import styled from "styled-components";
+import GridContainer from "../common/Container";
+import Col from "../common/Col";
+import ResponsiveText from "../common/ResponsiveText";
+import { playfare } from "@/app/font";
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
@@ -23,6 +27,10 @@ const SectionContainer = styled.section`
   .navigation__container {
     margin-top: 50px;
   }
+  h2 {
+    text-align: center;
+    padding: 50px 0px;
+  }
 `;
 const Procedures = ({
   demarche,
@@ -31,6 +39,14 @@ const Procedures = ({
 }) => {
   return (
     <SectionContainer>
+      <ResponsiveText
+        as="h2"
+        sizes={["24px", "32px", "47px", "47px"]}
+        className={playfare.className}
+      >
+        Démarches
+      </ResponsiveText>
+
       <Swiper
         slidesPerView={1}
         centeredSlides

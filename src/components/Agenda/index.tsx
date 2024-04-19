@@ -15,6 +15,9 @@ const AgendaSection = styled.div`
     text-align: center;
     padding: 40px 0px;
   }
+  .agenda_cta {
+    text-align: center;
+  }
 `;
 const AgendaContainer = styled.div`
   display: flex;
@@ -88,7 +91,7 @@ const Agenda = ({ playfare }: { playfare: string }) => {
         </Col>
       </GridContainer>
       <GridContainer colCount={12} rowGap={75}>
-        <Col column={6} span={2}>
+        <Col column={6} span={2} className="agenda_cta">
           <Button text="Voir l'agenda" href="/" />
         </Col>
       </GridContainer>
