@@ -22,6 +22,12 @@ const ContactContainer = styled.section`
     flex-wrap: wrap;
     padding: 20px;
   }
+  @media (max-width: 600px) {
+    .contact-wrapper {
+      gap: 30px;
+      justify-content: center;
+    }
+  }
   .contact-info {
     display: flex;
     align-items: center;

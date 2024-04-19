@@ -58,7 +58,7 @@ export function SlidePrevButton({ buttonText }: SlideButtonProps) {
   };
 
   return (
-    <ArrowNav onClick={handlePrevSlide}>
+    <ArrowNav onClick={handlePrevSlide} className="arrow-next">
       <svg
         width="23"
         height="16"

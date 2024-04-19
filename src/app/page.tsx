@@ -18,6 +18,7 @@ interface HomeData {
   demarches: [{ title: string; description: [] }];
   parcours: [{ year: string; description: [] }];
   imageProfile: string;
+  presentationText: [];
 }
 export default async function Home() {
   const homeData = await loadQuery<HomeData>(HOME_QUERY);
@@ -42,7 +43,7 @@ export default async function Home() {
       />
       <Agenda playfare={playfare.className} />
       <Procedures demarche={demarches} />
-      <Parcours parcours={parcours} imageProfile={homeData.data.imageProfile} />
+      <Parcours parcours={parcours} imageProfile={homeData.data.imageProfile} presentationText={homeData.data.presentationText} />
       <Contact />
       <Footer />
     </main>

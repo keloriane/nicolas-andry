@@ -3,11 +3,12 @@ import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
 import PageHeader from "@/components/common/PageHeader";
-import { playfare, archivo } from "./../font";
+import { playfare, archivo } from "../font";
 
 import PostContent from "@/components/common/PostContent";
 import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
+import Slider from "@/components/Slider";
 
 function getCreationData() {
   return client.fetch(
@@ -35,6 +36,8 @@ export default async function Creations() {
   const creation = creations[0];
   const postsTitle = creation.posts;
 
+  console.log(postsTitle);
+
   return (
     <main>
       <Menu />
@@ -44,7 +47,7 @@ export default async function Creations() {
         introductionText={creation.introductionText[0].children[0].text}
       />
 
-      <PostContent postsTitle={postsTitle} />
+      {/* <Slider images={urlFor(postsTitle.).url()} /> */}
       <Footer />
     </main>
   );

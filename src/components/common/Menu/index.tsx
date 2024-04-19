@@ -51,7 +51,9 @@ const Menu = () => {
   return (
     <MenuContainer>
       <div className="logo-container">
-        <Image src={Logo} alt="logo" />
+        <Link href={"/"}>
+          <Image src={Logo} alt="logo" />
+        </Link>
       </div>
       <div className="agenda_cta">
         <nav>
@@ -60,10 +62,10 @@ const Menu = () => {
               <Link href="/creations">Créations</Link>
             </li>
             <li>
-              <Link href="/creations">Recherches</Link>
+              <Link href="/recherches">Recherches</Link>
             </li>
             <li>
-              <Link href="/creations">Ateliers</Link>
+              <Link href="/ateliers">Ateliers</Link>
             </li>
           </ul>
         </nav>

@@ -125,13 +125,14 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         {formattedImages.slice(startIndex, endIndex).map((img, index) => (
           <Image
             key={index}
-            style={{ width: "100%", height: "auto" }}
+            style={{ width: "100%", height: "auto", cursor: "pointer" }}
             sizes="(max-width: 800px) 100vw, 800px"
             alt={img.alt || ""}
             src={img.src}
             onClick={() => onImageClick(index + startIndex)}
             width={500}
             height={620}
+            s
           />
         ))}
       </Col>

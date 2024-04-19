@@ -19,11 +19,30 @@ const FooterContainer = styled.footer`
     gap: 30px;
     padding: 80px;
   }
+  @media (max-width: 680px) {
+    .footer_nav {
+      justify-content: center;
+      gap: 20px;
+
+      text-align: center;
+    }
+    .logo_footer {
+      width: 100%;
+      text-align: center;
+    }
+    .footer_copyright {
+      p {
+        text-align: center;
+      }
+    }
+  }
+
   .footer_nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     nav ul {
       display: flex;
       justify-content: space-between;

@@ -7,13 +7,29 @@ import { theme } from "@/styles/theme";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/lib/imageBuilder";
+import ResponsiveText from "../common/ResponsiveText";
+import { playfare } from "@/app/font";
 
 const ParcoursContainer = styled.section`
+  h2 {
+    text-align: center;
+    padding: 20px 0px;
+  }
   .main-wrapper {
     padding: 20px;
     max-width: 1380px;
     margin: auto;
     width: 100%;
+  }
+
+  .profil_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0px;
+    p {
+      line-height: 20px;
+    }
   }
   .parcour-card {
     display: flex;
@@ -32,45 +48,62 @@ const ParcoursContainer = styled.section`
     }
   }
   .year-wrapper {
-    background-color: ${theme.colors.black};
+    background-color: ${theme.colors.orange};
     padding: 2px 10px;
     font-size: 18px;
     font-weight: 400;
-    color: white;
+    color: ${theme.colors.black};
     max-width: 65px;
+    font-weight: 600;
   }
 `;
 
 const Parcours = ({
   parcours,
   imageProfile,
+  presentationText,
 }: {
   parcours: [{ year: string; description: [] }];
   imageProfile: string;
+  presentationText: [];
 }) => {
   return (
     <ParcoursContainer>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
-        <Col column={2} span={9}>
+        <Col
+          column={[2, 2, 2, 2]}
+          span={[24, 24, 24, 9, 9]}
+          className="profil_container"
+        >
           <div className="text_container">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aspernatur explicabo earum ratione praesentium ipsa reprehenderit
-              ab vitae, nemo recusandae odio incidunt ex facilis, molestiae sed
-              cum impedit neque eaque rem.
-            </p>
+            <ResponsiveText
+              sizes={["", "", ""]}
+              as="h2"
+              className={playfare.className}
+            >
+              Présentation
+            </ResponsiveText>
           </div>
+
+          <div className="text_container">
+            <PortableText value={presentationText} />
+          </div>
+
           <div className="profile_pic">
             <Image
               src={urlFor(imageProfile).url()}
               alt={"post.title"}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              style={{ objectFit: "cover" }}
+              width={300}
+              height={500}
+              style={{ objectFit: "cover", width: "100%" }}
             />
           </div>
         </Col>
-        <Col column={12} span={13}>
+        <Col
+          column={[2, 2, 2, 13]}
+          span={[22, 22, 22, 13]}
+          className="parcours-wrapper"
+        >
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
               <div className={"parcour-card"} key={index}>

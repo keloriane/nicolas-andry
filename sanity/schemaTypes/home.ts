@@ -97,6 +97,11 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "presentationText",
+      title: "Text de présentation",
+      type: "blockContent",
+    }),
+    defineField({
       title: "imageProfile",
       name: "imageProfile",
       type: "image",
