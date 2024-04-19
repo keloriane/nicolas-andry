@@ -132,7 +132,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
             onClick={() => onImageClick(index + startIndex)}
             width={500}
             height={620}
-            s
           />
         ))}
       </Col>
