@@ -6,6 +6,7 @@ import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import Button from "../common/Button";
 import ResponsiveText from "../common/ResponsiveText";
+import { archivo } from "@/app/font";
 
 const AgendaSection = styled.div`
   display: flex;
@@ -45,7 +46,11 @@ const Agenda = ({ playfare }: { playfare: string }) => {
       <GridContainer colCount={24} colGap={20} rowGap={20}>
         <Col column={[1, 1, 1, 5, 5, 5]} span={[24, 24, 24, 16, 8, 8]}>
           <div className="agenda_title">
-            <ResponsiveText as="h3" sizes={["18px", "24px", "30px"]}>
+            <ResponsiveText
+              as="h3"
+              sizes={["18px", "24px", "30px"]}
+              className={archivo.className}
+            >
               Agenda Creations
             </ResponsiveText>
           </div>
@@ -68,12 +73,16 @@ const Agenda = ({ playfare }: { playfare: string }) => {
         </Col>
         <Col column={[1, 1, 1, 5, 13, 13]} span={[24, 24, 24, 16, 8, 8]}>
           <div className="agenda_title">
-            <ResponsiveText as="h3" sizes={["18px", "24px", "30px"]}>
+            <ResponsiveText
+              as="h3"
+              sizes={["18px", "24px", "30px"]}
+              className={archivo.className}
+            >
               Agenda Ateliers
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            <div className="agenda__wrapper">
+            <div className={"agenda__wrapper"}>
               <AgendaCard
                 date={" 18/04 au 08/06 "}
                 details={

@@ -8,7 +8,7 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/lib/imageBuilder";
 import ResponsiveText from "../common/ResponsiveText";
-import { playfare } from "@/app/font";
+import { archivo, playfare } from "@/app/font";
 
 const ParcoursContainer = styled.section`
   h2 {
@@ -85,7 +85,7 @@ const Parcours = ({
             </ResponsiveText>
           </div>
 
-          <div className="text_container">
+          <div className={archivo.className}>
             <PortableText value={presentationText} />
           </div>
 
@@ -108,9 +108,9 @@ const Parcours = ({
             {parcours.map((parcour, index) => (
               <div className={"parcour-card"} key={index}>
                 <span className={"year-wrapper"}>
-                  <h4>{parcour.year}</h4>
+                  <p className={archivo.className}>{parcour.year}</p>
                 </span>
-                <div>
+                <div className={archivo.className}>
                   <PortableText value={parcour.description} />
                 </div>
               </div>

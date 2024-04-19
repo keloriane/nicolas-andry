@@ -1,3 +1,4 @@
+import { archivo } from "@/app/font";
 import { theme } from "@/styles/theme";
 import Link from "next/link";
 import React from "react";
@@ -46,7 +47,7 @@ const Button = ({
   maxWidth?: string;
 }) => {
   return (
-    <Link href={href}>
+    <Link href={href} className={archivo.className}>
       <ButtonContainer>{text}</ButtonContainer>
     </Link>
   );

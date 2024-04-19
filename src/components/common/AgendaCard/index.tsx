@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import ResponsiveText from "../ResponsiveText";
 import { theme } from "@/styles/theme";
+import { archivo } from "@/app/font";
 
 const AgendaContainer = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const AgendaContainer = styled.div`
 `;
 const AgendaCard = ({ date, details }: { date: string; details: string }) => {
   return (
-    <AgendaContainer>
+    <AgendaContainer className={archivo.className}>
       <div className="date__container">
         <ResponsiveText sizes={["12px", "16px", "21px", "21px"]} as="h3">
           {date}

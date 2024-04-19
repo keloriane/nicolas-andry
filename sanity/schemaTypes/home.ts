@@ -44,9 +44,9 @@ export default defineType({
               type: "image",
             },
             {
-              name: "url",
-              title: "Url",
-              type: "url",
+              name: "slug",
+              title: "Slug",
+              type: "string",
             },
           ],
         },

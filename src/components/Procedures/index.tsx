@@ -16,7 +16,7 @@ import styled from "styled-components";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import ResponsiveText from "../common/ResponsiveText";
-import { playfare } from "@/app/font";
+import { archivo, playfare } from "@/app/font";
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
@@ -75,7 +75,7 @@ const Procedures = ({
         className="mySwiper"
       >
         {demarche.map((d, i) => (
-          <SwiperSlide key={i}>
+          <SwiperSlide key={i} className={archivo.className}>
             <ProcedureCard title={d.title} text={d.description} />
           </SwiperSlide>
         ))}

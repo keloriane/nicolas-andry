@@ -50,7 +50,7 @@ const ContactContainer = styled.section`
   }
 `;
 
-const Contact = () => {
+const Contact = ({ archivo }: { archivo: string }) => {
   return (
     <ContactContainer>
       <div className="contact-wrapper">
@@ -59,8 +59,8 @@ const Contact = () => {
             <Image src={Logo} alt="logo" />
           </div>
           <div className="contact-description">
-            <h4>contact@nicolas-andry.com</h4>
-            <p>
+            <h4 className={archivo}>contact@nicolas-andry.com</h4>
+            <p className={archivo}>
               *Pour recevoir mes nouvelles d'activités, merci de m'envoyer un
               courriel avec mention PROJETS et/ou ATELIERS selon le(s)
               contenu(s) souhaité(s).

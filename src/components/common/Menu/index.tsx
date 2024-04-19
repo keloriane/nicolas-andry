@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
+import { archivo } from "@/app/font";
 
 const MenuContainer = styled.menu`
   position: fixed;
@@ -49,7 +50,7 @@ const MenuContainer = styled.menu`
 `;
 const Menu = () => {
   return (
-    <MenuContainer>
+    <MenuContainer className={archivo.className}>
       <div className="logo-container">
         <Link href={"/"}>
           <Image src={Logo} alt="logo" />

@@ -14,7 +14,7 @@ import { HOME_QUERY } from "../../sanity/lib/queries";
 interface HomeData {
   title: string;
   subtitle: string;
-  postGrid: [{ image: string; description: []; title: string }];
+  postGrid: [{ image: string; description: []; title: string; slug: string }];
   demarches: [{ title: string; description: [] }];
   parcours: [{ year: string; description: [] }];
   imageProfile: string;
@@ -43,8 +43,12 @@ export default async function Home() {
       />
       <Agenda playfare={playfare.className} />
       <Procedures demarche={demarches} />
-      <Parcours parcours={parcours} imageProfile={homeData.data.imageProfile} presentationText={homeData.data.presentationText} />
-      <Contact />
+      <Parcours
+        parcours={parcours}
+        imageProfile={homeData.data.imageProfile}
+        presentationText={homeData.data.presentationText}
+      />
+      <Contact archivo={archivo.className} />
       <Footer />
     </main>
   );

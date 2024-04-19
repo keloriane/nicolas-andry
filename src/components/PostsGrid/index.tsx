@@ -7,6 +7,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../sanity/lib/client";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
+import Link from "next/link";
+import { theme } from "@/styles/theme";
 
 const LayerCard = styled.div`
   width: 100%;
@@ -41,6 +43,17 @@ const CardWrapper = styled.div`
   a {
     font-size: 19px;
   }
+
+  .link-post-grid {
+    padding: 10px;
+    border: 1px solid white;
+    font-weight: 100;
+    &:hover {
+      border: 1px solid ${theme.colors.orange};
+      color: ${theme.colors.orange};
+      transition: all 0.15s ease-in;
+    }
+  }
 `;
 
 const PostGridContainer = styled.div`
@@ -58,7 +71,7 @@ const PostsGrid = ({
   playfare: string;
   archivo: string;
 
-  posts: [{ image: string; title: string; description: [] }];
+  posts: [{ image: string; title: string; description: []; slug: string }];
 }) => {
   const builder = imageUrlBuilder(client);
   function urlFor(source: string) {
@@ -102,7 +115,12 @@ const PostsGrid = ({
             <LayerCard>
               <CardWrapper>
                 <h3 className={playfare}>{post.title}</h3>
-                <PortableText value={post.description} />
+                <div className={archivo}>
+                  <PortableText value={post.description} />
+                </div>
+                <Link className={"link-post-grid"} href={`/${post.slug}`}>
+                  <span className={archivo}>Découvrir</span>
+                </Link>
               </CardWrapper>
             </LayerCard>
           </Col>
