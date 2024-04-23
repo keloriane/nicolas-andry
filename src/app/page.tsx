@@ -25,8 +25,6 @@ export default async function Home() {
 
   const { title, subtitle, postGrid, demarches, parcours } = homeData.data;
 
-  console.log(homeData.data);
-
   return (
     <main>
       <Menu />

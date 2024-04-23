@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <title>Créations</title>
+      <title>Ateliers</title>
       <body className={archivo.className}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>

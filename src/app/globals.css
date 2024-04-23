@@ -178,3 +178,13 @@ body {
 .arrow-next {
   margin-top: 25px;
 }
+
+.section_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.slider_container {
+  border-top: 1px solid black;
+  padding: 20px;
+}

@@ -21,6 +21,9 @@ const ParcoursContainer = styled.section`
     margin: auto;
     width: 100%;
   }
+  .profil_pic {
+    position: relative;
+  }
 
   .profil_container {
     display: flex;

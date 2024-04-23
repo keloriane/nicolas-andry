@@ -25,6 +25,11 @@ const ButtonContainer = styled.span<ButtonContainerProps>`
     color: ${theme.colors.orangeDarker};
   }
 
+  @media (max-width: 600) {
+    .innnerBtn {
+      font-size: 15px;
+    }
+  }
   ${(props) =>
     props.light &&
     css`
@@ -48,7 +53,9 @@ const Button = ({
 }) => {
   return (
     <Link href={href} className={archivo.className}>
-      <ButtonContainer>{text}</ButtonContainer>
+      <ButtonContainer>
+        <span className="innnerBtn">{text}</span>{" "}
+      </ButtonContainer>
     </Link>
   );
 };

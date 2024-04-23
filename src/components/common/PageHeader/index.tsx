@@ -15,7 +15,7 @@ const PageHeader: React.FC<PageHeaderType> = ({
   return (
     <S.PageHeaderContainer>
       <GridContainer colCount={24} colGap={20} className="header-wrapper">
-        <Col column={[2, 2, 2, 2, 7]} span={[22, 22, 22, 22, 11]}>
+        <Col column={[2, 2, 2, 2, 7]} span={[22, 22, 22, 22, 12]}>
           <ResponsiveText
             as="h1"
             sizes={["30px", "30px", "60px", "104px"]}

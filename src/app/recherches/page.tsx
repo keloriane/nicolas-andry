@@ -1,18 +1,18 @@
 import React from "react";
-import { client } from "../../../sanity/lib/client";
-import { groq } from "next-sanity";
-
-import PageHeader from "@/components/common/PageHeader";
-import { playfare, archivo } from "./../font";
-
-import PostContent from "@/components/common/PostContent";
 import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
+import { loadQuery } from "@sanity/react-loader";
+import { RECHERCHES_QUERY } from "../../../sanity/lib/queries";
+import { client } from "../../../sanity/lib/client";
+import { groq } from "next-sanity";
+import PostContent from "@/components/common/PostContent";
+import PageHeader from "@/components/common/PageHeader";
+import { playfare } from "../font";
 
-function getCreationData() {
+function getRechercheData() {
   return client.fetch(
     groq`
-    *[_type == "creations"] {
+    *[_type == "recherches"][0]{
       title,
       introductionText,
       imageHeader,
@@ -31,19 +31,17 @@ function getCreationData() {
 }
 
 export default async function Creations() {
-  const creations = await getCreationData();
-  const creation = creations[0];
-  const postsTitle = creation.posts;
+  const researchData = await getRechercheData();
+  const postsTitle = researchData.posts;
 
   return (
     <main>
       <Menu />
       <PageHeader
         playfare={playfare.className}
-        title={creation.title}
-        introductionText={creation.introductionText[0].children[0].text}
+        title={researchData.title}
+        introductionText={researchData.introductionText[0].children[0].text}
       />
-
       <PostContent postsTitle={postsTitle} />
       <Footer />
     </main>

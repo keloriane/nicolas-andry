@@ -8,6 +8,7 @@ import creations from "./schemaTypes/creations";
 import home from "./schemaTypes/home";
 import agenda from "./schemaTypes/agenda";
 import recherches from "./schemaTypes/recherches";
+import ateliers from "./schemaTypes/ateliers";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -19,5 +20,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     home,
     agenda,
     recherches,
+    ateliers,
   ],
 };
