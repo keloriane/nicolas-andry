@@ -8,6 +8,7 @@ import { groq } from "next-sanity";
 import PostContent from "@/components/common/PostContent";
 import PageHeader from "@/components/common/PageHeader";
 import { playfare } from "../font";
+import PageHero from "@/components/PageHero";
 
 function getRechercheData() {
   return client.fetch(
@@ -37,6 +38,7 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
+      <PageHero image={researchData} />
       <PageHeader
         playfare={playfare.className}
         title={researchData.title}

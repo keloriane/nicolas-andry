@@ -44,7 +44,6 @@ const SectionItem = styled.div`
 `;
 
 const SectionNav = styled.ul`
-  position: fixed;
   li {
     line-height: 30px;
 

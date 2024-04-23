@@ -12,6 +12,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { Section } from "@/types";
 import AterlierItem from "@/components/AtelierSection";
+import PageHero from "@/components/PageHero";
 
 function getAteliersData() {
   return client.fetch(
@@ -41,13 +42,14 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
+      <PageHero image={ateliers} />
       <PageHeader
         playfare={playfare.className}
         title={ateliers.title}
         introductionText={ateliers.introductionText[0].children[0].text}
       />
 
-      <div className="slider_container">
+      <div className="slider_container" style={{ paddingTop: "50px" }}>
         <Slider images={ateliers.images} centered={true} />
       </div>
 

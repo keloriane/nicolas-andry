@@ -16,6 +16,11 @@ export default defineField({
       type: "blockContent",
     }),
     defineField({
+      name: "imageHeader",
+      title: "Image Header",
+      type: "image",
+    }),
+    defineField({
       name: "images",
       title: "Images",
       type: "array",

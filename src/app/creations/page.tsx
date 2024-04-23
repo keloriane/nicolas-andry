@@ -8,6 +8,7 @@ import { playfare, archivo } from "./../font";
 import PostContent from "@/components/common/PostContent";
 import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
+import PageHero from "@/components/PageHero";
 
 function getCreationData() {
   return client.fetch(
@@ -38,6 +39,7 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
+      <PageHero image={creation} />
       <PageHeader
         playfare={playfare.className}
         title={creation.title}
