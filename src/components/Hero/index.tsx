@@ -6,6 +6,7 @@ import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import Button from "../common/Button";
 import { theme } from "@/styles/theme";
+import AnimatedText from "../common/AnimatedText";
 const TextContainer = styled.div`
   text-align: center;
   font-weight: 100;
@@ -35,12 +36,14 @@ const Hero = ({
         <Col column={[2, 2, 2, 3, 3]} span={[11, 11, 12, 9, 9]}>
           <TextContainer>
             <ResponsiveText
-              sizes={["45px", "85px", "85px", "105px", "105px"]}
+              sizes={["45px", "85px", "85px"]}
               className={clash}
               as="h1"
             >
-              {title} <br />
-              <span style={{ color: theme.colors.orange }}>{subtitle}</span>
+              <AnimatedText text={title} duration={1} splitBy="word" /> <br />
+              <span style={{ color: theme.colors.orange }}>
+                <AnimatedText text={subtitle} duration={1} splitBy="word" />
+              </span>
             </ResponsiveText>
           </TextContainer>
         </Col>
@@ -50,10 +53,16 @@ const Hero = ({
               sizes={["13px", "16px", "24px"]}
               className={satoshi}
             >
+              <AnimatedText
+                text={`
               Muer en gestes les questions, besoins, émotions.Pétrir ces
               matières, qui me pétrissent à leur tour.Être témoin de la forme
               qui émerge, trace sensible de l'expérience vécue et du chemin
-              parcouru.La mettre au monde, pour rendre ce qui fut reçu.
+              parcouru.La mettre au monde, pour rendre ce qui fut reçu.`}
+                splitBy="phrase"
+                staggerValue={0.025}
+                duration={1}
+              />
             </ResponsiveText>
           </TextContainer>
         </Col>

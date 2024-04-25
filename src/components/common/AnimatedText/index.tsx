@@ -51,18 +51,19 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
 
   const createElement = (str: string, index: number) => {
     return (
-      <div
+      <span
         key={index}
         style={{
           overflow: "hidden",
           visibility: inView ? "visible" : "hidden",
           color: highlightWords.includes(str) ? highlightColor : "inherit",
-          height: fontSize ? `${fontSize + 5}px` : "auto",
+          height: fontSize ? `${fontSize + 30}px` : "100%",
+          display: "inline-block",
         }}
       >
-        <div ref={(el) => (elementsRef.current[index] = el)}>{str}</div>
+        <span ref={(el) => (elementsRef.current[index] = el)}>{str}</span>
         {splitBy !== "letter" && " "}
-      </div>
+      </span>
     );
   };
 
@@ -80,18 +81,18 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   }
 
   return (
-    <div ref={reactRef} className="testline">
-      <div
+    <span ref={reactRef} className="line">
+      <span
         ref={ref}
         style={{
           display: "inline-Bock",
           flexWrap: "wrap",
         }}
-        className={[className, "testword"].join(" ")}
+        className={[className, "word"].join(" ")}
       >
         {splitText.map((str, index) => createElement(str, index))}
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
 

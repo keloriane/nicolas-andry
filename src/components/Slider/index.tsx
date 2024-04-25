@@ -21,31 +21,26 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
     <Swiper
       slidesPerView={1}
       breakpoints={{
-        400: {
+        480: {
           slidesPerView: 1,
         },
         640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
+          slidesPerView: 1.5,
         },
         768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
+          slidesPerView: 2.5,
         },
         1024: {
           slidesPerView: 3,
-          spaceBetween: 50,
         },
         1224: {
           slidesPerView: 4,
-          spaceBetween: 50,
+        },
+        1380: {
+          slidesPerView: 5,
         },
       }}
       spaceBetween={27}
-      freeMode={true}
-      loop={true}
-      className="image_slideer"
-      centeredSlides={centered}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
