@@ -10,7 +10,9 @@ import { WebsiteCarbonBadge } from "react-websitecarbon-badge";
 const FooterContainer = styled.footer`
   width: 100vw;
   background-color: ${theme.colors.orange};
-  color: white;
+  color: black;
+  font-weight: 700;
+
   .footer_wrapper {
     width: 95%;
     margin: auto;

@@ -88,13 +88,19 @@ const Menu = () => {
         <nav>
           <ul>
             <li>
-              <Link href="/creations">Créations</Link>
+              <Link href="/creations" shallow>
+                Créations
+              </Link>
             </li>
             <li>
-              <Link href="/recherches">Recherches</Link>
+              <Link href="/recherches" shallow>
+                Recherches
+              </Link>
             </li>
             <li>
-              <Link href="/ateliers">Ateliers</Link>
+              <Link href="/ateliers" shallow>
+                Ateliers
+              </Link>
             </li>
           </ul>
         </nav>
