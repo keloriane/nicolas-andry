@@ -39,6 +39,15 @@ export const PostCotainer = styled.div`
       }
     }
   }
+  .image_header {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+    }
+  }
   .post__container {
     margin: 100px 0;
   }
