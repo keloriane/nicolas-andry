@@ -87,7 +87,30 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     setIndex(index);
   };
 
-  const renderColumns = useMemo(() => {
+  const renderPost = () => {
+    if (!activePost) return <p>Loading...</p>;
+
+    return (
+      <>
+        <Col column={2} span={11} className="text_header_wrapper">
+          <PortableText value={activePost?.content || []} />
+        </Col>
+        <Col column={13} span={10} className="image_header_wrapper">
+          <Image
+            src={activePost?.mainImage.url as string}
+            layout="fill"
+            style={{ objectFit: "contain" }}
+            alt={activePost?.title as string}
+            priority={true}
+            sizes="100%"
+          />
+        </Col>
+      </>
+    );
+  };
+
+  const renderImageGrid = () => {
+    if (!formattedImages.length) return null;
     const columns = [];
     const imagesPerColumn = Math.ceil(
       formattedImages.length >= 6
@@ -102,7 +125,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         formattedImages.length
       );
       columns.push(
-        <Col key={i} column={i * 4 + 1} span={4}>
+        <Col key={i} column={i * 8 + 1} span={8}>
           {formattedImages.slice(startIndex, endIndex).map((img, index) => (
             <Image
               key={index}
@@ -120,7 +143,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       );
     }
     return columns;
-  }, [formattedImages]);
+  };
 
   return (
     <S.PostCotainer className="post_content">
@@ -141,46 +164,29 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         </Col>
       </GridContainer>
 
-      <GridContainer colCount={24} colGap={20} className="post__container">
-        <Col column={2} span={11}>
-          <PortableText value={activePost?.content || []} />
-        </Col>
-        <Col column={13} span={12} className="image_header">
-          {activePost ? (
-            <Image
-              src={activePost?.mainImage.url as string}
-              width={300}
-              height={400}
-              style={{ objectFit: "cover" }}
-              alt={activePost?.title as string}
-              loading="lazy"
-            />
-          ) : (
-            <p>loading</p>
-          )}
-        </Col>
+      <GridContainer colCount={24} className="header_info">
+        {renderPost()}
       </GridContainer>
 
-      <S.ImageGridContainer>
-        <GridContainer colCount={12} colGap={20} rowGap={20}>
-          {renderColumns}
-        </GridContainer>
-        <Lightbox
-          index={index}
-          open={open}
-          close={() => setOpen(false)}
-          styles={{
-            container: { backgroundColor: "rgb(1, 22, 26)" },
-            thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
-            thumbnail: { background: "rgb(1, 22, 26)" },
-          }}
-          render={{
-            iconClose: () => <button className="yarl__button">fermer</button>,
-          }}
-          slides={formattedImages}
-          plugins={[Thumbnails]}
-        />
-      </S.ImageGridContainer>
+      <GridContainer colCount={24} className="post__container">
+        {renderImageGrid()}
+      </GridContainer>
+
+      <Lightbox
+        index={index}
+        open={open}
+        close={() => setOpen(false)}
+        styles={{
+          container: { backgroundColor: "rgb(1, 22, 26)" },
+          thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
+          thumbnail: { background: "rgb(1, 22, 26)" },
+        }}
+        render={{
+          iconClose: () => <button className="yarl__button">fermer</button>,
+        }}
+        slides={formattedImages}
+        plugins={[Thumbnails]}
+      />
     </S.PostCotainer>
   );
 };

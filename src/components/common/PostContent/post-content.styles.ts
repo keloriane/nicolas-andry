@@ -39,9 +39,26 @@ export const PostCotainer = styled.div`
       }
     }
   }
+
+  .header_info {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    .text_header_wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .image_header_wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   .image_header {
     display: flex;
     justify-content: center;
+
     img {
       width: 100%;
       height: 100%;
@@ -49,7 +66,16 @@ export const PostCotainer = styled.div`
     }
   }
   .post__container {
-    margin: 100px 0;
+    margin: 100px auto;
+
+    div {
+      padding: 10px;
+      img {
+        padding-top: 20px;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
   .slider_container {
     margin-top: 40px;
