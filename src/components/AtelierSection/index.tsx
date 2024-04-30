@@ -26,7 +26,7 @@ const SectionItem = styled.div`
 
   .image_container {
     padding: 20px;
-    border: 1px solid ${theme.colors.black};
+
     flex: 1;
   }
 
@@ -49,11 +49,12 @@ const SectionItem = styled.div`
 `;
 
 const SectionNavWrapper = styled.div`
-  position: relative; /* Ensure the parent has relative positioning */
+  position: sticky; /* Ensure the parent has relative positioning */
 `;
 
 const SectionNav = styled.div`
-  position: sticky;
+  position: fixed;
+  margin-top: 20%;
 
   li {
     line-height: 30px;
@@ -105,25 +106,27 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
 
   return (
     <StyledGridContainer colCount={24} rowGap={50}>
-      <SectionNav>
-        <div className="nav_wrapper" ref={navWrapper}>
-          <ul>
-            {sections.map((section: Section, index) => (
-              <li
-                key={index}
-                style={
-                  activeSection === section.slug.current
-                    ? { color: theme.colors.orange, fontWeight: 600 }
-                    : { color: theme.colors.black, fontWeight: 400 }
-                }
-                onClick={() => scrollToSection(section.slug.current)}
-              >
-                {section.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </SectionNav>
+      <Col column={1} span={4}>
+        <SectionNav>
+          <div className="nav_wrapper" ref={navWrapper}>
+            <ul>
+              {sections.map((section: Section, index) => (
+                <li
+                  key={index}
+                  style={
+                    activeSection === section.slug.current
+                      ? { color: theme.colors.orange, fontWeight: 600 }
+                      : { color: theme.colors.black, fontWeight: 400 }
+                  }
+                  onClick={() => scrollToSection(section.slug.current)}
+                >
+                  {section.title}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </SectionNav>
+      </Col>
       {sections.map((section: Section, index: number) => (
         <Col column={[5, 5, 5, 5]} span={[14, 14, 16, 16]} key={index}>
           <SectionItem

@@ -10,24 +10,24 @@ import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
 import PageHero from "@/components/PageHero";
 
-function getCreationData() {
-  return client.fetch(
+async function getCreationData() {
+  return await client.fetch(
     groq`
-    *[_type == "creations"] {
-      title,
-      introductionText,
-      imageHeader,
-      "activePost": *[_type == "posts"][]->{
+      *[_type == "creations"] {
         title,
-        content,
-        'images': images[]{
-          "url": asset->url,
-          "alt": asset->alt
-        }
-      },
-      "posts": posts[] -> {title , slug}
-    }
-  `
+        introductionText,
+        imageHeader,
+        "activePost": *[_type == "posts" && references(^._id)]{
+          title,
+          content,
+          'images': images[]{
+            "url": asset->url,
+            "alt": asset->alt
+          }
+        }[0], // Assuming only one active post per creation
+        "posts": posts[]->{title, slug}
+      }
+    `
   );
 }
 
