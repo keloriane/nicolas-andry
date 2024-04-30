@@ -6,7 +6,6 @@ import { groq } from "next-sanity";
 import GridContainer from "../Container";
 import Col from "../Col";
 import * as S from "./post-content.styles";
-
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
@@ -37,13 +36,16 @@ interface PostContentProps {
   };
   postsTitle: { title: string; slug: { current: string } }[];
 }
+
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
   const [activeSlug, setActiveSlug] = useState<string>("ten-weingaert-2022");
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getActivePost = useCallback(async (slug: string) => {
+    setLoading(true);
     try {
       const post: Post[] = await client.fetch(
         groq`
@@ -64,6 +66,8 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       setActivePost(post[0] || null);
     } catch (error) {
       console.error("Error fetching active post:", error);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -88,7 +92,8 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   };
 
   const renderPost = () => {
-    if (!activePost) return <p>Loading...</p>;
+    if (loading) return <p>Loading...</p>;
+    if (!activePost) return <p>No data available.</p>;
 
     return (
       <>
@@ -96,14 +101,18 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           <PortableText value={activePost?.content || []} />
         </Col>
         <Col column={13} span={10} className="image_header_wrapper">
-          <Image
-            src={activePost?.mainImage.url as string}
-            layout="fill"
-            style={{ objectFit: "contain" }}
-            alt={activePost?.title as string}
-            priority={true}
-            sizes="100%"
-          />
+          {activePost ? (
+            <Image
+              src={activePost.mainImage.url as string}
+              layout="fill"
+              style={{ objectFit: "contain" }}
+              alt={activePost.title as string}
+              priority={true}
+              sizes="100%"
+            />
+          ) : (
+            <p>Loading main image...</p>
+          )}
         </Col>
       </>
     );
