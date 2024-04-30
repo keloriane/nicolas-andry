@@ -46,7 +46,7 @@ export default async function Creations() {
         introductionText={creation.introductionText[0].children[0].text}
       />
 
-      <PostContent postsTitle={postsTitle} />
+      <PostContent postsTitle={postsTitle} creation={creation} />
       <Footer />
     </main>
   );

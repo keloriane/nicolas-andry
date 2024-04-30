@@ -55,3 +55,36 @@ export const PostCotainer = styled.div`
     margin-top: 40px;
   }
 `;
+
+export const ImageGridContainer = styled.div`
+  border-top: 1px solid ${theme.colors.black};
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 99%;
+  margin: auto;
+
+  .col_image_item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .img-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: auto;
+  }
+
+  .react-photo-album {
+    max-width: 1280px;
+    margin: auto;
+    width: 100%;
+
+    img {
+      object-fit: cover;
+    }
+  }
+`;

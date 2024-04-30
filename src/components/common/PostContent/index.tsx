@@ -6,7 +6,7 @@ import { groq } from "next-sanity";
 import GridContainer from "../Container";
 import Col from "../Col";
 import * as S from "./post-content.styles";
-import styled from "styled-components";
+
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
@@ -26,39 +26,17 @@ interface PostContentProps {
   postsTitle: { title: string; slug: { current: string } }[];
 }
 
-const ImageGridContainer = styled.div`
-  border-top: 1px solid ${theme.colors.black};
-  padding-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 99%;
-  margin: auto;
-
-  .col_image_item {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .img-container {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-auto-rows: auto;
-  }
-
-  .react-photo-album {
-    max-width: 1280px;
-    margin: auto;
-    width: 100%;
-
-    img {
-      object-fit: cover;
-    }
-  }
-`;
-
+interface PostContentProps {
+  creation: {
+    activePost: {
+      title: string;
+      content: [];
+      mainImage: { url: string };
+      images: [{ url: string; alt: string; metadata: any }];
+    };
+  };
+  postsTitle: { title: string; slug: { current: string } }[];
+}
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
   const [activeSlug, setActiveSlug] = useState<string>("ten-weingaert-2022");
@@ -183,7 +161,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         </Col>
       </GridContainer>
 
-      <ImageGridContainer>
+      <S.ImageGridContainer>
         <GridContainer colCount={12} colGap={20} rowGap={20}>
           {renderColumns}
         </GridContainer>
@@ -202,7 +180,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           slides={formattedImages}
           plugins={[Thumbnails]}
         />
-      </ImageGridContainer>
+      </S.ImageGridContainer>
     </S.PostCotainer>
   );
 };
