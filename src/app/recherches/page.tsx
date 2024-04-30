@@ -10,24 +10,24 @@ import PageHeader from "@/components/common/PageHeader";
 import { playfare } from "../font";
 import PageHero from "@/components/PageHero";
 
-async function getRechercheData() {
-  return await client.fetch(
+function getRechercheData() {
+  return client.fetch(
     groq`
-      *[_type == "recherches"] {
+    *[_type == "recherches"][0]{
+      title,
+      introductionText,
+      imageHeader,
+      "activePost": *[_type == "posts"][]->{
         title,
-        introductionText,
-        imageHeader,
-        "activePost": *[_type == "posts" && references(^._id)]{
-          title,
-          content,
-          'images': images[]{
-            "url": asset->url,
-            "alt": asset->alt
-          }
-        }[0], // Assuming only one active post per creation
-        "posts": posts[]->{title, slug}
-      }
-    `
+        content,
+        'images': images[]{
+          "url": asset->url,
+          "alt": asset->alt
+        }
+      },
+      "posts": posts[] -> {title , slug}
+    }
+  `
   );
 }
 
