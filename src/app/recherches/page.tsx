@@ -10,8 +10,8 @@ import PageHeader from "@/components/common/PageHeader";
 import { playfare } from "../font";
 import PageHero from "@/components/PageHero";
 
-function getRechercheData() {
-  return client.fetch(
+async function getRechercheData() {
+  return await client.fetch(
     groq`
     *[_type == "recherches"][0]{
       title,
