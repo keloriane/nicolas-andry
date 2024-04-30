@@ -22,6 +22,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   splitBy,
   duration,
   className,
+  gap,
   highlightWords = [],
   highlightColor = "red",
   staggerValue = 0, // Default stagger value
@@ -57,8 +58,9 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
           overflow: "hidden",
           visibility: inView ? "visible" : "hidden",
           color: highlightWords.includes(str) ? highlightColor : "inherit",
-          height: fontSize ? `${fontSize + 30}px` : "100%",
+          height: fontSize ? `${fontSize + 30}px` : "fit-content",
           display: "inline-block",
+          marginRight: gap,
         }}
       >
         <span ref={(el) => (elementsRef.current[index] = el)}>{str}</span>
@@ -85,7 +87,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
       <span
         ref={ref}
         style={{
-          display: "inline-Bock",
+          display: "inline-block",
           flexWrap: "wrap",
         }}
         className={[className, "word"].join(" ")}

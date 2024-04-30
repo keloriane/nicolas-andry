@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { urlFor } from "@/lib/imageBuilder";
 
-const imageHeight = 800;
+const imageHeight = 480;
 const HeroContainer = styled.header`
   width: 100vw;
   height: ${imageHeight}px;
@@ -18,7 +18,7 @@ const HeroContainer = styled.header`
 
     background-image: linear-gradient(
       0deg,
-      rgba(255, 255, 255, 1) 30%,
+      rgba(255, 255, 255, 1) 2%,
       rgba(255, 255, 255, 0) 68%
     );
     z-index: 2;
@@ -38,7 +38,6 @@ const PageHero = ({ image }: { image: { imageHeader: [] } }) => {
           objectFit: "cover",
           width: "100vw",
           objectPosition: "100% 0%",
-          paddingTop: "100px",
         }}
       />
     </HeroContainer>

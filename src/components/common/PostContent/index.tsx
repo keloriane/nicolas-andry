@@ -1,5 +1,11 @@
 "use client";
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  useLayoutEffect,
+} from "react";
 import { PortableText } from "@portabletext/react";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
@@ -10,7 +16,7 @@ import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import { theme } from "@/styles/theme";
+import gsap from "gsap";
 import Image from "next/image";
 
 interface Post {
@@ -75,6 +81,52 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     getActivePost(activeSlug);
   }, [activeSlug, getActivePost]);
 
+  useLayoutEffect(() => {
+    // Animate elements when activePost changes
+    if (activePost) {
+      gsap.fromTo(
+        ".text_header_wrapper",
+        {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          delay: 0.1,
+        },
+        {
+          y: 0,
+          opacity: 1,
+        }
+      );
+      gsap.fromTo(
+        ".image_header_wrapper",
+        {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          delay: 0.1,
+        },
+        {
+          y: 0,
+          opacity: 1,
+        }
+      );
+      gsap.fromTo(
+        ".image_wrapper",
+        {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          delay: 0.2,
+          stagger: 0.1,
+        },
+        {
+          opacity: 1,
+          y: 0,
+        }
+      );
+    }
+  }, [activePost]);
+
   const formattedImages = useMemo(() => {
     return activePost?.images
       ? activePost.images.map((image, index) => ({
@@ -136,17 +188,18 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       columns.push(
         <Col key={i} column={i * 8 + 1} span={8}>
           {formattedImages.slice(startIndex, endIndex).map((img, index) => (
-            <Image
-              key={index}
-              style={{ width: "100%", height: "auto", cursor: "pointer" }}
-              sizes="(max-width: 800px) 100vw, 800px"
-              alt={img.alt || ""}
-              src={img.src}
-              onClick={() => onImageClick(index + startIndex)}
-              width={500}
-              height={620}
-              loading="lazy"
-            />
+            <div className="image_wrapper" key={index}>
+              <Image
+                style={{ width: "100%", height: "auto", cursor: "pointer" }}
+                sizes="(max-width: 800px) 100vw, 800px"
+                alt={img.alt || ""}
+                src={img.src}
+                onClick={() => onImageClick(index + startIndex)}
+                width={500}
+                height={620}
+                loading="lazy"
+              />
+            </div>
           ))}
         </Col>
       );

@@ -7,6 +7,7 @@ import Col from "../common/Col";
 import Button from "../common/Button";
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo } from "@/app/font";
+import AnimatedText from "../common/AnimatedText";
 
 const AgendaSection = styled.div`
   display: flex;
@@ -39,7 +40,15 @@ const Agenda = ({ playfare }: { playfare: string }) => {
       <GridContainer colCount={24} rowGap={75}>
         <Col column={[7, 7, 7, 7, 9]} span={[12, 12, 12, 12, 7]}>
           <TitleContainer>
-            <h2 className={playfare}>Agenda recherches et créations</h2>
+            <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
+              <AnimatedText
+                text={"Agenda recherches et créations"}
+                duration={0.5}
+                splitBy="word"
+                className={playfare}
+                gap="10px"
+              />
+            </ResponsiveText>
           </TitleContainer>
         </Col>
       </GridContainer>

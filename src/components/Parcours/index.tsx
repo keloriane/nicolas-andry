@@ -80,7 +80,7 @@ const Parcours = ({
         >
           <div className="text_container">
             <ResponsiveText
-              sizes={["", "", ""]}
+              sizes={["20", "24", "45"]}
               as="h2"
               className={playfare.className}
             >

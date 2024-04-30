@@ -13,21 +13,21 @@ import PageHero from "@/components/PageHero";
 async function getCreationData() {
   return await client.fetch(
     groq`
-      *[_type == "creations"] {
+    *[_type == "creations"] {
+      title,
+      introductionText,
+      imageHeader,
+      "activePost": *[_type == "posts"][]->{
         title,
-        introductionText,
-        imageHeader,
-        "activePost": *[_type == "posts" && references(^._id)]{
-          title,
-          content,
-          'images': images[]{
-            "url": asset->url,
-            "alt": asset->alt
-          }
-        }[0], // Assuming only one active post per creation
-        "posts": posts[]->{title, slug}
-      }
-    `
+        content,
+        'images': images[]{
+          "url": asset->url,
+          "alt": asset->alt
+        }
+      },
+      "posts": posts[] -> {title , slug}
+    }
+  `
   );
 }
 
@@ -39,10 +39,11 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
-      <PageHero image={creation} />
+
       <PageHeader
         playfare={playfare.className}
         title={creation.title}
+        image={creation}
         introductionText={creation.introductionText[0].children[0].text}
       />
 

@@ -123,6 +123,11 @@ table {
   }
 }
 
+.swiper-slide {
+  display: flex !important;
+  justify-content: center;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

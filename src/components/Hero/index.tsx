@@ -50,7 +50,7 @@ const Hero = ({
         <Col column={[2, 2, 2, 4, 4]} span={[11, 11, 12, 7, 7]}>
           <TextContainer>
             <ResponsiveText
-              sizes={["13px", "16px", "24px"]}
+              sizes={["13px", "16px", "18px"]}
               className={satoshi}
             >
               <AnimatedText

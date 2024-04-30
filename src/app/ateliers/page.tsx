@@ -32,8 +32,9 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
-      <PageHero image={ateliers} />
+
       <PageHeader
+        image={ateliers}
         playfare={playfare.className}
         title={ateliers.title}
         introductionText={ateliers.introductionText[0].children[0].text}

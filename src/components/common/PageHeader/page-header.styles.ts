@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const PageHeaderContainer = styled.div`
-  margin-top: -100px;
   z-index: 10;
   position: relative;
   .header-wrapper div {

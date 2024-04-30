@@ -38,13 +38,14 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
-      <PageHero image={researchData} />
+
       <PageHeader
+        image={researchData}
         playfare={playfare.className}
         title={researchData.title}
         introductionText={researchData.introductionText[0].children[0].text}
       />
-      <PostContent postsTitle={postsTitle} />
+      <PostContent creation={researchData} postsTitle={postsTitle} />
       <Footer />
     </main>
   );

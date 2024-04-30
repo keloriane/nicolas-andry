@@ -37,7 +37,7 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
           slidesPerView: 4,
         },
         1380: {
-          slidesPerView: 5,
+          slidesPerView: 4,
         },
       }}
       spaceBetween={27}

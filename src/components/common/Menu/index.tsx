@@ -6,6 +6,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 import { archivo } from "@/app/font";
+import gsap from "gsap";
 
 const MenuContainer = styled.menu`
   position: fixed;
@@ -13,7 +14,7 @@ const MenuContainer = styled.menu`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 15px;
+  padding: 5px;
   z-index: 200;
   background-color: ${theme.colors.white};
   .logo-container {
@@ -59,8 +60,37 @@ const MenuContainer = styled.menu`
   }
 `;
 const Menu = () => {
+  const navBar = React.createRef<HTMLHeadElement>();
+
+  React.useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const navigationHeight = navBar.current?.offsetHeight;
+
+      if (scrollTop > lastScrollTop) {
+        gsap.to(navBar.current, { top: "-90px", duration: 0.5 });
+      } else {
+        gsap.to(navBar.current, { top: "0px", duration: 0.5 });
+      }
+
+      // Update the last scroll position
+      lastScrollTop = scrollTop;
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Remove the event listener when the component unmounts
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <MenuContainer className={archivo.className}>
+    <MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">
         <Link href={"/"}>
           <svg
