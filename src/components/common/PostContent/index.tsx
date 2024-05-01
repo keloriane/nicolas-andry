@@ -149,10 +149,18 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
 
     return (
       <>
-        <Col column={2} span={11} className="text_header_wrapper">
+        <Col
+          column={[2, 2, 2, 2]}
+          span={[22, 22, 11, 11]}
+          className="text_header_wrapper"
+        >
           <PortableText value={activePost?.content || []} />
         </Col>
-        <Col column={13} span={10} className="image_header_wrapper">
+        <Col
+          column={[2, 2, 13, 13]}
+          span={[22, 22, 10, 10]}
+          className="image_header_wrapper"
+        >
           {activePost ? (
             <Image
               src={activePost.mainImage.url as string}
@@ -175,18 +183,18 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     const columns = [];
     const imagesPerColumn = Math.ceil(
       formattedImages.length >= 6
-        ? formattedImages.length / 3
-        : formattedImages.length / 4
+        ? formattedImages.length / 5
+        : formattedImages.length / 3
     );
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       const startIndex = i * imagesPerColumn;
       const endIndex = Math.min(
         (i + 1) * imagesPerColumn,
         formattedImages.length
       );
       columns.push(
-        <Col key={i} column={i * 8 + 1} span={8}>
+        <Col key={i} column={[1, 1, i * 5 + 1]} span={[24, 24, 5]}>
           {formattedImages.slice(startIndex, endIndex).map((img, index) => (
             <div className="image_wrapper" key={index}>
               <Image
@@ -226,11 +234,12 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         </Col>
       </GridContainer>
 
-      <GridContainer colCount={24} className="header_info">
-        {renderPost()}
-      </GridContainer>
+      <GridContainer colCount={24}>{renderPost()}</GridContainer>
 
-      <GridContainer colCount={24} className="post__container">
+      <GridContainer
+        colCount={formattedImages.length < 6 ? 15 : 20}
+        className="post__container"
+      >
         {renderImageGrid()}
       </GridContainer>
 
@@ -243,6 +252,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
           thumbnail: { background: "rgb(1, 22, 26)" },
         }}
+        animation={{ fade: 250, swipe: 0 }}
         render={{
           iconClose: () => <button className="yarl__button">fermer</button>,
         }}

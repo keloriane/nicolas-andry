@@ -9,7 +9,11 @@ import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import { playfare } from "@/app/font";
 import { theme } from "@/styles/theme";
-import Link from "next/link";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { hrtime } from "process";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SectionItem = styled.div`
   display: flex;
@@ -22,6 +26,12 @@ const SectionItem = styled.div`
 
   .text_container {
     flex: 2;
+    ul {
+      margin-left: 20px;
+    }
+  }
+  .text_wrapper {
+    margin-left: 20px;
   }
 
   .image_container {
@@ -48,14 +58,9 @@ const SectionItem = styled.div`
   }
 `;
 
-const SectionNavWrapper = styled.div`
-  position: sticky; /* Ensure the parent has relative positioning */
-`;
-
 const SectionNav = styled.div`
-  position: fixed;
-  margin-top: 20%;
-
+  position: absolute;
+  top: 85px;
   li {
     line-height: 30px;
     color: ${theme.colors.black};
@@ -68,12 +73,43 @@ const SectionNav = styled.div`
 const StyledGridContainer = styled(GridContainer)`
   position: relative;
   padding-bottom: 200px;
+  overflow-y: scroll;
 `;
 
 const AterlierItem = ({ sections }: { sections: Section[] }) => {
   const sectionScreens = useRef<(HTMLDivElement | null)[]>([]);
   const [activeSection, setActiveSection] = React.useState<string | null>(null);
   const navWrapper = useRef(null);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Trigger timeline on scroll
+    console.log(gridContainerRef.current);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: gridContainerRef.current!,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    });
+
+    // Static position of SectionNav when StyledGridContainer is in view
+    tl.to(navWrapper.current, {
+      position: "fixed",
+      // Adjust as needed
+      left: 0, // Adjust as needed
+      right: 0, // Adjust as needed
+      zIndex: 999, // Adjust as needed
+    });
+
+    return () => {
+      // Clean up ScrollTrigger instances
+      ScrollTrigger.getAll().forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const config = {
@@ -103,12 +139,12 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
       section.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   };
-
   return (
-    <StyledGridContainer colCount={24} rowGap={50}>
-      <Col column={1} span={4}>
-        <SectionNav>
-          <div className="nav_wrapper" ref={navWrapper}>
+    <div ref={gridContainerRef}>
+      <StyledGridContainer colCount={24} rowGap={50}>
+        {/* <StyledCol column={[5, 5, 5, 5]} span={[14, 14, 16, 16]}> */}
+        <SectionNav ref={navWrapper}>
+          <div className="nav_wrapper">
             <ul>
               {sections.map((section: Section, index) => (
                 <li
@@ -126,37 +162,40 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
             </ul>
           </div>
         </SectionNav>
-      </Col>
-      {sections.map((section: Section, index: number) => (
-        <Col column={[5, 5, 5, 5]} span={[14, 14, 16, 16]} key={index}>
-          <SectionItem
-            id={section.slug.current}
-            style={{
-              flexFlow: index % 2 === 0 ? "row-reverse wrap" : "row wrap",
-            }}
-            ref={(el) => (sectionScreens.current[index] = el)}
-          >
-            <div className="text_container">
-              <h2 className={playfare.className}>{section.title}</h2>
-              <PortableText value={section.content} />
-            </div>
-            {section.image ? (
-              <div className="image_container">
-                <Image
-                  src={urlFor(section.image).url()}
-                  alt=""
-                  width={340}
-                  height={410}
-                  style={{ objectFit: "cover" }}
-                />
+
+        {sections.map((section: Section, index: number) => (
+          <Col column={[5, 5, 5, 5]} span={[14, 14, 16, 16]} key={index}>
+            <SectionItem
+              id={section.slug.current}
+              style={{
+                flexFlow: index % 2 === 0 ? "row-reverse wrap" : "row wrap",
+              }}
+              ref={(el) => (sectionScreens.current[index] = el)}
+            >
+              <div className="text_container">
+                <h2 className={playfare.className}>{section.title}</h2>
+                <div className="text_wrapper">
+                  <PortableText value={section.content} />
+                </div>
               </div>
-            ) : (
-              ""
-            )}
-          </SectionItem>
-        </Col>
-      ))}
-    </StyledGridContainer>
+              {section.image ? (
+                <div className="image_container">
+                  <Image
+                    src={urlFor(section.image).url()}
+                    alt=""
+                    width={340}
+                    height={410}
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+            </SectionItem>
+          </Col>
+        ))}
+      </StyledGridContainer>
+    </div>
   );
 };
 

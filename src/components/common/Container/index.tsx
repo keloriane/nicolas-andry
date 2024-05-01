@@ -11,6 +11,7 @@ interface ContainerProps {
   rowGap?: number;
   colGap?: number;
   style?: React.CSSProperties;
+  reactRef?: React.RefObject<HTMLElement>;
 }
 
 const handleResponsiveProps = (
@@ -61,6 +62,7 @@ const GridContainer: React.FC<ContainerProps> = ({
   colGap = 0,
   rowGap = 0,
   as = "div",
+  reactRef,
 }) => {
   return (
     <ContainerStyle
