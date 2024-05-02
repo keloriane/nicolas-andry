@@ -1,9 +1,9 @@
-import Link from "next/link";
-import React from "react";
-import styled from "styled-components";
-import ResponsiveText from "../ResponsiveText";
-import { theme } from "@/styles/theme";
-import { archivo } from "@/app/font";
+import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
+import ResponsiveText from '../ResponsiveText';
+import { theme } from '@/styles/theme';
+import { archivo } from '@/app/font';
 
 const AgendaContainer = styled.div`
   display: flex;
@@ -43,19 +43,19 @@ const AgendaCard = ({ date, details }: { date: string; details: string }) => {
   return (
     <AgendaContainer className={archivo.className}>
       <div className="date__container">
-        <ResponsiveText sizes={["12px", "16px", "21px", "21px"]} as="h3">
+        <ResponsiveText sizes={['12px', '16px', '21px', '21px']} as="h3">
           {date}
         </ResponsiveText>
       </div>
       <div className="description__container">
         <div>
           <ResponsiveText
-            sizes={["12px", "12px", "16px", "16px"]}
+            sizes={['12px', '12px', '16px', '16px']}
             className="bold"
           >
-            Sortie:{" "}
+            Sortie:{' '}
           </ResponsiveText>
-          <ResponsiveText sizes={["12px", "12px", "16px", "16px"]} as={"p"}>
+          <ResponsiveText sizes={['12px', '12px', '16px', '16px']} as={'p'}>
             {details}
           </ResponsiveText>
         </div>
@@ -74,7 +74,7 @@ const AgendaCard = ({ date, details }: { date: string; details: string }) => {
               />
             </svg>
             <ResponsiveText
-              sizes={["12px", "12px", "16px", "16px"]}
+              sizes={['12px', '12px', '16px', '16px']}
               className="bold"
             >
               Hangar (Bruxelles)

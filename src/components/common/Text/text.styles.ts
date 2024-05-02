@@ -1,10 +1,10 @@
-import styled, { css } from "styled-components";
-import React from "react";
-import { FontSizeOrClamp } from "./index";
+import styled, { css } from 'styled-components';
+import React from 'react';
+import { FontSizeOrClamp } from './index';
 
 const defaultFontSize = 1;
-const defaultFontUnit = "rem";
-const defaultResponsiveFontUnit = "vw";
+const defaultFontUnit = 'rem';
+const defaultResponsiveFontUnit = 'vw';
 
 export interface IText {
   as?: React.ElementType;
@@ -38,14 +38,14 @@ export interface IText {
 export const Text = styled.span<IText>`
   font-size: ${({ fontSize }) => {
     switch (typeof fontSize) {
-      case "string":
+      case 'string':
         return fontSize;
-      case "number":
+      case 'number':
         return fontSize;
 
-      case "string":
+      case 'string':
         return fontSize;
-      case "object":
+      case 'object':
         return css`clamp(${fontSize.min + defaultFontUnit}, ${
           fontSize.vw + defaultResponsiveFontUnit
         }, ${fontSize.max + defaultFontUnit})`;

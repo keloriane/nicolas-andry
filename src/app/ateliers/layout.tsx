@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Archivo } from "next/font/google";
-import StyledComponentsRegistry from "@/lib/registry";
-import "./../globals.css";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import { Archivo } from 'next/font/google';
+import StyledComponentsRegistry from '@/lib/registry';
+import './../globals.css';
 
-const archivo = Archivo({ subsets: ["latin"] });
+const archivo = Archivo({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Nicolas Andry",
-  description: "Photography",
+  title: 'Nicolas Andry',
+  description: 'Photography',
 };
 
 export default function RootLayout({

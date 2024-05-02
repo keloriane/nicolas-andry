@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import styled from "styled-components";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
+'use client';
+import React from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
+import { urlFor } from '@/lib/imageBuilder';
 
 const imageHeight = 480;
 const HeroContainer = styled.header`
@@ -35,9 +35,9 @@ const PageHero = ({ image }: { image: { imageHeader: [] } }) => {
         width={1000}
         height={imageHeight}
         style={{
-          objectFit: "cover",
-          width: "100vw",
-          objectPosition: "100% 0%",
+          objectFit: 'cover',
+          width: '100vw',
+          objectPosition: '100% 0%',
         }}
       />
     </HeroContainer>

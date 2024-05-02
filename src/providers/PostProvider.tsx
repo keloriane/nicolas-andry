@@ -1,6 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { groq } from "next-sanity";
-import { client } from "../../sanity/lib/client";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // Define context
 interface PostContextData {
@@ -14,7 +12,7 @@ const PostContext = createContext<PostContextData | null>(null);
 const usePostContext = () => {
   const context = useContext(PostContext);
   if (!context) {
-    throw new Error("usePostContext must be used within a PostProvider");
+    throw new Error('usePostContext must be used within a PostProvider');
   }
   return context;
 };
@@ -30,7 +28,7 @@ interface Post {
 // Post provider component
 const PostProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
-  const [activeSlug, setActiveSlug] = useState<string>("ten-weingaert-2022");
+  const [activeSlug, setActiveSlug] = useState<string>('ten-weingaert-2022');
 
   return (
     <PostContext.Provider value={{ activePost, setActiveSlug }}>

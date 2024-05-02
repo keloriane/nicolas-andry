@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import * as S from "./image.style";
-import { ImageRProps } from "./image.style";
+'use client';
+import React from 'react';
+import * as S from './image.style';
+import { ImageRProps } from './image.style';
 
 const ImageR: React.FC<ImageRProps> = ({
   height = 100,

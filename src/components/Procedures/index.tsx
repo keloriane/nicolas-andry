@@ -1,22 +1,21 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
-import ProcedureCard from "./Card";
-import { Swiper, SwiperSlide } from "swiper/react";
+import ProcedureCard from './Card';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
 
-import "swiper/css";
-import { FreeMode, Pagination } from "swiper/modules";
-import Navigation from "./Navigation";
-import styled from "styled-components";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
-import ResponsiveText from "../common/ResponsiveText";
-import { archivo, playfare } from "@/app/font";
+import 'swiper/css';
+import { FreeMode, Pagination } from 'swiper/modules';
+import Navigation from './Navigation';
+import styled from 'styled-components';
+
+import ResponsiveText from '../common/ResponsiveText';
+import { archivo, playfare } from '@/app/font';
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
@@ -41,7 +40,7 @@ const Procedures = ({
     <SectionContainer>
       <ResponsiveText
         as="h2"
-        sizes={["24px", "32px", "47px", "47px"]}
+        sizes={['24px', '32px', '47px', '47px']}
         className={playfare.className}
       >
         Démarches

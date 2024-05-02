@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import sprite from "@/assets/images/smoke_sprites2.webp";
+import styled, { keyframes } from 'styled-components';
+import sprite from '@/assets/images/smoke_sprites2.webp';
 
 export const ContainerStyle = styled.div`
   width: 100%;
@@ -16,14 +16,14 @@ export const ImageStyle = styled.img`
   position: absolute;
   object-fit: cover;
   transition: opacity 0.5s cubic-bezier(0.26, 1.04, 0.54, 1) 0s;
-  font-family: "object-fit: cover;";
+  font-family: 'object-fit: cover;';
   will-change: opacity;
   object-position: 50% 50%;
 `;
 
 export const PictureStyle = styled.picture`
   &:before {
-    content: "";
+    content: '';
     padding-top: 116.38%;
     display: block;
   }

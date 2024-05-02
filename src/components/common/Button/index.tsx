@@ -1,8 +1,8 @@
-import { archivo } from "@/app/font";
-import { theme } from "@/styles/theme";
-import Link from "next/link";
-import React from "react";
-import styled, { css } from "styled-components";
+import { archivo } from '@/app/font';
+import { theme } from '@/styles/theme';
+import Link from 'next/link';
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 interface ButtonContainerProps {
   light?: boolean;
@@ -18,7 +18,7 @@ const ButtonContainer = styled.span<ButtonContainerProps>`
   text-transform: uppercase;
   text-align: center;
   font-weight: 100;
-  max-width: ${(props) => props.maxWidth};
+  max-width: ${props => props.maxWidth};
   transition: all 0.2s ease-in;
   &:hover {
     border: 1px solid ${theme.colors.orangeDarker};
@@ -30,7 +30,7 @@ const ButtonContainer = styled.span<ButtonContainerProps>`
       font-size: 15px;
     }
   }
-  ${(props) =>
+  ${props =>
     props.light &&
     css`
       border-color: white;
@@ -54,7 +54,7 @@ const Button = ({
   return (
     <Link href={href} className={archivo.className}>
       <ButtonContainer>
-        <span className="innnerBtn">{text}</span>{" "}
+        <span className="innnerBtn">{text}</span>{' '}
       </ButtonContainer>
     </Link>
   );

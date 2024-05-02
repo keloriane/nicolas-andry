@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
-import styled from "styled-components";
-import { breakpoints } from "@/mixins/breakpoints";
+import React from 'react';
+import styled from 'styled-components';
+import { breakpoints } from '@/mixins/breakpoints';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface ContainerProps {
 
 const handleResponsiveProps = (
   value: number | number[] | undefined,
-  propName: string
+  propName: string,
 ) => {
   if (Array.isArray(value)) {
     return value
@@ -27,13 +27,13 @@ const handleResponsiveProps = (
         return `
         ${propName}: repeat(${calculatedV}, 1fr);
           @media (min-width: ${breakpoint}px) and (max-width: ${
-          nextBreakpoint - 1
-        }px) {
+            nextBreakpoint - 1
+          }px) {
             ${propName}: repeat(${calculatedV}, 1fr);
           }
         `;
       })
-      .join(" ");
+      .join(' ');
   } else {
     return `${propName}: repeat(${value}, 1fr);`;
   }
@@ -43,16 +43,16 @@ const ContainerStyle = styled.div<ContainerProps>`
   display: grid;
 
   width: 100%;
-  ${(props) => handleResponsiveProps(props.colCount, "grid-template-columns")}
-  row-gap: ${(props) => props.rowGap}px;
-  column-gap: ${(props) => props.colGap}px;
+  ${props => handleResponsiveProps(props.colCount, 'grid-template-columns')}
+  row-gap: ${props => props.rowGap}px;
+  column-gap: ${props => props.colGap}px;
   @media (max-width: ${breakpoints[1]}px) {
     width: 100vw;
     column-gap: 0px;
   }
 `;
-ContainerStyle.shouldForwardProp = (prop) =>
-  !["colCount", "rowGap", "colGap"].includes(prop);
+ContainerStyle.shouldForwardProp = prop =>
+  !['colCount', 'rowGap', 'colGap'].includes(prop);
 
 const GridContainer: React.FC<ContainerProps> = ({
   children,
@@ -61,7 +61,7 @@ const GridContainer: React.FC<ContainerProps> = ({
   colCount,
   colGap = 0,
   rowGap = 0,
-  as = "div",
+  as = 'div',
   reactRef,
 }) => {
   return (

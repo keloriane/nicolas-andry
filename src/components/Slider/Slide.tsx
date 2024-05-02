@@ -1,7 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import styled from "styled-components";
-import { urlFor } from "@/lib/imageBuilder";
+import React from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 const SlideContainer = styled.div`
   width: 300px;
@@ -15,10 +14,10 @@ const Slide = ({ image }: { image: string }) => {
       {
         <Image
           src={image}
-          alt={"alt"}
+          alt={'alt'}
           fill
-          style={{ objectFit: "cover" }}
-          className={"image-slide"}
+          style={{ objectFit: 'cover' }}
+          className={'image-slide'}
         />
       }
     </SlideContainer>

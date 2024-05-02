@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import styled from "styled-components";
-import { theme } from "@/styles/theme";
-import Logo from "@/../public/logo.svg";
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { theme } from '@/styles/theme';
+import Logo from '@/../public/logo.svg';
+import Image from 'next/image';
 
 const ContactContainer = styled.section`
   width: 100%;
@@ -68,7 +68,7 @@ const Contact = ({ archivo }: { archivo: string }) => {
           </div>
         </div>
         <div className="contact-cta">
-          <Link className="cta" href={"mailto:contact@nicolas-andry.com"}>
+          <Link className="cta" href={'mailto:contact@nicolas-andry.com'}>
             Me contacter
           </Link>
         </div>

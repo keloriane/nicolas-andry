@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
-import AgendaCard from "../common/AgendaCard";
-import styled from "styled-components";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
-import Button from "../common/Button";
-import ResponsiveText from "../common/ResponsiveText";
-import { archivo } from "@/app/font";
-import AnimatedText from "../common/AnimatedText";
+'use client';
+import React from 'react';
+import AgendaCard from '../common/AgendaCard';
+import styled from 'styled-components';
+import GridContainer from '../common/Container';
+import Col from '../common/Col';
+import Button from '../common/Button';
+import ResponsiveText from '../common/ResponsiveText';
+import { archivo } from '@/app/font';
+import AnimatedText from '../common/AnimatedText';
 
 const AgendaSection = styled.div`
   display: flex;
@@ -40,9 +40,9 @@ const Agenda = ({ playfare }: { playfare: string }) => {
       <GridContainer colCount={24} rowGap={75}>
         <Col column={[7, 7, 7, 7, 9]} span={[12, 12, 12, 12, 7]}>
           <TitleContainer>
-            <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
+            <ResponsiveText as="h2" sizes={['20', '24', '45']}>
               <AnimatedText
-                text={"Agenda recherches et créations"}
+                text={'Agenda recherches et créations'}
                 duration={0.5}
                 splitBy="word"
                 className={playfare}
@@ -57,7 +57,7 @@ const Agenda = ({ playfare }: { playfare: string }) => {
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
-              sizes={["18px", "24px", "30px"]}
+              sizes={['18px', '24px', '30px']}
               className={archivo.className}
             >
               Agenda Creations
@@ -66,13 +66,13 @@ const Agenda = ({ playfare }: { playfare: string }) => {
           <AgendaContainer>
             <div className="agenda__wrapper">
               <AgendaCard
-                date={" 18/04 au 08/06 "}
+                date={' 18/04 au 08/06 '}
                 details={
                   "Manuel pour développer l'argentique et penser la photographie autrement "
                 }
               />
               <AgendaCard
-                date={" 18/04 au 08/06 "}
+                date={' 18/04 au 08/06 '}
                 details={
                   "Manuel pour développer l'argentique et penser la photographie autrement "
                 }
@@ -84,22 +84,22 @@ const Agenda = ({ playfare }: { playfare: string }) => {
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
-              sizes={["18px", "24px", "30px"]}
+              sizes={['18px', '24px', '30px']}
               className={archivo.className}
             >
               Agenda Ateliers
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            <div className={"agenda__wrapper"}>
+            <div className={'agenda__wrapper'}>
               <AgendaCard
-                date={" 18/04 au 08/06 "}
+                date={' 18/04 au 08/06 '}
                 details={
                   "Manuel pour développer l'argentique et penser la photographie autrement "
                 }
               />
               <AgendaCard
-                date={" 18/04 au 08/06 "}
+                date={' 18/04 au 08/06 '}
                 details={
                   "Manuel pour développer l'argentique et penser la photographie autrement "
                 }

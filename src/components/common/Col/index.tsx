@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface GridItemProps {
   className?: string;
@@ -9,6 +9,7 @@ interface GridItemProps {
   rowStart?: number | number[];
   rowEnd?: number | number[];
   span: number | number[];
+  reactRef?: any;
 }
 
 const breakpoints = [1, 420, 640, 768, 1024, 1280, 1440];
@@ -16,7 +17,7 @@ const breakpoints = [1, 420, 640, 768, 1024, 1280, 1440];
 const handleResponsiveProps = (
   value: number | number[] | undefined,
   propName: string,
-  span: number | number[]
+  span: number | number[],
 ) => {
   if (Array.isArray(value)) {
     return value
@@ -33,19 +34,19 @@ const handleResponsiveProps = (
           }
         `;
       })
-      .join(" ");
+      .join(' ');
   } else {
     return `${propName}: ${value} / span ${span};`;
   }
 };
 
 const GridItemStyle = styled.div<GridItemProps>`
-  ${(props) => handleResponsiveProps(props.column, "grid-column", props.span)}
+  ${props => handleResponsiveProps(props.column, 'grid-column', props.span)}
 
   width: 100%;
   position: relative;
 `;
-GridItemStyle.shouldForwardProp = (prop) => !["column", "span"].includes(prop);
+GridItemStyle.shouldForwardProp = prop => !['column', 'span'].includes(prop);
 
 const Col: React.FC<GridItemProps> = ({
   children,
@@ -55,6 +56,7 @@ const Col: React.FC<GridItemProps> = ({
   rowStart,
   rowEnd,
   span,
+  reactRef,
 }: GridItemProps) => {
   return (
     <GridItemStyle
@@ -64,6 +66,7 @@ const Col: React.FC<GridItemProps> = ({
       rowStart={rowStart}
       rowEnd={rowEnd}
       span={span}
+      ref={reactRef}
     >
       {children}
     </GridItemStyle>

@@ -1,11 +1,11 @@
-"use client";
-import { theme } from "@/styles/theme";
-import Link from "next/link";
-import React from "react";
-import styled from "styled-components";
-import Logo from "@/../public/Footer/4/Group 41.svg";
-import Image from "next/image";
-import { WebsiteCarbonBadge } from "react-websitecarbon-badge";
+'use client';
+import { theme } from '@/styles/theme';
+import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
+import Logo from '@/../public/Footer/4/Group 41.svg';
+import Image from 'next/image';
+import { WebsiteCarbonBadge } from 'react-websitecarbon-badge';
 
 const FooterContainer = styled.footer`
   width: 100vw;
@@ -78,13 +78,13 @@ const Footer = () => {
             <nav>
               <ul>
                 <li>
-                  <Link href={"/"}>Creations</Link>
+                  <Link href={'/'}>Creations</Link>
                 </li>
                 <li>
-                  <Link href={"/"}>Recherches</Link>
+                  <Link href={'/'}>Recherches</Link>
                 </li>
                 <li>
-                  <Link href={"/"}>Ateliers</Link>
+                  <Link href={'/'}>Ateliers</Link>
                 </li>
               </ul>
             </nav>
@@ -97,7 +97,7 @@ const Footer = () => {
         <div className="footer_copyright">
           <p>©Tout droit réservé.</p>
           <p>©This website is cookie free.</p>
-          <Link href={"/"}>made by Kevin Flabat</Link>
+          <Link href={'/'}>made by Kevin Flabat</Link>
         </div>
       </div>
     </FooterContainer>

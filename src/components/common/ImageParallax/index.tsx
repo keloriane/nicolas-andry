@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { gsap } from "gsap";
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { gsap } from 'gsap';
 
 type ImageOverlayProps = {
   backgroundImage: string;
@@ -18,7 +18,7 @@ const breakpoints = [1, 420, 640, 768, 1024, 1280, 1440];
 
 const handleResponsiveProps = (
   value: number | number[] | undefined,
-  propName: string
+  propName: string,
 ) => {
   if (Array.isArray(value)) {
     return value
@@ -36,7 +36,7 @@ const handleResponsiveProps = (
           }
         `;
       })
-      .join(" ");
+      .join(' ');
   } else {
     return `${propName}: ${value}%;`;
   }
@@ -48,18 +48,18 @@ const ImageWrapper = styled.div<ImageWrapperProps>`
   overflow: hidden;
   position: relative;
   &:before {
-    content: "";
+    content: '';
     display: block;
-    ${(props) => handleResponsiveProps(props.$paddingTop, "padding-top")}
+    ${props => handleResponsiveProps(props.$paddingTop, 'padding-top')}
   }
   .overlay-img {
-    background-image: url(${(props) => props.$backgroundImage});
+    background-image: url(${props => props.$backgroundImage});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
     top: -20vh;
-    height: ${(props) => props.$height};
+    height: ${props => props.$height};
     width: 100%;
   }
 `;
@@ -80,15 +80,15 @@ const ImageParallax: React.FC<ImageWrapperProps> = ({
       const scrollY = window.scrollY;
       const translateY = (scrollY / 10) * stiffness; // Adjust the factor as needed for the desired parallax effect
 
-      gsap.to(imageOverlay, { y: translateY, ease: "none", duration: 1 });
+      gsap.to(imageOverlay, { y: translateY, ease: 'none', duration: 1 });
     };
 
     moveImage(); // Initial call to set initial position
 
-    window.addEventListener("scroll", moveImage);
+    window.addEventListener('scroll', moveImage);
 
     return () => {
-      window.removeEventListener("scroll", moveImage);
+      window.removeEventListener('scroll', moveImage);
     };
   }, []);
 

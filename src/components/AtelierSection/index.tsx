@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { LegacyRef, MutableRefObject, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { urlFor } from "@/lib/imageBuilder";
 import { Section } from "@/types";
@@ -77,7 +77,7 @@ const StyledGridContainer = styled(GridContainer)`
 `;
 
 const AterlierItem = ({ sections }: { sections: Section[] }) => {
-  const sectionScreens = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionScreens: MutableRefObject<(LegacyRef<HTMLDivElement> | null)[]> = useRef<(LegacyRef<HTMLDivElement> | null)[]>([]);
   const [activeSection, setActiveSection] = React.useState<string | null>(null);
   const navWrapper = useRef(null);
   const gridContainerRef = useRef<HTMLDivElement>(null);
@@ -166,11 +166,12 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
         {sections.map((section: Section, index: number) => (
           <Col column={[5, 5, 5, 5]} span={[14, 14, 16, 16]} key={index}>
             <SectionItem
+              ref={(el:any) => (sectionScreens.current[index] = el)}
               id={section.slug.current}
               style={{
                 flexFlow: index % 2 === 0 ? "row-reverse wrap" : "row wrap",
               }}
-              ref={(el) => (sectionScreens.current[index] = el)}
+             
             >
               <div className="text_container">
                 <h2 className={playfare.className}>{section.title}</h2>

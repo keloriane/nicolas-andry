@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import gsap from "gsap";
+import React, { useEffect, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+import gsap from 'gsap';
 
 interface AnimatedTextProps {
   text: string;
-  splitBy: "letter" | "word" | "phrase";
+  splitBy: 'letter' | 'word' | 'phrase';
   gap?: string;
   duration: number;
   className?: string;
@@ -24,7 +24,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   className,
   gap,
   highlightWords = [],
-  highlightColor = "red",
+  highlightColor = 'red',
   staggerValue = 0, // Default stagger value
 }) => {
   const [ref, inView] = useInView({
@@ -43,9 +43,9 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
           autoAlpha: 1,
           y: 0,
           stagger: staggerValue,
-          ease: "cubic-bezier(.215,.61,.355,1)",
+          ease: 'cubic-bezier(.215,.61,.355,1)',
           duration: duration,
-        }
+        },
       );
     }
   }, [inView, duration, staggerValue]);
@@ -55,31 +55,31 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
       <span
         key={index}
         style={{
-          overflow: "hidden",
-          visibility: inView ? "visible" : "hidden",
-          color: highlightWords.includes(str) ? highlightColor : "inherit",
-          height: fontSize ? `${fontSize + 30}px` : "fit-content",
-          display: "inline-block",
+          overflow: 'hidden',
+          visibility: inView ? 'visible' : 'hidden',
+          color: highlightWords.includes(str) ? highlightColor : 'inherit',
+          height: fontSize ? `${fontSize + 30}px` : 'fit-content',
+          display: 'inline-block',
           marginRight: gap,
         }}
       >
-        <span ref={(el) => (elementsRef.current[index] = el)}>{str}</span>
-        {splitBy !== "letter" && " "}
+        <span ref={el => (elementsRef.current[index] = el)}>{str}</span>
+        {splitBy !== 'letter' && ' '}
       </span>
     );
   };
 
   let splitText: string[];
 
-  if (splitBy === "letter") {
+  if (splitBy === 'letter') {
     splitText = Array.from(text);
-  } else if (splitBy === "word") {
-    splitText = text.split(" ");
-  } else if (splitBy === "phrase") {
+  } else if (splitBy === 'word') {
+    splitText = text.split(' ');
+  } else if (splitBy === 'phrase') {
     splitText = text.split(/(?:\n|\. |\? )/);
-    splitText = splitText.filter((phrase) => phrase.trim() !== "");
+    splitText = splitText.filter(phrase => phrase.trim() !== '');
   } else {
-    splitText = text.split(". ");
+    splitText = text.split('. ');
   }
 
   return (
@@ -87,10 +87,10 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
       <span
         ref={ref}
         style={{
-          display: "inline-block",
-          flexWrap: "wrap",
+          display: 'inline-block',
+          flexWrap: 'wrap',
         }}
-        className={[className, "word"].join(" ")}
+        className={[className, 'word'].join(' ')}
       >
         {splitText.map((str, index) => createElement(str, index))}
       </span>

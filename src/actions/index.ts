@@ -1,7 +1,7 @@
-"use server";
+'use server';
 
-import { groq } from "next-sanity";
-import { client } from "../../sanity/lib/client";
+import { groq } from 'next-sanity';
+import { client } from '../../sanity/lib/client';
 
 export async function getActivePostServer(slug: string) {
   await client.fetch(
@@ -17,6 +17,6 @@ export async function getActivePostServer(slug: string) {
             }
           }
         `,
-    { slug }
+    { slug },
   );
 }

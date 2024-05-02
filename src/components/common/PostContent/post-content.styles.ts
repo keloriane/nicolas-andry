@@ -1,6 +1,6 @@
-import { playfare } from "@/app/font";
-import { theme } from "@/styles/theme";
-import styled from "styled-components";
+import { playfare } from '@/app/font';
+import { theme } from '@/styles/theme';
+import styled from 'styled-components';
 
 export const PostCotainer = styled.div`
   width: 100%;
@@ -71,7 +71,7 @@ export const PostCotainer = styled.div`
     div {
       padding: 10px;
       img {
-        padding-top: 20px;
+        
         width: 100%;
         height: 100%;
       }

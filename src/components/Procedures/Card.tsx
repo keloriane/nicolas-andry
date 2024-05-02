@@ -1,7 +1,7 @@
-import { theme } from "@/styles/theme";
-import { PortableText } from "next-sanity";
-import React from "react";
-import styled from "styled-components";
+import { theme } from '@/styles/theme';
+import { PortableText } from 'next-sanity';
+import React from 'react';
+import styled from 'styled-components';
 
 const CardContainer = styled.div`
   padding: 10px;

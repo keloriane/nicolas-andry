@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import styled from "styled-components";
-import gsap from "gsap";
+import React, { useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import gsap from 'gsap';
 
 type TextAnimateProps = {
   text: string;
@@ -42,23 +42,23 @@ const TextAnimate: React.FC<TextAnimateProps> = ({
   const textAnimRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const textElements = textRef.current?.querySelectorAll(".char");
+    const textElements = textRef.current?.querySelectorAll('.char');
 
     if (textElements) {
       gsap.to([textElements], {
         opacity: 1,
         duration: duration,
         stagger: stagger,
-        y: "0%",
+        y: '0%',
         rotate: 0,
-        ease: "power2.inOut",
+        ease: 'power2.inOut',
       });
     }
   }, [text]);
 
   return (
     <Container as={as} ref={textRef} className={className}>
-      {text.split(" ").map((char, i) => (
+      {text.split(' ').map((char, i) => (
         <TextContainer key={i}>
           <TextWrapper ref={textAnimRef} className="char">
             {char}

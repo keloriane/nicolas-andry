@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export type ImageRProps = {
   height?: number;
@@ -19,19 +19,19 @@ export const ImageStyle = styled.img<ImageRProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: ${(props) => props.opacity};
+  opacity: ${props => props.opacity};
   position: absolute;
   object-fit: cover;
   transition: opacity 0.5s cubic-bezier(0.26, 1.04, 0.54, 1) 0s;
-  font-family: "object-fit: cover;";
+  font-family: 'object-fit: cover;';
   will-change: opacity;
   object-position: 50% 50%;
 `;
 
 export const PictureStyle = styled.picture<ImageRProps>`
   &:before {
-    content: "";
-    padding-top: ${(props) => props.height}%;
+    content: '';
+    padding-top: ${props => props.height}%;
     display: block;
   }
 `;

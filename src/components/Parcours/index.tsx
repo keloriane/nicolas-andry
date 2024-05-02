@@ -1,14 +1,14 @@
-"use client";
-import React from "react";
-import styled from "styled-components";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
-import { theme } from "@/styles/theme";
-import { PortableText } from "next-sanity";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
-import ResponsiveText from "../common/ResponsiveText";
-import { archivo, playfare } from "@/app/font";
+'use client';
+import React from 'react';
+import styled from 'styled-components';
+import GridContainer from '../common/Container';
+import Col from '../common/Col';
+import { theme } from '@/styles/theme';
+import { PortableText } from 'next-sanity';
+import Image from 'next/image';
+import { urlFor } from '@/lib/imageBuilder';
+import ResponsiveText from '../common/ResponsiveText';
+import { archivo, playfare } from '@/app/font';
 
 const ParcoursContainer = styled.section`
   h2 {
@@ -80,7 +80,7 @@ const Parcours = ({
         >
           <div className="text_container">
             <ResponsiveText
-              sizes={["20", "24", "45"]}
+              sizes={['20', '24', '45']}
               as="h2"
               className={playfare.className}
             >
@@ -95,10 +95,10 @@ const Parcours = ({
           <div className="profile_pic">
             <Image
               src={urlFor(imageProfile).url()}
-              alt={"post.title"}
+              alt={'post.title'}
               width={300}
               height={500}
-              style={{ objectFit: "cover", width: "100%" }}
+              style={{ objectFit: 'cover', width: '100%' }}
             />
           </div>
         </Col>
@@ -109,8 +109,8 @@ const Parcours = ({
         >
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
-              <div className={"parcour-card"} key={index}>
-                <span className={"year-wrapper"}>
+              <div className={'parcour-card'} key={index}>
+                <span className={'year-wrapper'}>
                   <p className={archivo.className}>{parcour.year}</p>
                 </span>
                 <div className={archivo.className}>

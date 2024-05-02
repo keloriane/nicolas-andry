@@ -1,8 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { useSwiper } from "swiper/react";
-import leftArrow from "@/../public/left_arrow.svg";
-import Image from "next/image";
+import React from 'react';
+import styled from 'styled-components';
+import { useSwiper } from 'swiper/react';
 
 interface SlideButtonProps {
   buttonText: string;

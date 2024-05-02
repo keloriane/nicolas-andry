@@ -1,7 +1,7 @@
-import * as React from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import PhotoAlbum, { Photo } from "react-photo-album";
+import * as React from 'react';
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
+import PhotoAlbum, { Photo } from 'react-photo-album';
 
 export default function ImageGallery({ images }: { images: Photo[] }) {
   const [open, setOpen] = React.useState(false);

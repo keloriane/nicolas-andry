@@ -1,16 +1,16 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import Slide from "./Slide";
-import { Image } from "@/types";
-import { urlFor } from "@/lib/imageBuilder";
-import Navigation from "../Procedures/Navigation";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+import Slide from './Slide';
+
+import { urlFor } from '@/lib/imageBuilder';
+import Navigation from '../Procedures/Navigation';
 
 interface SliderProps {
   images: [];
