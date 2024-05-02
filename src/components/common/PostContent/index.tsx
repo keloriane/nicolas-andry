@@ -43,6 +43,7 @@ interface PostContentProps {
     };
   };
   postsTitle: { title: string; slug: { current: string } }[];
+
 }
 
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
@@ -128,7 +129,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         },
       );
       gsap.fromTo(
-        ['.image_grid_item'],
+        '.image_grid_item',
         {
           opacity: 0,
           y: 20,
@@ -184,7 +185,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
               fill
               style={{ objectFit: 'contain' }}
               alt={activePost.title as string}
-              priority={true}
+              priority
               sizes="100%"
             />
           ) : (
@@ -256,9 +257,11 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       <GridContainer colCount={24}>{renderPost()}</GridContainer>
 
       <GridContainer
-        colCount={formattedImages.length < 6 ? 15 : 20}
+        colCount={formattedImages.length <= 6 ? 15 : formattedImages.length >= 13 ? 25 : formattedImages.length >= 6 ?  20 : 1
+        }
         className="post__container"
       >
+        {JSON.stringify(formattedImages.length)}
         {renderImageGrid()}
       </GridContainer>
 
