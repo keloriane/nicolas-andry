@@ -8,7 +8,7 @@ export const AGENDA_Query = groq`*[_type == "agenda"][0]`;
 
 export const ATELIER_QUERY_NAVIGATION = groq`[_type == "ateliers"]{title}`;
 
-export const CREATTION_QUERY = groq`
+export const CREATTION_QUERY =  groq`
 *[_type == "creations"] {
   title,
   introductionText,
@@ -23,4 +23,4 @@ export const CREATTION_QUERY = groq`
   }[0], // Assuming only one active post per creation
   "posts": posts[]->{title, slug}
 }
-`;
+`
