@@ -6,13 +6,14 @@ import styled from 'styled-components';
 import Logo from '@/../public/Footer/4/Group 41.svg';
 import Image from 'next/image';
 import { WebsiteCarbonBadge } from 'react-websitecarbon-badge';
+import { archivo } from '@/app/font';
 
 const FooterContainer = styled.footer`
   width: 100vw;
   background-color: ${theme.colors.orange};
   color: black;
   font-weight: 700;
-
+  
   .footer_wrapper {
     width: 95%;
     margin: auto;
@@ -20,20 +21,25 @@ const FooterContainer = styled.footer`
     flex-direction: column;
     gap: 30px;
     padding: 80px;
+
   }
   @media (max-width: 680px) {
     .footer_nav {
+
       justify-content: center;
       gap: 20px;
-
+      
       text-align: center;
     }
     .logo_footer {
       width: 100%;
       text-align: center;
+
     }
     .footer_copyright {
+      
       p {
+
         text-align: center;
       }
     }
@@ -45,10 +51,16 @@ const FooterContainer = styled.footer`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+ 
     nav ul {
       display: flex;
       justify-content: space-between;
       gap: 20px;
+      a {
+        font-weight: 700;
+      }
+      
+  
     }
   }
   .line {
@@ -63,6 +75,9 @@ const FooterContainer = styled.footer`
     gap: 20px;
     flex-wrap: wrap;
     margin: auto;
+    @media(max-width: 600px) {
+      justify-content: center;
+    }
   }
 `;
 
@@ -76,15 +91,15 @@ const Footer = () => {
           </div>
           <div className="nav_footer">
             <nav>
-              <ul>
+              <ul className={archivo.className}>
                 <li>
-                  <Link href={'/'}>Creations</Link>
+                  <Link href={'/creations'}>Creations</Link>
                 </li>
                 <li>
-                  <Link href={'/'}>Recherches</Link>
+                  <Link href={'/recherches'}>Recherches</Link>
                 </li>
                 <li>
-                  <Link href={'/'}>Ateliers</Link>
+                  <Link href={'/ateliers'}>Ateliers</Link>
                 </li>
               </ul>
             </nav>
@@ -95,9 +110,9 @@ const Footer = () => {
         </div>
         <div className="line"></div>
         <div className="footer_copyright">
-          <p>©Tout droit réservé.</p>
-          <p>©This website is cookie free.</p>
-          <Link href={'/'}>made by Kevin Flabat</Link>
+          <p>Tout droit réservé.</p>
+          <p>This website is cookie free.</p>
+         
         </div>
       </div>
     </FooterContainer>

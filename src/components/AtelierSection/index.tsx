@@ -20,8 +20,19 @@ const SectionItem = styled.div`
   gap: 50px;
   flex-wrap: wrap;
 
+  
   @media (max-width: 600px) {
     flex-direction: column;
+    .image_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      .atelier_image_item {
+        max-width: 280px;
+      }
+
+    }
   }
 
   .text_container {
@@ -61,6 +72,9 @@ const SectionItem = styled.div`
 const SectionNav = styled.div`
   position: absolute;
   top: 85px;
+  @media (max-width: 680px) {
+    display: none;
+  }
   li {
     line-height: 30px;
     color: ${theme.colors.black};
@@ -164,7 +178,7 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
         </SectionNav>
 
         {sections.map((section: Section, index: number) => (
-          <Col column={[5, 5, 5, 5]} span={[14, 14, 16, 16]} key={index}>
+          <Col column={[2, 2, 5, 5]} span={[22, 22, 16, 16]} key={index}>
             <SectionItem
               ref={(el:any) => (sectionScreens.current[index] = el)}
               id={section.slug.current}
@@ -187,6 +201,7 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
                     width={340}
                     height={410}
                     style={{ objectFit: "cover" }}
+                    className="atelier_image_item"
                   />
                 </div>
               ) : (

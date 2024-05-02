@@ -31,7 +31,7 @@ const ParcoursContainer = styled.section`
     gap: 20px;
     padding: 20px 0px;
     p {
-      line-height: 20px;
+      line-height: 30px;
     }
   }
   .parcour-card {
@@ -52,12 +52,16 @@ const ParcoursContainer = styled.section`
   }
   .year-wrapper {
     background-color: ${theme.colors.orange};
+   
     padding: 2px 10px;
     font-size: 18px;
     font-weight: 400;
     color: ${theme.colors.black};
     max-width: 65px;
     font-weight: 600;
+    p{
+      font-weight: 700;
+    }
   }
 `;
 
@@ -97,7 +101,7 @@ const Parcours = ({
               src={urlFor(imageProfile).url()}
               alt={'post.title'}
               width={300}
-              height={500}
+              height={680}
               style={{ objectFit: 'cover', width: '100%' }}
             />
           </div>

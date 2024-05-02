@@ -18,6 +18,7 @@ import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import gsap from 'gsap';
 import Image from 'next/image';
+import { TypedObject } from 'sanity';
 
 interface Post {
   title: string;
@@ -25,6 +26,7 @@ interface Post {
   content: [];
   images: [{ url: string; alt: string; metadata: any }];
   mainImage: { url: string };
+  remerciements: TypedObject | TypedObject[]
 }
 
 interface PostContentProps {
@@ -59,6 +61,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
             title,
             categories,
             content,
+            remerciements,
             mainImage{"url": asset->url},
             'images': images[]{
               "url": asset->url,
@@ -124,6 +127,20 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           y: 0,
         },
       );
+      gsap.fromTo(
+        ['.image_grid_item'],
+        {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+          delay: 0.2,
+          stagger: 1,
+        },
+        {
+          opacity: 1,
+          y: 0,
+        },
+      );
     }
   }, [activePost]);
 
@@ -164,7 +181,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           {activePost ? (
             <Image
               src={activePost.mainImage.url as string}
-              layout="fill"
+              fill
               style={{ objectFit: 'contain' }}
               alt={activePost.title as string}
               priority={true}
@@ -206,6 +223,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
                 width={500}
                 height={620}
                 loading="lazy"
+                className='image_grid_item'
               />
             </div>
           ))}
@@ -229,6 +247,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
                   {post.title}
                 </li>
               ))}
+
             </ul>
           </nav>
         </Col>
@@ -259,6 +278,14 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         slides={formattedImages}
         plugins={[Thumbnails]}
       />
+      { activePost?.remerciements ?
+        <div>
+          <h2>Remerciement</h2>
+          <PortableText value={activePost ? activePost.remerciements : []} /> 
+        </div> : (
+
+        "")
+      }
     </S.PostCotainer>
   );
 };

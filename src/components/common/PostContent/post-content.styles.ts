@@ -69,7 +69,7 @@ export const PostCotainer = styled.div`
     margin: 100px auto;
 
     div {
-      padding: 10px;
+      padding: 3px;
       img {
         
         width: 100%;

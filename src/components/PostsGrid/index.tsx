@@ -111,6 +111,7 @@ const PostsGrid = ({
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100%, (max-width: 1200px) 50%, 33%"
               fill
+              priority
             />
             <LayerCard>
               <CardWrapper>

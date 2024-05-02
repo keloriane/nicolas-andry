@@ -20,24 +20,31 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
   return images ? (
     <Swiper
       slidesPerView={1}
+      slidesPerGroup={1}
       breakpoints={{
         480: {
           slidesPerView: 1,
+          slidesPerGroup: 1,
         },
         640: {
           slidesPerView: 1.5,
+          slidesPerGroup: 1.5,
         },
         768: {
           slidesPerView: 2.5,
+          slidesPerGroup: 2.5,
         },
         1024: {
           slidesPerView: 3,
+          slidesPerGroup: 3,
         },
         1224: {
           slidesPerView: 4,
+          slidesPerGroup: 4,
         },
         1380: {
           slidesPerView: 4,
+          slidesPerGroup: 4,
         },
       }}
       spaceBetween={27}
