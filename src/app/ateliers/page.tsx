@@ -47,7 +47,7 @@ export default async function Creations() {
         introductionText={ateliers.introductionText[0].children[0].text}
       />
 
-      <div className="slider_container" style={{ paddingTop: "50px" }}>
+      <div className="slider_container" style={{ paddingTop: "100px" }}>
         <Slider images={ateliers.images} centered={true} />
       </div>
 

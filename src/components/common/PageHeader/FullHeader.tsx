@@ -50,7 +50,7 @@ const ContentContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 100%);
+  transform: translate(-50%, 0%);
   text-align: center;
 
   z-index: 10;
@@ -101,7 +101,7 @@ const FullHeader: React.FC<PageHeaderType> = ({
   }, []);
 
   return (
-    <header style={{ paddingTop: "150px" }}>
+    <header style={{ paddingTop: "80px" }}>
       <FullHeaderContainer>
         <Layer ref={layerRef} />
         <ImageItem

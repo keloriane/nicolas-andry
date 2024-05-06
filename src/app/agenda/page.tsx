@@ -16,7 +16,7 @@ export default async function AgendaPage() {
     <div>
       <Menu />
       <div style={{ paddingTop: "150px", paddingBottom: "150px" }}>
-        <Agenda playfare={playfare.className} />
+        <Agenda homePage playfare={playfare.className} />
       </div>
       <Footer />
     </div>

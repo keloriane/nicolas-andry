@@ -268,7 +268,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         }
         className="post__container"
       >
-        {JSON.stringify(formattedImages.length)}
         {renderImageGrid()}
       </GridContainer>
 
@@ -290,8 +289,10 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       />
       {activePost?.remerciements ? (
         <div>
-          <h2>Remerciement</h2>
-          <PortableText value={activePost ? activePost.remerciements : []} />
+          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
+          <div style={{ marginLeft: "40px" }}>
+            <PortableText value={activePost ? activePost.remerciements : []} />
+          </div>
         </div>
       ) : (
         ""

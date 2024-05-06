@@ -1,19 +1,19 @@
-import { playfare } from '@/app/font';
-import { theme } from '@/styles/theme';
-import styled from 'styled-components';
+import { playfare } from "@/app/font";
+import { theme } from "@/styles/theme";
+import styled from "styled-components";
 
 export const PostCotainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
   .image_wrapper {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out; /* Add transition effect */
-}
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Add transition effect */
+  }
 
-.image_wrapper.loaded {
-  opacity: 1;
-}
+  .image_wrapper.loaded {
+    opacity: 1;
+  }
   h2,
   h3 {
     font-family: ${playfare.style.fontFamily};
@@ -56,11 +56,15 @@ export const PostCotainer = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      min-height: 400px;
     }
     .image_header_wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 400px;
+      background-color: blue;
     }
   }
   .image_header {
@@ -79,7 +83,6 @@ export const PostCotainer = styled.div`
     div {
       padding: 3px;
       img {
-        
         width: 100%;
         height: 100%;
       }
