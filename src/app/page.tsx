@@ -39,7 +39,7 @@ export default async function Home() {
         playfare={playfare.className}
         archivo={archivo.className}
       />
-      <Agenda playfare={playfare.className} homePage />
+      <Agenda agendaPage playfare={playfare.className} homePage />
       <Procedures demarche={demarches} />
       <Parcours
         parcours={parcours}

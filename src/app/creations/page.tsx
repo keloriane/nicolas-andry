@@ -41,7 +41,7 @@ export default async function Creations() {
 
       <PostContent postsTitle={postsTitle} creation={creation} />
       <div style={{ paddingBottom: "100px", paddingTop: "100px" }}>
-        <Agenda playfare={playfare.className} />
+        <Agenda agendaPage playfare={playfare.className} />
       </div>
       <Footer />
     </main>

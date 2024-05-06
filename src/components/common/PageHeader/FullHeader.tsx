@@ -50,7 +50,7 @@ const ContentContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, -50%);
   text-align: center;
 
   z-index: 10;
@@ -85,19 +85,19 @@ const FullHeader: React.FC<PageHeaderType> = ({
       { y: 0, opacity: 1, duration: 1, ease: "power1.out", stagger: 0.1 }
     );
 
-    ScrollTrigger.create({
-      trigger: layerRef.current,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-      onUpdate: (self) => {
-        console.log(self.progress);
-        gsap.to(layerRef.current, {
-          opacity: self.progress * 0.5,
-          ease: "none",
-        });
-      },
-    });
+    // ScrollTrigger.create({
+    //   trigger: layerRef.current,
+    //   start: "top bottom",
+    //   end: "bottom top",
+    //   scrub: true,
+    //   onUpdate: (self) => {
+    //     console.log(self.progress);
+    //     gsap.to(layerRef.current, {
+    //       opacity: self.progress * 0.5,
+    //       ease: "none",
+    //     });
+    //   },
+    // });
   }, []);
 
   return (

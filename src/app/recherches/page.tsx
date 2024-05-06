@@ -51,7 +51,7 @@ export default async function Creations() {
         introductionText={researchData.introductionText[0].children[0].text}
       />
       <PostContent creation={researchData} postsTitle={postsTitle} />
-      <Agenda playfare={playfare.className} />
+      <Agenda agendaPage playfare={playfare.className} />
       <Footer />
     </main>
   );

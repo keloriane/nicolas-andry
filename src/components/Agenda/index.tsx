@@ -37,8 +37,10 @@ const TitleContainer = styled.div`
 const Agenda = ({
   playfare,
   homePage = false,
+  agendaPage = false,
 }: {
   playfare: string;
+  agendaPage?: boolean;
   homePage?: boolean;
 }) => {
   return (
@@ -118,11 +120,15 @@ const Agenda = ({
           </AgendaContainer>
         </Col>
       </GridContainer>
-      <GridContainer colCount={12} rowGap={75}>
-        <Col column={6} span={2} className="agenda_cta">
-          <Button text="Voir l'agenda" href="/" />
-        </Col>
-      </GridContainer>
+      {agendaPage ? (
+        <GridContainer colCount={12} rowGap={75}>
+          <Col column={6} span={2} className="agenda_cta">
+            <Button text="Voir l'agenda" href="/" />
+          </Col>
+        </GridContainer>
+      ) : (
+        ""
+      )}
     </AgendaSection>
   );
 };
