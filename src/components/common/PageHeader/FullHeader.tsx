@@ -15,7 +15,7 @@ const FullHeaderContainer = styled.div`
   width: 95%;
   height: 83vh;
   margin: auto;
-  margin-top: 200px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
