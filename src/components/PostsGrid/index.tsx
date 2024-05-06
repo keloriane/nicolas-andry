@@ -1,14 +1,14 @@
-'use client';
-import React from 'react';
-import GridContainer from '../common/Container';
-import Col from '../common/Col';
-import styled from 'styled-components';
-import imageUrlBuilder from '@sanity/image-url';
-import { client } from '../../../sanity/lib/client';
-import { PortableText } from 'next-sanity';
-import Image from 'next/image';
-import Link from 'next/link';
-import { theme } from '@/styles/theme';
+"use client";
+import React from "react";
+import GridContainer from "../common/Container";
+import Col from "../common/Col";
+import styled from "styled-components";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "../../../sanity/lib/client";
+import { PortableText } from "next-sanity";
+import Image from "next/image";
+import Link from "next/link";
+import { theme } from "@/styles/theme";
 
 const LayerCard = styled.div`
   width: 100%;
@@ -84,7 +84,7 @@ const PostsGrid = ({
         colCount={24}
         colGap={20}
         rowGap={20}
-        style={{ padding: '0 20px', maxWidth: '1380px', margin: '100px auto' }}
+        style={{ padding: "0 20px", maxWidth: "1280px", margin: "100px auto" }}
       >
         {posts.map((post, index) => (
           <Col
@@ -108,7 +108,7 @@ const PostsGrid = ({
             <Image
               src={urlFor(post.image).url()}
               alt={post.title}
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 100%, (max-width: 1200px) 50%, 33%"
               fill
               priority
@@ -119,7 +119,7 @@ const PostsGrid = ({
                 <div className={archivo}>
                   <PortableText value={post.description} />
                 </div>
-                <Link className={'link-post-grid'} href={`/${post.slug}`}>
+                <Link className={"link-post-grid"} href={`/${post.slug}`}>
                   <span className={archivo}>Découvrir</span>
                 </Link>
               </CardWrapper>

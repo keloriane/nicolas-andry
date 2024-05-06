@@ -63,7 +63,13 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
           marginRight: gap,
         }}
       >
-        <span ref={(el) => (elementsRef.current[index] = el)}>{str}</span>
+        <span
+          ref={(el) => {
+            elementsRef.current[index] = el;
+          }}
+        >
+          {str}
+        </span>
         {splitBy !== "letter" && " "}
       </span>
     );

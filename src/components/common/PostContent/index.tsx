@@ -1,24 +1,24 @@
-'use client';
+"use client";
 import React, {
   useEffect,
   useState,
   useCallback,
   useMemo,
   useLayoutEffect,
-} from 'react';
-import { PortableText } from '@portabletext/react';
-import { client } from '../../../../sanity/lib/client';
-import { groq } from 'next-sanity';
-import GridContainer from '../Container';
-import Col from '../Col';
-import * as S from './post-content.styles';
-import Lightbox, { SlideImage } from 'yet-another-react-lightbox';
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import 'yet-another-react-lightbox/styles.css';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
-import gsap from 'gsap';
-import Image from 'next/image';
-import { TypedObject } from 'sanity';
+} from "react";
+import { PortableText } from "@portabletext/react";
+import { client } from "../../../../sanity/lib/client";
+import { groq } from "next-sanity";
+import GridContainer from "../Container";
+import Col from "../Col";
+import * as S from "./post-content.styles";
+import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import gsap from "gsap";
+import Image from "next/image";
+import { TypedObject } from "sanity";
 
 interface Post {
   title: string;
@@ -26,7 +26,7 @@ interface Post {
   content: [];
   images: [{ url: string; alt: string; metadata: any }];
   mainImage: { url: string };
-  remerciements: TypedObject | TypedObject[]
+  remerciements: TypedObject | TypedObject[];
 }
 
 interface PostContentProps {
@@ -34,7 +34,8 @@ interface PostContentProps {
 }
 
 interface PostContentProps {
-  creation: {
+  postsTitle: { title: string; slug: { current: string } }[];
+  creation?: {
     activePost: {
       title: string;
       content: [];
@@ -42,13 +43,11 @@ interface PostContentProps {
       images: [{ url: string; alt: string; metadata: any }];
     };
   };
-  postsTitle: { title: string; slug: { current: string } }[];
-
 }
 
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
-  const [activeSlug, setActiveSlug] = useState<string>('ten-weingaert-2022');
+  const [activeSlug, setActiveSlug] = useState<string>("ten-weingaert-2022");
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -71,11 +70,11 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
             }
           }
         `,
-        { slug },
+        { slug }
       );
       setActivePost(post[0] || null);
     } catch (error) {
-      console.error('Error fetching active post:', error);
+      console.error("Error fetching active post:", error);
     } finally {
       setLoading(false);
     }
@@ -89,7 +88,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     // Animate elements when activePost changes
     if (activePost) {
       gsap.fromTo(
-        '.text_header_wrapper',
+        ".text_header_wrapper",
         {
           opacity: 0,
           y: 20,
@@ -99,10 +98,10 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         {
           y: 0,
           opacity: 1,
-        },
+        }
       );
       gsap.fromTo(
-        '.image_header_wrapper',
+        ".image_header_wrapper",
         {
           opacity: 0,
           y: 20,
@@ -112,10 +111,10 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         {
           y: 0,
           opacity: 1,
-        },
+        }
       );
       gsap.fromTo(
-        '.image_wrapper',
+        ".image_wrapper",
         {
           opacity: 0,
           y: 20,
@@ -126,10 +125,10 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         {
           opacity: 1,
           y: 0,
-        },
+        }
       );
       gsap.fromTo(
-        '.image_grid_item',
+        ".image_grid_item",
         {
           opacity: 0,
           y: 20,
@@ -140,7 +139,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         {
           opacity: 1,
           y: 0,
-        },
+        }
       );
     }
   }, [activePost]);
@@ -183,7 +182,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
             <Image
               src={activePost.mainImage.url as string}
               fill
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: "contain" }}
               alt={activePost.title as string}
               priority
               sizes="100%"
@@ -202,33 +201,35 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     const imagesPerColumn = Math.ceil(
       formattedImages.length >= 6
         ? formattedImages.length / 5
-        : formattedImages.length / 3,
+        : formattedImages.length / 3
     );
 
     for (let i = 0; i < 5; i++) {
       const startIndex = i * imagesPerColumn;
       const endIndex = Math.min(
         (i + 1) * imagesPerColumn,
-        formattedImages.length,
+        formattedImages.length
       );
       columns.push(
         <Col key={i} column={[1, 1, i * 5 + 1]} span={[24, 24, 5]}>
           {formattedImages.slice(startIndex, endIndex).map((img, index) => (
             <div className="image_wrapper" key={index}>
               <Image
-                style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
+                style={{ width: "100%", height: "auto", cursor: "pointer" }}
                 sizes="(max-width: 800px) 100vw, 800px"
-                alt={img.alt || ''}
+                alt={img.alt || ""}
                 src={img.src}
                 onClick={() => onImageClick(index + startIndex)}
                 width={500}
                 height={620}
                 loading="lazy"
-                className='image_grid_item'
+                className={
+                  loading ? "" : "image_wrapper loaded image_grid_item"
+                }
               />
             </div>
           ))}
-        </Col>,
+        </Col>
       );
     }
     return columns;
@@ -248,7 +249,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
                   {post.title}
                 </li>
               ))}
-
             </ul>
           </nav>
         </Col>
@@ -257,7 +257,14 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       <GridContainer colCount={24}>{renderPost()}</GridContainer>
 
       <GridContainer
-        colCount={formattedImages.length <= 6 ? 15 : formattedImages.length >= 13 ? 25 : formattedImages.length >= 6 ?  20 : 1
+        colCount={
+          formattedImages.length <= 6
+            ? 15
+            : formattedImages.length >= 13
+              ? 25
+              : formattedImages.length >= 6
+                ? 20
+                : 1
         }
         className="post__container"
       >
@@ -270,9 +277,9 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         open={open}
         close={() => setOpen(false)}
         styles={{
-          container: { backgroundColor: 'rgb(1, 22, 26)' },
-          thumbnailsContainer: { backgroundColor: 'rgb(1, 22, 26)' },
-          thumbnail: { background: 'rgb(1, 22, 26)' },
+          container: { backgroundColor: "rgb(1, 22, 26)" },
+          thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
+          thumbnail: { background: "rgb(1, 22, 26)" },
         }}
         animation={{ fade: 250, swipe: 0 }}
         render={{
@@ -281,14 +288,14 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
         slides={formattedImages}
         plugins={[Thumbnails]}
       />
-      { activePost?.remerciements ?
+      {activePost?.remerciements ? (
         <div>
           <h2>Remerciement</h2>
-          <PortableText value={activePost ? activePost.remerciements : []} /> 
-        </div> : (
-
-        "")
-      }
+          <PortableText value={activePost ? activePost.remerciements : []} />
+        </div>
+      ) : (
+        ""
+      )}
     </S.PostCotainer>
   );
 };

@@ -1,14 +1,14 @@
-import React from 'react';
-import { client } from '../../../sanity/lib/client';
-import { groq } from 'next-sanity';
+import React from "react";
+import { client } from "../../../sanity/lib/client";
+import { groq } from "next-sanity";
 
-import PageHeader from '@/components/common/PageHeader';
-import { playfare, archivo } from './../font';
+import PageHeader from "@/components/common/PageHeader";
+import { playfare, archivo } from "./../font";
 
-import PostContent from '@/components/common/PostContent';
-import Footer from '@/components/Footer';
-import Menu from '@/components/common/Menu';
-import PageHero from '@/components/PageHero';
+import PostContent from "@/components/common/PostContent";
+import Footer from "@/components/Footer";
+import Menu from "@/components/common/Menu";
+import Agenda from "@/components/Agenda";
 
 async function getCreationData() {
   return await client.fetch(
@@ -19,7 +19,7 @@ async function getCreationData() {
       imageHeader,
       "posts": posts[] -> {title , slug}
     }
-  `,
+  `
   );
 }
 
@@ -40,6 +40,7 @@ export default async function Creations() {
       />
 
       <PostContent postsTitle={postsTitle} creation={creation} />
+      <Agenda playfare={playfare.className} />
       <Footer />
     </main>
   );

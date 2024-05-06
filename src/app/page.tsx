@@ -1,15 +1,15 @@
-import React from 'react';
-import Hero from '@/components/Hero';
-import PostsGrid from '@/components/PostsGrid';
-import Agenda from '@/components/Agenda';
-import Procedures from '@/components/Procedures';
-import { playfare, archivo } from './font';
-import Parcours from '@/components/Parcours';
-import Contact from '@/components/Contact';
-import Menu from '@/components/common/Menu';
-import Footer from '@/components/Footer';
-import { loadQuery } from '../../sanity/lib/store';
-import { HOME_QUERY } from '../../sanity/lib/queries';
+import React from "react";
+import Hero from "@/components/Hero";
+import PostsGrid from "@/components/PostsGrid";
+import Agenda from "@/components/Agenda";
+import Procedures from "@/components/Procedures";
+import { playfare, archivo } from "./font";
+import Parcours from "@/components/Parcours";
+import Contact from "@/components/Contact";
+import Menu from "@/components/common/Menu";
+import Footer from "@/components/Footer";
+import { loadQuery } from "../../sanity/lib/store";
+import { HOME_QUERY } from "../../sanity/lib/queries";
 
 interface HomeData {
   title: string;
@@ -39,7 +39,7 @@ export default async function Home() {
         playfare={playfare.className}
         archivo={archivo.className}
       />
-      <Agenda playfare={playfare.className} />
+      <Agenda playfare={playfare.className} homePage />
       <Procedures demarche={demarches} />
       <Parcours
         parcours={parcours}

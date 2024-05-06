@@ -6,6 +6,14 @@ export const PostCotainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
+  .image_wrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Add transition effect */
+}
+
+.image_wrapper.loaded {
+  opacity: 1;
+}
   h2,
   h3 {
     font-family: ${playfare.style.fontFamily};
