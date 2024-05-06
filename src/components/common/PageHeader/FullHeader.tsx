@@ -50,7 +50,7 @@ const ContentContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -125%);
+  transform: translate(-50%, 100%);
   text-align: center;
 
   z-index: 10;
