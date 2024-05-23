@@ -90,7 +90,6 @@ const HeaderTree: React.FC<PageHeaderType> = ({
       end: "bottom top",
       scrub: true,
       onUpdate: (self) => {
-        console.log(self.progress);
         gsap.to(imageRef.current, {
           yPercent: 20 * self.progress,
           ease: "none",

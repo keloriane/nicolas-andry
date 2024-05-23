@@ -1,66 +1,83 @@
-import Link from 'next/link';
-import React from 'react';
-import styled from 'styled-components';
-import ResponsiveText from '../ResponsiveText';
-import { theme } from '@/styles/theme';
-import { archivo } from '@/app/font';
+import Link from "next/link";
+import React from "react";
+import styled from "styled-components";
+import ResponsiveText from "../ResponsiveText";
+import { theme } from "@/styles/theme";
+import { archivo } from "@/app/font";
+import { PortableText } from "next-sanity";
 
 const AgendaContainer = styled.div`
   display: flex;
   gap: 25px;
+  flex-direction: column;
+  border: 1px solid ${theme.colors.orange};
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
 
-  align-items: center;
-  .date__container {
-    background-color: ${theme.colors.orange};
-    padding: 50px 5px;
+  h2 {
+    font-size: 20px;
     color: ${theme.colors.black};
-    width: 80px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-weight: 700;
-  }
-  .description__container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    p {
-      color: #4c4c4c;
-      line-height: 150%;
-    }
-  }
-  .location__container {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  a {
-    color: #4c4c4c;
   }
 `;
-const AgendaCard = ({ date, details }: { date: string; details: string }) => {
+
+const DateContainer = styled.div`
+  color: #fff2e3;
+  display: inline-flex;
+  p {
+    background-color: ${theme.colors.black};
+    padding: 5px;
+    font-weight: 700;
+  }
+`;
+const LocationContainer = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+`;
+
+const TextContainer = styled.div`
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px;
+`;
+const InfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  p {
+    font-size: 15px;
+  }
+`;
+
+const AgendaCard = ({
+  date,
+  details,
+  location,
+  title,
+  contact,
+}: {
+  date: string;
+  details: [];
+  location: string;
+  title: string;
+  contact: [];
+}) => {
   return (
     <AgendaContainer className={archivo.className}>
-      <div className="date__container">
-        <ResponsiveText sizes={['12px', '16px', '21px', '21px']} as="h3">
-          {date}
-        </ResponsiveText>
-      </div>
-      <div className="description__container">
-        <div>
-          <ResponsiveText
-            sizes={['12px', '12px', '16px', '16px']}
-            className="bold"
-          >
-            Sortie:{' '}
-          </ResponsiveText>
-          <ResponsiveText sizes={['12px', '12px', '16px', '16px']} as={'p'}>
-            {details}
-          </ResponsiveText>
-        </div>
-        <div>
-          <div className="location__container">
+      <DateContainer>
+        <ResponsiveText sizes={["12"]}>{date}</ResponsiveText>
+      </DateContainer>
+      <TextContainer>
+        <h3>{title}</h3>
+        <PortableText value={details} />
+      </TextContainer>
+
+      <InfoContainer>
+        {location ? (
+          <LocationContainer>
             <svg
               width="10"
               height="14"
@@ -73,18 +90,13 @@ const AgendaCard = ({ date, details }: { date: string; details: string }) => {
                 fill="black"
               />
             </svg>
-            <ResponsiveText
-              sizes={['12px', '12px', '16px', '16px']}
-              className="bold"
-            >
-              Hangar (Bruxelles)
-            </ResponsiveText>
-          </div>
-        </div>
-        <Link href="mailto:contact@nicolas-andry.be">
-          inscriptions:contact@nicolas-andry.be
-        </Link>
-      </div>
+            <p>{location}</p>
+          </LocationContainer>
+        ) : (
+          ""
+        )}
+        <PortableText value={contact} />
+      </InfoContainer>
     </AgendaContainer>
   );
 };

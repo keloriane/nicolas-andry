@@ -7,12 +7,14 @@ import Col from "../common/Col";
 import Button from "../common/Button";
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo } from "@/app/font";
-import AnimatedText from "../common/AnimatedText";
+import { AgendaType } from "@/types/AgendaType";
+import { PortableText } from "next-sanity";
 
 const AgendaSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 75px;
+  padding-bottom: 75px;
   .agenda_title {
     text-align: center;
     padding: 40px 0px;
@@ -23,49 +25,65 @@ const AgendaSection = styled.div`
 `;
 const AgendaContainer = styled.div`
   display: flex;
-  padding: 0 20px;
-  .agenda__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const TitleContainer = styled.div`
   text-align: center;
 `;
+
+const AgendaTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  max-width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+  div {
+    margin-bottom: 20px;
+  }
+  p {
+    text-align: center;
+  }
+`;
+
 const Agenda = ({
   playfare,
   homePage = false,
   agendaPage = false,
+  agendaCreation,
+  agendaAtelier,
+  title = "",
+  introductionText,
 }: {
   playfare: string;
   agendaPage?: boolean;
   homePage?: boolean;
+  agendaCreation: AgendaType[];
+  agendaAtelier: AgendaType[];
+  title: string;
+  introductionText: [];
 }) => {
   return (
     <AgendaSection>
       {homePage ? (
-        <GridContainer colCount={24} rowGap={75}>
-          <Col column={[7, 7, 7, 7, 10]} span={[12, 12, 12, 12, 7]}>
-            <TitleContainer>
-              <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
-                <AnimatedText
-                  text={"Agenda recherches et créations"}
-                  duration={0.5}
-                  splitBy="word"
-                  className={playfare}
-                  gap="10px"
-                />
-              </ResponsiveText>
-            </TitleContainer>
-          </Col>
-        </GridContainer>
+        <AgendaTextContainer>
+          <TitleContainer className={playfare}>
+            <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
+              {title}
+            </ResponsiveText>
+          </TitleContainer>
+
+          <div className={archivo.className}>
+            <PortableText value={introductionText} />
+          </div>
+        </AgendaTextContainer>
       ) : (
         ""
       )}
       <GridContainer colCount={24} colGap={20} rowGap={20}>
-        <Col column={[1, 1, 1, 5, 5, 5]} span={[24, 24, 24, 16, 8, 8]}>
+        <Col column={[1, 1, 1, 4, 4, 4]} span={[24, 24, 24, 12, 9, 9]}>
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
@@ -76,47 +94,39 @@ const Agenda = ({
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            <div className="agenda__wrapper">
+            {agendaCreation.map((item: AgendaType, i) => (
               <AgendaCard
-                date={" 18/04 au 08/06 "}
-                details={
-                  "Manuel pour développer l'argentique et penser la photographie autrement "
-                }
+                contact={item.contact}
+                title={item.title}
+                location={item.location}
+                key={i}
+                date={item.date}
+                details={item.descriptionB}
               />
-              <AgendaCard
-                date={" 18/04 au 08/06 "}
-                details={
-                  "Manuel pour développer l'argentique et penser la photographie autrement "
-                }
-              />
-            </div>
+            ))}
           </AgendaContainer>
         </Col>
-        <Col column={[1, 1, 1, 5, 13, 13]} span={[24, 24, 24, 16, 8, 8]}>
+        <Col column={[1, 1, 1, 16, 14, 14]} span={[24, 24, 24, 12, 9, 9]}>
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
               sizes={["18px", "24px", "30px"]}
               className={archivo.className}
             >
-              Agenda Ateliers
+              Agenda Atelier
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            <div className={"agenda__wrapper"}>
+            {agendaAtelier.map((item: AgendaType, i) => (
               <AgendaCard
-                date={" 18/04 au 08/06 "}
-                details={
-                  "Manuel pour développer l'argentique et penser la photographie autrement "
-                }
+                contact={item.contact}
+                title={item.title}
+                location={item.location}
+                key={i}
+                date={item.date}
+                details={item.descriptionB}
               />
-              <AgendaCard
-                date={" 18/04 au 08/06 "}
-                details={
-                  "Manuel pour développer l'argentique et penser la photographie autrement "
-                }
-              />
-            </div>
+            ))}
           </AgendaContainer>
         </Col>
       </GridContainer>

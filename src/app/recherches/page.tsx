@@ -8,6 +8,14 @@ import PageHeader from "@/components/common/PageHeader";
 import { playfare } from "../font";
 import Agenda from "@/components/Agenda";
 import HeaderTree from "@/components/common/PageHeader/HeaderTree";
+import agenda from "../../../sanity/schemaTypes/agenda";
+import {
+  AGENDA_ATELIER_QUERY,
+  AGENDA_CREATION_QUERY,
+  getAgendaData,
+} from "../../../sanity/lib/queries";
+import { loadQuery } from "./../../../sanity/lib/store";
+import { AgendaType } from "@/types/AgendaType";
 
 async function getRechercheData() {
   return await client.fetch(
@@ -33,6 +41,10 @@ async function getRechercheData() {
 export default async function Creations() {
   const researchData = await getRechercheData();
   const postsTitle = researchData.posts;
+  const agendaData = await getAgendaData();
+
+  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
+  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
 
   return (
     <main>
@@ -51,7 +63,14 @@ export default async function Creations() {
         introductionText={researchData.introductionText[0].children[0].text}
       />
       <PostContent creation={researchData} postsTitle={postsTitle} />
-      <Agenda agendaPage playfare={playfare.className} />
+      <Agenda
+        agendaPage
+        introductionText={agendaData.introductionText}
+        title={agendaData.title}
+        playfare={playfare.className}
+        agendaCreation={agendaCreation.data}
+        agendaAtelier={agendaAtelier.data}
+      />
       <Footer />
     </main>
   );

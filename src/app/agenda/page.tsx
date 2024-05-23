@@ -5,18 +5,35 @@ import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Agenda from "@/components/Agenda";
 import { playfare } from "../font";
+import { loadQuery } from "./../../../sanity/lib/store";
+import {
+  AGENDA_ATELIER_QUERY,
+  AGENDA_CREATION_QUERY,
+} from "./../../../sanity/lib/queries";
+import { AgendaType } from "@/types/AgendaType";
 
 async function getAgendaData() {
-  return client.fetch(groq`*[_type == "agenda"][0] `);
+  return await client.fetch(
+    groq`*[_type == "agenda"][0]{title, introductionText}`
+  );
 }
 
 export default async function AgendaPage() {
-  const agenda = getAgendaData();
+  const agendaData = await getAgendaData();
+  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
+  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
+
   return (
     <div>
       <Menu />
       <div style={{ paddingTop: "150px", paddingBottom: "150px" }}>
-        <Agenda homePage playfare={playfare.className} />
+        <Agenda
+          introductionText={agendaData.introductionText}
+          title={agendaData.title}
+          playfare={playfare.className}
+          agendaCreation={agendaCreation.data}
+          agendaAtelier={agendaAtelier.data}
+        />
       </div>
       <Footer />
     </div>

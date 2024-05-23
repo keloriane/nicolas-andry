@@ -9,7 +9,13 @@ import Contact from "@/components/Contact";
 import Menu from "@/components/common/Menu";
 import Footer from "@/components/Footer";
 import { loadQuery } from "../../sanity/lib/store";
-import { HOME_QUERY } from "../../sanity/lib/queries";
+import {
+  AGENDA_ATELIER_QUERY,
+  AGENDA_CREATION_QUERY,
+  AGENDA_QUERY,
+  HOME_QUERY,
+} from "../../sanity/lib/queries";
+import { AgendaMain, AgendaType } from "@/types/AgendaType";
 
 interface HomeData {
   title: string;
@@ -20,10 +26,17 @@ interface HomeData {
   imageProfile: string;
   presentationText: [];
 }
+
 export default async function Home() {
   const homeData = await loadQuery<HomeData>(HOME_QUERY);
+  const agendaData = await loadQuery<AgendaMain>(AGENDA_QUERY);
+  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
+  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
 
-  const { title, subtitle, postGrid, demarches, parcours } = homeData.data;
+  const { title, subtitle, postGrid, demarches, parcours, presentationText } =
+    homeData.data;
+
+  console.log(agendaCreation.data);
 
   return (
     <main>
@@ -33,13 +46,21 @@ export default async function Home() {
         subtitle={subtitle}
         clash={playfare.className}
         satoshi={archivo.className}
+        presentationText={presentationText}
       />
       <PostsGrid
         posts={postGrid}
         playfare={playfare.className}
         archivo={archivo.className}
       />
-      <Agenda agendaPage playfare={playfare.className} homePage />
+      <Agenda
+        introductionText={agendaData.data.introductionText}
+        title={agendaData.data.title}
+        agendaCreation={agendaCreation.data}
+        agendaAtelier={agendaAtelier.data}
+        playfare={playfare.className}
+        homePage
+      />
       <Procedures demarche={demarches} />
       <Parcours
         parcours={parcours}

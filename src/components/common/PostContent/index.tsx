@@ -19,6 +19,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import gsap from "gsap";
 import Image from "next/image";
 import { TypedObject } from "sanity";
+import styled from "styled-components";
 
 interface Post {
   title: string;
@@ -44,6 +45,24 @@ interface PostContentProps {
     };
   };
 }
+
+const GridContainerV = styled.div`
+  column-count: 4;
+  margin-top: 100px;
+  figure {
+    margin-top: 20px;
+  }
+  @media (max-width: 800px) {
+    column-count: 2;
+  }
+  @media (max-width: 480px) {
+    column-count: 1;
+  }
+  figure > img {
+    grid-row: 1 / -1;
+    grid-column: 1;
+  }
+`;
 
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
@@ -85,7 +104,9 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   }, [activeSlug, getActivePost]);
 
   useLayoutEffect(() => {
-    // Animate elements when activePost changes
+    const arr = [1, 2, 3];
+    arr[5] = 5;
+
     if (activePost) {
       gsap.fromTo(
         ".text_header_wrapper",
@@ -194,47 +215,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       </>
     );
   };
-
-  const renderImageGrid = () => {
-    if (!formattedImages.length) return null;
-    const columns = [];
-    const imagesPerColumn = Math.ceil(
-      formattedImages.length >= 6
-        ? formattedImages.length / 5
-        : formattedImages.length / 3
-    );
-
-    for (let i = 0; i < 5; i++) {
-      const startIndex = i * imagesPerColumn;
-      const endIndex = Math.min(
-        (i + 1) * imagesPerColumn,
-        formattedImages.length
-      );
-      columns.push(
-        <Col key={i} column={[1, 1, i * 5 + 1]} span={[24, 24, 5]}>
-          {formattedImages.slice(startIndex, endIndex).map((img, index) => (
-            <div className="image_wrapper" key={index}>
-              <Image
-                style={{ width: "100%", height: "auto", cursor: "pointer" }}
-                sizes="(max-width: 800px) 100vw, 800px"
-                alt={img.alt || ""}
-                src={img.src}
-                onClick={() => onImageClick(index + startIndex)}
-                width={500}
-                height={620}
-                loading="lazy"
-                className={
-                  loading ? "" : "image_wrapper loaded image_grid_item"
-                }
-              />
-            </div>
-          ))}
-        </Col>
-      );
-    }
-    return columns;
-  };
-
   return (
     <S.PostCotainer className="post_content">
       <GridContainer colCount={24} colGap={20} className="post__container">
@@ -255,38 +235,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       </GridContainer>
 
       <GridContainer colCount={24}>{renderPost()}</GridContainer>
-
-      <GridContainer
-        colCount={
-          formattedImages.length <= 6
-            ? 15
-            : formattedImages.length >= 13
-              ? 25
-              : formattedImages.length >= 6
-                ? 20
-                : 1
-        }
-        className="post__container"
-      >
-        {renderImageGrid()}
-      </GridContainer>
-
-      <Lightbox
-        index={index}
-        open={open}
-        close={() => setOpen(false)}
-        styles={{
-          container: { backgroundColor: "rgb(1, 22, 26)" },
-          thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
-          thumbnail: { background: "rgb(1, 22, 26)" },
-        }}
-        animation={{ fade: 250, swipe: 0 }}
-        render={{
-          iconClose: () => <button className="yarl__button">fermer</button>,
-        }}
-        slides={formattedImages}
-        plugins={[Thumbnails]}
-      />
       {activePost?.remerciements ? (
         <div>
           <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
@@ -297,6 +245,39 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       ) : (
         ""
       )}
+      <GridContainerV>
+        <Lightbox
+          index={index}
+          open={open}
+          close={() => setOpen(false)}
+          styles={{
+            container: { backgroundColor: "rgb(1, 22, 26)" },
+            thumbnailsContainer: { backgroundColor: "rgb(1, 22, 26)" },
+            thumbnail: { background: "rgb(1, 22, 26)" },
+          }}
+          animation={{ fade: 250, swipe: 0 }}
+          render={{
+            iconClose: () => <button className="yarl__button">fermer</button>,
+          }}
+          slides={formattedImages}
+          plugins={[Thumbnails]}
+        />
+        {formattedImages.map((img, index) => (
+          <figure>
+            <Image
+              style={{ width: "100%", height: "auto", cursor: "pointer" }}
+              sizes="(max-width: 800px) 100vw, 800px"
+              alt={img.alt || ""}
+              src={img.src}
+              onClick={() => onImageClick(index)}
+              width={500}
+              height={620}
+              loading="lazy"
+              className={loading ? "" : "image_wrapper loaded image_grid_item"}
+            />
+          </figure>
+        ))}
+      </GridContainerV>
     </S.PostCotainer>
   );
 };

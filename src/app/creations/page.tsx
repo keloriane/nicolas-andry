@@ -9,6 +9,13 @@ import PostContent from "@/components/common/PostContent";
 import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
 import Agenda from "@/components/Agenda";
+import {
+  AGENDA_ATELIER_QUERY,
+  AGENDA_CREATION_QUERY,
+  getAgendaData,
+} from "../../../sanity/lib/queries";
+import { loadQuery } from "../../../sanity/lib/store";
+import { AgendaType } from "@/types/AgendaType";
 
 async function getCreationData() {
   return await client.fetch(
@@ -27,6 +34,10 @@ export default async function Creations() {
   const creations = await getCreationData();
   const creation = creations[0];
   const postsTitle = creation.posts;
+  const agendaData = await getAgendaData();
+  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
+  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
+  console.log(agendaCreation);
 
   return (
     <main>
@@ -41,7 +52,14 @@ export default async function Creations() {
 
       <PostContent postsTitle={postsTitle} creation={creation} />
       <div style={{ paddingBottom: "100px", paddingTop: "100px" }}>
-        <Agenda agendaPage playfare={playfare.className} />
+        <Agenda
+          agendaPage
+          introductionText={agendaData.introductionText}
+          title={agendaData.title}
+          playfare={playfare.className}
+          agendaCreation={agendaCreation.data}
+          agendaAtelier={agendaAtelier.data}
+        />
       </div>
       <Footer />
     </main>

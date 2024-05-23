@@ -11,6 +11,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "introductionText",
+      title: "texte d'introduction",
+      type: "blockContent",
+    }),
+    defineField({
       name: "agenda",
       title: "Agenda",
       type: "array",
@@ -29,6 +34,16 @@ export default defineType({
               type: "text",
             },
             {
+              name: "descriptionB",
+              title: "DescriptionB",
+              type: "blockContent",
+            },
+            {
+              name: "contact",
+              title: "Contact",
+              type: "blockContent",
+            },
+            {
               name: "date",
               title: "Date",
               type: "string",
@@ -44,7 +59,7 @@ export default defineType({
               type: "string",
               options: {
                 list: [
-                  { title: "Recherche", value: "recherche" },
+                  { title: "Atelier", value: "atelier" },
                   { title: "Creation", value: "creation" },
                 ],
               },

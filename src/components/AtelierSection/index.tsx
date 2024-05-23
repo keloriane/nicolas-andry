@@ -11,7 +11,7 @@ import { playfare } from "@/app/font";
 import { theme } from "@/styles/theme";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { hrtime } from "process";
+import { hrtime, title } from "process";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,8 +19,8 @@ const SectionItem = styled.div`
   display: flex;
   gap: 50px;
   flex-wrap: wrap;
+  margin-left: 50px;
 
-  
   @media (max-width: 600px) {
     flex-direction: column;
     .image_container {
@@ -31,7 +31,6 @@ const SectionItem = styled.div`
       .atelier_image_item {
         max-width: 280px;
       }
-
     }
   }
 
@@ -80,6 +79,7 @@ const SectionNav = styled.div`
     color: ${theme.colors.black};
     &:hover {
       color: ${theme.colors.orange};
+      font-weight: 700;
     }
   }
 `;
@@ -90,8 +90,16 @@ const StyledGridContainer = styled(GridContainer)`
   overflow-y: scroll;
 `;
 
-const AterlierItem = ({ sections }: { sections: Section[] }) => {
-  const sectionScreens: MutableRefObject<(LegacyRef<HTMLDivElement> | null)[]> = useRef<(LegacyRef<HTMLDivElement> | null)[]>([]);
+const AterlierItem = ({
+  sections,
+  mainSection,
+}: {
+  sections: Section[];
+  mainSection: any;
+}) => {
+  console.log("main =>", mainSection);
+  const sectionScreens: MutableRefObject<(LegacyRef<HTMLDivElement> | null)[]> =
+    useRef<(LegacyRef<HTMLDivElement> | null)[]>([]);
   const [activeSection, setActiveSection] = React.useState<string | null>(null);
   const navWrapper = useRef(null);
   const gridContainerRef = useRef<HTMLDivElement>(null);
@@ -155,62 +163,88 @@ const AterlierItem = ({ sections }: { sections: Section[] }) => {
   };
   return (
     <div ref={gridContainerRef}>
-      <StyledGridContainer colCount={24} rowGap={50}>
-        {/* <StyledCol column={[5, 5, 5, 5]} span={[14, 14, 16, 16]}> */}
-        <SectionNav ref={navWrapper}>
-          <div className="nav_wrapper">
-            <ul>
-              {sections.map((section: Section, index) => (
-                <li
-                  key={index}
-                  style={
-                    activeSection === section.slug.current
-                      ? { color: theme.colors.orange, fontWeight: 600 }
-                      : { color: theme.colors.black, fontWeight: 400 }
-                  }
-                  onClick={() => scrollToSection(section.slug.current)}
-                >
-                  {section.title}
-                </li>
+      <GridContainer colCount={24}>
+        <Col column={[1, 1, 1, 1]} span={[5, 5, 5, 5]}>
+          <SectionNav ref={navWrapper}>
+            <div className="nav_wrapper">
+              {mainSection.map((s: any, i: number) => (
+                <ul key={i}>
+                  <p>{s.title}</p>
+                  {s.sections.map((section: Section, index: number) => (
+                    <li
+                      key={index}
+                      style={{
+                        marginLeft: "20px",
+                        color:
+                          activeSection === section.slug.current
+                            ? theme.colors.orange
+                            : theme.colors.black,
+                        fontWeight:
+                          activeSection === section.slug.current ? 600 : 400,
+                      }}
+                      onClick={() => scrollToSection(section.slug.current)}
+                    >
+                      {section.title}
+                    </li>
+                  ))}
+                </ul>
               ))}
-            </ul>
-          </div>
-        </SectionNav>
+            </div>
+          </SectionNav>
+        </Col>
 
-        {sections.map((section: Section, index: number) => (
-          <Col column={[2, 2, 5, 5]} span={[22, 22, 16, 16]} key={index}>
-            <SectionItem
-              ref={(el:any) => (sectionScreens.current[index] = el)}
-              id={section.slug.current}
-              style={{
-                flexFlow: index % 2 === 0 ? "row-reverse wrap" : "row wrap",
-              }}
-             
-            >
-              <div className="text_container">
-                <h2 className={playfare.className}>{section.title}</h2>
-                <div className="text_wrapper">
-                  <PortableText value={section.content} />
-                </div>
+        <Col column={[6, 6, 6, 6]} span={[17, 17, 17, 17]}>
+          {mainSection.map((s: any, index: number) => (
+            <div key={index}>
+              <div
+                className="title_container"
+                style={{ marginBottom: "100px" }}
+              >
+                <h2>{s.title}</h2>
               </div>
-              {section.image ? (
-                <div className="image_container">
-                  <Image
-                    src={urlFor(section.image).url()}
-                    alt=""
-                    width={340}
-                    height={410}
-                    style={{ objectFit: "cover" }}
-                    className="atelier_image_item"
-                  />
-                </div>
-              ) : (
-                ""
-              )}
-            </SectionItem>
-          </Col>
-        ))}
-      </StyledGridContainer>
+
+              {s.sections.map((section: Section, index: number) => (
+                <Col column={[2, 2, 5, 5]} span={[22, 22, 16, 16]} key={index}>
+                  <SectionItem
+                    ref={(el: any) => (sectionScreens.current[index] = el)}
+                    id={section.slug.current}
+                    style={{
+                      flexFlow:
+                        index % 2 === 0 ? "row-reverse wrap" : "row wrap",
+                    }}
+                  >
+                    <div className="text_container">
+                      {section.title ? (
+                        <h2 className={playfare.className}>{section.title}</h2>
+                      ) : (
+                        ""
+                      )}
+
+                      <div className="text_wrapper">
+                        <PortableText value={section.content} />
+                      </div>
+                    </div>
+                    {section.image ? (
+                      <div className="image_container">
+                        <Image
+                          src={urlFor(section.image).url()}
+                          alt=""
+                          width={340}
+                          height={410}
+                          style={{ objectFit: "cover" }}
+                          className="atelier_image_item"
+                        />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </SectionItem>
+                </Col>
+              ))}
+            </div>
+          ))}
+        </Col>
+      </GridContainer>
     </div>
   );
 };

@@ -33,6 +33,56 @@ export default defineField({
       ],
     }),
     defineField({
+      name: "globalSection",
+
+      title: "Global Section",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              title: "Title",
+              name: "title",
+              type: "string",
+            },
+            {
+              name: "sections",
+              title: "Post Sections",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  fields: [
+                    {
+                      name: "title",
+                      title: "Title",
+                      type: "string",
+                    },
+                    {
+                      name: "content",
+                      title: "Content",
+                      type: "blockContent",
+                    },
+                    {
+                      name: "image",
+                      title: "Image",
+                      type: "image",
+                    },
+                    {
+                      name: "slug",
+                      title: "slug",
+                      type: "slug",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "sections",
       title: "Post Sections",
       type: "array",

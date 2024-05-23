@@ -19,14 +19,15 @@ async function getAteliersData() {
       title,
       introductionText,
       images,
-      sections
+      sections,
+      globalSection,
 
     }
   `
   );
 }
 
-export default async function Creations() {
+export default async function Ateliers() {
   const ateliers = await getAteliersData();
   const sections = ateliers.sections;
 
@@ -52,7 +53,10 @@ export default async function Creations() {
       </div>
 
       <div className="atelier_container" style={{ position: "relative" }}>
-        <AterlierItem sections={sections} />
+        <AterlierItem
+          mainSection={ateliers.globalSection}
+          sections={ateliers.globalSection[0].sections}
+        />
       </div>
 
       <Footer />

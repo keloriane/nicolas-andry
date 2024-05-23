@@ -1,16 +1,16 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-import Slide from './Slide';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import Slide from "./Slide";
 
-import { urlFor } from '@/lib/imageBuilder';
-import Navigation from '../Procedures/Navigation';
+import { urlFor } from "@/lib/imageBuilder";
+import Navigation from "../Procedures/Navigation";
 
 interface SliderProps {
   images: [];
@@ -39,16 +39,27 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
           slidesPerGroup: 3,
         },
         1224: {
-          slidesPerView: 4,
-          slidesPerGroup: 4,
+          slidesPerView: 5,
+          slidesPerGroup: 5,
         },
         1380: {
-          slidesPerView: 4,
-          slidesPerGroup: 4,
+          slidesPerView: 6,
+          slidesPerGroup: 6,
         },
       }}
       spaceBetween={27}
+      loop
     >
+      {images.map((image, index) => (
+        <SwiperSlide key={index}>
+          <Slide image={urlFor(image).url()} />
+        </SwiperSlide>
+      ))}
+      {images.map((image, index) => (
+        <SwiperSlide key={index}>
+          <Slide image={urlFor(image).url()} />
+        </SwiperSlide>
+      ))}
       {images.map((image, index) => (
         <SwiperSlide key={index}>
           <Slide image={urlFor(image).url()} />
