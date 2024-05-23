@@ -43,10 +43,9 @@ const Hero = ({
               className={clash}
               as="h1"
             >
-              <AnimatedText text={title} duration={1} splitBy="word" /> <br />
-              <span style={{ color: theme.colors.orange }}>
-                <AnimatedText text={subtitle} duration={1} splitBy="word" />
-              </span>
+              {title}
+              <br />
+              <span style={{ color: theme.colors.orange }}>{subtitle}</span>
             </ResponsiveText>
           </TextContainer>
         </Col>

@@ -11,7 +11,6 @@ import { playfare } from "@/app/font";
 import { theme } from "@/styles/theme";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { hrtime, title } from "process";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,16 +96,16 @@ const AterlierItem = ({
   sections: Section[];
   mainSection: any;
 }) => {
-  console.log("main =>", mainSection);
   const sectionScreens: MutableRefObject<(LegacyRef<HTMLDivElement> | null)[]> =
     useRef<(LegacyRef<HTMLDivElement> | null)[]>([]);
   const [activeSection, setActiveSection] = React.useState<string | null>(null);
   const navWrapper = useRef(null);
+
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Trigger timeline on scroll
-    console.log(gridContainerRef.current);
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: gridContainerRef.current!,
@@ -158,7 +157,7 @@ const AterlierItem = ({
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "end" });
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
   return (
@@ -193,7 +192,7 @@ const AterlierItem = ({
           </SectionNav>
         </Col>
 
-        <Col column={[6, 6, 6, 6]} span={[17, 17, 17, 17]}>
+        <Col column={[1, 1, 1, 6, 6]} span={[23, 23, 23, 17, 17]}>
           {mainSection.map((s: any, index: number) => (
             <div key={index}>
               <div

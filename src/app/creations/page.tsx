@@ -16,6 +16,7 @@ import {
 } from "../../../sanity/lib/queries";
 import { loadQuery } from "../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
+import FullHeader from "@/components/common/PageHeader/FullHeader";
 
 async function getCreationData() {
   return await client.fetch(
@@ -42,11 +43,10 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
-
-      <PageHeader
+      <FullHeader
+        image={creation}
         playfare={playfare.className}
         title={creation.title}
-        image={creation}
         introductionText={creation.introductionText[0].children[0].text}
       />
 

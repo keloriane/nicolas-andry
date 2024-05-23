@@ -16,6 +16,7 @@ import {
 } from "../../../sanity/lib/queries";
 import { loadQuery } from "./../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
+import FullHeader from "@/components/common/PageHeader/FullHeader";
 
 async function getRechercheData() {
   return await client.fetch(
@@ -56,7 +57,7 @@ export default async function Creations() {
         title={researchData.title}
         introductionText={researchData.introductionText[0].children[0].text}
       /> */}
-      <HeaderTree
+      <FullHeader
         image={researchData}
         playfare={playfare.className}
         title={researchData.title}

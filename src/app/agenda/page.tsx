@@ -28,6 +28,7 @@ export default async function AgendaPage() {
       <Menu />
       <div style={{ paddingTop: "150px", paddingBottom: "150px" }}>
         <Agenda
+          homePage
           introductionText={agendaData.introductionText}
           title={agendaData.title}
           playfare={playfare.className}

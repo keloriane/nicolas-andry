@@ -13,7 +13,7 @@ import { PortableText } from "next-sanity";
 const AgendaSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 75px;
+
   padding-bottom: 75px;
   .agenda_title {
     text-align: center;
@@ -83,7 +83,7 @@ const Agenda = ({
         ""
       )}
       <GridContainer colCount={24} colGap={20} rowGap={20}>
-        <Col column={[1, 1, 1, 4, 4, 4]} span={[24, 24, 24, 12, 9, 9]}>
+        <Col column={[1, 1, 1, 3, 3, 3]} span={[24, 24, 24, 12, 9, 9]}>
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
