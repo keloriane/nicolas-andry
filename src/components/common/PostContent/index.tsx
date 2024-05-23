@@ -50,7 +50,7 @@ const GridContainerV = styled.div`
   column-count: 4;
   margin-top: 100px;
   figure {
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
   @media (max-width: 800px) {
     column-count: 2;
