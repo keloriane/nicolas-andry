@@ -20,6 +20,7 @@ import gsap from "gsap";
 import Image from "next/image";
 
 import styled from "styled-components";
+import { theme } from "@/styles/theme";
 
 interface Post {
   title: string;
@@ -66,7 +67,10 @@ const GridContainerV = styled.div`
 
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
-  const [activeSlug, setActiveSlug] = useState<string>("ten-weingaert-2022");
+  console.log(postsTitle[0].slug.current);
+  const [activeSlug, setActiveSlug] = useState<string>(
+    postsTitle[0].slug.current
+  );
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -225,6 +229,13 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
                 <li
                   key={index}
                   onClick={() => setActiveSlug(post.slug.current)}
+                  style={{
+                    cursor: "pointer",
+                    color:
+                      post.slug.current === activeSlug
+                        ? theme.colors.orange
+                        : "black",
+                  }}
                 >
                   {post.title}
                 </li>

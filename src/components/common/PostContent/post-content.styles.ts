@@ -44,7 +44,6 @@ export const PostContainer = styled.div`
       cursor: pointer;
       &:hover {
         color: ${theme.colors.orange};
-        font-weight: 700;
       }
     }
   }
