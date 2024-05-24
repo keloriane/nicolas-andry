@@ -11,83 +11,9 @@ import { playfare } from "@/app/font";
 import { theme } from "@/styles/theme";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import * as S from "./atelier-section.styles";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const SectionItem = styled.div`
-  display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
-  margin-left: 50px;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    .image_container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      .atelier_image_item {
-        max-width: 280px;
-      }
-    }
-  }
-
-  .text_container {
-    flex: 2;
-    ul {
-      margin-left: 20px;
-    }
-  }
-  .text_wrapper {
-    margin-left: 20px;
-  }
-
-  .image_container {
-    padding: 20px;
-
-    flex: 1;
-  }
-
-  height: 100%;
-  align-items: center;
-
-  h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
-
-  li {
-    list-style: disc;
-  }
-
-  p,
-  li {
-    line-height: 30px;
-  }
-`;
-
-const SectionNav = styled.div`
-  position: absolute;
-  top: 85px;
-  @media (max-width: 680px) {
-    display: none;
-  }
-  li {
-    line-height: 30px;
-    color: ${theme.colors.black};
-    &:hover {
-      color: ${theme.colors.orange};
-      font-weight: 700;
-    }
-  }
-`;
-
-const StyledGridContainer = styled(GridContainer)`
-  position: relative;
-  padding-bottom: 200px;
-  overflow-y: scroll;
-`;
 
 const AterlierItem = ({
   sections,
@@ -164,7 +90,7 @@ const AterlierItem = ({
     <div ref={gridContainerRef}>
       <GridContainer colCount={24}>
         <Col column={[1, 1, 1, 1]} span={[5, 5, 5, 5]}>
-          <SectionNav ref={navWrapper}>
+          <S.SectionNav ref={navWrapper}>
             <div className="nav_wrapper">
               {mainSection.map((s: any, i: number) => (
                 <ul key={i}>
@@ -189,7 +115,7 @@ const AterlierItem = ({
                 </ul>
               ))}
             </div>
-          </SectionNav>
+          </S.SectionNav>
         </Col>
 
         <Col column={[1, 1, 1, 6, 6]} span={[23, 23, 23, 17, 17]}>
@@ -204,7 +130,7 @@ const AterlierItem = ({
 
               {s.sections.map((section: Section, index: number) => (
                 <Col column={[2, 2, 5, 5]} span={[22, 22, 16, 16]} key={index}>
-                  <SectionItem
+                  <S.SectionItem
                     ref={(el: any) => (sectionScreens.current[index] = el)}
                     id={section.slug.current}
                     style={{
@@ -237,7 +163,7 @@ const AterlierItem = ({
                     ) : (
                       ""
                     )}
-                  </SectionItem>
+                  </S.SectionItem>
                 </Col>
               ))}
             </div>

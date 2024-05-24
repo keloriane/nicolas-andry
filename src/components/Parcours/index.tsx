@@ -1,14 +1,14 @@
-'use client';
-import React from 'react';
-import styled from 'styled-components';
-import GridContainer from '../common/Container';
-import Col from '../common/Col';
-import { theme } from '@/styles/theme';
-import { PortableText } from 'next-sanity';
-import Image from 'next/image';
-import { urlFor } from '@/lib/imageBuilder';
-import ResponsiveText from '../common/ResponsiveText';
-import { archivo, playfare } from '@/app/font';
+"use client";
+import React from "react";
+import styled from "styled-components";
+import GridContainer from "../common/Container";
+import Col from "../common/Col";
+import { theme } from "@/styles/theme";
+import { PortableText } from "next-sanity";
+import Image from "next/image";
+import { urlFor } from "@/lib/imageBuilder";
+import ResponsiveText from "../common/ResponsiveText";
+import { archivo, playfare } from "@/app/font";
 
 const ParcoursContainer = styled.section`
   h2 {
@@ -52,14 +52,14 @@ const ParcoursContainer = styled.section`
   }
   .year-wrapper {
     background-color: ${theme.colors.orange};
-   
+
     padding: 2px 10px;
     font-size: 18px;
     font-weight: 400;
     color: ${theme.colors.black};
     max-width: 65px;
     font-weight: 600;
-    p{
+    p {
       font-weight: 700;
     }
   }
@@ -78,13 +78,13 @@ const Parcours = ({
     <ParcoursContainer>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
         <Col
-          column={[2, 2, 2, 2]}
+          column={[2, 2, 2, 1, 1]}
           span={[24, 24, 24, 9, 9]}
           className="profil_container"
         >
           <div className="text_container">
             <ResponsiveText
-              sizes={['20', '24', '45']}
+              sizes={["20", "24", "45"]}
               as="h2"
               className={playfare.className}
             >
@@ -99,10 +99,10 @@ const Parcours = ({
           <div className="profile_pic">
             <Image
               src={urlFor(imageProfile).url()}
-              alt={'post.title'}
+              alt={"post.title"}
               width={300}
               height={680}
-              style={{ objectFit: 'cover', width: '100%' }}
+              style={{ objectFit: "cover", width: "100%" }}
             />
           </div>
         </Col>
@@ -113,8 +113,8 @@ const Parcours = ({
         >
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
-              <div className={'parcour-card'} key={index}>
-                <span className={'year-wrapper'}>
+              <div className={"parcour-card"} key={index}>
+                <span className={"year-wrapper"}>
                   <p className={archivo.className}>{parcour.year}</p>
                 </span>
                 <div className={archivo.className}>

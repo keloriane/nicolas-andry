@@ -18,7 +18,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import gsap from "gsap";
 import Image from "next/image";
-import { TypedObject } from "sanity";
+
 import styled from "styled-components";
 
 interface Post {
@@ -27,7 +27,7 @@ interface Post {
   content: [];
   images: [{ url: string; alt: string; metadata: any }];
   mainImage: { url: string };
-  remerciements: TypedObject | TypedObject[];
+  remerciements: [];
 }
 
 interface PostContentProps {
@@ -216,7 +216,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     );
   };
   return (
-    <S.PostCotainer className="post_content">
+    <S.PostContainer className="post_content">
       <GridContainer colCount={24} colGap={20} className="post__container">
         <Col column={4} span={18}>
           <nav>
@@ -278,7 +278,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           </figure>
         ))}
       </GridContainerV>
-    </S.PostCotainer>
+    </S.PostContainer>
   );
 };
 

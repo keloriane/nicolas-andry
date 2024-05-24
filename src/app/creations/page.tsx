@@ -1,11 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
+import dynamic from "next/dynamic";
 import PageHeader from "@/components/common/PageHeader";
 import { playfare, archivo } from "./../font";
-
-import PostContent from "@/components/common/PostContent";
 import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
 import Agenda from "@/components/Agenda";
@@ -17,6 +16,11 @@ import {
 import { loadQuery } from "../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
+
+// Dynamic import for PostContent
+const PostContent = dynamic(() => import("@/components/common/PostContent"), {
+  suspense: true,
+});
 
 async function getCreationData() {
   return await client.fetch(
@@ -50,7 +54,10 @@ export default async function Creations() {
         introductionText={creation.introductionText[0].children[0].text}
       />
 
-      <PostContent postsTitle={postsTitle} creation={creation} />
+      <Suspense fallback={<div>Loading Post Content...</div>}>
+        <PostContent postsTitle={postsTitle} creation={creation} />
+      </Suspense>
+
       <div style={{ paddingBottom: "100px", paddingTop: "100px" }}>
         <Agenda
           agendaPage

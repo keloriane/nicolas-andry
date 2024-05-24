@@ -83,7 +83,7 @@ const Agenda = ({
         ""
       )}
       <GridContainer colCount={24} colGap={20} rowGap={20}>
-        <Col column={[1, 1, 1, 3, 3, 3]} span={[24, 24, 24, 12, 9, 9]}>
+        <Col column={[2, 2, 2, 3, 3, 3]} span={[22, 22, 22, 12, 9, 9]}>
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
@@ -106,7 +106,7 @@ const Agenda = ({
             ))}
           </AgendaContainer>
         </Col>
-        <Col column={[1, 1, 1, 16, 14, 14]} span={[24, 24, 24, 12, 9, 9]}>
+        <Col column={[2, 2, 2, 16, 14, 14]} span={[22, 22, 22, 12, 9, 9]}>
           <div className="agenda_title">
             <ResponsiveText
               as="h3"

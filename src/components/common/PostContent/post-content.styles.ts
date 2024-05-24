@@ -2,7 +2,7 @@ import { playfare } from "@/app/font";
 import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
-export const PostCotainer = styled.div`
+export const PostContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
