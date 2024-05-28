@@ -25,6 +25,8 @@ interface HomeData {
   parcours: [{ year: string; description: [] }];
   imageProfile: string;
   presentationText: [];
+  procedureTitle: string;
+  presentationTitle: string;
 }
 
 export default async function Home() {
@@ -35,8 +37,6 @@ export default async function Home() {
 
   const { title, subtitle, postGrid, demarches, parcours, presentationText } =
     homeData.data;
-
-  console.log(agendaCreation.data);
 
   return (
     <main>
@@ -61,8 +61,9 @@ export default async function Home() {
         playfare={playfare.className}
         homePage
       />
-      <Procedures demarche={demarches} />
+      <Procedures demarche={demarches} title={homeData.data.procedureTitle} />
       <Parcours
+        presentationTitle={homeData.data.presentationTitle}
         parcours={parcours}
         imageProfile={homeData.data.imageProfile}
         presentationText={homeData.data.presentationText}

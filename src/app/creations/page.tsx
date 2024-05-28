@@ -42,7 +42,6 @@ export default async function Creations() {
   const agendaData = await getAgendaData();
   const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
   const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
-  console.log(agendaCreation);
 
   return (
     <main>

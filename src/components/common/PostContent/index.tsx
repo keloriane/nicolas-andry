@@ -67,7 +67,6 @@ const GridContainerV = styled.div`
 
 const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   const [activePost, setActivePost] = useState<Post | null>(null);
-  console.log(postsTitle[0].slug.current);
   const [activeSlug, setActiveSlug] = useState<string>(
     postsTitle[0].slug.current
   );
@@ -185,8 +184,24 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     setIndex(index);
   };
 
+  const LoadingWrapper = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.7);
+    p {
+      text-align: center;
+      font-size: 32px;
+      color: ${theme.colors.orange};
+    }
+  `;
   const renderPost = () => {
-    if (loading) return <p>Loading...</p>;
+    if (loading)
+      return (
+        <LoadingWrapper>
+          <p>Loading...</p>
+        </LoadingWrapper>
+      );
     if (!activePost) return <p>No data available.</p>;
 
     return (

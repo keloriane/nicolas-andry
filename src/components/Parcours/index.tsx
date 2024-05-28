@@ -69,10 +69,12 @@ const Parcours = ({
   parcours,
   imageProfile,
   presentationText,
+  presentationTitle,
 }: {
   parcours: [{ year: string; description: [] }];
   imageProfile: string;
   presentationText: [];
+  presentationTitle: string;
 }) => {
   return (
     <ParcoursContainer>
@@ -88,7 +90,7 @@ const Parcours = ({
               as="h2"
               className={playfare.className}
             >
-              Présentation
+              {presentationTitle}
             </ResponsiveText>
           </div>
 

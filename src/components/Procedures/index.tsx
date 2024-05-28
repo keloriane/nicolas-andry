@@ -1,21 +1,22 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-import ProcedureCard from './Card';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import ProcedureCard from "./Card";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 
-import 'swiper/css';
-import { FreeMode, Pagination } from 'swiper/modules';
-import Navigation from './Navigation';
-import styled from 'styled-components';
+import "swiper/css";
+import { FreeMode, Pagination } from "swiper/modules";
+import Navigation from "./Navigation";
+import styled from "styled-components";
 
-import ResponsiveText from '../common/ResponsiveText';
-import { archivo, playfare } from '@/app/font';
+import ResponsiveText from "../common/ResponsiveText";
+import { archivo, playfare } from "@/app/font";
+import { title } from "process";
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
@@ -33,17 +34,19 @@ const SectionContainer = styled.section`
 `;
 const Procedures = ({
   demarche,
+  title,
 }: {
   demarche: [{ title: string; description: [] }];
+  title: string;
 }) => {
   return (
     <SectionContainer>
       <ResponsiveText
         as="h2"
-        sizes={['24px', '32px', '47px', '47px']}
+        sizes={["24px", "32px", "47px", "47px"]}
         className={playfare.className}
       >
-        Démarches
+        {title}
       </ResponsiveText>
 
       <Swiper

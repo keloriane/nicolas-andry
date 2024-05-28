@@ -53,6 +53,11 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "procedureTitle",
+      title: "Demarches title",
+      type: "string",
+    }),
+    defineField({
       name: "demarches",
       title: "Démarches",
       type: "array",
@@ -73,6 +78,11 @@ export default defineType({
           ],
         },
       ],
+    }),
+    defineField({
+      name: "presentationTitle",
+      title: "Presentation title",
+      type: "string",
     }),
     defineField({
       name: "parcours",
