@@ -133,7 +133,9 @@ const Agenda = ({
       {agendaPage ? (
         <GridContainer colCount={12} rowGap={75}>
           <Col column={6} span={2} className="agenda_cta">
-            <Button text="Voir l'agenda" href="/" />
+            <div style={{ marginTop: "100px" }}>
+              <Button text="Voir l'agenda" href="/" />
+            </div>
           </Col>
         </GridContainer>
       ) : (
