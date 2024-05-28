@@ -58,6 +58,10 @@ export const PostContainer = styled.div`
       justify-content: center;
       align-items: center;
       min-height: 400px;
+      h3 {
+        display: inline-block;
+        margin-top: 20px;
+      }
     }
     .image_header_wrapper {
       display: flex;
