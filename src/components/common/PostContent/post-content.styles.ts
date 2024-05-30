@@ -6,6 +6,10 @@ export const PostContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
+  li:hover {
+    color: ${theme.colors.orange};
+    color: blue;
+  }
   .image_wrapper {
     opacity: 0;
     transition: opacity 0.5s ease-in-out; /* Add transition effect */

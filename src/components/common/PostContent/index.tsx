@@ -242,6 +242,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
             <ul>
               {postsTitle.map((post, index) => (
                 <li
+                  className="post_item_list"
                   key={index}
                   onClick={() => setActiveSlug(post.slug.current)}
                   style={{
@@ -249,7 +250,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
                     color:
                       post.slug.current === activeSlug
                         ? theme.colors.orange
-                        : "black",
+                        : "",
                   }}
                 >
                   {post.title}
