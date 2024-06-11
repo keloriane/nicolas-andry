@@ -120,7 +120,7 @@ const AterlierItem = ({
 
         <Col column={[1, 1, 1, 6, 6]} span={[23, 23, 23, 17, 17]}>
           {mainSection.map((s: any, index: number) => (
-            <div key={index}>
+            <div key={index} style={{ marginTop: "80px" }}>
               <div
                 className="title_container"
                 style={{ marginBottom: "100px" }}

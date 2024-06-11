@@ -13,7 +13,7 @@ const AgendaContainer = styled.div`
   border: 1px solid ${theme.colors.orange};
   width: 100%;
   max-width: 550px;
-  margin: 0 auto;
+  margin: 20px auto;
 
   h2 {
     font-size: 20px;
@@ -24,10 +24,14 @@ const AgendaContainer = styled.div`
 const DateContainer = styled.div`
   color: #fff2e3;
   display: inline-flex;
+  position: relative;
   p {
     background-color: ${theme.colors.black};
     padding: 5px;
     font-weight: 700;
+    position: absolute;
+    top: -20px;
+    left: -20px;
   }
 `;
 const LocationContainer = styled.div`
