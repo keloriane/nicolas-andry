@@ -1,13 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 import { archivo } from "@/app/font";
 import gsap from "gsap";
+import { loadQuery } from "@sanity/react-loader";
+import { MENU_QUERY } from "../../../../sanity/lib/queries";
+import { MenuType } from "@/types/MenuType";
+import { client } from "../../../../sanity/lib/client";
 
-const MenuContainer = styled.menu`
+const MenuContainer = styled.header`
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -60,10 +64,21 @@ const MenuContainer = styled.menu`
   }
 `;
 const Menu = () => {
-  const navBar = React.createRef<HTMLHeadElement>();
+  const navBar = React.useRef<HTMLHeadElement>(null);
+  const [menuItems, setMenuItems] = useState<MenuType[]>([
+    { name: "", link: "" },
+  ]);
 
   React.useEffect(() => {
     let lastScrollTop = 0;
+    client
+      .fetch(MENU_QUERY)
+      .then((data) => {
+        setMenuItems(data.menuItem);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
 
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -117,21 +132,13 @@ const Menu = () => {
       <div className="agenda_cta">
         <nav>
           <ul>
-            <li>
-              <Link href="/creations" shallow>
-                Créations
-              </Link>
-            </li>
-            <li>
-              <Link href="/recherches" shallow>
-                Recherches
-              </Link>
-            </li>
-            <li>
-              <Link href="/ateliers" shallow>
-                Ateliers
-              </Link>
-            </li>
+            {menuItems.map((item, i) => (
+              <li key={i}>
+                <Link href={`/${item.link}`} shallow>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
         <div className="cta_container">

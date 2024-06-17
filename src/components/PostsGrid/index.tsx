@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import styled from "styled-components";
@@ -73,10 +73,11 @@ const PostsGrid = ({
 
   posts: [{ image: string; title: string; description: []; slug: string }];
 }) => {
-  const builder = imageUrlBuilder(client);
-  function urlFor(source: string) {
-    return builder.image(source);
-  }
+  const builder = useMemo(() => imageUrlBuilder(client), []);
+  const urlFor = useMemo(
+    () => (source: string) => builder.image(source),
+    [builder]
+  );
 
   return (
     <PostGridContainer>
@@ -99,19 +100,14 @@ const PostsGrid = ({
             }
             span={[24, 24, 8, 8]}
           >
-            {/* <ImageParallax
-                $paddingTop={[125, 125, 300, 155]}
-                $height="170%"
-                $backgroundImage={urlFor(post.image).url()}
-                stiffness={1.5}
-              /> */}
             <Image
               src={urlFor(post.image).url()}
               alt={post.title}
               style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 100%, (max-width: 1200px) 50%, 33%"
               fill
-              priority
+              priority={index < 3} // Only prioritize the first few images
+              loading={index < 3 ? "eager" : "lazy"} // Lazy load all images except the first few
             />
             <LayerCard>
               <CardWrapper className="rich-text">
@@ -120,7 +116,9 @@ const PostsGrid = ({
                   <PortableText value={post.description} />
                 </div>
                 <Link className={"link-post-grid"} href={`/${post.slug}`}>
-                  <span className={archivo}>Découvrir</span>
+                  <span style={{ color: "white" }} className={archivo}>
+                    Découvrir
+                  </span>
                 </Link>
               </CardWrapper>
             </LayerCard>
@@ -130,4 +128,5 @@ const PostsGrid = ({
     </PostGridContainer>
   );
 };
+
 export default PostsGrid;

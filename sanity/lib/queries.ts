@@ -32,3 +32,9 @@ export const CREATTION_QUERY = groq`
   "posts": posts[]->{title, slug}
 }
 `;
+
+export const MENU_QUERY = groq`
+  *[_type == "menu"][0]{
+  menuItem
+}
+`;

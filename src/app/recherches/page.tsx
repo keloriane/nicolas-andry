@@ -44,7 +44,6 @@ export default async function Creations() {
   const researchData = await getRechercheData();
   const postsTitle = researchData.posts;
   const agendaData = await getAgendaData();
-
   const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
   const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
 

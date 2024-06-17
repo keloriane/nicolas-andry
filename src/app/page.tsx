@@ -14,8 +14,10 @@ import {
   AGENDA_CREATION_QUERY,
   AGENDA_QUERY,
   HOME_QUERY,
+  MENU_QUERY,
 } from "../../sanity/lib/queries";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
+import { MenuType } from "@/types/MenuType";
 
 interface HomeData {
   title: string;

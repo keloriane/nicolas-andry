@@ -18,7 +18,6 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import gsap from "gsap";
 import Image from "next/image";
-
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 
@@ -33,18 +32,6 @@ interface Post {
 
 interface PostContentProps {
   postsTitle: { title: string; slug: { current: string } }[];
-}
-
-interface PostContentProps {
-  postsTitle: { title: string; slug: { current: string } }[];
-  creation?: {
-    activePost: {
-      title: string;
-      content: [];
-      mainImage: { url: string };
-      images: [{ url: string; alt: string; metadata: any }];
-    };
-  };
 }
 
 const GridContainerV = styled.div`
@@ -62,6 +49,18 @@ const GridContainerV = styled.div`
   figure > img {
     grid-row: 1 / -1;
     grid-column: 1;
+  }
+`;
+
+const LoadingWrapper = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  p {
+    text-align: center;
+    font-size: 32px;
+    color: ${theme.colors.orange};
   }
 `;
 
@@ -109,12 +108,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   useLayoutEffect(() => {
     if (activePost) {
       gsap.fromTo(
-        [
-          ".text_header_wrapper",
-          ".image_header_wrapper",
-          ".image_wrapper",
-          ".image_grid_item",
-        ],
+        [".text_header_wrapper", ".image_header_wrapper", ".image_grid_item"],
         { opacity: 0 },
         { opacity: 1, duration: 0.5, stagger: 0.04 }
       );
@@ -137,25 +131,18 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
     setIndex(index);
   };
 
-  const LoadingWrapper = styled.div`
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.7);
-    p {
-      text-align: center;
-      font-size: 32px;
-      color: ${theme.colors.orange};
-    }
-  `;
   const renderPost = () => {
-    if (loading)
+    if (loading) {
       return (
         <LoadingWrapper>
           <p>Loading...</p>
         </LoadingWrapper>
       );
-    if (!activePost) return <p>No data available.</p>;
+    }
+
+    if (!activePost) {
+      return <p>No data available.</p>;
+    }
 
     return (
       <>
@@ -189,6 +176,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       </>
     );
   };
+
   return (
     <S.PostContainer className="post_content">
       <GridContainer colCount={24} colGap={20} className="post__container">
@@ -236,7 +224,7 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           thumbnails={{ vignette: true, gap: 10, imageFit: "cover" }}
         />
         {formattedImages.map((img, index) => (
-          <S.ImageWrapper>
+          <S.ImageWrapper key={index}>
             <Image
               style={{ width: "100%", height: "auto", cursor: "pointer" }}
               sizes="(max-width: 800px) 100vw, 800px"
