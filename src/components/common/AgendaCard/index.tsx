@@ -76,7 +76,9 @@ const AgendaCard = ({
       </DateContainer>
       <TextContainer>
         <h3>{title}</h3>
-        <PortableText value={details} />
+        <div className="rich-text">
+          <PortableText value={details} />
+        </div>
       </TextContainer>
 
       <InfoContainer>
@@ -99,7 +101,9 @@ const AgendaCard = ({
         ) : (
           ""
         )}
-        <PortableText value={contact} />
+        <div className="rich-text">
+          <PortableText value={contact} />
+        </div>
       </InfoContainer>
     </AgendaContainer>
   );

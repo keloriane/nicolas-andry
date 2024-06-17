@@ -107,63 +107,16 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
   }, [activeSlug, getActivePost]);
 
   useLayoutEffect(() => {
-    const arr = [1, 2, 3];
-    arr[5] = 5;
-
     if (activePost) {
       gsap.fromTo(
-        ".text_header_wrapper",
-        {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-          delay: 0.1,
-        },
-        {
-          y: 0,
-          opacity: 1,
-        }
-      );
-      gsap.fromTo(
-        ".image_header_wrapper",
-        {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-          delay: 0.1,
-        },
-        {
-          y: 0,
-          opacity: 1,
-        }
-      );
-      gsap.fromTo(
-        ".image_wrapper",
-        {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-          delay: 0.2,
-          stagger: 0.1,
-        },
-        {
-          opacity: 1,
-          y: 0,
-        }
-      );
-      gsap.fromTo(
-        ".image_grid_item",
-        {
-          opacity: 0,
-          y: 20,
-          duration: 1,
-          delay: 0.2,
-          stagger: 1,
-        },
-        {
-          opacity: 1,
-          y: 0,
-        }
+        [
+          ".text_header_wrapper",
+          ".image_header_wrapper",
+          ".image_wrapper",
+          ".image_grid_item",
+        ],
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, stagger: 0.04 }
       );
     }
   }, [activePost]);
@@ -211,7 +164,9 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           span={[22, 22, 11, 11]}
           className="text_header_wrapper"
         >
-          <PortableText value={activePost?.content || []} />
+          <div className="rich-text">
+            <PortableText value={activePost?.content || []} />
+          </div>
         </Col>
         <Col
           column={[2, 2, 13, 13]}
@@ -262,16 +217,6 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
       </GridContainer>
 
       <GridContainer colCount={24}>{renderPost()}</GridContainer>
-      {activePost?.remerciements ? (
-        <div>
-          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
-          <div style={{ marginLeft: "40px" }}>
-            <PortableText value={activePost ? activePost.remerciements : []} />
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
       <GridContainerV>
         <Lightbox
           index={index}
@@ -288,9 +233,10 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
           }}
           slides={formattedImages}
           plugins={[Thumbnails]}
+          thumbnails={{ vignette: true, gap: 10, imageFit: "cover" }}
         />
         {formattedImages.map((img, index) => (
-          <figure>
+          <S.ImageWrapper>
             <Image
               style={{ width: "100%", height: "auto", cursor: "pointer" }}
               sizes="(max-width: 800px) 100vw, 800px"
@@ -302,9 +248,19 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
               loading="lazy"
               className={loading ? "" : "image_wrapper loaded image_grid_item"}
             />
-          </figure>
+          </S.ImageWrapper>
         ))}
       </GridContainerV>
+      {activePost?.remerciements ? (
+        <div style={{ marginTop: "80px" }}>
+          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
+          <div style={{ marginLeft: "40px" }} className="rich-text">
+            <PortableText value={activePost ? activePost.remerciements : []} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </S.PostContainer>
   );
 };

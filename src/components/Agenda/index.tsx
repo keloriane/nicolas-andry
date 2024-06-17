@@ -76,7 +76,9 @@ const Agenda = ({
           </TitleContainer>
 
           <div className={archivo.className}>
-            <PortableText value={introductionText} />
+            <div className="rich-text">
+              <PortableText value={introductionText} />
+            </div>
           </div>
         </AgendaTextContainer>
       ) : (
@@ -134,7 +136,7 @@ const Agenda = ({
         <GridContainer colCount={12} rowGap={75}>
           <Col column={6} span={2} className="agenda_cta">
             <div style={{ marginTop: "100px" }}>
-              <Button text="Voir l'agenda" href="/" />
+              <Button text="Voir l'agenda" href="/agenda" />
             </div>
           </Col>
         </GridContainer>

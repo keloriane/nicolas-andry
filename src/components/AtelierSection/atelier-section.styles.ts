@@ -22,6 +22,10 @@ export const SectionItem = styled.div`
   }
 
   .text_container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     flex: 2;
     ul {
       margin-left: 20px;
@@ -39,11 +43,6 @@ export const SectionItem = styled.div`
 
   height: 100%;
   align-items: center;
-
-  h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
 
   li {
     list-style: disc;

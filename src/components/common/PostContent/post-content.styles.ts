@@ -6,6 +6,15 @@ export const PostContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
+  .rich-text {
+    a {
+      color: ${theme.colors.orange};
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
   li:hover {
     color: ${theme.colors.orange};
     color: blue;
@@ -131,5 +140,22 @@ export const ImageGridContainer = styled.div`
     img {
       object-fit: cover;
     }
+  }
+`;
+
+export const ImageWrapper = styled.figure`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  .image_wrapper {
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+  .image_grid_item {
+    transition: transform 0.5s;
   }
 `;

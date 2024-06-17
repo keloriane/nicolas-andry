@@ -5,7 +5,7 @@ import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import PostContent from "@/components/common/PostContent";
 import PageHeader from "@/components/common/PageHeader";
-import { playfare } from "../font";
+import { archivo, playfare } from "../font";
 import Agenda from "@/components/Agenda";
 import HeaderTree from "@/components/common/PageHeader/HeaderTree";
 import agenda from "../../../sanity/schemaTypes/agenda";
@@ -17,6 +17,7 @@ import {
 import { loadQuery } from "./../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
+import Contact from "@/components/Contact";
 
 async function getRechercheData() {
   return await client.fetch(
@@ -72,6 +73,7 @@ export default async function Creations() {
         agendaCreation={agendaCreation.data}
         agendaAtelier={agendaAtelier.data}
       />
+      <Contact archivo={archivo.className} />
       <Footer />
     </main>
   );

@@ -16,6 +16,7 @@ import {
 import { loadQuery } from "../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
+import Contact from "@/components/Contact";
 
 // Dynamic import for PostContent
 const PostContent = dynamic(() => import("@/components/common/PostContent"), {
@@ -67,6 +68,7 @@ export default async function Creations() {
           agendaAtelier={agendaAtelier.data}
         />
       </div>
+      <Contact archivo={archivo.className} />
       <Footer />
     </main>
   );

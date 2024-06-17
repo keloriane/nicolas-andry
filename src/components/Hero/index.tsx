@@ -49,7 +49,11 @@ const Hero = ({
             </ResponsiveText>
           </TextContainer>
         </Col>
-        <Col column={[2, 2, 2, 4, 4]} span={[11, 11, 12, 7, 7]}>
+        <Col
+          column={[2, 2, 2, 4, 4]}
+          span={[11, 11, 12, 7, 7]}
+          className="rich-text"
+        >
           <TextContainer className={satoshi}>
             <PortableText value={presentationText} />
           </TextContainer>

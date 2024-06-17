@@ -3,13 +3,14 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Menu from "@/components/common/Menu";
 import PageHeader from "@/components/common/PageHeader";
-import { playfare } from "../font";
+import { archivo, playfare } from "../font";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Slider from "@/components/Slider";
 import AterlierItem from "@/components/AtelierSection";
 import PageHero from "@/components/PageHero";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
+import Contact from "@/components/Contact";
 
 async function getAteliersData() {
   return await client.fetch(
@@ -58,6 +59,7 @@ export default async function Ateliers() {
           sections={ateliers.globalSection[0].sections}
         />
       </div>
+      <Contact archivo={archivo.className} />
 
       <Footer />
     </main>

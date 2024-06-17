@@ -95,7 +95,9 @@ const Parcours = ({
           </div>
 
           <div className={archivo.className}>
-            <PortableText value={presentationText} />
+            <div className="rich-text">
+              <PortableText value={presentationText} />
+            </div>
           </div>
 
           <div className="profile_pic">
@@ -115,11 +117,12 @@ const Parcours = ({
         >
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
-              <div className={"parcour-card"} key={index}>
+              <div className={"parcour-card rich-text"} key={index}>
                 <span className={"year-wrapper"}>
                   <p className={archivo.className}>{parcour.year}</p>
                 </span>
                 <div className={archivo.className}>
+                  .
                   <PortableText value={parcour.description} />
                 </div>
               </div>

@@ -12,6 +12,7 @@ import { theme } from "@/styles/theme";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import * as S from "./atelier-section.styles";
+import ResponsiveText from "../common/ResponsiveText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,7 +126,13 @@ const AterlierItem = ({
                 className="title_container"
                 style={{ marginBottom: "100px" }}
               >
-                <h2>{s.title}</h2>
+                <ResponsiveText
+                  sizes={["18px", "24px", "37px"]}
+                  className={playfare.className}
+                  as="h2"
+                >
+                  {s.title}
+                </ResponsiveText>
               </div>
 
               {s.sections.map((section: Section, index: number) => (
@@ -140,12 +147,18 @@ const AterlierItem = ({
                   >
                     <div className="text_container">
                       {section.title ? (
-                        <h2 className={playfare.className}>{section.title}</h2>
+                        <ResponsiveText
+                          sizes={["18px", "24px", "37px"]}
+                          className={playfare.className}
+                          as="h2"
+                        >
+                          {section.title}
+                        </ResponsiveText>
                       ) : (
                         ""
                       )}
 
-                      <div className="text_wrapper">
+                      <div className="text_wrapper rich-text">
                         <PortableText value={section.content} />
                       </div>
                     </div>

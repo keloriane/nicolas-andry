@@ -158,6 +158,18 @@ table {
 
 }
 
+.yarl__thumbnails_vignette {
+  background: none !important;
+}
+
+.rich-text a {
+    color: #FEB865 ;
+    text-decoration: none;
+  }
+.rich-text a:hover {
+   
+    text-decoration: underline;
+  }
 
 .yarl__thumbnails_thumbnail {
   border: none !important;

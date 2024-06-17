@@ -80,7 +80,9 @@ const Footer = () => {
       <div className="footer_wrapper">
         <div className="footer_nav">
           <div className="logo_footer">
-            <Image src={Logo} alt="logo white" />
+            <Link href={"/"}>
+              <Image src={Logo} alt="logo white" />
+            </Link>
           </div>
           <div className="nav_footer">
             <nav>

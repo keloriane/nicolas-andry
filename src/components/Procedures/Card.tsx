@@ -1,7 +1,7 @@
-import { theme } from '@/styles/theme';
-import { PortableText } from 'next-sanity';
-import React from 'react';
-import styled from 'styled-components';
+import { theme } from "@/styles/theme";
+import { PortableText } from "next-sanity";
+import React from "react";
+import styled from "styled-components";
 
 const CardContainer = styled.div`
   padding: 10px;
@@ -29,7 +29,7 @@ const ProcedureCard = ({ title, text }: { title: string; text: [] }) => {
       <HeadlineContainer>
         <h3>{title}</h3>
       </HeadlineContainer>
-      <div>
+      <div className="rich-text">
         <PortableText value={text} />
       </div>
     </CardContainer>

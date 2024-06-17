@@ -114,7 +114,7 @@ const PostsGrid = ({
               priority
             />
             <LayerCard>
-              <CardWrapper>
+              <CardWrapper className="rich-text">
                 <h3 className={playfare}>{post.title}</h3>
                 <div className={archivo}>
                   <PortableText value={post.description} />
