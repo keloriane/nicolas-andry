@@ -50,7 +50,6 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
-
       {/* <PageHeader
         image={researchData}
         playfare={playfare.className}
@@ -63,7 +62,7 @@ export default async function Creations() {
         title={researchData.title}
         introductionText={researchData.introductionText[0].children[0].text}
       />
-      <PostContent creation={researchData} postsTitle={postsTitle} />
+      <PostContent postsTitle={postsTitle} />
       <Agenda
         agendaPage
         introductionText={agendaData.introductionText}
@@ -72,8 +71,6 @@ export default async function Creations() {
         agendaCreation={agendaCreation.data}
         agendaAtelier={agendaAtelier.data}
       />
-      <Contact archivo={archivo.className} />
-      <Footer />
     </main>
   );
 }

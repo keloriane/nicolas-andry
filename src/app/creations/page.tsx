@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
-
 import dynamic from "next/dynamic";
 import PageHeader from "@/components/common/PageHeader";
 import { playfare, archivo } from "./../font";
@@ -24,16 +23,14 @@ const PostContent = dynamic(() => import("@/components/common/PostContent"), {
 });
 
 async function getCreationData() {
-  return await client.fetch(
-    groq`
+  return await client.fetch(groq`
     *[_type == "creations"] {
       title,
       introductionText,
       imageHeader,
       "posts": posts[] -> {title , slug}
     }
-  `
-  );
+  `);
 }
 
 export default async function Creations() {
@@ -55,7 +52,7 @@ export default async function Creations() {
       />
 
       <Suspense fallback={<div>Loading Post Content...</div>}>
-        <PostContent postsTitle={postsTitle} creation={creation} />
+        <PostContent postsTitle={postsTitle} />
       </Suspense>
 
       <div style={{ paddingBottom: "100px", paddingTop: "100px" }}>
@@ -68,8 +65,6 @@ export default async function Creations() {
           agendaAtelier={agendaAtelier.data}
         />
       </div>
-      <Contact archivo={archivo.className} />
-      <Footer />
     </main>
   );
 }

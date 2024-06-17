@@ -59,9 +59,6 @@ export default async function Ateliers() {
           sections={ateliers.globalSection[0].sections}
         />
       </div>
-      <Contact archivo={archivo.className} />
-
-      <Footer />
     </main>
   );
 }

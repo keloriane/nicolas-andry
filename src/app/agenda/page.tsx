@@ -37,8 +37,6 @@ export default async function AgendaPage() {
           agendaAtelier={agendaAtelier.data}
         />
       </div>
-      <Contact archivo={archivo.className} />
-      <Footer />
     </div>
   );
 }

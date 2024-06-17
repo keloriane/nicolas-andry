@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import { loadQuery } from "@sanity/react-loader";
 import { MENU_QUERY } from "../../../../sanity/lib/queries";
 import { MenuType } from "@/types/MenuType";
 import { client } from "../../../../sanity/lib/client";
+import { useMenu } from "@/context/MenuContext";
 
 const MenuContainer = styled.header`
   position: fixed;
@@ -64,21 +65,11 @@ const MenuContainer = styled.header`
   }
 `;
 const Menu = () => {
-  const navBar = React.useRef<HTMLHeadElement>(null);
-  const [menuItems, setMenuItems] = useState<MenuType[]>([
-    { name: "", link: "" },
-  ]);
+  const navBar = useRef<HTMLHeadElement>(null);
+  const { menuItems } = useMenu();
 
-  React.useEffect(() => {
+  useEffect(() => {
     let lastScrollTop = 0;
-    client
-      .fetch(MENU_QUERY)
-      .then((data) => {
-        setMenuItems(data.menuItem);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
 
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -98,12 +89,10 @@ const Menu = () => {
     window.addEventListener("scroll", handleScroll);
 
     // Remove the event listener when the component unmounts
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">
