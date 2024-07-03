@@ -1,23 +1,30 @@
 "use client";
 import React, { useLayoutEffect, useMemo, useState } from "react";
-import GridContainer from "../Container";
-import styled from "styled-components";
 import {
   GridContainerV,
   ImageWrapper,
-  LoadingWrapper,
   PostContainer,
 } from "./post-grid.styles";
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
-import Col from "../Col";
-import { PortableText } from "next-sanity";
-import { PostDataType } from "@/types";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { gsap } from "gsap";
+import Image from "next/image";
 
-const PostImageGrid = ({ activePost }: { activePost: any }) => {
+type ImageType = {
+  url: string;
+  alt: string;
+  metadata: any;
+};
+
+type PostType = {
+  images: ImageType[];
+};
+
+type PostImageGridProps = {
+  activePost: PostType | null;
+};
+
+const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,14 +40,14 @@ const PostImageGrid = ({ activePost }: { activePost: any }) => {
   }, [activePost]);
 
   const formattedImages = useMemo(() => {
-    return activePost?.images
-      ? activePost.images.map((image: any, index: number) => ({
-          props: image.metadata,
-          index: index,
-          src: image.url,
-          alt: image.alt,
-        }))
-      : [];
+    return (
+      activePost?.images.map((image, index) => ({
+        props: image.metadata,
+        index: index,
+        src: image.url,
+        alt: image.alt,
+      })) || []
+    );
   }, [activePost?.images]);
 
   const onImageClick = (index: number) => {
@@ -68,7 +75,7 @@ const PostImageGrid = ({ activePost }: { activePost: any }) => {
           plugins={[Thumbnails]}
           thumbnails={{ vignette: true, gap: 10, imageFit: "cover" }}
         />
-        {formattedImages.map((img: any, index: number) => (
+        {formattedImages.map((img, index) => (
           <ImageWrapper key={index}>
             <Image
               style={{ width: "100%", height: "auto", cursor: "pointer" }}
@@ -81,7 +88,7 @@ const PostImageGrid = ({ activePost }: { activePost: any }) => {
               loading="lazy"
               className={loading ? "" : "image_wrapper loaded image_grid_item"}
               placeholder="blur"
-              blurDataURL={img.src + "?w=10&q=10"} // Assuming images are served by a CDN that supports query params for low-res versions
+              blurDataURL={img.src + "?w=10&q=10"}
             />
           </ImageWrapper>
         ))}
@@ -89,5 +96,4 @@ const PostImageGrid = ({ activePost }: { activePost: any }) => {
     </PostContainer>
   );
 };
-
 export default PostImageGrid;

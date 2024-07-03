@@ -1,42 +1,35 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import dynamic from "next/dynamic";
-import PageHeader from "@/components/common/PageHeader";
-import { playfare, archivo } from "./../font";
-import Footer from "@/components/Footer";
-import Menu from "@/components/common/Menu";
-import Agenda from "@/components/Agenda";
-import {
-  AGENDA_ATELIER_QUERY,
-  AGENDA_CREATION_QUERY,
-  getAgendaData,
-} from "../../../sanity/lib/queries";
-import { loadQuery } from "../../../sanity/lib/store";
-import { AgendaType } from "@/types/AgendaType";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
-import Contact from "@/components/Contact";
-import Link from "next/link";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
+import Menu from "@/components/common/Menu";
 import PostCards from "@/components/common/Post/PostCards";
+import { playfare } from "./../font";
 
 // Dynamic import for PostContent
 const PostContent = dynamic(() => import("@/components/common/PostContent"), {
   suspense: true,
 });
 
+type Creation = {
+  title: string;
+  introductionText: { children: { text: string }[] }[];
+  imageHeader: any;
+  posts: {
+    title: string;
+    slug: { current: string };
+    mainImage: { url: string; alt: string };
+  }[];
+};
+
 async function getCreationData() {
-  return await client.fetch(groq`
+  return await client.fetch<Creation[]>(groq`
     *[_type == "creations"] {
       title,
       introductionText,
       imageHeader,
-      "posts": posts[] -> {title , slug , mainImage{
-              "url": asset->url,
-              "alt": asset->alt,
-              "metadata": asset->ref
-            }}
+      "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
     }
   `);
 }
@@ -44,11 +37,8 @@ async function getCreationData() {
 export default async function Creations() {
   const creations = await getCreationData();
   const creation = creations[0];
-  const postsTitle = creation.posts;
 
-  const postsData = creations.map((crea: any) => crea.posts).flat();
-
-  console.log(postsData);
+  if (!creation) return <div>No creation data found</div>;
 
   return (
     <main>
@@ -68,11 +58,12 @@ export default async function Creations() {
           justifyContent: "center",
         }}
       >
-        {postsData.map((crea: any) => (
+        {creation.posts.map((post) => (
           <PostCards
-            title={crea.title}
-            link={`creations/${crea.slug.current}`}
-            image={crea.mainImage.url}
+            key={post.slug.current}
+            title={post.title}
+            link={`creations/${post.slug.current}`}
+            image={post.mainImage.url}
           />
         ))}
       </div>
