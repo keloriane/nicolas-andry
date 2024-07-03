@@ -29,7 +29,7 @@ const PostHeader = (post: any) => {
             <Image
               src={urlFor(post.mainImage).url() as string}
               fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               alt={post.title as string}
               priority
               sizes="100%"

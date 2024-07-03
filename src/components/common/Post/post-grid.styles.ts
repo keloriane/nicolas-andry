@@ -36,7 +36,7 @@ export const PostContainer = styled.div`
     font-size: 47px;
   }
   p {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 30px;
   }
   nav {

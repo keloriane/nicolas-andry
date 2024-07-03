@@ -29,7 +29,9 @@ const PostContent = dynamic(() => import("@/components/common/PostContent"), {
 async function getCreationData() {
   return await client.fetch(groq`
     *[_type == "creations"] {
-  
+      title,
+      introductionText,
+      imageHeader,
       "posts": posts[] -> {title , slug , mainImage{
               "url": asset->url,
               "alt": asset->alt,
@@ -51,6 +53,12 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
+      <FullHeader
+        image={creation}
+        playfare={playfare.className}
+        title={creation.title}
+        introductionText={creation.introductionText[0].children[0].text}
+      />
       <div
         style={{
           display: "flex",
