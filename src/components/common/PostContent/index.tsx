@@ -91,7 +91,8 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
             }
           }
         `,
-        { slug }
+        { slug },
+        { next: { revalidate: 4000 } }
       );
       setActivePost(post[0] || null);
     } catch (error) {
@@ -235,6 +236,8 @@ const PostContent: React.FC<PostContentProps> = ({ postsTitle }) => {
               height={620}
               loading="lazy"
               className={loading ? "" : "image_wrapper loaded image_grid_item"}
+              placeholder="blur"
+              blurDataURL={img.src + "?w=10&q=10"} // Assuming images are served by a CDN that supports query params for low-res versions
             />
           </S.ImageWrapper>
         ))}

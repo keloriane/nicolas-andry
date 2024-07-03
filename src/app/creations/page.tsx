@@ -16,6 +16,10 @@ import { loadQuery } from "../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
 import Contact from "@/components/Contact";
+import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/lib/imageBuilder";
+import PostCards from "@/components/common/Post/PostCards";
 
 // Dynamic import for PostContent
 const PostContent = dynamic(() => import("@/components/common/PostContent"), {
@@ -25,10 +29,12 @@ const PostContent = dynamic(() => import("@/components/common/PostContent"), {
 async function getCreationData() {
   return await client.fetch(groq`
     *[_type == "creations"] {
-      title,
-      introductionText,
-      imageHeader,
-      "posts": posts[] -> {title , slug}
+  
+      "posts": posts[] -> {title , slug , mainImage{
+              "url": asset->url,
+              "alt": asset->alt,
+              "metadata": asset->ref
+            }}
     }
   `);
 }
@@ -37,33 +43,30 @@ export default async function Creations() {
   const creations = await getCreationData();
   const creation = creations[0];
   const postsTitle = creation.posts;
-  const agendaData = await getAgendaData();
-  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
-  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
+
+  const postsData = creations.map((crea: any) => crea.posts).flat();
+
+  console.log(postsData);
 
   return (
     <main>
       <Menu />
-      <FullHeader
-        image={creation}
-        playfare={playfare.className}
-        title={creation.title}
-        introductionText={creation.introductionText[0].children[0].text}
-      />
-
-      <Suspense fallback={<div>Loading Post Content...</div>}>
-        <PostContent postsTitle={postsTitle} />
-      </Suspense>
-
-      <div style={{ paddingBottom: "100px", paddingTop: "100px" }}>
-        <Agenda
-          agendaPage
-          introductionText={agendaData.introductionText}
-          title={agendaData.title}
-          playfare={playfare.className}
-          agendaCreation={agendaCreation.data}
-          agendaAtelier={agendaAtelier.data}
-        />
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+          flexWrap: "wrap",
+          paddingTop: "200px",
+          justifyContent: "center",
+        }}
+      >
+        {postsData.map((crea: any) => (
+          <PostCards
+            title={crea.title}
+            link={`creations/${crea.slug.current}`}
+            image={crea.mainImage.url}
+          />
+        ))}
       </div>
     </main>
   );

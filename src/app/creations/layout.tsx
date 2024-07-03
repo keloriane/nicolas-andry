@@ -12,6 +12,7 @@ export default function CreationsLayout({
 }>) {
   return (
     <div>
+      <Menu />
       {children}
       <Contact archivo={archivo.className} />
       <Footer />
