@@ -20,6 +20,8 @@ import { title } from "process";
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
+  display: flex;
+  align-items: center;
   .swiper-slide:not(.swiper-slide-active) {
     opacity: 0.5; /* Reduce opacity for inactive slides */
     transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
@@ -57,22 +59,8 @@ const Procedures = ({
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 2,
-            spaceBetween: 50,
-          },
-          1224: {
-            slidesPerView: 3,
-            spaceBetween: 50,
-          },
         }}
         spaceBetween={27}
-        freeMode={true}
-        loop={true}
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
@@ -81,9 +69,9 @@ const Procedures = ({
             <ProcedureCard title={d.title} text={d.description} />
           </SwiperSlide>
         ))}
-        <div className="navigation__container">
+        {/* <div className="navigation__container">
           <Navigation />
-        </div>
+        </div> */}
       </Swiper>
     </SectionContainer>
   );

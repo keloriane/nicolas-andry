@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import styled, { css } from 'styled-components';
+import React, { ReactNode } from "react";
+import styled, { css } from "styled-components";
 
 interface RTextProps {
   sizes: string[];
@@ -15,7 +15,8 @@ const breakpoints = [420, 640, 768, 1024, 1280, 1440];
 type StyledTextProps = RTextProps & { as: keyof JSX.IntrinsicElements };
 
 const StyledText = styled.p<StyledTextProps>`
-  font-size: ${props => props.sizes[0]}; /* Default font size for mobile */
+  clip-path: polygon(0 2%, 100% 0, 100% 130%, 0% 100%);
+  font-size: ${(props) => props.sizes[0]}; /* Default font size for mobile */
   ${({ fontWeights }) =>
     fontWeights &&
     css`
@@ -25,7 +26,7 @@ const StyledText = styled.p<StyledTextProps>`
           @media (min-width: ${breakpoint}px) {
             font-weight: ${fontWeights[i]}; /* Font weight for mobile */
           }
-        `,
+        `
       )}
     `}
   ${({ lineHeights }) =>
@@ -37,13 +38,13 @@ const StyledText = styled.p<StyledTextProps>`
           @media (min-width: ${breakpoint}px) {
             line-height: ${lineHeights[i]}; /* Line height for mobile */
           }
-        `,
+        `
       )}
     `}
   ${breakpoints.map((breakpoint, i) => {
     return css`
       @media (min-width: ${breakpoint}px) {
-        font-size: ${props =>
+        font-size: ${(props) =>
           //@ts-ignore
           props.sizes[i]}; /* Font size for mobile */
       }
@@ -55,7 +56,7 @@ const ResponsiveText: React.FC<RTextProps> = ({
   sizes,
   fontWeights,
   lineHeights,
-  as: Component = 'p',
+  as: Component = "p",
   children,
   className,
   ...rest

@@ -5,7 +5,7 @@ import {
   ImageWrapper,
   PostContainer,
 } from "./post-grid.styles";
-import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { gsap } from "gsap";
 import Image from "next/image";

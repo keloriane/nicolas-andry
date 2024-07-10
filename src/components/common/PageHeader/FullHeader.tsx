@@ -12,10 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const FullHeaderContainer = styled.div`
   position: relative;
-  width: 95%;
-  height: 83vh;
+  width: 60%;
+  height: 43vh;
   margin: auto;
-  margin-top: 20px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +57,7 @@ const ContentContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 10rem;
+  font-size: 7rem;
   color: ${theme.colors.orange};
   opacity: 0;
 `;
@@ -79,29 +79,42 @@ const FullHeader: React.FC<PageHeaderType> = ({
   const layerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    gsap.fromTo(
-      [titleRef.current, paragraphRef.current],
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power1.out", stagger: 0.1 }
-    );
+    // gsap.fromTo(
+    //   [titleRef.current, paragraphRef.current],
+    //   { y: 20, opacity: 0 },
+    //   { y: 0, opacity: 1, duration: 1, ease: "power1.out", stagger: 0.1 }
+    // );
   }, []);
 
   return (
-    <header style={{ paddingTop: "80px" }}>
-      <FullHeaderContainer>
-        <Layer ref={layerRef} />
-        <ImageItem
-          fill
-          src={urlFor(image.imageHeader).url()}
-          alt="Header Image"
-        />
-      </FullHeaderContainer>
-      <ContentContainer>
-        <Title className={playfare} ref={titleRef}>
-          {title}
-        </Title>
-        <Introduction ref={paragraphRef}>{introductionText}</Introduction>
-      </ContentContainer>
+    // <header style={{ paddingTop: "80px" }}>
+    //   <FullHeaderContainer>
+    //     <Layer ref={layerRef} />
+    //     <ImageItem
+    //       fill
+    //       src={urlFor(image.imageHeader).url()}
+    //       alt="Header Image"
+    //     />
+    //   </FullHeaderContainer>
+    //   <ContentContainer>
+    //     <Title className={playfare} ref={titleRef}>
+    //       {title}
+    //     </Title>
+    //     <Introduction ref={paragraphRef}>{introductionText}</Introduction>
+    //   </ContentContainer>
+    // </header>
+    <header>
+      <div className="ad">
+        <div className="mask">
+          <Image
+            src={urlFor(image.imageHeader).url()}
+            alt="image test mask"
+            width={400}
+            height={300}
+          />
+        </div>
+      </div>
+      <h2>test</h2>
     </header>
   );
 };

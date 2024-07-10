@@ -6,6 +6,10 @@ import FullHeader from "@/components/common/PageHeader/FullHeader";
 import Menu from "@/components/common/Menu";
 import PostCards from "@/components/common/Post/PostCards";
 import { playfare } from "./../font";
+import HeaderTree from "@/components/common/PageHeader/HeaderTree";
+import styled from "styled-components";
+import Postgrid from "@/components/Postgrig";
+import HeaderMask from "@/components/common/PageHeader/HeaderMask";
 
 // Dynamic import for PostContent
 const PostContent = dynamic(() => import("@/components/common/PostContent"), {
@@ -40,33 +44,21 @@ export default async function Creations() {
 
   if (!creation) return <div>No creation data found</div>;
 
+  console.log(creations[0].posts);
+
   return (
     <main>
       <Menu />
-      <FullHeader
+      <HeaderMask
         image={creation}
         playfare={playfare.className}
         title={creation.title}
-        introductionText={creation.introductionText[0].children[0].text}
+        // introductionText={creation.introductionText[0].children[0].text}
+        introductionText={
+          "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+        }
       />
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          flexWrap: "wrap",
-          paddingTop: "200px",
-          justifyContent: "center",
-        }}
-      >
-        {creation.posts.map((post) => (
-          <PostCards
-            key={post.slug.current}
-            title={post.title}
-            link={`creations/${post.slug.current}`}
-            image={post.mainImage.url}
-          />
-        ))}
-      </div>
+      <Postgrid creations={creations[0].posts} />
     </main>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import styled from "styled-components";
@@ -9,6 +9,11 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { theme } from "@/styles/theme";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const LayerCard = styled.div`
   width: 100%;
@@ -61,6 +66,13 @@ const PostGridContainer = styled.div`
     width: 100%;
     height: 600px;
   }
+  .mask-anim {
+    overflow: hidden;
+    background: transparent;
+
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+    object-fit: cover;
+  }
 `;
 
 const PostsGrid = ({
@@ -79,6 +91,42 @@ const PostsGrid = ({
     [builder]
   );
 
+  const maskContainers = useRef<HTMLDivElement[]>([]);
+
+  useGSAP((context) => {
+    maskContainers.current.forEach((el, index) => {
+      gsap.set(el.querySelector(".maskImage"), { scale: 1.4 });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 30%",
+          end: "bottom 40%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      gsap.set(".maskImage", { scale: 1.4 });
+      tl.to(
+        maskContainers.current,
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          duration: 2,
+          stagger: 0.15,
+          ease: "expo.out",
+        },
+        0
+      ).to(
+        ".maskImage",
+        {
+          scale: 1,
+          duration: 1.8,
+          stagger: 0.15,
+          ease: "expo.out",
+        },
+        0
+      );
+    });
+  });
   return (
     <PostGridContainer>
       <GridContainer
@@ -87,10 +135,13 @@ const PostsGrid = ({
         rowGap={20}
         style={{ padding: "0 20px", maxWidth: "1280px", margin: "100px auto" }}
       >
-        {posts.map((post, index) => (
+        {posts.map((post, index: number) => (
           <Col
-            className="image-grid-item"
+            className="image-grid-item mask-anim"
             key={index}
+            reactRef={(el: any) => {
+              if (el) maskContainers.current[index] = el;
+            }}
             column={
               index === 0
                 ? [1, 1, 1, 1]
@@ -108,6 +159,7 @@ const PostsGrid = ({
               fill
               priority={index < 3} // Only prioritize the first few images
               loading={index < 3 ? "eager" : "lazy"} // Lazy load all images except the first few
+              className="maskImage"
             />
             <LayerCard>
               <CardWrapper className="rich-text">

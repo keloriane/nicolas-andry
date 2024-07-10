@@ -12,6 +12,7 @@ const CardStyle = styled.div`
   width: 300px;
   overflow: hidden;
   cursor: pointer;
+
   img {
     transition:
       transform 0.3s ease-in-out,
@@ -19,10 +20,14 @@ const CardStyle = styled.div`
   }
   &:hover {
     img {
-      transform: scale(1.05); // Example effect: scale up on hover
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Example effect: add shadow on hover
-      transform: scale(1.1);
-      transition: all 0.35s ease-in-out;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.2);
+
+      transition: all 0.25s ease-in;
+    }
+    .layer {
+      transition: all 0.25s ease-in;
+      background-color: rgba(254, 184, 101, 0.5);
     }
   }
   .card-title {
@@ -65,11 +70,13 @@ const PostCards = ({
         <Image
           src={image}
           alt={""}
-          fill
           loading="lazy"
           className={"image_wrapper loaded image_grid_item"}
           placeholder="blur"
           blurDataURL={image + "?w=10&q=10"}
+          sizes="(max-width: 768px) 310px, 378px"
+          height={300}
+          width={378}
         />
       </Link>
     </CardStyle>

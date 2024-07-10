@@ -1,126 +1,162 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
-import { urlFor } from "@/lib/imageBuilder";
-import { theme } from "@/styles/theme";
-import { PageHeaderType } from "@/types";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { PageHeaderType } from "@/types";
+import { urlFor } from "@/lib/imageBuilder";
 import styled from "styled-components";
-import { gsap } from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
-const HeaderContainer = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 150px;
-  width: 100%;
-  max-width: 1280px;
-  margin: auto;
-`;
+import GridContainer from "../Container";
+import Col from "../Col";
+import { theme } from "@/styles/theme";
+import AnimatedText from "../AnimatedText";
+import splitType from "split-type";
+import * as S from "./page-header.styles";
 
-const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 50px;
-  gap: 50px;
-`;
-
-const HeaderText = styled.div`
-  margin-right: 20px;
-`;
-
-const HeaderTitle = styled.h1`
-  font-size: 5rem;
-  text-align: center;
-  margin-bottom: 10px;
-  color: ${theme.colors.orange};
-  @media (max-width: 488px) {
-    font-size: 3rem;
-  }
-`;
-
-const HeaderIntroduction = styled.p`
-  font-size: 16px;
-  text-align: center;
-  color: ${theme.colors.black};
-`;
-
-const HeaderImage = styled(Image)`
-  object-fit: cover;
-  width: 1280px;
-  @media (max-width: 768px) {
-    height: 200px;
-  }
-`;
-
-const HeaderImageContainer = styled.div`
-  overflow: hidden;
-  width: 100%;
-  height: 400px;
-  max-width: 1280px;
-  img {
-    margin-top: -30%;
-  }
-`;
-
-gsap.registerPlugin(ScrollTrigger);
 const HeaderTree: React.FC<PageHeaderType> = ({
   title,
   introductionText,
   playfare,
   image,
 }) => {
+  const animationContext = useRef<HTMLDivElement | null>(null);
+  const maskContainers = useRef<HTMLDivElement[]>([]);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const textRef = useRef<HTMLParagraphElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
 
-  useLayoutEffect(() => {
-    gsap.fromTo(
-      [titleRef.current, textRef.current],
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power1.out" }
-    );
+  useGSAP(
+    (context) => {
+      const titleWrapper = new splitType("h2.title-creations", {
+        types: "chars",
+      });
+      const textWrapper = new splitType("p.inner-text", { types: "lines" });
+      const chars = titleWrapper.chars;
+      const lines = textWrapper.lines;
 
-    ScrollTrigger.create({
-      trigger: imageRef.current,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-      onUpdate: (self) => {
-        gsap.to(imageRef.current, {
-          yPercent: 20 * self.progress,
-          ease: "none",
-        });
-      },
-    });
-  }, []);
+      gsap.fromTo(
+        chars,
+        {
+          y: 100,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.05,
+          duration: 1,
+          ease: "power4.out",
+        }
+      );
+      gsap.fromTo(
+        lines,
+        {
+          y: 100,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.05,
+          duration: 1.4,
+          ease: "power4.out",
+          delay: 0.2,
+        }
+      );
+
+      const tl = gsap.timeline();
+
+      gsap.set(".maskImage", { scale: 1.4 });
+      tl.to(
+        maskContainers.current,
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          duration: 2,
+          stagger: 0.35,
+          ease: "expo.out",
+        },
+        0
+      ).to(
+        ".maskImage",
+        {
+          scale: 1,
+          duration: 1.8,
+          stagger: 0.35,
+          ease: "expo.out",
+        },
+        0
+      );
+    },
+    { scope: animationContext }
+  );
 
   return (
-    <HeaderContainer>
-      <HeaderContent>
-        <HeaderText>
-          <HeaderTitle ref={titleRef} className={playfare}>
-            {title}
-          </HeaderTitle>
-          <HeaderIntroduction ref={textRef}>
-            {introductionText}
-          </HeaderIntroduction>
-        </HeaderText>
-        <HeaderImageContainer>
-          <HeaderImage
-            ref={imageRef}
-            width={800}
-            height={900}
-            style={{ top: 0 }}
-            src={urlFor(image.imageHeader).url()}
-            alt={title}
-          />
-        </HeaderImageContainer>
-      </HeaderContent>
-    </HeaderContainer>
+    <GridContainer colCount={24} style={{ paddingTop: "150px" }}>
+      <Col
+        column={[3, 3, 3, 3, 3]}
+        span={[21, 21, 21, 10, 10]}
+        className="col-image-mask"
+      >
+        <S.ImageMaskContainer>
+          <div className="ad" ref={animationContext}>
+            <div
+              className="mask"
+              ref={(el) => {
+                if (el) maskContainers.current[0] = el;
+              }}
+            >
+              <Image
+                src={
+                  "https://cdn.sanity.io/images/blzajq7n/production/55be9c19c7da958305ca80e1d81f7aca746b54a3-665x1000.jpg"
+                }
+                alt="image test mask"
+                width={250}
+                height={375}
+                sizes="(max-width: 1000px) 150px, 250px"
+                className="maskImage msk-img"
+              />
+            </div>
+            <div
+              className="mask"
+              ref={(el) => {
+                if (el) maskContainers.current[1] = el;
+              }}
+            >
+              <Image
+                src={
+                  "https://cdn.sanity.io/images/blzajq7n/production/26783c48f756eea669fd29d715e9e54a21abf1ea-572x1000.jpg"
+                }
+                alt="image test mask"
+                width={350}
+                height={550}
+                sizes="(max-width: 1000px) 250px, 350px"
+                loading="lazy"
+                className="maskImage msk-img-2"
+                blurDataURL={image + "?w=10&q=10"}
+              />
+            </div>
+          </div>
+        </S.ImageMaskContainer>
+      </Col>
+      <S.TextWrapper
+        column={[3, 3, 3, 14, 14]}
+        span={[21, 21, 21, 9, 9]}
+        className="text-wrapper"
+      >
+        <div className={"title-container"}>
+          <div className="preline"></div>
+          <h2 className={"title-creations"} ref={titleRef}>
+            Les Créations
+          </h2>
+        </div>
+        <p className="inner-text">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+          ratione alias, quia laborum sint, autem quod nihil sapiente. quidem
+          aspernatur vitae eaque obcaecati reiciendis inventore consequuntur
+          consequatur error mollitia provident!"
+        </p>
+      </S.TextWrapper>
+    </GridContainer>
   );
 };
+
 export default HeaderTree;
