@@ -32,11 +32,13 @@ interface HomeData {
 }
 
 export default async function Home() {
-  const homeData = await loadQuery<HomeData>(HOME_QUERY);
-  const agendaData = await loadQuery<AgendaMain>(AGENDA_QUERY);
-  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
-  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
-  const menuData = await loadQuery<MenuType>(MENU_QUERY);
+  const [homeData, agendaData, agendaCreation, agendaAtelier] =
+    await Promise.all([
+      loadQuery<HomeData>(HOME_QUERY),
+      loadQuery<AgendaMain>(AGENDA_QUERY),
+      loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY),
+      loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY),
+    ]);
 
   const { title, subtitle, postGrid, demarches, parcours, presentationText } =
     homeData.data;
