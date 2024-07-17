@@ -16,7 +16,7 @@
     "@sanity/client": "^6.15.17",
     "@sanity/image-url": "^1.0.2",
     "@sanity/overlays": "^2.3.38",
-    "@sanity/react-loader": "^1.9.12",
+    "@sanity/react-loader": "^1.10.4",
     "@sanity/vision": "^3.37.2",
     "@studio-freight/react-lenis": "^0.0.43",
     "@swc/plugin-styled-components": "^1.5.118",

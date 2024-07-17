@@ -26,11 +26,7 @@ const LayerCard = styled.div`
   justify-content: center;
   align-items: flex-end;
   padding: 20px;
-  background: linear-gradient(
-    0deg,
-    rgba(42, 24, 18, 1) 0%,
-    rgba(0, 212, 255, 0) 100%
-  );
+  background: linear-gradient(0deg, #121c2a 0%, rgba(0, 212, 255, 0) 100%);
   z-index: 2;
   color: white;
   text-align: center;
@@ -65,6 +61,21 @@ const PostGridContainer = styled.div`
   .image-grid-item {
     width: 100%;
     height: 600px;
+  }
+  .item-1 {
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 1100px) {
+    .image-grid-item {
+      height: 400px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .image-grid-item {
+      height: 424px;
+      max-width: 315px;
+      margin: auto;
+    }
   }
   .mask-anim {
     overflow: hidden;
@@ -137,7 +148,7 @@ const PostsGrid = ({
       >
         {posts.map((post, index: number) => (
           <Col
-            className="image-grid-item mask-anim"
+            className={`image-grid-item item-${index} mask-anim`}
             key={index}
             reactRef={(el: any) => {
               if (el) maskContainers.current[index] = el;
@@ -157,8 +168,8 @@ const PostsGrid = ({
               style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 100%, (max-width: 1200px) 50%, 33%"
               fill
-              priority={index < 3} // Only prioritize the first few images
-              loading={index < 3 ? "eager" : "lazy"} // Lazy load all images except the first few
+              priority={index < 3}
+              loading={index < 3 ? "eager" : "lazy"}
               className="maskImage"
             />
             <LayerCard>

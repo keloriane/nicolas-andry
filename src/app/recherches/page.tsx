@@ -13,6 +13,8 @@ import {
 import { loadQuery } from "./../../../sanity/lib/store";
 import { AgendaType } from "@/types/AgendaType";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
+import HeaderMask from "@/components/common/PageHeader/HeaderMask";
+import Postgrid from "@/components/Postgrig";
 
 async function getRechercheData() {
   return await client.fetch(
@@ -35,8 +37,20 @@ async function getRechercheData() {
   );
 }
 
+async function getResearchData() {
+  return await client.fetch(groq`
+    *[_type == "research"] {
+      title,
+      introductionText,
+      imageHeader,
+      "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
+    }
+  `);
+}
+
 export default async function Creations() {
   const researchData = await getRechercheData();
+  const research = await getResearchData();
   const postsTitle = researchData.posts;
   const agendaData = await getAgendaData();
   const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
@@ -45,22 +59,16 @@ export default async function Creations() {
   return (
     <main>
       <Menu />
-
-      <FullHeader
-        image={researchData}
+      <HeaderMask
+        image={research}
         playfare={playfare.className}
-        title={researchData.title}
-        introductionText={researchData.introductionText[0].children[0].text}
+        title={research.title}
+        // introductionText={creation.introductionText[0].children[0].text}
+        introductionText={
+          "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+        }
       />
-      <PostContent postsTitle={postsTitle} />
-      <Agenda
-        agendaPage
-        introductionText={agendaData.introductionText}
-        title={agendaData.title}
-        playfare={playfare.className}
-        agendaCreation={agendaCreation.data}
-        agendaAtelier={agendaAtelier.data}
-      />
+      {/* <Postgrid creations={research[0].posts} /> */}
     </main>
   );
 }

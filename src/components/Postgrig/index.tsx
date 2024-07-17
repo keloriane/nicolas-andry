@@ -7,6 +7,8 @@ import styled from "styled-components";
 const PostGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  align-items: center;
   gap: 20px;
   padding: 20px;
   width: 100%;

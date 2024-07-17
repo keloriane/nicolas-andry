@@ -11,6 +11,7 @@ import { MENU_QUERY } from "../../../../sanity/lib/queries";
 import { MenuType } from "@/types/MenuType";
 import { client } from "../../../../sanity/lib/client";
 import { useMenu } from "@/context/MenuContext";
+import TransitionLink from "../TransitionLink";
 
 const MenuContainer = styled.header`
   position: fixed;
@@ -96,7 +97,7 @@ const Menu = () => {
   return (
     <MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">
-        <Link href={"/"}>
+        <TransitionLink href="/">
           <svg
             width="55"
             height="72"
@@ -116,16 +117,16 @@ const Menu = () => {
               fillOpacity="0.86"
             />
           </svg>
-        </Link>
+        </TransitionLink>
       </div>
       <div className="agenda_cta">
         <nav>
           <ul>
             {menuItems.map((item, i) => (
               <li key={i}>
-                <Link href={`/${item.link}`} shallow>
+                <TransitionLink href={`/${item.link}`}>
                   {item.name}
-                </Link>
+                </TransitionLink>
               </li>
             ))}
           </ul>

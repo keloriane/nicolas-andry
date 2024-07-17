@@ -21,7 +21,8 @@ const TextContainer = styled.div`
   margin: auto;
   p {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 30px;
+    line-height: 24px;
+    font-size: 16px;
   }
 `;
 
@@ -104,18 +105,18 @@ const Hero = ({
 
   return (
     <HeaderContainer>
-      <GridContainer colCount={13} rowGap={75}>
+      <GridContainer colCount={13} rowGap={40}>
         <Col column={[2, 2, 2, 3, 3]} span={[11, 11, 12, 9, 9]}>
           <TextContainer className={clash}>
             <ResponsiveText
-              sizes={["45px", "85px", "85px"]}
+              sizes={["24px", "36px", "60px"]}
               className="title-main"
               as="h1"
             >
               <span>{title}</span>
             </ResponsiveText>
             <ResponsiveText
-              sizes={["45px", "85px", "85px"]}
+              sizes={["24px", "36px", "55px"]}
               className="subtitle-main"
               as="h2"
             >

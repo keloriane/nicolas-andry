@@ -2,6 +2,13 @@ import { groq } from "next-sanity";
 import { client } from "./client";
 
 export const HOME_QUERY = groq`*[_type == "home"][0]`;
+export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
+  parcours,
+  presentationTitle,
+  presentationText,
+  imageProfile
+
+}`;
 
 export const ATELIER_QUERY = groq`*[_type == "ateliers"]`;
 export const RECHERCHES_QUERY = groq`*[_type == "recherches"][0]`;

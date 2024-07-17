@@ -18,6 +18,7 @@ import {
 } from "../../sanity/lib/queries";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
 import { MenuType } from "@/types/MenuType";
+import AboutSection from "@/components/About";
 
 interface HomeData {
   title: string;
@@ -67,9 +68,14 @@ export default async function Home() {
         homePage
       />
       <Procedures demarche={demarches} title={homeData.data.procedureTitle} />
-      <Parcours
+      {/* <Parcours
         presentationTitle={homeData.data.presentationTitle}
         parcours={parcours}
+        imageProfile={homeData.data.imageProfile}
+        presentationText={homeData.data.presentationText}
+      /> */}
+      <AboutSection
+        presentationTitle={homeData.data.presentationTitle}
         imageProfile={homeData.data.imageProfile}
         presentationText={homeData.data.presentationText}
       />

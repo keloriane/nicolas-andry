@@ -2060,10 +2060,10 @@
   resolved "https://registry.yarnpkg.com/@sanity/color/-/color-3.0.6.tgz#4d1eb69583c9d5ad8d44503cd714d67cc0ae1e86"
   integrity sha512-2TjYEvOftD0v7ukx3Csdh9QIu44P2z7NDJtlC3qITJRYV36J7R6Vfd3trVhFnN77/7CZrGjqngrtohv8VqO5nw==
 
-"@sanity/core-loader@1.6.11":
-  version "1.6.11"
-  resolved "https://registry.yarnpkg.com/@sanity/core-loader/-/core-loader-1.6.11.tgz#25b5eabfb1e85662f7a77c95243d82e1e4f89130"
-  integrity sha512-PPN9QKnI9gV1rn260d+YxLrb2dZhLaJzEdjF414wKPg0wC9gvWSneERTT5xgClKbkFyKuC/UbzK0epFiwaoJzA==
+"@sanity/core-loader@1.6.20":
+  version "1.6.20"
+  resolved "https://registry.yarnpkg.com/@sanity/core-loader/-/core-loader-1.6.20.tgz#880972702c0a0960ecdda7ee17d83126b4c17c73"
+  integrity sha512-QmfpCtGFoa3WsGwCKZbkL/AnRYygqaVFucG4gQqo0s52YYVKA0bsAb/QOK1BvK27afFzr/BJ1jaD0tBuxxg/tg==
 
 "@sanity/diff-match-patch@^3.0.0", "@sanity/diff-match-patch@^3.1.1":
   version "3.1.1"
@@ -2269,12 +2269,12 @@
   dependencies:
     "@sanity/uuid" "3.0.2"
 
-"@sanity/react-loader@^1.9.12":
-  version "1.9.16"
-  resolved "https://registry.yarnpkg.com/@sanity/react-loader/-/react-loader-1.9.16.tgz#54fff7709c9c41fef5a2d904e888866670ed1a8e"
-  integrity sha512-B7KZKdHCaT20ihU4VElHuSNBTkqCD3x82WzU2/ptW9O8BHoPIPM+KXanelRNGLzfh+YBsxHU8EYfFWioh3O2bQ==
+"@sanity/react-loader@^1.10.4":
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/@sanity/react-loader/-/react-loader-1.10.4.tgz#6394074ce5e13ac82c0437554485ddc83ca97c05"
+  integrity sha512-C7KIkac62fmIspTuS3ao70VGaxc8RJEx+SHuIblBBnBGWZy8VZq64kg/RGbxmV5isfdBqkh5ASdwB7YrhUOyjA==
   dependencies:
-    "@sanity/core-loader" "1.6.11"
+    "@sanity/core-loader" "1.6.20"
 
 "@sanity/schema@3.40.0":
   version "3.40.0"
