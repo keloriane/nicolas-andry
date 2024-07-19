@@ -79,7 +79,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
           <ImageWrapper key={index}>
             <Image
               style={{ width: "100%", height: "auto", cursor: "pointer" }}
-              sizes="(max-width: 800px) 100vw, 800px"
+              sizes="(max-width: 479px) 100vw, (max-width: 767px) 96vw, (max-width: 991px) 47vw, (max-width: 1279px) 28vw, 350px"
               alt={img.alt || ""}
               src={img.src}
               onClick={() => onImageClick(index)}
@@ -88,7 +88,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
               loading="lazy"
               className={loading ? "" : "image_wrapper loaded image_grid_item"}
               placeholder="blur"
-              blurDataURL={img.src + "?w=10&q=10"}
+              blurDataURL={img.src + "?blur=50"}
             />
           </ImageWrapper>
         ))}

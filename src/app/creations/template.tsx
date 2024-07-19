@@ -1,6 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 import gsap from "gsap";
+import Menu from "@/components/common/Menu";
+import Contact from "@/components/Contact";
+import { archivo } from "../font";
+import Footer from "@/components/Footer";
 
 export default function Template({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -17,5 +21,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
     }
     animatePagein();
   }, []);
-  return <div className="content-anim">{children}</div>;
+  return (
+    <div className="content-anim">
+      <Menu />
+      {children}
+      <Contact archivo={archivo.className} />
+      <Footer />
+    </div>
+  );
 }

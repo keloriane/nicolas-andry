@@ -29,6 +29,9 @@ const SectionContainer = styled.section`
     margin: auto;
     display: flex;
     align-items: center;
+    @media screen and (max-width: 840px) {
+      flex-direction: column;
+    }
   }
   .text-container {
     display: flex;
@@ -39,6 +42,9 @@ const SectionContainer = styled.section`
   }
   .swiper-container {
     flex: 3;
+    @media screen and (max-width: 840px) {
+      display: none;
+    }
   }
   .swiper-slide:not(.swiper-slide-active) {
     opacity: 0.5; /* Reduce opacity for inactive slides */

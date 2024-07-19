@@ -1,15 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 
 import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 import { archivo } from "@/app/font";
-import gsap from "gsap";
-import { loadQuery } from "@sanity/react-loader";
-import { MENU_QUERY } from "../../../../sanity/lib/queries";
-import { MenuType } from "@/types/MenuType";
-import { client } from "../../../../sanity/lib/client";
 import { useMenu } from "@/context/MenuContext";
 import TransitionLink from "../TransitionLink";
 
@@ -68,32 +63,6 @@ const MenuContainer = styled.header`
 const Menu = () => {
   const navBar = useRef<HTMLHeadElement>(null);
   const { menuItems } = useMenu();
-
-  useEffect(() => {
-    let lastScrollTop = 0;
-
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const navigationHeight = navBar.current?.offsetHeight;
-
-      if (scrollTop > lastScrollTop) {
-        gsap.to(navBar.current, { top: "-90px", duration: 0.5 });
-      } else {
-        gsap.to(navBar.current, { top: "0px", duration: 0.5 });
-      }
-
-      // Update the last scroll position
-      lastScrollTop = scrollTop;
-    };
-
-    // Attach the scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">

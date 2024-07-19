@@ -8,13 +8,23 @@ import { archivo, playfare } from "@/app/font";
 import { PortableText } from "next-sanity";
 import { TypedObject } from "sanity";
 import { theme } from "@/styles/theme";
+import { CTA } from "../common/Button/cta";
+import GridContainer from "../common/Container";
+import Col from "../common/Col";
 
 const AboutWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 24px;
-  .image_container {
+  .about-grid {
+    align-items: center;
+  }
+  .profile_pic {
+    padding: 20px;
+    border: 1px solid ${theme.colors.black};
+    max-width: 400px;
+    margin: auto;
   }
 
   .text_container {
@@ -23,6 +33,13 @@ const AboutWrapper = styled.section`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    @media screen and (max-width: 768px) {
+      text-align: center;
+      align-items: center;
+      .preline {
+        display: none;
+      }
+    }
     .name_wrapper {
       color: ${theme.colors.black};
       display: flex;
@@ -34,7 +51,7 @@ const AboutWrapper = styled.section`
     }
     .preline {
       width: 55px;
-      height: 2px;
+      height: 1px;
       background-color: ${theme.colors.orange};
     }
   }
@@ -50,38 +67,51 @@ const AboutSection = ({
 }) => {
   return (
     <AboutWrapper>
-      <div className="image_container">
-        <div className="profile_pic">
-          <Image
-            src={urlFor(imageProfile).url()}
-            alt={"post.title"}
-            width={320}
-            height={420}
-            style={{ objectFit: "cover", width: "100%" }}
-          />
-        </div>
-      </div>
-      <div className="text_container">
-        <div className="text_container">
-          <div className="name_wrapper">
-            <div className="preline"></div>
-            <h3 className={playfare.className}>Nicolas Andry</h3>
-          </div>
-          <ResponsiveText
-            sizes={["20", "24", "45"]}
-            as="h2"
-            className={playfare.className}
-          >
-            {presentationTitle}
-          </ResponsiveText>
-        </div>
+      <GridContainer
+        colCount={24}
+        colGap={24}
+        rowGap={24}
+        className="about-grid"
+      >
+        <Col column={[3, 3, 3, 3, 3]} span={[20, 20, 20, 9, 9]}>
+          <div className="text_container">
+            <div className="name_wrapper">
+              <div className="preline"></div>
+              <h3 className={playfare.className}>Nicolas Andry</h3>
+            </div>
+            <ResponsiveText
+              sizes={["20", "24", "45"]}
+              as="h2"
+              className={playfare.className}
+            >
+              {/* {presentationTitle} */}À propos de moi
+            </ResponsiveText>
 
-        <div className={archivo.className}>
-          <div className="rich-text">
-            <PortableText value={presentationText} />
+            <div className={archivo.className}>
+              <div className="rich-text">
+                <PortableText value={presentationText} />
+              </div>
+            </div>
+            <div className="cta_container">
+              <CTA href="/a-propos">En savoir plus</CTA>
+            </div>
           </div>
-        </div>
-      </div>
+        </Col>
+
+        <Col column={[3, 3, 3, 15, 15, 15]} span={[20, 20, 18, 9, 9, 7]}>
+          <div className="image_container">
+            <div className="profile_pic">
+              <Image
+                src={urlFor(imageProfile).url()}
+                alt={"post.title"}
+                width={381}
+                height={477}
+                style={{ objectFit: "cover", width: "100%" }}
+              />
+            </div>
+          </div>
+        </Col>
+      </GridContainer>
     </AboutWrapper>
   );
 };

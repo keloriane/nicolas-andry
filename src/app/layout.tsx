@@ -4,6 +4,7 @@ import { Archivo } from "next/font/google";
 import StyledComponentsRegistry from "@/lib/registry";
 import "./globals.css";
 import { MenuProvider } from "@/context/MenuContext";
+import { FooterProvider } from "@/context/FooterContext";
 
 const archivo = Archivo({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="fr">
       <body className={archivo.className}>
         <StyledComponentsRegistry>
-          <MenuProvider>{children}</MenuProvider>
+          <MenuProvider>
+            <FooterProvider>{children}</FooterProvider>
+          </MenuProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

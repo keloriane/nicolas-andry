@@ -10,6 +10,10 @@ export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
 
 }`;
 
+export const NAVIGATION_QUERY = groq`*[_type == "post"]{
+    title,
+    slug
+}`;
 export const ATELIER_QUERY = groq`*[_type == "ateliers"]`;
 export const RECHERCHES_QUERY = groq`*[_type == "recherches"][0]`;
 export const AGENDA_QUERY = groq`*[_type == "agenda"][0]`;

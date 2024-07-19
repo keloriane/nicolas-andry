@@ -97,6 +97,7 @@ export const PostContainer = styled.div`
 export const GridContainerV = styled.div`
   column-count: 4;
   margin-top: 100px;
+  padding: 24px;
   figure {
     margin-bottom: 20px;
   }

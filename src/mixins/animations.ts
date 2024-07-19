@@ -20,6 +20,7 @@ export function animatePageOut(href: string, router: AppRouterInstance) {
       duration: 1,
       opacity: 0,
       onComplete: () => {
+        console.log(href);
         router.push(href);
       },
     });

@@ -23,7 +23,7 @@ const Postgrid = ({ creations }: PostsExcerpt) => {
         <PostCards
           key={post.slug.current}
           title={post.title}
-          link={`creations/${post.slug.current}`}
+          link={`/creations/${post.slug.current}`}
           image={post.mainImage.url}
         />
       ))}

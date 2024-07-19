@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import TransitionLink from "../TransitionLink";
 
 const CardStyle = styled.div`
   position: relative;
@@ -63,7 +64,7 @@ const PostCards = ({
 }) => {
   return (
     <CardStyle className={playfare.className}>
-      <Link href={link}>
+      <TransitionLink href={link}>
         <div className="layer">
           <div className="card-title">{title}</div>
         </div>
@@ -78,7 +79,7 @@ const PostCards = ({
           height={300}
           width={378}
         />
-      </Link>
+      </TransitionLink>
     </CardStyle>
   );
 };

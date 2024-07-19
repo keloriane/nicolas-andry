@@ -14,11 +14,11 @@ import {
   AGENDA_CREATION_QUERY,
   AGENDA_QUERY,
   HOME_QUERY,
-  MENU_QUERY,
 } from "../../sanity/lib/queries";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
-import { MenuType } from "@/types/MenuType";
 import AboutSection from "@/components/About";
+import Separator from "@/components/common/Separator";
+import { NAVIGATION_QUERYType } from "@/types";
 
 interface HomeData {
   title: string;
@@ -30,6 +30,7 @@ interface HomeData {
   presentationText: [];
   procedureTitle: string;
   presentationTitle: string;
+  navigation: NAVIGATION_QUERYType[];
 }
 
 export default async function Home() {
@@ -41,7 +42,7 @@ export default async function Home() {
       loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY),
     ]);
 
-  const { title, subtitle, postGrid, demarches, parcours, presentationText } =
+  const { title, subtitle, postGrid, demarches, presentationText } =
     homeData.data;
 
   return (
@@ -59,6 +60,17 @@ export default async function Home() {
         playfare={playfare.className}
         archivo={archivo.className}
       />
+
+      <Separator />
+      <AboutSection
+        presentationTitle={homeData.data.presentationTitle}
+        imageProfile={homeData.data.imageProfile}
+        presentationText={homeData.data.presentationText}
+      />
+      <Separator size={100} />
+      <Procedures demarche={demarches} title={homeData.data.procedureTitle} />
+
+      <Separator size={100} />
       <Agenda
         introductionText={agendaData.data.introductionText}
         title={agendaData.data.title}
@@ -67,18 +79,7 @@ export default async function Home() {
         playfare={playfare.className}
         homePage
       />
-      <Procedures demarche={demarches} title={homeData.data.procedureTitle} />
-      {/* <Parcours
-        presentationTitle={homeData.data.presentationTitle}
-        parcours={parcours}
-        imageProfile={homeData.data.imageProfile}
-        presentationText={homeData.data.presentationText}
-      /> */}
-      <AboutSection
-        presentationTitle={homeData.data.presentationTitle}
-        imageProfile={homeData.data.imageProfile}
-        presentationText={homeData.data.presentationText}
-      />
+      <Separator size={100} />
       <Contact archivo={archivo.className} />
       <Footer />
     </main>

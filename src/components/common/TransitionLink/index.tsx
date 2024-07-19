@@ -12,8 +12,8 @@ interface TransitionLinkProps {
 const LinkWrapper = styled.span`
   cursor: pointer;
   &:hover {
-    text-decoration: underline;
-    color: ${theme.colors.orange};
+    /* text-decoration: underline; */
+    /* color: ${theme.colors.orange}; */
   }
 `;
 
