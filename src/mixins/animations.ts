@@ -20,9 +20,10 @@ export function animatePageOut(href: string, router: AppRouterInstance) {
       duration: 1,
       opacity: 0,
       onComplete: () => {
-        console.log(href);
         router.push(href);
       },
     });
   }
 }
+
+export const bezier = ".4s cubic-bezier(0.25, 0.46, 0.45, 0.94);";

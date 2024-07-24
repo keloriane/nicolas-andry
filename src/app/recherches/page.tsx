@@ -39,7 +39,7 @@ async function getRechercheData() {
 
 async function getResearchData() {
   return await client.fetch(groq`
-    *[_type == "research"] {
+    *[_type == "recherches"] {
       title,
       introductionText,
       imageHeader,
@@ -49,12 +49,9 @@ async function getResearchData() {
 }
 
 export default async function Creations() {
-  const researchData = await getRechercheData();
   const research = await getResearchData();
-  const postsTitle = researchData.posts;
-  const agendaData = await getAgendaData();
-  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
-  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
+
+  console.log("research", research[0]);
 
   return (
     <main>
@@ -62,13 +59,10 @@ export default async function Creations() {
       <HeaderMask
         image={research}
         playfare={playfare.className}
-        title={research.title}
-        // introductionText={creation.introductionText[0].children[0].text}
-        introductionText={
-          "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
-        }
+        title={research[0].title}
+        introductionText={research[0].introductionText[0].children[0].text}
       />
-      {/* <Postgrid creations={research[0].posts} /> */}
+      <Postgrid creations={research[0].posts} />
     </main>
   );
 }

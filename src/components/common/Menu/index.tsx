@@ -33,7 +33,7 @@ const MenuContainer = styled.header`
       justify-content: space-evenly;
       gap: 30px;
       align-items: center;
-      a {
+      .link_transition_menu {
         color: ${theme.colors.black};
         font-weight: 500;
         &:hover {
@@ -93,7 +93,10 @@ const Menu = () => {
           <ul>
             {menuItems.map((item, i) => (
               <li key={i}>
-                <TransitionLink href={`/${item.link}`}>
+                <TransitionLink
+                  className="link_transition_menu"
+                  href={`/${item.link}`}
+                >
                   {item.name}
                 </TransitionLink>
               </li>

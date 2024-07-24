@@ -30,57 +30,6 @@ const AterlierItem = ({
 
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    // Trigger timeline on scroll
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: gridContainerRef.current!,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
-
-    // Static position of SectionNav when StyledGridContainer is in view
-    tl.to(navWrapper.current, {
-      position: "fixed",
-      // Adjust as needed
-      left: 0, // Adjust as needed
-      right: 0, // Adjust as needed
-      zIndex: 999, // Adjust as needed
-    });
-
-    return () => {
-      // Clean up ScrollTrigger instances
-      ScrollTrigger.getAll().forEach((trigger) => {
-        trigger.kill();
-      });
-    };
-  }, []);
-
-  useEffect(() => {
-    const config = {
-      rootMargin: "-700px 0px -30%",
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, config);
-
-    sectionScreens.current.forEach((sectionScreen: any) => {
-      observer.observe(sectionScreen);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [sections]);
-
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {

@@ -31,6 +31,7 @@ interface HomeData {
   procedureTitle: string;
   presentationTitle: string;
   navigation: NAVIGATION_QUERYType[];
+  introductionText: [];
 }
 
 export default async function Home() {
@@ -42,8 +43,16 @@ export default async function Home() {
       loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY),
     ]);
 
-  const { title, subtitle, postGrid, demarches, presentationText } =
-    homeData.data;
+  const {
+    title,
+    subtitle,
+    postGrid,
+    demarches,
+    presentationText,
+    introductionText,
+  } = homeData.data;
+
+  console.log("homeData", homeData.data);
 
   return (
     <main>
@@ -53,7 +62,7 @@ export default async function Home() {
         subtitle={subtitle}
         clash={playfare.className}
         satoshi={archivo.className}
-        presentationText={presentationText}
+        presentationText={introductionText}
       />
       <PostsGrid
         posts={postGrid}

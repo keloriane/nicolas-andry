@@ -43,11 +43,16 @@ const FooterContainer = styled.footer`
       }
     }
   }
+  .footer_copyright {
+    font-weight: 100px;
+    text-align: center;
+    color: ${theme.colors.white};
+  }
 `;
 
 const Footer = () => {
   const navigation = useFooter();
-  console.log("Foooter", navigation);
+
   return (
     <FooterContainer>
       <div className="footer_header">
@@ -81,8 +86,8 @@ const Footer = () => {
           <nav className="footer_nav">
             <ul>
               <h4>Créations</h4>
-              {navigation.navigationData.map((nav: any) => (
-                <li key={nav.id}>
+              {navigation.navigationData.map((nav: any, index) => (
+                <li key={index}>
                   <TransitionLink href={`/creations/${nav.slug.current}`}>
                     {nav.title}
                   </TransitionLink>
@@ -95,7 +100,9 @@ const Footer = () => {
       <div className="line"></div>
       <div className="footer_wrapper">
         <div className="footer_copyright">
-          Tout droit réservé. This website is cookie free.
+          <span className={archivo.className}>
+            Tout droit réservé. This website is cookie free.
+          </span>
         </div>
       </div>
     </FooterContainer>

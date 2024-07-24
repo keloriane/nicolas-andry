@@ -2,12 +2,11 @@ import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import dynamic from "next/dynamic";
-import FullHeader from "@/components/common/PageHeader/FullHeader";
+
 import Menu from "@/components/common/Menu";
-import PostCards from "@/components/common/Post/PostCards";
+
 import { playfare } from "./../font";
-import HeaderTree from "@/components/common/PageHeader/HeaderTree";
-import styled from "styled-components";
+
 import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
 
@@ -42,9 +41,9 @@ export default async function Creations() {
   const creations = await getCreationData();
   const creation = creations[0];
 
-  if (!creation) return <div>No creation data found</div>;
+  console.log("creation", creation);
 
-  console.log(creations[0].posts);
+  if (!creation) return <div>No creation data found</div>;
 
   return (
     <main>

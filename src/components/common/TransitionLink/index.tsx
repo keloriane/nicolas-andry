@@ -7,6 +7,7 @@ import styled from "styled-components";
 interface TransitionLinkProps {
   href: string;
   children: string | React.ReactNode;
+  className?: string;
 }
 
 const LinkWrapper = styled.span`
@@ -17,17 +18,20 @@ const LinkWrapper = styled.span`
   }
 `;
 
-const TransitionLink = ({ href, children }: TransitionLinkProps) => {
+const TransitionLink = ({ href, children, className }: TransitionLinkProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    console.log(href, pathname);
     if (pathname !== href) {
       animatePageOut(href, router);
       router.push(href);
     }
   };
-  return <LinkWrapper onClick={handleClick}>{children}</LinkWrapper>;
+  return (
+    <LinkWrapper className={className} onClick={handleClick}>
+      {children}
+    </LinkWrapper>
+  );
 };
 export default TransitionLink;

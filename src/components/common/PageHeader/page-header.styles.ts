@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Col from "../Col";
 import { theme } from "@/styles/theme";
+import Image from "next/image";
 
 export const PageHeaderContainer = styled.div`
   z-index: 10;
@@ -92,4 +93,62 @@ export const TextWrapper = styled(Col)`
       }
     }
   }
+`;
+
+export const FullHeaderContainer = styled.div`
+  position: relative;
+  width: 60%;
+  height: 43vh;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Layer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: #0000009e;
+  /* background-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 2%,
+    rgba(255, 255, 255, 0) 68%
+  ); */
+  z-index: 2;
+`;
+
+export const ImageItem = styled(Image)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const ContentContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  z-index: 10;
+`;
+
+export const Title = styled.h1`
+  font-size: 7rem;
+  color: ${theme.colors.orange};
+  opacity: 0;
+`;
+
+export const Introduction = styled.p`
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0;
 `;

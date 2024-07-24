@@ -6,8 +6,8 @@ export default defineField({
   type: "document",
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
+      name: "mainTitle",
+      title: "main Title",
       type: "string",
     }),
     defineField({
@@ -34,7 +34,6 @@ export default defineField({
     }),
     defineField({
       name: "globalSection",
-
       title: "Global Section",
       type: "array",
       of: [
@@ -43,8 +42,20 @@ export default defineField({
           fields: [
             {
               title: "Title",
-              name: "title",
+              name: "title_globalSection",
               type: "string",
+            },
+            {
+              title: "Slug",
+              name: "slug",
+              type: "slug",
+              options: {
+                source: (doc, context: any) =>
+                  context.parent.title_globalSection,
+                maxLength: 200,
+                slugify: (input) =>
+                  input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+              },
             },
             {
               name: "sections",

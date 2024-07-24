@@ -3,6 +3,7 @@ import React from "react";
 import PostCards from "../common/Post/PostCards";
 import { PostExcerpt, PostsExcerpt } from "@/types/postExcerpt";
 import styled from "styled-components";
+import { usePathname } from "next/navigation";
 
 const PostGrid = styled.div`
   display: grid;
@@ -17,6 +18,9 @@ const PostGrid = styled.div`
 `;
 
 const Postgrid = ({ creations }: PostsExcerpt) => {
+  const pathname = usePathname();
+
+  console.log("creations", creations);
   return (
     <PostGrid>
       {creations.map((post: PostExcerpt) => (

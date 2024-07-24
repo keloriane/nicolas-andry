@@ -45,9 +45,12 @@ const ParcoursContainer = styled.section`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     ul {
       list-style-type: disc;
       margin-left: 20px;
+      border-bottom: 1px solid ${theme.colors.black};
+      padding-bottom: 15px;
     }
   }
   .year-wrapper {
@@ -79,42 +82,7 @@ const Parcours = ({
   return (
     <ParcoursContainer>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
-        <Col
-          column={[2, 2, 2, 1, 1]}
-          span={[24, 24, 24, 9, 9]}
-          className="profil_container"
-        >
-          <div className="text_container">
-            <ResponsiveText
-              sizes={["20", "24", "45"]}
-              as="h2"
-              className={playfare.className}
-            >
-              {presentationTitle}
-            </ResponsiveText>
-          </div>
-
-          <div className={archivo.className}>
-            <div className="rich-text">
-              <PortableText value={presentationText} />
-            </div>
-          </div>
-
-          <div className="profile_pic">
-            <Image
-              src={urlFor(imageProfile).url()}
-              alt={"post.title"}
-              width={300}
-              height={680}
-              style={{ objectFit: "cover", width: "100%" }}
-            />
-          </div>
-        </Col>
-        <Col
-          column={[2, 2, 2, 13]}
-          span={[22, 22, 22, 13]}
-          className="parcours-wrapper"
-        >
+        <Col column={2} span={13} className="parcours-wrapper">
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
               <div className={"parcour-card rich-text"} key={index}>
@@ -122,7 +90,6 @@ const Parcours = ({
                   <p className={archivo.className}>{parcour.year}</p>
                 </span>
                 <div className={archivo.className}>
-                  .
                   <PortableText value={parcour.description} />
                 </div>
               </div>

@@ -4,19 +4,13 @@ import React from "react";
 import ProcedureCard from "./Card";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
 import "swiper/css";
-import { FreeMode, Pagination } from "swiper/modules";
-import Navigation from "./Navigation";
 import styled from "styled-components";
-
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo, playfare } from "@/app/font";
-import { title } from "process";
 import Button from "../common/Button";
 
 const SectionContainer = styled.section`

@@ -1,4 +1,5 @@
-import { defineField, defineType } from "sanity";
+import { SanityDocument } from "next-sanity";
+import { defineField, defineType, Path, SlugSourceFn } from "sanity";
 
 export default defineType({
   name: "post",
@@ -16,8 +17,10 @@ export default defineType({
       type: "slug",
       validation: (Rule) => Rule.required(),
       options: {
-        source: "title",
-        maxLength: 96,
+        source: (doc: SanityDocument, context: any) => context.parent.title,
+        maxLength: 200,
+        slugify: (input) =>
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
       },
     }),
     defineField({

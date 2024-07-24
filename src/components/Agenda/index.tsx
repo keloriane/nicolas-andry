@@ -96,16 +96,13 @@ const Agenda = ({
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            {agendaCreation.map((item: AgendaType, i) => (
-              <AgendaCard
-                contact={item.contact}
-                title={item.title}
-                location={item.location}
-                key={i}
-                date={item.date}
-                details={item.descriptionB}
-              />
-            ))}
+            <AgendaCard
+              contact={agendaCreation[0].contact}
+              title={agendaCreation[0].title}
+              location={agendaCreation[0].location}
+              date={agendaCreation[0].date}
+              details={agendaCreation[0].descriptionB}
+            />
           </AgendaContainer>
         </Col>
         <Col column={[2, 2, 2, 16, 14, 14]} span={[22, 22, 22, 12, 9, 9]}>
@@ -119,16 +116,13 @@ const Agenda = ({
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            {agendaAtelier.map((item: AgendaType, i) => (
-              <AgendaCard
-                contact={item.contact}
-                title={item.title}
-                location={item.location}
-                key={i}
-                date={item.date}
-                details={item.descriptionB}
-              />
-            ))}
+            <AgendaCard
+              contact={agendaAtelier[0].contact}
+              title={agendaAtelier[0].title}
+              location={agendaAtelier[0].location}
+              date={agendaAtelier[0].date}
+              details={agendaAtelier[0].descriptionB}
+            />
           </AgendaContainer>
         </Col>
       </GridContainer>

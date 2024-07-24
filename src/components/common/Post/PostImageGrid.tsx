@@ -9,6 +9,7 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { gsap } from "gsap";
 import Image from "next/image";
+import { PortableText } from "next-sanity";
 
 type ImageType = {
   url: string;
@@ -18,6 +19,7 @@ type ImageType = {
 
 type PostType = {
   images: ImageType[];
+  remerciements?: [];
 };
 
 type PostImageGridProps = {
@@ -32,7 +34,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
   useLayoutEffect(() => {
     if (activePost) {
       gsap.fromTo(
-        [".text_header_wrapper", ".image_header_wrapper", ".image_grid_item"],
+        [".image_grid_item"],
         { opacity: 0 },
         { opacity: 1, duration: 0.5, stagger: 0.04 }
       );
@@ -57,6 +59,17 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
 
   return (
     <PostContainer>
+      {activePost?.remerciements ? (
+        <div style={{ marginTop: "80px" }}>
+          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
+          <div style={{ marginLeft: "40px" }} className="rich-text">
+            <PortableText value={activePost ? activePost.remerciements : []} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
       <GridContainerV>
         <Lightbox
           index={index}
@@ -75,6 +88,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
           plugins={[Thumbnails]}
           thumbnails={{ vignette: true, gap: 10, imageFit: "cover" }}
         />
+
         {formattedImages.map((img, index) => (
           <ImageWrapper key={index}>
             <Image

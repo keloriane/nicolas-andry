@@ -30,7 +30,6 @@ export const FooterProvider: React.FC<{ children: React.ReactNode }> = ({
     client
       .fetch(NAVIGATION_QUERY)
       .then((data) => {
-        console.log(data);
         setNavigationData(data);
       })
       .catch((error) => {
