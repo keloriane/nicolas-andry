@@ -18,7 +18,10 @@ const MenuContainer = styled.header`
   z-index: 200;
   background-color: ${theme.colors.white};
   .logo-container {
-    &:hover a {
+    svg {
+      height: 55px;
+    }
+    &:hover {
       svg {
         rect {
           fill: ${theme.colors.orange};

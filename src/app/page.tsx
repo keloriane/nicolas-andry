@@ -9,6 +9,8 @@ import Contact from "@/components/Contact";
 import Menu from "@/components/common/Menu";
 import Footer from "@/components/Footer";
 import { loadQuery } from "../../sanity/lib/store";
+import Banner from "@/components/Banner";
+import bannerImage from "@/../public/banner.png";
 import {
   AGENDA_ATELIER_QUERY,
   AGENDA_CREATION_QUERY,
@@ -64,22 +66,13 @@ export default async function Home() {
         satoshi={archivo.className}
         presentationText={introductionText}
       />
+
       <PostsGrid
         posts={postGrid}
         playfare={playfare.className}
         archivo={archivo.className}
       />
 
-      <Separator />
-      <AboutSection
-        presentationTitle={homeData.data.presentationTitle}
-        imageProfile={homeData.data.imageProfile}
-        presentationText={homeData.data.presentationText}
-      />
-      <Separator size={100} />
-      <Procedures demarche={demarches} title={homeData.data.procedureTitle} />
-
-      <Separator size={100} />
       <Agenda
         introductionText={agendaData.data.introductionText}
         title={agendaData.data.title}
@@ -89,6 +82,19 @@ export default async function Home() {
         homePage
       />
       <Separator size={100} />
+
+      <Banner src={bannerImage} width={1120} height={316} />
+      <Separator size={100} />
+
+      <AboutSection
+        presentationTitle={homeData.data.presentationTitle}
+        imageProfile={homeData.data.imageProfile}
+        presentationText={homeData.data.presentationText}
+      />
+
+      <Separator />
+      {/* <Procedures demarche={demarches} title={homeData.data.procedureTitle} /> */}
+
       <Contact archivo={archivo.className} />
       <Footer />
     </main>

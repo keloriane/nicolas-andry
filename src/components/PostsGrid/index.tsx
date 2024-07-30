@@ -63,9 +63,7 @@ const PostGridContainer = styled.div`
     width: 100%;
     height: 600px;
   }
-  .item-1 {
-    margin-top: 50px;
-  }
+
   @media screen and (max-width: 1100px) {
     .image-grid-item {
       height: 400px;

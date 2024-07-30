@@ -9,6 +9,7 @@ import AterlierItem from "@/components/AtelierSection";
 
 import FullHeader from "@/components/common/PageHeader/FullHeader";
 import AtelierNavigation from "@/components/AtelierNavigation";
+import Separator from "@/components/common/Separator";
 
 async function getAteliersData() {
   return await client.fetch(
@@ -44,6 +45,7 @@ export default async function Ateliers() {
       <div className="slider_container" style={{ paddingTop: "100px" }}>
         <Slider images={ateliers.images} centered={true} />
       </div>
+      <Separator />
 
       <div className="atelier_container" style={{ position: "relative" }}>
         {/* <AterlierItem
@@ -51,6 +53,8 @@ export default async function Ateliers() {
           sections={ateliers.globalSection[0].sections}
         /> */}
         <AtelierNavigation />
+
+        <Separator />
       </div>
     </main>
   );

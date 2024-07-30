@@ -10,6 +10,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 type ImageType = {
   url: string;
@@ -84,9 +85,13 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
           render={{
             iconClose: () => <button className="yarl__button">fermer</button>,
           }}
+          carousel={{ preload: formattedImages.length }}
           slides={formattedImages}
           plugins={[Thumbnails]}
-          thumbnails={{ vignette: true, gap: 10, imageFit: "cover" }}
+          thumbnails={{
+            vignette: true,
+            imageFit: "cover",
+          }}
         />
 
         {formattedImages.map((img, index) => (

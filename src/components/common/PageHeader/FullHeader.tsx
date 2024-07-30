@@ -24,10 +24,10 @@ const FullHeader: React.FC<PageHeaderType> = ({
   console.log(title);
 
   return (
-    <header style={{ paddingTop: "180px", textAlign: "center" }}>
+    <section style={{ paddingTop: "180px", textAlign: "center" }}>
       <h2 className={playfare}>{title}</h2>
       <p>{introductionText}</p>
-    </header>
+    </section>
   );
 };
 

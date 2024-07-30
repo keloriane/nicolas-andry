@@ -25,10 +25,10 @@ const HeaderText: React.FC<HeaderTextProps> = ({
   useEffect(() => {
     if (titleRef.current && textRef.current) {
       const titleWrapper = new splitType(titleRef.current, {
-        types: "chars",
+        types: "words",
       });
       const textWrapper = new splitType(textRef.current, { types: "lines" });
-      const chars = titleWrapper.chars;
+      const chars = titleWrapper.words;
       const lines = textWrapper.lines;
 
       gsap.fromTo(
@@ -41,7 +41,7 @@ const HeaderText: React.FC<HeaderTextProps> = ({
           y: 0,
           opacity: 1,
           stagger: 0.05,
-          duration: 1,
+          duration: 1.3,
           ease: "power4.out",
         }
       );
