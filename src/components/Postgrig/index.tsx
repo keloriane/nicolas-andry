@@ -9,6 +9,8 @@ import TransitionLink from "../common/TransitionLink";
 import * as S from "./postgrid.styles";
 import gsap from "gsap";
 
+import { block } from "million/react";
+
 const generateGridArea = (index: number) => {
   const areas = [
     "1 / 1 / 2 / 3",
@@ -58,7 +60,6 @@ const Postgrid = ({ creations }: PostsExcerpt) => {
       const h2 = layer.querySelector("h2");
       const p = layer.querySelector("p");
 
-      console.log(h2, p);
       gsap.to(layer, {
         duration: 0.5,
         bottom: "-35%",
@@ -68,7 +69,7 @@ const Postgrid = ({ creations }: PostsExcerpt) => {
   };
 
   return (
-    <S.PostGrid>
+    <S.PostGrid id={"creations"}>
       {creations.map((post: PostExcerpt, index) => (
         <div
           key={post.slug.current}

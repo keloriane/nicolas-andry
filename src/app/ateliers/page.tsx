@@ -19,9 +19,7 @@ async function getAteliersData() {
       imageHeader,
       introductionText,
       images,
-      sections,
-      globalSection,
-
+      "atelierItems": atelierItems[] -> {title , slug , image }
     }
   `
   );
@@ -29,7 +27,7 @@ async function getAteliersData() {
 
 export default async function Ateliers() {
   const ateliers = await getAteliersData();
-  console.log("Ateliers", ateliers);
+  console.log("Ateliers", ateliers.atelierItems);
 
   return (
     <main>
@@ -42,9 +40,9 @@ export default async function Ateliers() {
         introductionText={ateliers.introductionText[0].children[0].text}
       />
 
-      <div className="slider_container" style={{ paddingTop: "100px" }}>
+      {/* <div className="slider_container" style={{ paddingTop: "100px" }}>
         <Slider images={ateliers.images} centered={true} />
-      </div>
+      </div> */}
       <Separator />
 
       <div className="atelier_container" style={{ position: "relative" }}>
@@ -52,7 +50,7 @@ export default async function Ateliers() {
           mainSection={ateliers.globalSection}
           sections={ateliers.globalSection[0].sections}
         /> */}
-        <AtelierNavigation />
+        <AtelierNavigation atelierItems={ateliers.atelierItems} />
 
         <Separator />
       </div>

@@ -14,6 +14,7 @@ import gsap from "gsap";
 import { archivo } from "@/app/font";
 import arrowDown from "@/../public/arrow_down.svg";
 import Link from "next/link";
+import ArrowDown from "../common/ArrowDown";
 
 const TextContainer = styled.div`
   text-align: center;
@@ -35,11 +36,16 @@ const HeaderContainer = styled.section`
   gap: 24px;
   justify-content: center;
   align-items: center;
+  .svg_cta {
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  }
 `;
 
 const Hero = ({
   clash,
-  satoshi,
   title,
   subtitle,
   presentationText,
@@ -135,8 +141,8 @@ const Hero = ({
         </div>
       </TextContainer>
 
-      <Link href="#about">
-        <img src={arrowDown.src} alt="arrow down" />
+      <Link href="#post-navigation" className="svg_cta">
+        <ArrowDown />
       </Link>
     </HeaderContainer>
   );

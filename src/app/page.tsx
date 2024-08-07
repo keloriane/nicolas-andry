@@ -54,7 +54,7 @@ export default async function Home() {
     introductionText,
   } = homeData.data;
 
-  console.log("homeData", homeData.data);
+  
 
   return (
     <main>

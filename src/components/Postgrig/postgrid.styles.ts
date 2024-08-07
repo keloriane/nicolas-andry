@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 export const PostGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+
   grid-auto-flow: column;
   gap: 20px;
   padding: 20px;
@@ -12,7 +11,6 @@ export const PostGrid = styled.div`
   max-width: 1280px;
   margin: 200px auto;
   justify-items: center;
-  align-items: center;
 
   .card {
     width: 100%;
@@ -61,7 +59,7 @@ export const PostGrid = styled.div`
       width: 100%;
 
       padding: 20px;
-      background-color: #000c1abf;
+      background-color: #222222bf;
       z-index: 1;
     }
   }

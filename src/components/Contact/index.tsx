@@ -45,28 +45,6 @@ const ContactContainer = styled.section`
 
 const Contact = ({ archivo }: { archivo: string }) => {
   return (
-    // <ContactContainer>
-    //   <div className="contact-wrapper">
-    //     <div className="contact-info">
-    //       <div className="logo-container">
-    //         <Image src={Logo} alt="logo" />
-    //       </div>
-    //       <div className="contact-description">
-    //         <h4 className={archivo}>contact@nicolas-andry.com</h4>
-    //         <p className={archivo}>
-    //           *Pour recevoir mes nouvelles d'activités, merci de m'envoyer un
-    //           courriel avec mention PROJETS et/ou ATELIERS selon le(s)
-    //           contenu(s) souhaité(s).
-    //         </p>
-    //       </div>
-    //     </div>
-    //     <div className="contact-cta">
-    //       <Link className="cta" href={"mailto:contact@nicolas-andry.com"}>
-    //         Me contacter
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </ContactContainer>
     <ContactContainer>
       <div className="contact_info">
         <div className="logo_container">

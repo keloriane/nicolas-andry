@@ -6,6 +6,7 @@ import { playfare } from "@/app/font";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { urlFor } from "@/lib/imageBuilder";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,17 +31,24 @@ const ateliers = [
   },
 ];
 
-const AtelierNavigation = () => {
+const AtelierNavigation = ({
+  atelierItems,
+}: {
+  atelierItems: [{ title: string; slug: { current: string }; image: [] }];
+}) => {
   const [activeSection, setActiveSection] = React.useState<string>(
-    ateliers[0].slug
+    atelierItems[0].slug.current
   );
+
+  console.log("atelierItems", atelierItems[0].slug.current);
+
   const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
   const imageElementRefs = useRef<Array<HTMLImageElement | null>>([]);
 
   useEffect(() => {
     if (activeSection !== null) {
-      const activeImageIndex = ateliers.findIndex(
-        (atelier) => atelier.slug === activeSection
+      const activeImageIndex = atelierItems.findIndex(
+        (atelier) => atelier.slug.current === activeSection
       );
 
       gsap.to(imageRefs.current[activeImageIndex], {
@@ -78,18 +86,19 @@ const AtelierNavigation = () => {
     setActiveSection(slug);
   };
 
+  console.log(atelierItems);
   return (
     <S.AtelierNavigationSection>
-      {ateliers.map((atelier, index) => (
+      {atelierItems.map((atelier, index) => (
         <div className="atelier_wrapper" key={index}>
           <div className="title_container">
             <div>
               <Link
-                href={`/ateliers/${atelier.slug}`}
-                onMouseEnter={() => handleHoverSection(atelier.slug)}
+                href={`/ateliers/${atelier.slug.current}`}
+                onMouseEnter={() => handleHoverSection(atelier.slug.current)}
                 className={playfare.className}
                 style={
-                  activeSection === atelier.slug
+                  activeSection === atelier.slug.current
                     ? { color: "#FFA500" }
                     : { color: "#000000" }
                 }
@@ -105,14 +114,14 @@ const AtelierNavigation = () => {
               imageRefs.current[index] = el;
             }}
             style={{
-              opacity: activeSection === atelier.slug ? 1 : 0,
+              opacity: activeSection === atelier.slug.current ? 1 : 0,
               transition: "opacity 0.5s ease-out",
             }}
           >
             <Image
               width={327}
               height={440}
-              src={atelier.image}
+              src={urlFor(atelier.image).url()}
               alt={atelier.title}
               ref={(el) => {
                 imageElementRefs.current[index] = el;

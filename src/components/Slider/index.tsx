@@ -89,30 +89,6 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
             />
           </SwiperSlide>
         ))}
-        {images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <Slide
-              image={urlFor(image).url()}
-              onClick={(event: any) => handleClick(event, index)}
-            />
-          </SwiperSlide>
-        ))}
-        {images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <Slide
-              image={urlFor(image).url()}
-              onClick={(event: any) => handleClick(event, index)}
-            />
-          </SwiperSlide>
-        ))}
-        {images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <Slide
-              image={urlFor(image).url()}
-              onClick={(event: any) => handleClick(event, index)}
-            />
-          </SwiperSlide>
-        ))}
         <div className="navigation__container">
           <Navigation />
         </div>

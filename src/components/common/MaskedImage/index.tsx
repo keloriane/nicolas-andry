@@ -85,4 +85,4 @@ const MaskedImage: React.FC<MaskedImageProps> = ({
   );
 };
 
-export default MaskedImage;
+export default React.memo(MaskedImage);

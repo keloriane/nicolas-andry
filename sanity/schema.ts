@@ -9,6 +9,7 @@ import home from "./schemaTypes/home";
 import agenda from "./schemaTypes/agenda";
 import recherches from "./schemaTypes/recherches";
 import ateliers from "./schemaTypes/ateliers";
+import atelierItems from "./schemaTypes/atelierItems";
 import menu from "./schemaTypes/menu";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -23,5 +24,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     recherches,
     ateliers,
     menu,
+    atelierItems,
   ],
 };

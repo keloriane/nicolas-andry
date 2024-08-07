@@ -152,3 +152,11 @@ export const Introduction = styled.p`
   color: #fff;
   opacity: 0;
 `;
+
+export const ArrowDown = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  cursor: pointer;
+`;

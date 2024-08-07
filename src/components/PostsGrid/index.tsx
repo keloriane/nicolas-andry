@@ -138,7 +138,7 @@ const PostsGrid = ({
     });
   });
   return (
-    <PostGridContainer>
+    <PostGridContainer id="post-navigation">
       <GridContainer
         colCount={24}
         colGap={20}

@@ -2,12 +2,10 @@
 import { urlFor } from "@/lib/imageBuilder";
 import Image from "next/image";
 import React, { useRef } from "react";
-import styled from "styled-components";
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo, playfare } from "@/app/font";
 import { PortableText } from "next-sanity";
 import { TypedObject } from "sanity";
-import { theme } from "@/styles/theme";
 import { CTA } from "../common/Button/cta";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
@@ -16,12 +14,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/all";
+import { imageClipAnimation } from "@/mixins/animations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = ({
   imageProfile,
-  presentationTitle,
   presentationText,
 }: {
   imageProfile: string;
@@ -29,15 +27,18 @@ const AboutSection = ({
   presentationText: TypedObject | TypedObject[];
 }) => {
   const aboutWrapper = useRef<HTMLDivElement>(null);
-
   const paragraphRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
-    const mainTitle = new SplitType("h2.about_title", {
-      types: "words",
-    });
-    if (paragraphRef.current && imageRef.current && aboutWrapper.current) {
+    if (
+      paragraphRef.current &&
+      imageRef.current &&
+      aboutWrapper.current &&
+      imageContainerRef &&
+      imageContainerRef.current
+    ) {
       const mainTitle = new SplitType("h2.about_title", {
         types: "words",
       });
@@ -49,37 +50,10 @@ const AboutSection = ({
         }
       );
 
-      gsap.to(imageRef.current, {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: aboutWrapper.current,
-          start: "top 20%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          markers: true,
-        },
-      });
-
-      gsap.fromTo(
-        aboutText.lines,
-        {
-          y: 100,
-        },
-        {
-          y: 0,
-
-          stagger: 0.05,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: aboutWrapper.current,
-            start: "top 20%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            markers: true,
-          },
-        }
+      imageClipAnimation(
+        imageContainerRef.current,
+        imageRef.current,
+        aboutWrapper.current
       );
     }
   });
@@ -103,9 +77,8 @@ const AboutSection = ({
               as="h2"
               className={`${playfare.className} about_title `}
             >
-              {/* {presentationTitle} */}À propos de moi
+              À propos de moi
             </ResponsiveText>
-
             <div className={archivo.className}>
               <div className="rich-text" ref={paragraphRef}>
                 <PortableText value={presentationText} />
@@ -116,16 +89,16 @@ const AboutSection = ({
             </div>
           </div>
         </Col>
-
         <Col column={[3, 3, 3, 15, 15, 15]} span={[20, 20, 18, 9, 9, 7]}>
           <div className="image_container">
-            <div className="profile_pic" ref={imageRef}>
+            <div className="profile_pic" ref={imageContainerRef}>
               <Image
                 src={urlFor(imageProfile).url()}
                 alt={"post.title"}
+                ref={imageRef}
                 width={381}
                 height={477}
-                style={{ objectFit: "cover", width: "100%" }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
           </div>

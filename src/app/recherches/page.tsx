@@ -51,8 +51,6 @@ async function getResearchData() {
 export default async function Creations() {
   const research = await getResearchData();
 
-  console.log("research", research[0]);
-
   return (
     <main>
       <Menu />

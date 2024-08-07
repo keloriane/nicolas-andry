@@ -1,6 +1,11 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { loadQuery } from "@sanity/react-loader";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
 import { NAVIGATION_QUERYType } from "@/types";
 import { NAVIGATION_QUERY } from "../../sanity/lib/queries";
 import { client } from "../../sanity/lib/client";
@@ -19,7 +24,7 @@ export const useFooter = () => {
   return context;
 };
 
-export const FooterProvider: React.FC<{ children: React.ReactNode }> = ({
+const FooterProviderComponent: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [navigationData, setNavigationData] = useState<NAVIGATION_QUERYType[]>(
@@ -37,9 +42,12 @@ export const FooterProvider: React.FC<{ children: React.ReactNode }> = ({
       });
   }, []);
 
+  const value = useMemo(() => ({ navigationData }), [navigationData]);
+
   return (
-    <FooterContext.Provider value={{ navigationData }}>
-      {children}
-    </FooterContext.Provider>
+    <FooterContext.Provider value={value}>{children}</FooterContext.Provider>
   );
 };
+
+// Wrap FooterProviderComponent with React.memo
+export const FooterProvider = React.memo(FooterProviderComponent);

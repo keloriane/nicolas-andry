@@ -1,19 +1,12 @@
 import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import dynamic from "next/dynamic";
-
 import Menu from "@/components/common/Menu";
 
 import { playfare } from "./../font";
 
 import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
-
-// Dynamic import for PostContent
-const PostContent = dynamic(() => import("@/components/common/PostContent"), {
-  suspense: true,
-});
 
 type Creation = {
   title: string;
@@ -40,8 +33,6 @@ async function getCreationData() {
 export default async function Creations() {
   const creations = await getCreationData();
   const creation = creations[0];
-
-  console.log("creation", creation);
 
   if (!creation) return <div>No creation data found</div>;
 

@@ -21,8 +21,6 @@ const FullHeader: React.FC<PageHeaderType> = ({
   const paragraphRef = useRef<HTMLParagraphElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
 
-  console.log(title);
-
   return (
     <section style={{ paddingTop: "180px", textAlign: "center" }}>
       <h2 className={playfare}>{title}</h2>

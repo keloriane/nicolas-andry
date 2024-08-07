@@ -111,4 +111,4 @@ const AgendaCard = ({
     </AgendaContainer>
   );
 };
-export default AgendaCard;
+export default React.memo(AgendaCard);
