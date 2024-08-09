@@ -15,6 +15,7 @@
     "@million/lint": "^1.0.0-rc.84",
     "@portabletext/react": "^3.0.18",
     "@sanity/client": "^6.15.17",
+    "@sanity/document-internationalization": "^3.0.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/overlays": "^2.3.38",
     "@sanity/react-loader": "^1.10.4",
