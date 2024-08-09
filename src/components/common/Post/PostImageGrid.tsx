@@ -60,17 +60,6 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
 
   return (
     <PostContainer>
-      {activePost?.remerciements ? (
-        <div style={{ marginTop: "80px" }}>
-          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
-          <div style={{ marginLeft: "40px" }} className="rich-text">
-            <PortableText value={activePost ? activePost.remerciements : []} />
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
-
       <GridContainerV>
         <Lightbox
           index={index}
@@ -112,6 +101,16 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
           </ImageWrapper>
         ))}
       </GridContainerV>
+      {activePost?.remerciements ? (
+        <div style={{ marginTop: "80px" }}>
+          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
+          <div style={{ marginLeft: "40px" }} className="rich-text">
+            <PortableText value={activePost ? activePost.remerciements : []} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </PostContainer>
   );
 };

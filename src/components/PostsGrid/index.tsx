@@ -57,8 +57,8 @@ const CardWrapper = styled.div`
   }
 `;
 
-const PostGridContainer = styled.div`
-  margin-top: 200px;
+const PostGridContainer = styled.section`
+  margin-top: 280px;
   .image-grid-item {
     width: 100%;
     height: 600px;

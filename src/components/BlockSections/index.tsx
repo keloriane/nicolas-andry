@@ -8,6 +8,7 @@ import styled from "styled-components";
 import ArrowLeft from "../common/ArrowLeft";
 import TransitionLink from "../common/TransitionLink";
 import { theme } from "@/styles/theme";
+import Link from "next/link";
 
 const NavSection = styled.nav<{ isFixed: boolean }>`
   border-top: 1px solid black;
@@ -42,6 +43,9 @@ const MainSection = styled.div`
     display: flex;
     gap: 24px;
     align-items: center;
+    a {
+      padding-top: 10px;
+    }
   }
 
   @media screen and (max-width: 1208px) {
@@ -59,7 +63,7 @@ const BlockSectionWrapper = styled.section<{
   display: flex;
   width: 100%;
   max-width: 1200px;
-  margin: 100px auto;
+  margin: 120px auto;
   gap: 32px;
   align-items: center;
   ul {
@@ -75,7 +79,8 @@ const BlockSectionWrapper = styled.section<{
   }
 
   .text_container {
-    width: ${({ hasimage }) => (hasimage ? "80%" : "100%")};
+    width: ${({ hasimage }) => (hasimage ? "65%" : "100%")};
+    margin: auto;
   }
 
   @media screen and (max-width: 768px) {
@@ -103,7 +108,7 @@ const BlockSections = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 75) {
+      if (window.scrollY > 200) {
         setIsFixed(true);
       } else {
         setIsFixed(false);
@@ -124,7 +129,7 @@ const BlockSections = ({
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       const offsetTop =
-        targetElement.getBoundingClientRect().top + window.scrollY - 75;
+        targetElement.getBoundingClientRect().top + window.scrollY - 200;
       window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
   };
@@ -133,9 +138,9 @@ const BlockSections = ({
     <MainSection>
       <section>
         <div className="headline_section">
-          <TransitionLink href="/ateliers">
+          <Link href="/ateliers">
             <ArrowLeft />
-          </TransitionLink>
+          </Link>
           <h1 style={{ fontSize: "43px" }} className={playfare.className}>
             {title}
           </h1>
@@ -177,12 +182,14 @@ const BlockSections = ({
             />
           </div>
           {section.image && (
-            <Image
-              src={urlFor(section.image).url()}
-              width={322}
-              height={428}
-              alt={section.title || section.title_content}
-            />
+            <div className="image_container">
+              <Image
+                src={urlFor(section.image).url()}
+                width={322}
+                height={428}
+                alt={section.title || section.title_content}
+              />
+            </div>
           )}
         </BlockSectionWrapper>
       ))}

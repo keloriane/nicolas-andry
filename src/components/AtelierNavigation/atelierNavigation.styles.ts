@@ -1,7 +1,7 @@
 import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
-export const AtelierNavigationSection = styled.section`
+export const AtelierNavigationSection = styled.div`
   width: 100%;
   max-width: 920px;
   height: 100%;
@@ -42,7 +42,7 @@ export const AtelierNavigationSection = styled.section`
     max-width: 327px;
     height: 433px;
     position: absolute;
-    top: 0;
+    top: -43%;
     right: 0;
     bottom: 0;
     overflow: hidden;

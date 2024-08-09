@@ -21,6 +21,9 @@ export const ImageMaskContainer = styled.div`
   display: flex;
   gap: 24px;
   align-items: center;
+  @media screen and (max-width: 740px) {
+    display: none;
+  }
   .mask {
     overflow: hidden;
     background: transparent;

@@ -10,7 +10,7 @@ import { archivo } from "@/app/font";
 import { AgendaType } from "@/types/AgendaType";
 import { PortableText } from "next-sanity";
 
-const AgendaSection = styled.div`
+const AgendaSection = styled.section`
   display: flex;
   flex-direction: column;
 
