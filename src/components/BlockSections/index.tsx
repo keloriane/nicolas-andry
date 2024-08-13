@@ -9,6 +9,7 @@ import ArrowLeft from "../common/ArrowLeft";
 import TransitionLink from "../common/TransitionLink";
 import { theme } from "@/styles/theme";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NavSection = styled.nav<{ isFixed: boolean }>`
   border-top: 1px solid black;
@@ -134,13 +135,15 @@ const BlockSections = ({
     }
   };
 
+  const router = useRouter();
+
   return (
     <MainSection>
       <section>
         <div className="headline_section">
-          <Link href="/ateliers">
+          <span onClick={router.back}>
             <ArrowLeft />
-          </Link>
+          </span>
           <h1 style={{ fontSize: "43px" }} className={playfare.className}>
             {title}
           </h1>

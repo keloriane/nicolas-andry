@@ -10,6 +10,8 @@ import * as S from "./postgrid.styles";
 import gsap from "gsap";
 
 import { block } from "million/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const generateGridArea = (index: number) => {
   const areas = [
@@ -28,9 +30,16 @@ const generateGridArea = (index: number) => {
   return areas[index % areas.length];
 };
 
-const Postgrid = ({ creations }: PostsExcerpt) => {
+interface PostgridProps {
+  creations: PostExcerpt[];
+  locale: string;
+}
+
+const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
   const layerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const textContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const pathname = usePathname();
+  console.log(pathname);
 
   const handleMouseEnter = (index: number) => {
     const layer = layerRefs.current[index];
@@ -78,7 +87,7 @@ const Postgrid = ({ creations }: PostsExcerpt) => {
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={() => handleMouseLeave(index)}
         >
-          <TransitionLink href={`/creations/${post.slug.current}`}>
+          <Link replace href={`${pathname}/${post.slug.current}`}>
             <Image src={post.mainImage.url} alt={post.title} fill />
             <div
               className="layer"
@@ -102,7 +111,7 @@ const Postgrid = ({ creations }: PostsExcerpt) => {
                 </p>
               </div>
             </div>
-          </TransitionLink>
+          </Link>
         </div>
       ))}
     </S.PostGrid>

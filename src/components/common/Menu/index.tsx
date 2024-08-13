@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import Link from "next/link";
 import styled from "styled-components";
@@ -7,69 +7,40 @@ import { theme } from "@/styles/theme";
 import { archivo } from "@/app/font";
 import { useMenu } from "@/context/MenuContext";
 import TransitionLink from "../TransitionLink";
+import { LanguageContext } from "@/context/LanguageContext";
+import * as S from "./menu.styles";
+import { usePathname, useRouter } from "next/navigation";
 
-const MenuContainer = styled.header`
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 5px;
-  z-index: 200;
-  background-color: ${theme.colors.white};
-  .logo-container {
-    svg {
-      height: 55px;
-    }
-    &:hover {
-      svg {
-        rect {
-          fill: ${theme.colors.orange};
-          transition: all 0.2s ease-in;
-        }
-      }
-    }
-  }
-  nav {
-    ul {
-      display: flex;
-      justify-content: space-evenly;
-      gap: 30px;
-      align-items: center;
-      .link_transition_menu {
-        color: ${theme.colors.black};
-        font-weight: 500;
-        &:hover {
-          color: ${theme.colors.orange};
-        }
-      }
-    }
-  }
-  .agenda_cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .cta_container {
-      padding: 0 50px;
-      .cta {
-        background-color: ${theme.colors.black};
-        padding: 10px 25px;
-        transition: all 0.2s ease-in;
-        color: white;
-        &:hover {
-          background-color: ${theme.colors.orange};
-        }
-      }
-    }
-  }
-`;
-const Menu = () => {
+const Menu = ({ locale }: { locale: string }) => {
   const navBar = useRef<HTMLHeadElement>(null);
   const { menuItems } = useMenu();
+  const router = useRouter();
+  const pathname = usePathname();
+  console.log(pathname);
+
+  // Extract the current locale from the URL, defaulting to 'fr'
+  const [selectedLocale, setSelectedLocale] = useState<string>(() => {
+    const parts = pathname.split("/");
+    return parts[1] || "fr";
+  });
+
+  // Handle language change and route update
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = e.target.value;
+
+    // Create new path excluding the old locale segment
+    const segments = pathname
+      .split("/")
+      .filter((segment, index) => index === 0 || segment !== selectedLocale);
+    const newPathname = `/${newLocale}/${segments.join("/")}`;
+
+    router.push(newPathname);
+  };
+
   return (
-    <MenuContainer ref={navBar} className={archivo.className}>
+    <S.MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">
-        <TransitionLink href="/">
+        <TransitionLink href={`/${locale}`}>
           <svg
             width="55"
             height="72"
@@ -98,21 +69,28 @@ const Menu = () => {
               <li key={i}>
                 <TransitionLink
                   className="link_transition_menu"
-                  href={`/${item.link}`}
+                  href={`/${locale}/${item.link}`}
                 >
                   {item.name}
                 </TransitionLink>
               </li>
             ))}
+            <li>
+              <select value={selectedLocale} onChange={handleLanguageChange}>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+                <option value="nl">Nederlands</option>
+              </select>
+            </li>
           </ul>
         </nav>
         <div className="cta_container">
-          <Link href="/agenda" className="cta">
+          <Link href={`${locale}/agenda`} className="cta">
             Agenda
           </Link>
         </div>
       </div>
-    </MenuContainer>
+    </S.MenuContainer>
   );
 };
 

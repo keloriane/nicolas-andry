@@ -22,16 +22,20 @@ const TransitionLink = ({ href, children, className }: TransitionLinkProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+    e.preventDefault(); // Prevent default action
     if (pathname !== href) {
+      console.log(`Navigating to: ${href}`);
       animatePageOut(href, router);
       router.push(href);
     }
   };
+
   return (
     <LinkWrapper className={className} onClick={handleClick}>
       {children}
     </LinkWrapper>
   );
 };
+
 export default TransitionLink;

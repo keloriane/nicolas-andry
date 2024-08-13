@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
 import { PostDataType, PostType } from "@/types";

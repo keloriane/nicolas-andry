@@ -1,7 +1,19 @@
 import { groq } from "next-sanity";
 import { client } from "./client";
+import { useContext } from "react";
+import { LanguageContext } from "@/context/LanguageContext";
+import { loadQuery } from "@sanity/react-loader";
+import { HomeData } from "@/types/HomeData";
 
-export const HOME_QUERY = groq`*[_type == "home"][0]`;
+// Use GROQ to create a parameterized query
+export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;
+
+export async function GetHomeData(lang: string = "fr") {
+  const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
+
+  console.log(res);
+  return res;
+}
 export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
   parcours,
   presentationTitle,
