@@ -26,7 +26,14 @@ export default defineConfig({
         { id: "nl", title: "Nederlands" },
         { id: "fr", title: "French" },
       ],
-      schemaTypes: ["post", "home"],
+      schemaTypes: [
+        "post",
+        "home",
+        "creations",
+        "ateliers",
+        "agenda",
+        "ateliers_items",
+      ],
     }),
 
     // Vision is a tool that lets you query your content with GROQ in the studio

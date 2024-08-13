@@ -1,12 +1,13 @@
 import React from "react";
-import { client } from "../../../sanity/lib/client";
+import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Menu from "@/components/common/Menu";
 
-import { playfare } from "./../font";
+import { playfare } from "../../font";
 
 import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
+import { usePathname } from "next/navigation";
 
 type Creation = {
   title: string;
@@ -30,15 +31,21 @@ async function getCreationData() {
   `);
 }
 
-export default async function Creations() {
+export default async function Creations({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   const creations = await getCreationData();
   const creation = creations[0];
 
   if (!creation) return <div>No creation data found</div>;
 
+  console.log(locale);
+
   return (
     <main>
-      <Menu />
+      <Menu locale={locale} />
       <HeaderMask
         image={creation}
         playfare={playfare.className}
@@ -48,7 +55,7 @@ export default async function Creations() {
           "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
         }
       />
-      <Postgrid creations={creations[0].posts} />
+      <Postgrid locale={locale} creations={creations[0].posts} />
     </main>
   );
 }

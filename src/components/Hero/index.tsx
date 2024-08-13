@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import ResponsiveText from "../common/ResponsiveText";
 import styled from "styled-components";
 import GridContainer from "../common/Container";
@@ -15,6 +15,7 @@ import { archivo } from "@/app/font";
 import arrowDown from "@/../public/arrow_down.svg";
 import Link from "next/link";
 import ArrowDown from "../common/ArrowDown";
+import { LanguageContext } from "@/context/LanguageContext";
 
 const TextContainer = styled.div`
   text-align: center;

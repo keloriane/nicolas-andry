@@ -11,6 +11,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "language",
+      title: "Language",
+      type: "string",
+    }),
+    defineField({
       name: "subtitle",
       title: "Subtitle",
       type: "string",

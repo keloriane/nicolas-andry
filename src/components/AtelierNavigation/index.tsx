@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { urlFor } from "@/lib/imageBuilder";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,14 +34,16 @@ const ateliers = [
 
 const AtelierNavigation = ({
   atelierItems,
+  locale,
 }: {
   atelierItems: [{ title: string; slug: { current: string }; image: [] }];
+  locale: string;
 }) => {
   const [activeSection, setActiveSection] = React.useState<string>(
     atelierItems[0].slug.current
   );
 
-  console.log("atelierItems", atelierItems[0].slug.current);
+  const pathname = usePathname();
 
   const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
   const imageElementRefs = useRef<Array<HTMLImageElement | null>>([]);
@@ -94,7 +97,8 @@ const AtelierNavigation = ({
           <div className="title_container">
             <div>
               <Link
-                href={`/ateliers/${atelier.slug.current}`}
+                replace
+                href={`${pathname}/${atelier.slug.current}`}
                 onMouseEnter={() => handleHoverSection(atelier.slug.current)}
                 className={playfare.className}
                 style={
