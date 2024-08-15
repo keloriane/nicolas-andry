@@ -25,7 +25,7 @@ const TransitionLink = ({ href, children, className }: TransitionLinkProps) => {
   const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault(); // Prevent default action
     if (pathname !== href) {
-      console.log(`Navigating to: ${href}`);
+
       animatePageOut(href, router);
       router.push(href);
     }

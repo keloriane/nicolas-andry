@@ -5,10 +5,11 @@ import StyledComponentsRegistry from "@/lib/registry";
 import "./globals.css";
 import { MenuProvider } from "@/context/MenuContext";
 import { FooterProvider } from "@/context/FooterContext";
-import { LanguageProvider } from "@/context/LanguageContext";
 
 const archivo = Archivo({ subsets: ["latin"] });
 import { NextIntlClientProvider } from "next-intl";
+import Menu from "@/components/common/Menu";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Nicolas Andry",
@@ -17,24 +18,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params: { local },
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: { local: string };
+  params: { locale: string };
 }>) {
+  console.log(locale);
   return (
-    <html lang={local}>
-      <body className={archivo.className}>
-        <StyledComponentsRegistry>
-          <LanguageProvider>
-            <NextIntlClientProvider locale={local}>
-              <MenuProvider>
-                <FooterProvider>{children}</FooterProvider>
-              </MenuProvider>
-            </NextIntlClientProvider>
-          </LanguageProvider>
-        </StyledComponentsRegistry>
-      </body>
+    <html lang={locale}>
+      <body className={archivo.className}>{children};</body>
     </html>
   );
 }

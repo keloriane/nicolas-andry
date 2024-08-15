@@ -6,6 +6,12 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "language",
+      title: "Language",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "menuItem",
       title: "Menu Item",
       type: "array",
@@ -19,6 +25,7 @@ export default defineType({
               type: "string",
               validation: (Rule) => Rule.required(),
             },
+
             {
               name: "link",
               title: "Link",

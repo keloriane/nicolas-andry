@@ -57,14 +57,13 @@ export default async function Creations({
 
   return (
     <main>
-      <Menu locale={locale} />
       <HeaderMask
         image={research}
         playfare={playfare.className}
         title={research[0].title}
         introductionText={research[0].introductionText[0].children[0].text}
       />
-      <Postgrid creations={research[0].posts} />
+      <Postgrid locale={locale} creations={research[0].posts} />
     </main>
   );
 }

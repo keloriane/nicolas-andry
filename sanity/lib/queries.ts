@@ -1,17 +1,14 @@
 import { groq } from "next-sanity";
 import { client } from "./client";
-import { useContext } from "react";
-import { LanguageContext } from "@/context/LanguageContext";
 import { loadQuery } from "@sanity/react-loader";
 import { HomeData } from "@/types/HomeData";
+import { MenuType } from "@/types/MenuType";
 
-// Use GROQ to create a parameterized query
 export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;
 
 export async function GetHomeData(lang: string = "fr") {
   const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
 
-  console.log(res);
   return res;
 }
 export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
@@ -57,7 +54,22 @@ export const CREATTION_QUERY = groq`
 `;
 
 export const MENU_QUERY = groq`
-  *[_type == "menu"][0]{
+  *[_type == "menu" && language == $lang][0]{
   menuItem
 }
 `;
+
+export function getMenuData(lang = "fr") {
+  if (!client || !MENU_QUERY) {
+    console.error("Sanity client or MENU_QUERY is not defined");
+    return null;
+  }
+
+  try {
+    const res = loadQuery<MenuType>(MENU_QUERY, { lang });
+    return res;
+  } catch (error) {
+    console.error("Error loading menu data:", error);
+    return null;
+  }
+}

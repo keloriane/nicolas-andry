@@ -33,6 +33,7 @@ export default defineConfig({
         "ateliers",
         "agenda",
         "ateliers_items",
+        "menu",
       ],
     }),
 

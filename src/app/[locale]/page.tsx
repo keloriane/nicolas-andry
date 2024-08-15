@@ -1,33 +1,25 @@
-import React, { useContext } from "react";
+import React from "react";
 import Hero from "@/components/Hero";
 import PostsGrid from "@/components/PostsGrid";
-import Agenda from "@/components/Agenda";
-import Procedures from "@/components/Procedures";
+
 import { playfare, archivo } from "./../font";
-import Parcours from "@/components/Parcours";
+
 import Contact from "@/components/Contact";
 import Menu from "@/components/common/Menu";
 import Footer from "@/components/Footer";
 import { loadQuery } from "@./../../sanity/lib/store";
 import Banner from "@/components/Banner";
 import bannerImage from "@/../public/banner.png";
-import {
-  AGENDA_ATELIER_QUERY,
-  AGENDA_CREATION_QUERY,
-  AGENDA_QUERY,
-  HOME_QUERY,
-} from "./../../../sanity/lib/queries";
-import { AgendaMain, AgendaType } from "@/types/AgendaType";
+import { HOME_QUERY } from "./../../../sanity/lib/queries";
+
 import AboutSection from "@/components/About";
 import Separator from "@/components/common/Separator";
-import { NAVIGATION_QUERYType } from "@/types";
+
 import { HomeData } from "@/types/HomeData";
-import { LanguageContext } from "@/context/LanguageContext";
 
 async function GetHomeData(lang: string = "fr") {
   const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
 
-  console.log(res);
   return res;
 }
 
@@ -56,7 +48,6 @@ export default async function Home({
 
   return (
     <main>
-      <Menu locale={locale} />
       <Hero
         title={title}
         subtitle={subtitle}

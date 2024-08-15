@@ -27,6 +27,9 @@ const TextContainer = styled.div`
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     line-height: 24px;
     font-size: 16px;
+    @media screen and (max-width: 740px) {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -121,14 +124,14 @@ const Hero = ({
     <HeaderContainer>
       <TextContainer className={clash}>
         <ResponsiveText
-          sizes={["24px", "36px", "60px"]}
+          sizes={["48px", "36px", "60px"]}
           className="title-main"
           as="h1"
         >
           <span>{title}</span>
         </ResponsiveText>
         <ResponsiveText
-          sizes={["24px", "36px", "55px"]}
+          sizes={["48px", "36px", "55px"]}
           className="subtitle-main"
           as="h2"
         >

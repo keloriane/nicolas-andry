@@ -89,7 +89,7 @@ const AtelierNavigation = ({
     setActiveSection(slug);
   };
 
-  console.log(atelierItems);
+
   return (
     <S.AtelierNavigationSection>
       {atelierItems.map((atelier, index) => (

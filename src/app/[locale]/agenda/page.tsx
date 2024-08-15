@@ -1,6 +1,3 @@
-import Footer from "@/components/Footer";
-import AgendaCard from "@/components/common/AgendaCard";
-import Menu from "@/components/common/Menu";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Agenda from "@/components/Agenda";
@@ -30,7 +27,6 @@ export default async function AgendaPage({
 
   return (
     <div>
-      <Menu locale={locale} />
       <div style={{ paddingTop: "150px", paddingBottom: "150px" }}>
         <Agenda
           homePage

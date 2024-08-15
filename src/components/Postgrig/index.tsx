@@ -39,7 +39,6 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
   const layerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const textContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const pathname = usePathname();
-  console.log(pathname);
 
   const handleMouseEnter = (index: number) => {
     const layer = layerRefs.current[index];
@@ -83,12 +82,22 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
         <div
           key={post.slug.current}
           className={`card card-${index + 1}`}
-          style={{ gridArea: generateGridArea(index) }}
+          style={{ gridArea: generateGridArea(index), position: "relative" }} // Ensure position is relative here
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={() => handleMouseLeave(index)}
         >
           <Link replace href={`${pathname}/${post.slug.current}`}>
-            <Image src={post.mainImage.url} alt={post.title} fill />
+            <Image
+              src={post.mainImage.url}
+              alt={post.title}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                position: "absolute", // Keep position absolute here
+              }}
+              fill
+            />
             <div
               className="layer"
               ref={(el) => {

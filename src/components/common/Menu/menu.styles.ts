@@ -7,17 +7,22 @@ export const MenuContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 5px;
   z-index: 200;
   background-color: ${theme.colors.white};
   border-bottom: 1px solid rgba(240, 240, 240);
+  @media screen and (max-width: 768px) {
+    position: unset;
+  }
 
   select {
-    border: none;
-    transition: all 0.05s ease-in;
+    padding: 2px;
+    border-radius: 30px;
     font-size: 14px;
+    transition: all 0.1s ease-in;
+    cursor: pointer;
     &:hover {
       color: ${theme.colors.orange};
+      border: 1px solid ${theme.colors.orange};
     }
   }
 
@@ -40,19 +45,69 @@ export const MenuContainer = styled.header`
       justify-content: space-evenly;
       gap: 30px;
       align-items: center;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
       .link_transition_menu {
         color: ${theme.colors.black};
         font-weight: 400;
+
         &:hover {
           color: ${theme.colors.orange};
         }
       }
     }
   }
+  .mobile_cta {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .fullscreen_menu {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #e2e2e2;
+    z-index: 100;
+
+    .fs_menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      &:hover {
+        color: ${theme.colors.orange};
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+    li {
+      font-size: 22px;
+    }
+  }
+
   .agenda_cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
     .cta_container {
       padding: 0 50px;
       .cta {

@@ -20,11 +20,5 @@ export default function Template({ children }: { children: React.ReactNode }) {
     }
     animatePagein();
   }, []);
-  return (
-    <div className="content-anim">
-      {children}
-      <Contact archivo={archivo.className} />
-      <Footer />
-    </div>
-  );
+  return <div className="content-anim">{children}</div>;
 }

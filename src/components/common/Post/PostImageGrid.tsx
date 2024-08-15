@@ -10,6 +10,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
+import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 type ImageType = {
@@ -72,7 +73,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
           }}
           animation={{ fade: 250, swipe: 0 }}
           render={{
-            iconClose: () => <button className="yarl__button">fermer</button>,
+            iconClose: () => <span className="yarl__button">fermer</span>,
           }}
           carousel={{ preload: formattedImages.length }}
           slides={formattedImages}

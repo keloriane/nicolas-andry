@@ -41,11 +41,8 @@ export default async function Creations({
 
   if (!creation) return <div>No creation data found</div>;
 
-  console.log(locale);
-
   return (
     <main>
-      <Menu locale={locale} />
       <HeaderMask
         image={creation}
         playfare={playfare.className}

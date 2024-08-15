@@ -31,12 +31,9 @@ export default async function Ateliers({
   params: { locale: string };
 }) {
   const ateliers = await getAteliersData();
-  console.log("Ateliers", ateliers.atelierItems);
 
   return (
     <main>
-      <Menu locale={locale} />
-
       <FullHeader
         image={ateliers}
         playfare={playfare.className}

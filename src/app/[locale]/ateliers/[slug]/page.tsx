@@ -21,8 +21,6 @@ async function getAteliersData(slug: string) {
 
 export default async function AtelierPage(slug: { params: { slug: string } }) {
   const ateliers = await getAteliersData(slug.params.slug);
-  console.log(slug.params.slug);
-  console.log("Ateliers", ateliers);
 
   return (
     <div style={{ paddingTop: "100px" }}>

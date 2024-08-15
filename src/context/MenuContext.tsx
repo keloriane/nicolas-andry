@@ -1,8 +1,9 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { client } from "../../sanity/lib/client";
-import { MENU_QUERY } from "../../sanity/lib/queries";
+import { getMenuData, MENU_QUERY } from "../../sanity/lib/queries";
 import { MenuType } from "@/types/MenuType";
+import { loadQuery } from "@sanity/react-loader";
 
 interface MenuContextType {
   menuItems: MenuType[];
@@ -18,23 +19,32 @@ export const useMenu = () => {
   return context;
 };
 
-export const MenuProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [menuItems, setMenuItems] = useState<MenuType[]>([
-    { name: "", link: "" },
-  ]);
+export const MenuProvider: React.FC<{
+  children: React.ReactNode;
+  locale: string;
+}> = ({ children, locale }) => {
+  const [menuItems, setMenuItems] = useState<MenuType[]>([]);
 
   useEffect(() => {
-    client
-      .fetch(MENU_QUERY)
-      .then((data) => {
-        setMenuItems(data.menuItem);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
+    const fetchMenuData = async () => {
+      if (!client || !MENU_QUERY) {
+        console.error("Sanity client or MENU_QUERY is not defined");
+        return;
+      }
+
+      try {
+        console.log("locale", locale);
+        const res: any = await client.fetch(MENU_QUERY, { lang: locale });
+        if (res) {
+          setMenuItems(res.menuItem);
+        }
+      } catch (error) {
+        console.error("Error loading menu data:", error);
+      }
+    };
+
+    fetchMenuData();
+  }, [locale]);
 
   return (
     <MenuContext.Provider value={{ menuItems }}>
