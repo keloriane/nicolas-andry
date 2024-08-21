@@ -15,10 +15,14 @@ const NavSection = styled.nav<{ isFixed: boolean }>`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   padding: 20px;
-  margin-top: 40px;
+  margin-top: 30px;
   display: inline-block;
   width: 100%;
   background-color: white;
+  @media screen and (max-width: 768px) {
+    display: none;
+    background-color: blue;
+  }
   position: ${({ isFixed }) => (isFixed ? "fixed" : "relative")};
   top: ${({ isFixed }) => (isFixed ? "27px" : "auto")};
   z-index: ${({ isFixed }) => (isFixed ? "1000" : "auto")};
@@ -67,6 +71,19 @@ const BlockSectionWrapper = styled.section<{
   margin: 120px auto;
   gap: 32px;
   align-items: center;
+
+  .text_container {
+    width: ${({ hasimage }) => (hasimage ? "95%" : "100%")};
+    margin: auto;
+    @media screen and(max-width: 768px) {
+      max-width: 640px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    max-width: 640px;
+  }
   ul {
     margin-left: 24px;
     list-style: disc;
@@ -77,11 +94,6 @@ const BlockSectionWrapper = styled.section<{
   h2 {
     font-size: 26px;
     margin-bottom: 24px;
-  }
-
-  .text_container {
-    width: ${({ hasimage }) => (hasimage ? "65%" : "100%")};
-    margin: auto;
   }
 
   @media screen and (max-width: 768px) {

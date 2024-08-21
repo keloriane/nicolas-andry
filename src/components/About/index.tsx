@@ -21,10 +21,12 @@ gsap.registerPlugin(ScrollTrigger);
 const AboutSection = ({
   imageProfile,
   presentationText,
+  homePage = false,
 }: {
   imageProfile: string;
   presentationTitle: string;
   presentationText: TypedObject | TypedObject[];
+  homePage: boolean;
 }) => {
   const aboutWrapper = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
@@ -84,9 +86,13 @@ const AboutSection = ({
                 <PortableText value={presentationText} />
               </div>
             </div>
-            <div className="cta_container">
-              <CTA href="/a-propos">En savoir plus</CTA>
-            </div>
+            {homePage ? (
+              <div className="cta_container">
+                <CTA href="/a-propos">En savoir plus</CTA>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </Col>
         <Col column={[3, 3, 3, 15, 15, 15]} span={[20, 20, 18, 9, 9, 7]}>

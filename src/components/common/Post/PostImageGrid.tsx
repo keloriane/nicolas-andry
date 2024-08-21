@@ -97,7 +97,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
               loading="lazy"
               className={loading ? "" : "image_wrapper loaded image_grid_item"}
               placeholder="blur"
-              blurDataURL={img.src + "?blur=50"}
+              blurDataURL={img.src}
             />
           </ImageWrapper>
         ))}

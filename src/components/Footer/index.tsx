@@ -15,6 +15,18 @@ const FooterContainer = styled.footer`
   background-color: ${theme.colors.orange};
   color: black;
   font-weight: 700;
+  .line {
+    width: 95%;
+    height: 0.5px;
+    border: 0.5px solid ${theme.colors.white};
+    margin: 20px auto;
+  }
+
+  .navigation_container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
 
   .footer_header {
     display: flex;
@@ -22,6 +34,7 @@ const FooterContainer = styled.footer`
     align-items: center;
     padding: 80px;
     gap: 20px;
+
     h2 {
       font-size: 88px;
       color: rgba(244, 244, 244, 0.56);
@@ -36,8 +49,10 @@ const FooterContainer = styled.footer`
 
   ul {
     margin-left: 20px;
+    font-weight: 400;
     li {
       margin-left: 20px;
+      font-weight: 400;
       &:hover {
         color: ${theme.colors.white};
       }
@@ -50,8 +65,17 @@ const FooterContainer = styled.footer`
   }
 `;
 
-const Footer = () => {
+const Footer = ({ locale }: { locale: string }) => {
   const navigation = useFooter();
+
+  const navigationAtelier = navigation?.atelierNavData[0]?.atelierItems;
+
+  const navigationCreation = navigation.navigationData.filter(
+    (nav: any) => nav.categories[0].title === "Creations"
+  );
+  const navigationRecherche = navigation.navigationData.filter(
+    (nav: any) => nav.categories[0].title === "Recherches"
+  );
 
   return (
     <FooterContainer>
@@ -59,6 +83,7 @@ const Footer = () => {
         <div className="footer_title">
           <h2 className={playfare.className}>Nicolas Andry</h2>
         </div>
+
         <div className="logo_container">
           <div className="logo_container">
             <svg
@@ -82,22 +107,50 @@ const Footer = () => {
             </svg>
           </div>
         </div>
+        <div className="line"></div>
+
         <div className="navigation_container">
           <nav className="footer_nav">
             <ul>
               <h4>Créations</h4>
-              {navigation.navigationData.map((nav: any, index) => (
+              {navigationCreation.map((nav: any, index) => (
                 <li key={index}>
-                  <TransitionLink href={`/creations/${nav.slug.current}`}>
+                  <Link href={`/${locale}/creations/${nav.slug.current}`}>
                     {nav.title}
-                  </TransitionLink>
+                  </Link>
                 </li>
               ))}
             </ul>
           </nav>
+          <nav className="footer_nav">
+            <ul>
+              <h4>Recherches</h4>
+              {navigationRecherche.map((nav: any, index) => (
+                <li key={index}>
+                  <Link href={`/${locale}/recherches/${nav.slug.current}`}>
+                    {nav.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav className="footer_nav">
+            <ul>
+              <h4>Ateliers</h4>
+
+              {navigationAtelier &&
+                navigationAtelier.map((nav: any, index: number) => (
+                  <li key={index}>
+                    <Link href={`/${locale}/ateliers/${nav.slug.current}`}>
+                      {nav.title}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </nav>
         </div>
+        <div className="line"></div>
       </div>
-      <div className="line"></div>
       <div className="footer_wrapper">
         <div className="footer_copyright">
           <span className={archivo.className}>

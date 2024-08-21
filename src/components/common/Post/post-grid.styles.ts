@@ -6,7 +6,30 @@ export const PostContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
+
+  .image_header_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+
+    @media screen and (max-width: 768px) {
+      width: 320px;
+      margin: auto;
+      display: none;
+    }
+  }
+
   .rich-text {
+    display: flex;
+    align-items: flex-start;
+    .arrow_link {
+      margin: 8px;
+    }
+    .inner_text {
+      display: flex;
+      flex-direction: column;
+    }
     a {
       color: ${theme.colors.orange};
       text-decoration: none;
@@ -59,13 +82,6 @@ export const PostContainer = styled.div`
         display: inline-block;
         margin-top: 20px;
       }
-    }
-    .image_header_wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 400px;
-      background-color: blue;
     }
   }
   .image_header {

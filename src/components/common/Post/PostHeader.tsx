@@ -3,24 +3,29 @@ import React from "react";
 import GridContainer from "../Container";
 import Col from "../Col";
 import { PortableText } from "next-sanity";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
 import { PostContainer } from "./post-grid.styles";
+import ArrowLeft from "../ArrowLeft";
+import Link from "next/link";
 
-const PostHeader = (post: any) => {
+const PostHeader = ({ post, locale }: { post: any; locale: string }) => {
   return (
     <PostContainer>
       <GridContainer colCount={24} colGap={20}>
         <Col
-          column={[2, 2, 2, 2]}
-          span={[22, 22, 11, 11]}
+          column={[2, 7, 2, 2]}
+          span={[22, 22, 22, 22]}
           className="text_header_wrapper"
         >
           <div className="rich-text">
-            <PortableText value={post?.content || []} />
+            <Link href={`/${locale}/creations`} className="arrow_link">
+              <ArrowLeft />
+            </Link>
+            <div className="inner_text">
+              <PortableText value={post?.content || []} />
+            </div>
           </div>
         </Col>
-        <Col
+        {/* <Col
           column={[2, 2, 13, 13]}
           span={[22, 22, 10, 10]}
           className="image_header_wrapper"
@@ -37,7 +42,7 @@ const PostHeader = (post: any) => {
           ) : (
             <p>Loading main image...</p>
           )}
-        </Col>
+        </Col> */}
       </GridContainer>
     </PostContainer>
   );

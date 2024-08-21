@@ -82,7 +82,11 @@ const Parcours = ({
   return (
     <ParcoursContainer>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
-        <Col column={2} span={13} className="parcours-wrapper">
+        <Col
+          column={[2, 2, 3]}
+          span={[24, 20, 20]}
+          className="parcours-wrapper"
+        >
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
               <div className={"parcour-card rich-text"} key={index}>

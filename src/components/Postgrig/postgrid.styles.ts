@@ -3,8 +3,13 @@ import styled from "styled-components";
 
 export const PostGrid = styled.div`
   display: grid;
-
-  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 528px) {
+    grid-template-columns: 1fr;
+  }
   gap: 20px;
   padding: 20px;
   width: 100%;

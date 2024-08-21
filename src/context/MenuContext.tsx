@@ -33,7 +33,6 @@ export const MenuProvider: React.FC<{
       }
 
       try {
-        console.log("locale", locale);
         const res: any = await client.fetch(MENU_QUERY, { lang: locale });
         if (res) {
           setMenuItems(res.menuItem);

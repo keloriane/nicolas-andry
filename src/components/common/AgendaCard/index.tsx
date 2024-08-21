@@ -105,7 +105,7 @@ const AgendaCard = ({
           ""
         )}
         <div className="rich-text">
-          <PortableText value={contact} />
+          {contact ? <PortableText value={contact} /> : ""}
         </div>
       </InfoContainer>
     </AgendaContainer>

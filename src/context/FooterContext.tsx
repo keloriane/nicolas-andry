@@ -7,11 +7,12 @@ import React, {
   useMemo,
 } from "react";
 import { NAVIGATION_QUERYType } from "@/types";
-import { NAVIGATION_QUERY } from "../../sanity/lib/queries";
+import { ATELIER_NAV, NAVIGATION_QUERY } from "../../sanity/lib/queries";
 import { client } from "../../sanity/lib/client";
 
 interface FooterContextType {
   navigationData: NAVIGATION_QUERYType[];
+  atelierNavData: any[]; // Update this type according to the structure of ATELIER_NAV data
 }
 
 const FooterContext = createContext<FooterContextType | undefined>(undefined);
@@ -30,19 +31,23 @@ const FooterProviderComponent: React.FC<{ children: React.ReactNode }> = ({
   const [navigationData, setNavigationData] = useState<NAVIGATION_QUERYType[]>(
     []
   );
+  const [atelierNavData, setAtelierNavData] = useState<any[]>([]); // Adjust the type as necessary
 
   useEffect(() => {
-    client
-      .fetch(NAVIGATION_QUERY)
-      .then((data) => {
-        setNavigationData(data);
+    Promise.all([client.fetch(NAVIGATION_QUERY), client.fetch(ATELIER_NAV)])
+      .then(([navigationDataResult, atelierNavDataResult]) => {
+        setNavigationData(navigationDataResult);
+        setAtelierNavData(atelierNavDataResult);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error fetching data:", error);
       });
   }, []);
 
-  const value = useMemo(() => ({ navigationData }), [navigationData]);
+  const value = useMemo(
+    () => ({ navigationData, atelierNavData }),
+    [navigationData, atelierNavData]
+  );
 
   return (
     <FooterContext.Provider value={value}>{children}</FooterContext.Provider>

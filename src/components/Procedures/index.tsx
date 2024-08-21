@@ -12,34 +12,41 @@ import styled from "styled-components";
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo, playfare } from "@/app/font";
 import Button from "../common/Button";
+import Navigation from "./Navigation";
+// import required modules
+import { FreeMode, Pagination } from "swiper/modules";
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 24px;
 
+  .slider_container {
+    margin-top: 24px;
+  }
   .section-wrapper {
     width: 100%;
     margin: auto;
-    display: flex;
-    align-items: center;
-    @media screen and (max-width: 840px) {
-      flex-direction: column;
-    }
   }
   .text-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    flex: 1;
+
+    max-width: 640px;
+    margin: auto;
+    text-align: center;
+    margin-top: 24px;
+    h2 {
+      margin: auto;
+      margin-top: 24px;
+    }
+
     gap: 24px;
   }
-  .swiper-container {
-    flex: 3;
-    @media screen and (max-width: 840px) {
-      display: none;
-    }
-  }
+
   .swiper-slide:not(.swiper-slide-active) {
     opacity: 0.5; /* Reduce opacity for inactive slides */
     transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
@@ -54,9 +61,13 @@ const SectionContainer = styled.section`
 const Procedures = ({
   demarche,
   title,
+  homePage = false,
+  locale,
 }: {
   demarche: [{ title: string; description: [] }];
   title: string;
+  homePage?: boolean;
+  locale: string;
 }) => {
   return (
     <SectionContainer>
@@ -75,30 +86,48 @@ const Procedures = ({
             dicta temporibus voluptatum rem? Tempore dolorem praesentium quam
             est nihil esse sit.
           </p>
-          <Button text="En savoir plus" href="/about" />
+
+          {homePage ? (
+            <Button text="En savoir plus" href={`${locale}/about`} />
+          ) : (
+            ""
+          )}
         </div>
 
-        <Swiper
-          slidesPerView={1}
-          centeredSlides
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-          }}
-          spaceBetween={27}
-          className="swiper-container"
-        >
-          {demarche.map((d, i) => (
-            <SwiperSlide key={i} className={archivo.className}>
-              <ProcedureCard title={d.title} text={d.description} />
-            </SwiperSlide>
-          ))}
-          {/* <div className="navigation__container">
-          <Navigation />
-        </div> */}
-        </Swiper>
+        <div className="slider_container">
+          <Swiper
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 27,
+              },
+            }}
+            loop
+            centeredSlides
+            spaceBetween={27}
+            className="swiper-container"
+          >
+            {demarche.map((d, i) => (
+              <SwiperSlide key={i} className={archivo.className}>
+                <ProcedureCard title={d.title} text={d.description} />
+              </SwiperSlide>
+            ))}
+            {demarche.map((d, i) => (
+              <SwiperSlide key={i + 1} className={archivo.className}>
+                <ProcedureCard title={d.title} text={d.description} />
+              </SwiperSlide>
+            ))}
+
+            <div className="navigation__container">
+              <Navigation />
+            </div>
+          </Swiper>
+        </div>
       </div>
     </SectionContainer>
   );

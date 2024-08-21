@@ -76,6 +76,7 @@ export const TextWrapper = styled(Col)`
     font-style: normal;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
+
   p {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
@@ -88,6 +89,9 @@ export const TextWrapper = styled(Col)`
       height: 2px;
       width: 10%;
       background: ${theme.colors.orange};
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
 
     @media screen and (max-width: 1200px) {

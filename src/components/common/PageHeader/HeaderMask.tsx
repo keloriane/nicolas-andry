@@ -22,7 +22,7 @@ const HeaderMask: React.FC<PageHeaderType> = ({
     <>
       <GridContainer colCount={24} style={{ paddingTop: "150px" }}>
         <Col
-          column={[3, 3, 3, 3, 3]}
+          column={[3, 3, 7, 7, 3]}
           span={[21, 21, 21, 21, 10]}
           className="col-image-mask"
         >

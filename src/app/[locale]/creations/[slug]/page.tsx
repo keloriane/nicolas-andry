@@ -27,12 +27,16 @@ async function fetchPageData(slug: string) {
   return data;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}) {
   const post: PostDataType[] = await fetchPageData(params.slug);
 
   return (
     <div style={{ paddingTop: "150px" }}>
-      <PostHeader {...post[0]} />
+      <PostHeader locale={params.locale} post={post[0]} />
       <PostImageGrid activePost={post[0]} />
     </div>
   );

@@ -13,23 +13,6 @@ import { block } from "million/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const generateGridArea = (index: number) => {
-  const areas = [
-    "1 / 1 / 2 / 3",
-    "1 / 3 / 2 / 5",
-    "1 / 5 / 2 / 7",
-    "2 / 1 / 3 / 4",
-    "2 / 4 / 3 / 7",
-    "3 / 3 / 4 / 7",
-    "3 / 1 / 4 / 3",
-    "4 / 3 / 4 / 1",
-    "4 / 3 / 5 / 5",
-    "4 / 5 / 5 / 7",
-  ];
-
-  return areas[index % areas.length];
-};
-
 interface PostgridProps {
   creations: PostExcerpt[];
   locale: string;
@@ -82,7 +65,7 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
         <div
           key={post.slug.current}
           className={`card card-${index + 1}`}
-          style={{ gridArea: generateGridArea(index), position: "relative" }} // Ensure position is relative here
+          style={{ position: "relative" }} // Ensure position is relative here
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={() => handleMouseLeave(index)}
         >

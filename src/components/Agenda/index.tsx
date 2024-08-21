@@ -60,8 +60,8 @@ const Agenda = ({
   playfare: string;
   agendaPage?: boolean;
   homePage?: boolean;
-  agendaCreation: AgendaType[];
-  agendaAtelier: AgendaType[];
+  agendaCreation: any;
+  agendaAtelier: any;
   title: string;
   introductionText: [];
 }) => {
