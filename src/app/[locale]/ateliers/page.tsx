@@ -13,6 +13,7 @@ import Separator from "@/components/common/Separator";
 import { GetAgendaData } from "../../../../sanity/lib/queries";
 import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 async function getAteliersData() {
   return await client.fetch(
@@ -72,9 +73,9 @@ export default async function Ateliers({
           playfare={playfare.className}
           homePage
         />
-        <Separator />
 
         <Contact archivo={archivo.className} />
+        <Footer locale={locale} />
       </div>
     </main>
   );

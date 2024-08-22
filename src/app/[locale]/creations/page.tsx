@@ -10,6 +10,7 @@ import { GetAgendaData } from "../../../../sanity/lib/queries";
 import Separator from "@/components/common/Separator";
 import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 type Creation = {
   title: string;
@@ -71,9 +72,9 @@ export default async function Creations({
         playfare={playfare.className}
         homePage
       />
-      <Separator />
 
       <Contact archivo={archivo.className} />
+      <Footer locale={locale} />
     </main>
   );
 }

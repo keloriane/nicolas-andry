@@ -14,6 +14,7 @@ import Postgrid from "@/components/Postgrig";
 import Separator from "@/components/common/Separator";
 import { GetAgendaData } from "../../../../sanity/lib/queries";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 async function getRechercheData() {
   return await client.fetch(
@@ -79,6 +80,7 @@ export default async function Creations({
       <Separator />
 
       <Contact archivo={archivo.className} />
+      <Footer locale={locale} />
     </main>
   );
 }

@@ -12,13 +12,14 @@ import { useFooter } from "@/context/FooterContext";
 
 const FooterContainer = styled.footer`
   width: 100vw;
-  background-color: ${theme.colors.orange};
+  background-color: #1e1e1e;
   color: black;
   font-weight: 700;
   .line {
     width: 95%;
     height: 0.5px;
-    border: 0.5px solid ${theme.colors.white};
+    border: 0.5px solid ${theme.colors.orangeL};
+    opacity: 0.4;
     margin: 20px auto;
   }
 
@@ -50,6 +51,7 @@ const FooterContainer = styled.footer`
   ul {
     margin-left: 20px;
     font-weight: 400;
+    color: ${theme.colors.orangeL};
     li {
       margin-left: 20px;
       font-weight: 400;
