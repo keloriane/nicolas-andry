@@ -1,13 +1,15 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import Menu from "@/components/common/Menu";
 
-import { playfare } from "../../font";
+import { archivo, playfare } from "../../font";
 
 import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
-import { usePathname } from "next/navigation";
+import { GetAgendaData } from "../../../../sanity/lib/queries";
+import Separator from "@/components/common/Separator";
+import Agenda from "@/components/Agenda";
+import Contact from "@/components/Contact";
 
 type Creation = {
   title: string;
@@ -39,6 +41,13 @@ export default async function Creations({
   const creations = await getCreationData();
   const creation = creations[0];
 
+  const agendaData = await GetAgendaData(locale);
+
+  const agendaCreation = agendaData[1];
+  const agendaAtelier = agendaData[2];
+
+  console.log(agendaData);
+
   if (!creation) return <div>No creation data found</div>;
 
   return (
@@ -53,6 +62,18 @@ export default async function Creations({
         }
       />
       <Postgrid locale={locale} creations={creations[0].posts} />
+      <Separator />
+      <Agenda
+        introductionText={agendaData[0].introductionText}
+        title={agendaData[0].title}
+        agendaCreation={agendaCreation}
+        agendaAtelier={agendaAtelier}
+        playfare={playfare.className}
+        homePage
+      />
+      <Separator />
+
+      <Contact archivo={archivo.className} />
     </main>
   );
 }

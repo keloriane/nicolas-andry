@@ -19,6 +19,8 @@ export const MenuContainer = styled.header`
     border-radius: 30px;
     font-size: 14px;
     transition: all 0.1s ease-in;
+    background-color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.black};
     cursor: pointer;
     &:hover {
       color: ${theme.colors.orange};

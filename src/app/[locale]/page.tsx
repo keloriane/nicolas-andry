@@ -1,11 +1,8 @@
 import React from "react";
 import Hero from "@/components/Hero";
 import PostsGrid from "@/components/PostsGrid";
-
 import { playfare, archivo } from "./../font";
-
 import Contact from "@/components/Contact";
-import Menu from "@/components/common/Menu";
 import Footer from "@/components/Footer";
 import { loadQuery } from "@./../../sanity/lib/store";
 import Banner from "@/components/Banner";
@@ -14,6 +11,7 @@ import {
   AGENDA_ATELIER_QUERY,
   AGENDA_CREATION_QUERY,
   AGENDA_QUERY,
+  GetAgendaData,
   HOME_QUERY,
 } from "./../../../sanity/lib/queries";
 
@@ -23,22 +21,12 @@ import Separator from "@/components/common/Separator";
 import { HomeData } from "@/types/HomeData";
 import Agenda from "@/components/Agenda";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
-import agenda from "../../../sanity/schemaTypes/agenda";
+import Lenis from "lenis";
 
 async function GetHomeData(lang: string = "fr") {
   const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
 
   return res;
-}
-
-async function GetAgendaData(lang: string = "fr") {
-  const agendaData = await Promise.all([
-    loadQuery<AgendaMain>(AGENDA_QUERY),
-    loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY),
-    loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY),
-  ]);
-
-  return agendaData;
 }
 
 export default async function Home({
@@ -76,10 +64,10 @@ export default async function Home({
         archivo={archivo.className}
       />
       <Agenda
-        introductionText={agendaData[0].data.introductionText}
-        title={agendaData[0].data.title}
-        agendaCreation={agendaCreation.data}
-        agendaAtelier={agendaAtelier.data}
+        introductionText={agendaData[0].introductionText}
+        title={agendaData[0].title}
+        agendaCreation={agendaCreation}
+        agendaAtelier={agendaAtelier}
         playfare={playfare.className}
         homePage
       />

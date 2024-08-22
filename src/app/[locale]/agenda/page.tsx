@@ -2,40 +2,36 @@ import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Agenda from "@/components/Agenda";
 import { archivo, playfare } from "../../font";
-import { loadQuery } from "../../../../sanity/lib/store";
-import {
-  AGENDA_ATELIER_QUERY,
-  AGENDA_CREATION_QUERY,
-} from "../../../../sanity/lib/queries";
-import { AgendaType } from "@/types/AgendaType";
-import Contact from "@/components/Contact";
+import { GetAgendaData } from "../../../../sanity/lib/queries";
 
-async function getAgendaData() {
-  return await client.fetch(
-    groq`*[_type == "agenda"][0]{title, introductionText}`
-  );
-}
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default async function AgendaPage({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const agendaData = await getAgendaData();
-  const agendaCreation = await loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY);
-  const agendaAtelier = await loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY);
+  const agendaData = await GetAgendaData(locale);
+
+  console.log(agendaData);
+
+  const agendaCreation = agendaData[1];
+  const agendaAtelier = agendaData[2];
 
   return (
     <div>
-      <div style={{ paddingTop: "150px", paddingBottom: "150px" }}>
+      <div style={{ paddingTop: "150px" }}>
         <Agenda
-          homePage
-          introductionText={agendaData.introductionText}
-          title={agendaData.title}
+          introductionText={agendaData[0].introductionText}
+          title={agendaData[0].title}
+          agendaCreation={agendaCreation}
+          agendaAtelier={agendaAtelier}
           playfare={playfare.className}
-          agendaCreation={agendaCreation.data}
-          agendaAtelier={agendaAtelier.data}
+          homePage
         />
+        <Contact archivo={archivo.className} />
+        <Footer locale={locale} />
       </div>
     </div>
   );

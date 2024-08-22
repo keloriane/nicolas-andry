@@ -1,7 +1,7 @@
 import React from "react";
 
 import Menu from "@/components/common/Menu";
-import { playfare } from "../../font";
+import { archivo, playfare } from "../../font";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Slider from "@/components/Slider";
@@ -10,6 +10,9 @@ import AterlierItem from "@/components/AtelierSection";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
 import AtelierNavigation from "@/components/AtelierNavigation";
 import Separator from "@/components/common/Separator";
+import { GetAgendaData } from "../../../../sanity/lib/queries";
+import Agenda from "@/components/Agenda";
+import Contact from "@/components/Contact";
 
 async function getAteliersData() {
   return await client.fetch(
@@ -31,6 +34,10 @@ export default async function Ateliers({
   params: { locale: string };
 }) {
   const ateliers = await getAteliersData();
+  const agendaData = await GetAgendaData(locale);
+
+  const agendaCreation = agendaData[1];
+  const agendaAtelier = agendaData[2];
 
   return (
     <main>
@@ -40,8 +47,8 @@ export default async function Ateliers({
         title={ateliers.mainTitle}
         introductionText={ateliers.introductionText[0].children[0].text}
       />
-
-      {/* <div className="slider_container" style={{ paddingTop: "100px" }}>
+      {/* 
+      <div className="slider_container" style={{ paddingTop: "100px" }}>
         <Slider images={ateliers.images} centered={true} />
       </div> */}
       <Separator />
@@ -57,6 +64,17 @@ export default async function Ateliers({
         />
 
         <Separator />
+        <Agenda
+          introductionText={agendaData[0].introductionText}
+          title={agendaData[0].title}
+          agendaCreation={agendaCreation}
+          agendaAtelier={agendaAtelier}
+          playfare={playfare.className}
+          homePage
+        />
+        <Separator />
+
+        <Contact archivo={archivo.className} />
       </div>
     </main>
   );

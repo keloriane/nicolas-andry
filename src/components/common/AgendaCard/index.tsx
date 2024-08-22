@@ -10,7 +10,7 @@ const AgendaContainer = styled.div`
   display: flex;
   gap: 25px;
   flex-direction: column;
-
+  position: relative;
   width: 100%;
   max-width: 550px;
   margin: 20px auto;
@@ -28,13 +28,13 @@ const DateContainer = styled.div`
   display: inline-flex;
   position: relative;
   p {
+    position: absolute;
+    top: -30px;
+    left: -30px;
     background-color: ${theme.colors.orange};
-    color: ${theme.colors.black};
+    color: ${theme.colors.white};
     padding: 5px;
     font-weight: 700;
-    position: absolute;
-    top: -20px;
-    left: -20px;
   }
 `;
 const LocationContainer = styled.div`

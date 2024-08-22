@@ -45,6 +45,7 @@ const ParcoursContainer = styled.section`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 
     ul {
       list-style-type: disc;
@@ -59,7 +60,7 @@ const ParcoursContainer = styled.section`
     padding: 2px 10px;
     font-size: 18px;
     font-weight: 400;
-    color: ${theme.colors.black};
+    color: ${theme.colors.white};
     max-width: 65px;
     font-weight: 600;
     p {

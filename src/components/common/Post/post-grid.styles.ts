@@ -24,7 +24,9 @@ export const PostContainer = styled.div`
     display: flex;
     align-items: flex-start;
     .arrow_link {
-      margin: 8px;
+      top: 15px;
+      left: 0px;
+      position: absolute;
     }
     .inner_text {
       display: flex;
@@ -57,7 +59,9 @@ export const PostContainer = styled.div`
   }
   h2 {
     font-size: 47px;
+    margin-left: 50px;
   }
+
   p {
     font-size: 16px;
     line-height: 30px;

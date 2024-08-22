@@ -1373,6 +1373,11 @@
     style-mod "^4.1.0"
     w3c-keyname "^2.2.4"
 
+"@darkroom.engineering/tempus@^0.0.46":
+  version "0.0.46"
+  resolved "https://registry.yarnpkg.com/@darkroom.engineering/tempus/-/tempus-0.0.46.tgz#3d958807503e4055fcc4a1aeeff83ca0546c62f0"
+  integrity sha512-s5vav3KMHYezvUCl4ee5epg0oimF6M8C9gAaKxFnFaTvX2q3ywFDryIv6XLd0mRFUt3S1uHDJqKaiEcs2ZVSvw==
+
 "@dnd-kit/accessibility@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@dnd-kit/accessibility/-/accessibility-3.1.0.tgz#1054e19be276b5f1154ced7947fc0cb5d99192e0"
@@ -6274,6 +6279,13 @@ lazystream@^1.0.0:
   integrity sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==
   dependencies:
     readable-stream "^2.0.5"
+
+lenis@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/lenis/-/lenis-1.1.10.tgz#c77b004e84b38979c3156f4dfa07b44971745a74"
+  integrity sha512-G3uM/qMYM953kwyIxVKhlUZdz/3C5X6W3oyKxhjtemAdWq3eYCc0gKNMRCN5HQk7u+notpQP6mFwtMEjU62odg==
+  dependencies:
+    "@darkroom.engineering/tempus" "^0.0.46"
 
 leven@^3.1.0:
   version "3.1.0"

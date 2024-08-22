@@ -11,27 +11,6 @@ import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ateliers = [
-  {
-    image:
-      "https://cdn.sanity.io/images/blzajq7n/production/303559619748cf7e5f857b8086ea072eac6e21aa-750x1000.jpg",
-    title: "Vitaminol & cie",
-    slug: "vitaminol-cie",
-  },
-  {
-    image:
-      "https://cdn.sanity.io/images/blzajq7n/production/8aa0bb8e338bdd31f2fe06144ceeca7e0ee50bdc-1333x1000.jpg",
-    title: "Redecouvrir la photographie",
-    slug: "redecouvrir-la-photographie",
-  },
-  {
-    image:
-      "https://cdn.sanity.io/images/blzajq7n/production/e476a0f622943e6cadf48b06c523af0ccfd08ea7-563x1000.jpg",
-    title: "Atelier 1",
-    slug: "atelier-1",
-  },
-];
-
 const AtelierNavigation = ({
   atelierItems,
   locale,
@@ -88,7 +67,6 @@ const AtelierNavigation = ({
   const handleHoverSection = (slug: string) => {
     setActiveSection(slug);
   };
-
 
   return (
     <S.AtelierNavigationSection>

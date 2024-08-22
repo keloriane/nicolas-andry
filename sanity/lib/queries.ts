@@ -3,6 +3,7 @@ import { client } from "./client";
 import { loadQuery } from "@sanity/react-loader";
 import { HomeData } from "@/types/HomeData";
 import { MenuType } from "@/types/MenuType";
+import { AgendaMain, AgendaType } from "@/types/AgendaType";
 
 export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;
 
@@ -43,10 +44,15 @@ export const AGENDA_QUERY = groq`*[_type == "agenda"][0]`;
 export const AGENDA_CREATION_QUERY = groq`*[_type == "agenda"][0].agenda[eventType == "creation"]`;
 export const AGENDA_ATELIER_QUERY = groq`*[_type == "agenda"][0].agenda[eventType == "atelier"]`;
 
-export async function getAgendaData() {
-  return client.fetch(groq` *[_type == "agenda"][0]`);
-}
+export async function GetAgendaData(lang: string = "fr") {
+  const agendaData = await Promise.all([
+    client.fetch<AgendaMain>(AGENDA_QUERY),
+    client.fetch<AgendaType[]>(AGENDA_CREATION_QUERY),
+    client.fetch<AgendaType[]>(AGENDA_ATELIER_QUERY),
+  ]);
 
+  return agendaData;
+}
 export const ATELIER_QUERY_NAVIGATION = groq`[_type == "ateliers"]{title}`;
 
 export const CREATTION_QUERY = groq`

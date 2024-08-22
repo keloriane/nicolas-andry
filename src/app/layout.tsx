@@ -29,7 +29,7 @@ export default function RootLayout({
       <Head>
         <link rel="shortcut icon" href="#" />
       </Head>
-      <body className={archivo.className}>{children};</body>
+      <body className={archivo.className}>{children}</body>
     </html>
   );
 }

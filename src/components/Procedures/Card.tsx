@@ -17,7 +17,7 @@ const CardContainer = styled.div`
 
 const HeadlineContainer = styled.div`
   background-color: ${theme.colors.orange};
-  color: ${theme.colors.black};
+  color: ${theme.colors.white};
   font-weight: 600;
   width: max-content;
   padding: 5px;

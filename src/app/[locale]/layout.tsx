@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-
-import { Archivo } from "next/font/google";
 import StyledComponentsRegistry from "@/lib/registry";
 import "./../globals.css";
 import { MenuProvider } from "@/context/MenuContext";
 import { FooterProvider } from "@/context/FooterContext";
 
-const archivo = Archivo({ subsets: ["latin"] });
 import { NextIntlClientProvider } from "next-intl";
 import Menu from "@/components/common/Menu";
 import { LanguageProvider } from "@/context/LanguageContext";
-import Head from "next/head";
+
+import { AgendaDataProvider } from "@/context/AgendaContext";
 
 export const metadata: Metadata = {
   title: "Nicolas Andry",
@@ -29,10 +27,12 @@ export default function RootLayout({
       <NextIntlClientProvider locale={locale}>
         <LanguageProvider>
           <MenuProvider locale={locale}>
-            <FooterProvider>
-              <Menu locale={locale} />
-              {children}
-            </FooterProvider>
+            <AgendaDataProvider locale={locale}>
+              <FooterProvider>
+                <Menu locale={locale} />
+                {children}
+              </FooterProvider>
+            </AgendaDataProvider>
           </MenuProvider>
         </LanguageProvider>
       </NextIntlClientProvider>

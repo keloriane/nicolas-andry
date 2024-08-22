@@ -39,10 +39,11 @@ const NavSection = styled.nav<{ isFixed: boolean }>`
   }
 `;
 
-const MainSection = styled.div`
+const MainSection = styled.section`
   width: 100%;
   max-width: 1340px;
   margin: auto;
+  position: relative;
 
   .headline_section {
     display: flex;
@@ -151,7 +152,7 @@ const BlockSections = ({
 
   return (
     <MainSection>
-      <section>
+      <div>
         <div className="headline_section">
           <span onClick={router.back}>
             <ArrowLeft />
@@ -176,7 +177,7 @@ const BlockSections = ({
             ))}
           </ul>
         </NavSection>
-      </section>
+      </div>
       {ateliers.map((section, index) => (
         <BlockSectionWrapper
           key={section.title || index}

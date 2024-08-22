@@ -9,6 +9,7 @@ import ResponsiveText from "../common/ResponsiveText";
 import { archivo } from "@/app/font";
 import { AgendaType } from "@/types/AgendaType";
 import { PortableText } from "next-sanity";
+import home from "../../../sanity/schemaTypes/home";
 
 const AgendaSection = styled.section`
   display: flex;
@@ -21,6 +22,14 @@ const AgendaSection = styled.section`
   }
   .agenda_cta {
     text-align: center;
+  }
+  .agenda_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
   }
 `;
 const AgendaContainer = styled.div`
@@ -65,6 +74,8 @@ const Agenda = ({
   title: string;
   introductionText: [];
 }) => {
+  console.log(agendaCreation);
+
   return (
     <AgendaSection>
       {homePage ? (
@@ -84,8 +95,9 @@ const Agenda = ({
       ) : (
         ""
       )}
-      <GridContainer colCount={24} colGap={20} rowGap={20}>
-        <Col column={[2, 2, 2, 3, 3, 3]} span={[22, 22, 22, 12, 9, 9]}>
+
+      <div className="agenda_wrapper">
+        <div className="agenda_item">
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
@@ -96,16 +108,29 @@ const Agenda = ({
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            <AgendaCard
-              contact={agendaCreation[0].contact}
-              title={agendaCreation[0].title}
-              location={agendaCreation[0].location}
-              date={agendaCreation[0].date}
-              details={agendaCreation[0].descriptionB}
-            />
+            {homePage ? (
+              <AgendaCard
+                contact={agendaCreation[0].contact}
+                title={agendaCreation[0].title}
+                location={agendaCreation[0].location}
+                date={agendaCreation[0].date}
+                details={agendaCreation[0].descriptionB}
+              />
+            ) : (
+              agendaCreation.map((agenda: AgendaType, i: number) => (
+                <AgendaCard
+                  key={i}
+                  contact={agenda.contact}
+                  title={agenda.title}
+                  location={agenda.location}
+                  date={agenda.date}
+                  details={agenda.descriptionB}
+                />
+              ))
+            )}
           </AgendaContainer>
-        </Col>
-        <Col column={[2, 2, 2, 16, 14, 14]} span={[22, 22, 22, 12, 9, 9]}>
+        </div>
+        <div className="agenda_item">
           <div className="agenda_title">
             <ResponsiveText
               as="h3"
@@ -116,24 +141,33 @@ const Agenda = ({
             </ResponsiveText>
           </div>
           <AgendaContainer>
-            <AgendaCard
-              contact={agendaAtelier[0].contact}
-              title={agendaAtelier[0].title}
-              location={agendaAtelier[0].location}
-              date={agendaAtelier[0].date}
-              details={agendaAtelier[0].descriptionB}
-            />
+            {homePage ? (
+              <AgendaCard
+                contact={agendaAtelier[0].contact}
+                title={agendaAtelier[0].title}
+                location={agendaAtelier[0].location}
+                date={agendaAtelier[0].date}
+                details={agendaAtelier[0].descriptionB}
+              />
+            ) : (
+              agendaAtelier.map((agenda: AgendaType, i: number) => (
+                <AgendaCard
+                  key={i}
+                  contact={agenda.contact}
+                  title={agenda.title}
+                  location={agenda.location}
+                  date={agenda.date}
+                  details={agenda.descriptionB}
+                />
+              ))
+            )}
           </AgendaContainer>
-        </Col>
-      </GridContainer>
+        </div>
+      </div>
       {agendaPage ? (
-        <GridContainer colCount={12} rowGap={75}>
-          <Col column={6} span={2} className="agenda_cta">
-            <div style={{ marginTop: "100px" }}>
-              <Button text="Voir l'agenda" href="/agenda" />
-            </div>
-          </Col>
-        </GridContainer>
+        <div style={{ marginTop: "100px" }}>
+          <Button text="Voir l'agenda" href="/agenda" />
+        </div>
       ) : (
         ""
       )}
