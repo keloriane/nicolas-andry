@@ -20,9 +20,42 @@ export const PostContainer = styled.div`
     }
   }
 
+  .navigation_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    gap: 24px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-weight: 400;
+    a:hover {
+      color: ${theme.colors.orange};
+    }
+  }
+
+  .navigation_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    ul {
+      width: 100%;
+      max-width: 960px;
+      margin: auto;
+      justify-content: center;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+  }
+
   .rich-text {
     display: flex;
     align-items: flex-start;
+    position: relative;
     .arrow_link {
       top: 15px;
       left: 0px;

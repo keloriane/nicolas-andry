@@ -12,6 +12,8 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Link from "next/link";
+import { useFooter } from "@/context/FooterContext";
 
 type ImageType = {
   url: string;
@@ -26,9 +28,13 @@ type PostType = {
 
 type PostImageGridProps = {
   activePost: PostType | null;
+  locale: string;
 };
 
-const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
+const PostImageGrid: React.FC<PostImageGridProps> = ({
+  activePost,
+  locale,
+}) => {
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -58,6 +64,17 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
     setOpen(true);
     setIndex(index);
   };
+
+  const navigation = useFooter();
+
+  const navigationAtelier = navigation?.atelierNavData[0]?.atelierItems;
+
+  const navigationCreation = navigation.navigationData.filter(
+    (nav: any) => nav.categories[0].title === "Creations"
+  );
+  const navigationRecherche = navigation.navigationData.filter(
+    (nav: any) => nav.categories[0].title === "Recherches"
+  );
 
   return (
     <PostContainer>
@@ -112,6 +129,23 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({ activePost }) => {
       ) : (
         ""
       )}
+
+      <section className="navigation_section">
+        <div className="title-navigation_container">
+          <h2>Les autres créations</h2>
+        </div>
+        <div className="navigation_container">
+          <ul>
+            {navigationCreation.map((nav: any, index) => (
+              <li key={index}>
+                <Link href={`/${locale}/creations/${nav.slug.current}`}>
+                  {nav.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </PostContainer>
   );
 };

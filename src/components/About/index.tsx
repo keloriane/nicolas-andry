@@ -22,11 +22,13 @@ const AboutSection = ({
   imageProfile,
   presentationText,
   homePage = false,
+  locale = "fr",
 }: {
   imageProfile: string;
   presentationTitle: string;
   presentationText: TypedObject | TypedObject[];
   homePage: boolean;
+  locale?: string;
 }) => {
   const aboutWrapper = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLDivElement>(null);
@@ -88,7 +90,7 @@ const AboutSection = ({
             </div>
             {homePage ? (
               <div className="cta_container">
-                <CTA href="/a-propos">En savoir plus</CTA>
+                <CTA href={`/${locale}/a-propos`}>En savoir plus</CTA>
               </div>
             ) : (
               ""

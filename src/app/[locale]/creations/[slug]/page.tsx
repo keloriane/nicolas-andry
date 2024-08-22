@@ -8,6 +8,9 @@ import { urlFor } from "@/lib/imageBuilder";
 import PostHeader from "@/components/common/Post/PostHeader";
 import PostsGrid from "@/components/PostsGrid";
 import PostImageGrid from "@/components/common/Post/PostImageGrid";
+import Contact from "@/components/Contact";
+import { archivo } from "@/app/font";
+import Footer from "@/components/Footer";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
@@ -37,7 +40,10 @@ export default async function Page({
   return (
     <div style={{ paddingTop: "150px" }}>
       <PostHeader locale={params.locale} post={post[0]} />
-      <PostImageGrid activePost={post[0]} />
+      <PostImageGrid activePost={post[0]} locale={params.locale} />
+
+      <Contact archivo={archivo.className} />
+      <Footer locale={params.locale} />
     </div>
   );
 }

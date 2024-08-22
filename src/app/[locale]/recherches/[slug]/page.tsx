@@ -38,7 +38,7 @@ export default async function Page({
   return (
     <div style={{ paddingTop: "150px" }}>
       <PostHeader locale={params.locale} post={post[0]} />
-      <PostImageGrid activePost={post[0]} />
+      <PostImageGrid activePost={post[0]} locale={params.locale} />
       <Footer locale={params.locale} />
     </div>
   );

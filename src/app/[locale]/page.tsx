@@ -79,6 +79,7 @@ export default async function Home({
         imageProfile={homeData.data.imageProfile}
         presentationText={homeData.data.presentationText}
         homePage
+        locale={locale}
       />
       <Separator />
 
