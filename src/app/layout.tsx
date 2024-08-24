@@ -11,12 +11,38 @@ import { NextIntlClientProvider } from "next-intl";
 import Menu from "@/components/common/Menu";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Head from "next/head";
-
+import OGImage from "@/app/opengraph-image.png";
 export const metadata: Metadata = {
   title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
   openGraph: {
-    images: "/opengraph-image.png",
+    title: "Nicolas Andry",
+    description:
+      "Muer en gestes les questions, besoins, émotions. Pétrir ces matières, qui me pétrissent à leur tour.",
+    url: "https://nicolas-andry.vercel.app",
+    siteName: "Nicolas Andry",
+    images: [
+      {
+        url: OGImage.src, // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+      {
+        url: OGImage.src, // Must be an absolute URL
+        width: 1800,
+        height: 1600,
+        alt: "My custom alt",
+      },
+    ],
+    videos: [
+      {
+        url: "https://nextjs.org/video.mp4", // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
 };
 
