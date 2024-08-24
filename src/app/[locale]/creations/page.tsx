@@ -6,7 +6,7 @@ import { archivo, playfare } from "../../font";
 
 import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
-import { GetAgendaData } from "../../../../sanity/lib/queries";
+import { GetAgendaData, getCreationData } from "../../../../sanity/lib/queries";
 import Separator from "@/components/common/Separator";
 import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
@@ -14,28 +14,6 @@ import Footer from "@/components/Footer";
 
 import { title } from "process";
 import { Metadata } from "next";
-
-type Creation = {
-  title: string;
-  introductionText: { children: { text: string }[] }[];
-  imageHeader: any;
-  posts: {
-    title: string;
-    slug: { current: string };
-    mainImage: { url: string; alt: string };
-  }[];
-};
-
-async function getCreationData() {
-  return await client.fetch<Creation[]>(groq`
-    *[_type == "creations"] {
-      title,
-      introductionText,
-      imageHeader,
-      "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
-    }
-  `);
-}
 
 export const metadata: Metadata = {
   title: "Créations",

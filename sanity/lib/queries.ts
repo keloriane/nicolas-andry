@@ -4,6 +4,7 @@ import { loadQuery } from "@sanity/react-loader";
 import { HomeData } from "@/types/HomeData";
 import { MenuType } from "@/types/MenuType";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
+import { Creation } from "@/types/Creations";
 
 export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;
 
@@ -91,4 +92,15 @@ export function getMenuData(lang = "fr") {
     console.error("Error loading menu data:", error);
     return null;
   }
+}
+
+export async function getCreationData() {
+  return await client.fetch<Creation[]>(groq`
+    *[_type == "creations"] {
+      title,
+      introductionText,
+      imageHeader,
+      "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
+    }
+  `);
 }
