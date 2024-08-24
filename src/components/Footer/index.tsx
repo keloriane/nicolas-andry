@@ -51,12 +51,12 @@ const FooterContainer = styled.footer`
   ul {
     margin-left: 20px;
     font-weight: 400;
-    color: ${theme.colors.orangeL};
+    color: ${theme.colors.white};
     li {
       margin-left: 20px;
       font-weight: 400;
       &:hover {
-        color: ${theme.colors.white};
+        color: ${theme.colors.orangeL};
       }
     }
   }

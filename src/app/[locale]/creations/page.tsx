@@ -12,6 +12,9 @@ import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+import { title } from "process";
+import { Metadata } from "next";
+
 type Creation = {
   title: string;
   introductionText: { children: { text: string }[] }[];
@@ -33,6 +36,11 @@ async function getCreationData() {
     }
   `);
 }
+
+export const metadata: Metadata = {
+  title: "Créations",
+  description: "Photography",
+};
 
 export default async function Creations({
   params: { locale },

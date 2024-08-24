@@ -37,7 +37,7 @@
     "react-websitecarbon-badge": "^1.0.6",
     "sanity": "^3.37.2",
     "server-only": "^0.0.1",
-    "sharp": "^0.33.3",
+    "sharp": "^0.33.5",
     "split-type": "^0.3.4",
     "styled-components": "^6.1.8",
     "swiper": "^11.1.1",

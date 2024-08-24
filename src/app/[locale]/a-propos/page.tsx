@@ -1,4 +1,3 @@
-import Menu from "@/components/common/Menu";
 import Procedures from "@/components/Procedures";
 import React from "react";
 import {
@@ -16,6 +15,8 @@ import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
 import { archivo, playfare } from "@/app/font";
+import Footer from "@/components/Footer";
+import { Metadata } from "next";
 
 interface ParcoursData {
   parcours: [{ year: string; description: [] }];
@@ -29,15 +30,10 @@ interface ProceduresData {
   procedureTitle: string;
 }
 
-async function GetAgendaData(lang: string = "fr") {
-  const agendaData = await Promise.all([
-    loadQuery<AgendaMain>(AGENDA_QUERY),
-    loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY),
-    loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY),
-  ]);
-
-  return agendaData;
-}
+export const metadata: Metadata = {
+  title: "A propos",
+  description: "Photography",
+};
 
 export default async function AboutPage({
   params: { locale },
@@ -86,6 +82,7 @@ export default async function AboutPage({
         />
         <Separator size={100} />
         <Contact archivo={archivo.className} />
+        <Footer locale={locale} />
       </section>
     </div>
   );

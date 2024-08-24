@@ -11,6 +11,7 @@ import PostImageGrid from "@/components/common/Post/PostImageGrid";
 import Contact from "@/components/Contact";
 import { archivo } from "@/app/font";
 import Footer from "@/components/Footer";
+import { Metadata } from "next";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
@@ -29,6 +30,11 @@ async function fetchPageData(slug: string) {
   const data = await client.fetch(query, { slug });
   return data;
 }
+
+export const metadata: Metadata = {
+  title: "Créations",
+  description: "Photography",
+};
 
 export default async function Page({
   params,

@@ -26,8 +26,4 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 };
-export default withNextIntl(
-  MillionLint.next({
-    rsc: true,
-  })(nextConfig)
-);
+export default withNextIntl(nextConfig);

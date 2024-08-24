@@ -13,8 +13,11 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Nicolas Andry",
-  description: "Photography",
+  title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
+  description: "Nicolas andry photographie",
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
