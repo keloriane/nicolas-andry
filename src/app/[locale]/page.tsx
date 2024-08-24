@@ -62,6 +62,7 @@ export default async function Home({
         posts={postGrid}
         playfare={playfare.className}
         archivo={archivo.className}
+        locale={locale}
       />
       <Agenda
         introductionText={agendaData[0].introductionText}

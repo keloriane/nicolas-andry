@@ -11,7 +11,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { AgendaDataProvider } from "@/context/AgendaContext";
 
 export const metadata: Metadata = {
-  title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
+  title: { default: "Accueil", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
   twitter: {
     card: "summary_large_image",

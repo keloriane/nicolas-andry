@@ -89,9 +89,11 @@ const PostsGrid = ({
   playfare,
   archivo,
   posts,
+  locale,
 }: {
   playfare: string;
   archivo: string;
+  locale: string;
 
   posts: [{ image: string; title: string; description: []; slug: string }];
 }) => {
@@ -177,7 +179,10 @@ const PostsGrid = ({
                 <div className={archivo}>
                   <PortableText value={post.description} />
                 </div>
-                <Link className={"link-post-grid"} href={`/${post.slug}`}>
+                <Link
+                  className={"link-post-grid"}
+                  href={`${locale}/${post.slug}`}
+                >
                   <span style={{ color: "white" }} className={archivo}>
                     Découvrir
                   </span>

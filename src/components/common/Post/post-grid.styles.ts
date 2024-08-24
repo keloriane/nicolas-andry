@@ -57,7 +57,7 @@ export const PostContainer = styled.div`
     align-items: flex-start;
     position: relative;
     .arrow_link {
-      top: 15px;
+      top: 10px;
       left: 0px;
       position: absolute;
     }

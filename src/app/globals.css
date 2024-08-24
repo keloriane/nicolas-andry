@@ -258,6 +258,14 @@ span {
   display: inline-block;
 }
 
+.rich-text h4 {
+  margin-top: 40px;
+}
+
+.rich-text .arrow-link {
+  top: 12px;
+}
+
 
 html.lenis, html.lenis body {
   height: auto;
