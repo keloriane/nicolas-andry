@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
   openGraph: {
-    images: "/og-image.png",
+    images: "/opengraph-image.png",
   },
 };
 
