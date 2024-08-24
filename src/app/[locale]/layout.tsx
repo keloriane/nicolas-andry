@@ -13,9 +13,6 @@ import { AgendaDataProvider } from "@/context/AgendaContext";
 export const metadata: Metadata = {
   title: { default: "Accueil", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
-  twitter: {
-    card: "summary_large_image",
-  },
 };
 
 export default function RootLayout({

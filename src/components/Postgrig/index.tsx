@@ -11,7 +11,7 @@ import gsap from "gsap";
 
 import { block } from "million/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface PostgridProps {
   creations: PostExcerpt[];
@@ -69,7 +69,7 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={() => handleMouseLeave(index)}
         >
-          <Link replace href={`${pathname}/${post.slug.current}`}>
+          <Link href={`${pathname}/${post.slug.current}`}>
             <Image
               src={post.mainImage.url}
               alt={post.title}

@@ -28,7 +28,7 @@ export default async function AgendaPage({
           agendaCreation={agendaCreation}
           agendaAtelier={agendaAtelier}
           playfare={playfare.className}
-          homePage
+          homePage={false}
         />
         <Contact archivo={archivo.className} />
         <Footer locale={locale} />
