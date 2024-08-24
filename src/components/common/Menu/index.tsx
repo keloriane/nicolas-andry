@@ -97,13 +97,13 @@ const Menu = ({ locale }: { locale: string }) => {
                 </TransitionLink>
               </li>
             ))}
-            <li>
+            {/* <li>
               <select value={selectedLocale} onChange={handleLanguageChange}>
                 <option value="fr">Français</option>
                 <option value="en">English</option>
                 <option value="nl">Nederlands</option>
               </select>
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className="cta_container">

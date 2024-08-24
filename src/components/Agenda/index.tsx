@@ -10,6 +10,7 @@ import { archivo } from "@/app/font";
 import { AgendaType } from "@/types/AgendaType";
 import { PortableText } from "next-sanity";
 import home from "../../../sanity/schemaTypes/home";
+import { CTA } from "../common/Button/cta";
 
 const AgendaSection = styled.section`
   display: flex;
@@ -65,6 +66,7 @@ const Agenda = ({
   agendaAtelier,
   title = "",
   introductionText,
+  locale,
 }: {
   playfare: string;
   agendaPage?: boolean;
@@ -73,6 +75,7 @@ const Agenda = ({
   agendaAtelier: any;
   title: string;
   introductionText: [];
+  locale: string;
 }) => {
   console.log(agendaCreation);
 
@@ -164,9 +167,9 @@ const Agenda = ({
           </AgendaContainer>
         </div>
       </div>
-      {agendaPage ? (
-        <div style={{ marginTop: "100px" }}>
-          <Button text="Voir l'agenda" href="/agenda" />
+      {homePage ? (
+        <div className="cta_container" style={{ margin: "100px auto" }}>
+          <CTA href={`/${locale}/agenda`}>Voir plus de date</CTA>
         </div>
       ) : (
         ""

@@ -9,6 +9,7 @@ import { WebsiteCarbonBadge } from "react-websitecarbon-badge";
 import { archivo, playfare } from "@/app/font";
 import TransitionLink from "../common/TransitionLink";
 import { useFooter } from "@/context/FooterContext";
+import pxl from "@/../public/pxl.svg";
 
 const FooterContainer = styled.footer`
   width: 100vw;
@@ -48,6 +49,15 @@ const FooterContainer = styled.footer`
     color: ${theme.colors.white};
   }
 
+  footer {
+    ul {
+      p {
+        font-size: 20px;
+        color: ${theme.colors.white};
+      }
+    }
+  }
+
   ul {
     margin-left: 20px;
     font-weight: 400;
@@ -63,7 +73,23 @@ const FooterContainer = styled.footer`
   .footer_copyright {
     font-weight: 100px;
     text-align: center;
+    font-weight: 300;
     color: ${theme.colors.white};
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    span {
+      height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 
@@ -113,8 +139,8 @@ const Footer = ({ locale }: { locale: string }) => {
 
         <div className="navigation_container">
           <nav className="footer_nav">
+            <h4>Créations</h4>
             <ul>
-              <h4>Créations</h4>
               {navigationCreation.map((nav: any, index) => (
                 <li key={index}>
                   <Link href={`/${locale}/creations/${nav.slug.current}`}>
@@ -125,8 +151,8 @@ const Footer = ({ locale }: { locale: string }) => {
             </ul>
           </nav>
           <nav className="footer_nav">
+            <h4>Recherches</h4>
             <ul>
-              <h4>Recherches</h4>
               {navigationRecherche.map((nav: any, index) => (
                 <li key={index}>
                   <Link href={`/${locale}/recherches/${nav.slug.current}`}>
@@ -137,9 +163,8 @@ const Footer = ({ locale }: { locale: string }) => {
             </ul>
           </nav>
           <nav className="footer_nav">
+            <h4>Ateliers</h4>
             <ul>
-              <h4>Ateliers</h4>
-
               {navigationAtelier &&
                 navigationAtelier.map((nav: any, index: number) => (
                   <li key={index}>
@@ -155,8 +180,14 @@ const Footer = ({ locale }: { locale: string }) => {
       </div>
       <div className="footer_wrapper">
         <div className="footer_copyright">
-          <span className={archivo.className}>
-            Tout droit réservé. This website is cookie free.
+          <span className={archivo.className}>Tout droit réservé.</span>
+          <span>This website is cookie free.</span>
+          <span>
+            made by{"    "}
+            <Link href="#">
+              {" "}
+              <img src={pxl.src} alt="pxl-studio" />
+            </Link>
           </span>
         </div>
       </div>

@@ -67,7 +67,7 @@ export const TextWrapper = styled(Col)`
   justify-content: center;
   height: 100%;
   gap: 20px;
-  h2 {
+  h1 {
     font-weight: 100;
     font-size: 4rem;
     color: ${theme.colors.black};

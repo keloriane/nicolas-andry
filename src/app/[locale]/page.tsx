@@ -70,6 +70,7 @@ export default async function Home({
         agendaCreation={agendaCreation}
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
+        locale={locale}
         homePage
       />
       <Separator size={100} />

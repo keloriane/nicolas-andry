@@ -8,9 +8,12 @@ const CTAContainer = styled.div`
   padding: 10px;
   border: 1px solid ${theme.colors.black};
   display: inline-block;
+  cursor: pointer;
+  transition: all 0.15s ease-in;
   &:hover {
-    background-color: ${theme.colors.black};
+    background-color: ${theme.colors.orange};
     color: white;
+    border: none;
   }
   a {
     text-decoration: none;

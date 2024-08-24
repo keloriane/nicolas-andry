@@ -14,7 +14,8 @@ const AgendaContainer = styled.div`
   width: 100%;
   max-width: 550px;
   margin: 20px auto;
-  background-color: #fef8e9;
+
+  border: 1px solid ${theme.colors.black};
   padding: 20px;
 
   h2 {

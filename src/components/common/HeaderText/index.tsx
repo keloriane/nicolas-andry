@@ -67,9 +67,9 @@ const HeaderText: React.FC<HeaderTextProps> = ({
     <S.TextWrapper column={column} span={span}>
       <div className="title-container">
         <div className="preline"></div>
-        <h2 className="title-creations" ref={titleRef}>
+        <h1 className="title-creations" ref={titleRef}>
           Les {title}
-        </h2>
+        </h1>
       </div>
       <p className="inner-text" ref={textRef}>
         {introductionText}

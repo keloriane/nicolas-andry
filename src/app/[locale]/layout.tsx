@@ -13,6 +13,9 @@ import { AgendaDataProvider } from "@/context/AgendaContext";
 export const metadata: Metadata = {
   title: { default: "Accueil", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
+  openGraph: {
+    images: '/og-image.png',
+  },
 };
 
 export default function RootLayout({

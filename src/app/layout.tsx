@@ -15,6 +15,9 @@ import Head from "next/head";
 export const metadata: Metadata = {
   title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
+  openGraph: {
+    images: "/og-image.png",
+  },
 };
 
 export default function RootLayout({

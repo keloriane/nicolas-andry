@@ -51,6 +51,7 @@ export default async function Creations({
       <Postgrid locale={locale} creations={creations[0].posts} />
       <Separator />
       <Agenda
+        locale={locale}
         introductionText={agendaData[0].introductionText}
         title={agendaData[0].title}
         agendaCreation={agendaCreation}

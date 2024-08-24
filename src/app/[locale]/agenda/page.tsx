@@ -23,6 +23,7 @@ export default async function AgendaPage({
     <div>
       <div style={{ paddingTop: "150px" }}>
         <Agenda
+          locale={locale}
           introductionText={agendaData[0].introductionText}
           title={agendaData[0].title}
           agendaCreation={agendaCreation}

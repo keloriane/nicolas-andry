@@ -73,6 +73,7 @@ export default async function AboutPage({
           locale={locale}
         />
         <Agenda
+          locale={locale}
           introductionText={agendaData[0].data.introductionText}
           title={agendaData[0].data.title}
           agendaCreation={agendaCreation.data}
