@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 
 import { Archivo } from "next/font/google";
-import StyledComponentsRegistry from "@/lib/registry";
 import "./globals.css";
-import { MenuProvider } from "@/context/MenuContext";
-import { FooterProvider } from "@/context/FooterContext";
 
 const archivo = Archivo({ subsets: ["latin"] });
-import { NextIntlClientProvider } from "next-intl";
-import Menu from "@/components/common/Menu";
-import { LanguageProvider } from "@/context/LanguageContext";
+
 import Head from "next/head";
 import OGImage from "@/app/opengraph-image.png";
 export const metadata: Metadata = {
@@ -23,25 +18,18 @@ export const metadata: Metadata = {
     siteName: "Nicolas Andry",
     images: [
       {
-        url: OGImage.src, // Must be an absolute URL
+        url: OGImage.src,
         width: 800,
         height: 600,
       },
       {
-        url: OGImage.src, // Must be an absolute URL
+        url: OGImage.src,
         width: 1800,
         height: 1600,
         alt: "My custom alt",
       },
     ],
-    videos: [
-      {
-        url: "https://nextjs.org/video.mp4", // Must be an absolute URL
-        width: 800,
-        height: 600,
-      },
-    ],
-    locale: "en_US",
+    locale: "fr_BE",
     type: "website",
   },
 };
