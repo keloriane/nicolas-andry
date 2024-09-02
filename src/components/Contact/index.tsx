@@ -32,13 +32,13 @@ const ContactContainer = styled.section`
   }
   .cta {
     background: transparent;
-    padding: 14px 20px;
+    padding: 10px 20px;
     cursor: pointer;
     display: inline-block;
     border: 1px solid ${theme.colors.black};
     &:hover {
       border: 1px solid ${theme.colors.orange};
-      background-color: ${theme.colors.orange};
+      color: ${theme.colors.orange};
     }
   }
 `;

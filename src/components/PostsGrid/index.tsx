@@ -41,6 +41,9 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  p {
+    font-size: 19px;
+  }
   a {
     font-size: 19px;
   }
@@ -51,14 +54,17 @@ const CardWrapper = styled.div`
     font-weight: 100;
     &:hover {
       border: 1px solid ${theme.colors.orange};
-      color: ${theme.colors.orange};
+      span {
+        color: ${theme.colors.orange} !important;
+        transition: all 0.15s ease-in;
+      }
       transition: all 0.15s ease-in;
     }
   }
 `;
 
 const PostGridContainer = styled.section`
-  margin-top: 280px;
+  margin-top: 380px;
   .image-grid-item {
     width: 100%;
     height: 600px;

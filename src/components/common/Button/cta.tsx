@@ -11,8 +11,8 @@ const CTAContainer = styled.div`
   cursor: pointer;
   transition: all 0.15s ease-in;
   &:hover {
-    background-color: ${theme.colors.orange};
-    color: white;
+    border: 1px solid ${theme.colors.orange} !important;
+    color: ${theme.colors.orange};
     border: none;
   }
   a {
@@ -20,7 +20,8 @@ const CTAContainer = styled.div`
     font-size: 17px;
     text-transform: uppercase;
     &:hover {
-      color: white !important;
+      border-color: ${theme.colors.orange};
+      color: ${theme.colors.orange};
     }
   }
 `;
@@ -33,10 +34,12 @@ export const CTA = ({
   children,
   href,
   className,
+  homePage = false,
 }: {
   children: React.ReactNode;
   href: string;
   className?: string;
+  homePage?: boolean;
 }) => {
   return (
     <CTAContainer className={className}>

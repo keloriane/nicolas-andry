@@ -18,6 +18,13 @@ const AgendaContainer = styled.div`
   border: 1px solid ${theme.colors.black};
   padding: 20px;
 
+  a {
+    color: #0000ee;
+  }
+  a:visited {
+    color: #551a8b;
+  }
+
   h2 {
     font-size: 20px;
     color: ${theme.colors.black};
@@ -36,6 +43,11 @@ const DateContainer = styled.div`
     color: ${theme.colors.white};
     padding: 5px;
     font-weight: 700;
+    @media screen and (max-width: 760px) {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
   }
 `;
 const LocationContainer = styled.div`
