@@ -11,11 +11,16 @@ import * as S from "./page-header.styles";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FullHeader: React.FC<PageHeaderType> = ({
+interface FullHeaderProps {
+  title: string;
+  introductionText: string;
+  playfare: any;
+}
+
+const FullHeader: React.FC<FullHeaderProps> = ({
   title,
   introductionText,
   playfare,
-  image,
 }) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);

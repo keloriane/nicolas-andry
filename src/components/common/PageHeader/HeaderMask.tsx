@@ -12,11 +12,13 @@ import arrowDown from "@/../public/arrow_down.svg";
 import Image from "next/image";
 import ArrowDown from "../ArrowDown";
 import Link from "next/link";
+import { urlForImage } from "../../../../sanity/lib/image";
 const HeaderMask: React.FC<PageHeaderType> = ({
   title,
   introductionText,
   playfare,
-  image,
+  imageLeft,
+  imageRight,
 }) => {
   return (
     <>
@@ -28,7 +30,7 @@ const HeaderMask: React.FC<PageHeaderType> = ({
         >
           <S.ImageMaskContainer>
             <MaskedImage
-              src="https://cdn.sanity.io/images/blzajq7n/production/55be9c19c7da958305ca80e1d81f7aca746b54a3-665x1000.jpg"
+              src={imageLeft}
               alt="image test mask"
               width={250}
               height={375}
@@ -37,7 +39,7 @@ const HeaderMask: React.FC<PageHeaderType> = ({
               lazy={true}
             />
             <MaskedImage
-              src="https://cdn.sanity.io/images/blzajq7n/production/26783c48f756eea669fd29d715e9e54a21abf1ea-572x1000.jpg"
+              src={imageRight}
               alt="image test mask"
               width={350}
               height={550}

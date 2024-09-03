@@ -65,6 +65,7 @@ const CardWrapper = styled.div`
 
 const PostGridContainer = styled.section`
   margin-top: 380px;
+  padding-top: 80px;
   .image-grid-item {
     width: 100%;
     height: 600px;

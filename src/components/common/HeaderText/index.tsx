@@ -3,10 +3,12 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import splitType from "split-type";
 import * as S from "./../PageHeader/page-header.styles";
+import { PortableText } from "next-sanity";
+import { TypedObject } from "sanity";
 
 interface HeaderTextProps {
   title: string;
-  introductionText: string;
+  introductionText: TypedObject | TypedObject[];
   playfare: string;
   column: number[];
   span: number[];
@@ -68,12 +70,12 @@ const HeaderText: React.FC<HeaderTextProps> = ({
       <div className="title-container">
         <div className="preline"></div>
         <h1 className="title-creations" ref={titleRef}>
-          Les {title}
+          {title}
         </h1>
       </div>
-      <p className="inner-text" ref={textRef}>
-        {introductionText}
-      </p>
+      <div className="inner-text" ref={textRef}>
+        <PortableText value={introductionText} />
+      </div>
     </S.TextWrapper>
   );
 };

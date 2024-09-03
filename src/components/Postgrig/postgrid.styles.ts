@@ -11,7 +11,7 @@ export const PostGrid = styled.div`
     grid-template-columns: 1fr;
   }
   gap: 20px;
-  padding: 20px;
+  padding: 80px 20px;
   width: 100%;
   max-width: 1280px;
   margin: 200px auto;

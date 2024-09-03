@@ -11,6 +11,7 @@ const BannerWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
+  padding-bottom: 100px;
   img {
     width: 90%;
   }
@@ -25,30 +26,10 @@ const Banner = ({
   width: number;
   height: number;
 }) => {
-  const imageRef = useRef<HTMLImageElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageWrapperRef = useRef<HTMLDivElement>(null);
-
-  // Memoize the animation function call
-  const memoizedAnimation = useMemo(() => {
-    return () => {
-      if (imageWrapperRef.current && imageRef.current && containerRef.current) {
-        imageClipAnimation(
-          imageWrapperRef.current,
-          imageRef.current,
-          containerRef.current
-        );
-      }
-    };
-  }, [imageWrapperRef, imageRef, containerRef]);
-
-  useGSAP(memoizedAnimation);
-
   return (
-    <div ref={containerRef}>
-      <BannerWrapper ref={imageWrapperRef}>
+    <div>
+      <BannerWrapper>
         <Image
-          ref={imageRef}
           src={src}
           alt="banner image"
           height={height}

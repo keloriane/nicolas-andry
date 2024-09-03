@@ -1,6 +1,9 @@
+import { TypedObject } from "sanity";
+
 export interface PageHeaderType {
   title: string;
-  introductionText: string;
+  introductionText: any;
   playfare: string;
-  image: { imageHeader: [] };
+  imageLeft: string;
+  imageRight: string;
 }

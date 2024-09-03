@@ -100,6 +100,8 @@ export async function getCreationData() {
       title,
       introductionText,
       imageHeader,
+      imageHeaderLeft{ "url": asset->url, "alt": asset->alt },
+      imageHeaderRight{ "url": asset->url, "alt": asset->alt },
       "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
     }
   `);

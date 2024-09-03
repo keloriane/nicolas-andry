@@ -34,6 +34,9 @@ export const PostContainer = styled.div`
       color: ${theme.colors.orange};
     }
   }
+  h3 {
+    margin-left: 54px;
+  }
 
   .navigation_container {
     display: flex;
@@ -57,7 +60,7 @@ export const PostContainer = styled.div`
     align-items: flex-start;
     position: relative;
     .arrow_link {
-      top: 10px;
+      top: 33px;
       left: 0px;
       position: absolute;
     }

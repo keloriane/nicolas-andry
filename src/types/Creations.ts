@@ -1,7 +1,8 @@
 export type Creation = {
   title: string;
   introductionText: { children: { text: string }[] }[];
-  imageHeader: any;
+  imageHeaderLeft: any;
+  imageHeaderRight: any;
   posts: {
     title: string;
     slug: { current: string };

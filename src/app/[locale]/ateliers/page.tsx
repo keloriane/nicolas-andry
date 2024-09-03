@@ -14,6 +14,7 @@ import { GetAgendaData } from "../../../../sanity/lib/queries";
 import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import AgendaCta from "@/components/common/AgendaCta";
 
 async function getAteliersData() {
   return await client.fetch(
@@ -43,7 +44,6 @@ export default async function Ateliers({
   return (
     <main>
       <FullHeader
-        image={ateliers}
         playfare={playfare.className}
         title={ateliers.mainTitle}
         introductionText={ateliers.introductionText[0].children[0].text}
@@ -65,14 +65,7 @@ export default async function Ateliers({
         />
 
         <Separator />
-        <Agenda
-          introductionText={agendaData[0].introductionText}
-          title={agendaData[0].title}
-          agendaCreation={agendaCreation}
-          agendaAtelier={agendaAtelier}
-          playfare={playfare.className}
-          homePage
-        />
+        <AgendaCta locale={locale} />
 
         <Contact archivo={archivo.className} />
         <Footer locale={locale} />

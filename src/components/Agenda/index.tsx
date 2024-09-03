@@ -41,6 +41,7 @@ const AgendaContainer = styled.div`
 
 const TitleContainer = styled.div`
   text-align: center;
+  padding-bottom: 50px;
 `;
 
 const AgendaTextContainer = styled.div`
@@ -112,13 +113,22 @@ const Agenda = ({
           </div>
           <AgendaContainer>
             {homePage ? (
-              <AgendaCard
-                contact={agendaCreation[0].contact}
-                title={agendaCreation[0].title}
-                location={agendaCreation[0].location}
-                date={agendaCreation[0].date}
-                details={agendaCreation[0].descriptionB}
-              />
+              <>
+                <AgendaCard
+                  contact={agendaCreation[0].contact}
+                  title={agendaCreation[0].title}
+                  location={agendaCreation[0].location}
+                  date={agendaCreation[0].date}
+                  details={agendaCreation[0].descriptionB}
+                />
+                <AgendaCard
+                  contact={agendaCreation[1].contact}
+                  title={agendaCreation[1].title}
+                  location={agendaCreation[1].location}
+                  date={agendaCreation[1].date}
+                  details={agendaCreation[1].descriptionB}
+                />
+              </>
             ) : (
               agendaCreation.map((agenda: AgendaType, i: number) => (
                 <AgendaCard
@@ -145,13 +155,22 @@ const Agenda = ({
           </div>
           <AgendaContainer>
             {homePage ? (
-              <AgendaCard
-                contact={agendaAtelier[0].contact}
-                title={agendaAtelier[0].title}
-                location={agendaAtelier[0].location}
-                date={agendaAtelier[0].date}
-                details={agendaAtelier[0].descriptionB}
-              />
+              <>
+                <AgendaCard
+                  contact={agendaAtelier[0].contact}
+                  title={agendaAtelier[0].title}
+                  location={agendaAtelier[0].location}
+                  date={agendaAtelier[0].date}
+                  details={agendaAtelier[0].descriptionB}
+                />
+                {/* <AgendaCard
+                  contact={agendaAtelier[1].contact}
+                  title={agendaAtelier[1].title}
+                  location={agendaAtelier[1].location}
+                  date={agendaAtelier[1].date}
+                  details={agendaAtelier[1].descriptionB}
+                /> */}
+              </>
             ) : (
               agendaAtelier.map((agenda: AgendaType, i: number) => (
                 <AgendaCard

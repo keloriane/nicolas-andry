@@ -1,17 +1,11 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-
-import { PostExcerpt, PostsExcerpt } from "@/types/postExcerpt";
-
+import { PostExcerpt } from "@/types/postExcerpt";
 import Image from "next/image";
-
-import TransitionLink from "../common/TransitionLink";
-import * as S from "./postgrid.styles";
-import gsap from "gsap";
-
-import { block } from "million/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import gsap from "gsap";
+import * as S from "./postgrid.styles";
+import { usePathname } from "next/navigation";
 
 interface PostgridProps {
   creations: PostExcerpt[];
@@ -23,7 +17,15 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
   const textContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const pathname = usePathname();
 
+  console.log(creations);
+
+  const isMobile = () => window.innerWidth < 768;
+
   const handleMouseEnter = (index: number) => {
+    if (isMobile()) {
+      return; // Skip animation on mobile
+    }
+
     const layer = layerRefs.current[index];
     if (layer) {
       const h2 = layer.querySelector("h2");
@@ -45,12 +47,14 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
       );
     }
   };
+
   const handleMouseLeave = (index: number) => {
+    if (isMobile()) {
+      return; // Skip animation on mobile
+    }
+
     const layer = layerRefs.current[index];
     if (layer) {
-      const h2 = layer.querySelector("h2");
-      const p = layer.querySelector("p");
-
       gsap.to(layer, {
         duration: 0.5,
         bottom: "-35%",
@@ -65,7 +69,7 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
         <div
           key={post.slug.current}
           className={`card card-${index + 1}`}
-          style={{ position: "relative" }} // Ensure position is relative here
+          style={{ position: "relative" }}
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={() => handleMouseLeave(index)}
         >
@@ -77,7 +81,7 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                position: "absolute", // Keep position absolute here
+                position: "absolute",
               }}
               fill
             />
@@ -97,10 +101,6 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
                   <div className="preline"></div>
                   <h2>{post.title}</h2>
                 </div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                  quibusdam excepturi autem, tenetur reprehenderit totam, esse,
-                </p>
               </div>
             </div>
           </Link>

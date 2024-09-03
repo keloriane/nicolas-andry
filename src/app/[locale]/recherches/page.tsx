@@ -15,6 +15,7 @@ import Separator from "@/components/common/Separator";
 import { GetAgendaData } from "../../../../sanity/lib/queries";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import AgendaCta from "@/components/common/AgendaCta";
 
 async function getRechercheData() {
   return await client.fetch(
@@ -42,8 +43,9 @@ async function getResearchData() {
     *[_type == "recherches"] {
       title,
       introductionText,
-      imageHeader,
-      "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
+      imageHeaderLeft{ "url": asset->url, "alt": asset->alt }, 
+      imageHeaderRight{ "url": asset->url, "alt": asset->alt },
+      "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt } }
     }
   `);
 }
@@ -54,29 +56,21 @@ export default async function Creations({
   params: { locale: string };
 }) {
   const research = await getResearchData();
-  const agendaData = await GetAgendaData(locale);
 
-  const agendaCreation = agendaData[1];
-  const agendaAtelier = agendaData[2];
+  console.log(research);
 
   return (
     <main>
       <HeaderMask
-        image={research}
+        imageLeft={research[0].imageHeaderLeft.url}
+        imageRight={research[0].imageHeaderRight.url}
         playfare={playfare.className}
         title={research[0].title}
-        introductionText={research[0].introductionText[0].children[0].text}
+        introductionText={research[0].introductionText}
       />
       <Postgrid locale={locale} creations={research[0].posts} />
       <Separator />
-      <Agenda
-        introductionText={agendaData[0].introductionText}
-        title={agendaData[0].title}
-        agendaCreation={agendaCreation}
-        agendaAtelier={agendaAtelier}
-        playfare={playfare.className}
-        homePage
-      />
+      <AgendaCta locale={locale} />
       <Separator />
 
       <Contact archivo={archivo.className} />

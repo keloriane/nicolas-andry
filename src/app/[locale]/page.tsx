@@ -73,9 +73,9 @@ export default async function Home({
         locale={locale}
         homePage
       />
-      <Separator size={100} />
+
       <Banner src={bannerImage} width={1120} height={316} />
-      <Separator size={100} />
+
       <AboutSection
         presentationTitle={homeData.data.presentationTitle}
         imageProfile={homeData.data.imageProfile}
