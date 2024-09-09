@@ -17,6 +17,7 @@ import { AgendaMain, AgendaType } from "@/types/AgendaType";
 import { archivo, playfare } from "@/app/font";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
+import AgendaCta from "@/components/common/AgendaCta";
 
 interface ParcoursData {
   parcours: [{ year: string; description: [] }];
@@ -59,28 +60,22 @@ export default async function AboutPage({
           homePage={false}
           presentationText={parcours.data.presentationText}
         />
-        <Separator />
+
+        <Procedures
+          demarche={procedures.data.demarches}
+          title={procedures.data.procedureTitle}
+          locale={locale}
+        />
+
         <Parcours
           presentationTitle={parcours.data.presentationTitle}
           parcours={parcours.data.parcours}
           imageProfile={parcours.data.imageProfile}
           presentationText={parcours.data.presentationText}
         />
+
         <Separator size={100} />
-        <Procedures
-          demarche={procedures.data.demarches}
-          title={procedures.data.procedureTitle}
-          locale={locale}
-        />
-        <Agenda
-          locale={locale}
-          introductionText={agendaData[0].data.introductionText}
-          title={agendaData[0].data.title}
-          agendaCreation={agendaCreation.data}
-          agendaAtelier={agendaAtelier.data}
-          playfare={playfare.className}
-          homePage
-        />
+        <AgendaCta locale={locale} />
         <Separator size={100} />
         <Contact archivo={archivo.className} />
         <Footer locale={locale} />

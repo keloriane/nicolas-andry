@@ -26,11 +26,38 @@ const FullHeader: React.FC<FullHeaderProps> = ({
   const paragraphRef = useRef<HTMLParagraphElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
 
+  const SectionContainer = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3 {
+      color: ${theme.colors.orange};
+      font-size: 34px;
+    }
+    h1 {
+      font-size: 64px;
+      margin-left: 30px;
+      margin-bottom: 20px;
+    }
+    .preline {
+      width: 40px;
+      border: 0.5px solid ${theme.colors.orange};
+    }
+    .title_container {
+      display: flex;
+      align-items: center;
+    }
+  `;
+
   return (
-    <section style={{ paddingTop: "180px", textAlign: "center" }}>
-      <h2 className={playfare}>{title}</h2>
+    <SectionContainer style={{ paddingTop: "180px", textAlign: "center" }}>
+      <div className="title_container">
+        <div className="preline"></div>
+        <h1 className={playfare}>{title}</h1>
+      </div>
       <p>{introductionText}</p>
-    </section>
+    </SectionContainer>
   );
 };
 

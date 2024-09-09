@@ -90,6 +90,11 @@ const BlockSectionWrapper = styled.section<{
     list-style: disc;
   }
 
+  .image_container {
+    border: 0.5px solid ${theme.colors.orange};
+    padding: 20px;
+  }
+
   flex-direction: ${({ reversed }) => (reversed ? "row-reverse" : "row")};
 
   h2 {
@@ -171,7 +176,7 @@ const BlockSections = ({
                     handleNavClick(e, section.title || section.title_content)
                   }
                 >
-                  {section.title || section.title_content}
+                  {section.title}
                 </a>
               </li>
             ))}

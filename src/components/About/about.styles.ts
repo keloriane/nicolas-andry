@@ -29,9 +29,11 @@ export const AboutWrapper = styled.section`
   }
   .profile_pic {
     padding: 20px;
-    border: 1px solid ${theme.colors.black};
     max-width: 400px;
     margin: auto;
+    img {
+      max-width: 310px;
+    }
   }
 
   .text_container {
@@ -54,6 +56,9 @@ export const AboutWrapper = styled.section`
       gap: 24px;
     }
     h3 {
+      font-size: 45px;
+    }
+    h2 {
       font-size: 24px;
     }
     .preline {

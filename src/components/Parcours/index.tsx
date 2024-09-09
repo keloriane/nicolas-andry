@@ -88,6 +88,13 @@ const Parcours = ({
           span={[24, 20, 20]}
           className="parcours-wrapper"
         >
+          <ResponsiveText
+            as="h2"
+            sizes={["24px", "32px", "47px", "47px"]}
+            className={playfare.className}
+          >
+            Parcour
+          </ResponsiveText>
           <div className="parcour-container">
             {parcours.map((parcour, index) => (
               <div className={"parcour-card rich-text"} key={index}>

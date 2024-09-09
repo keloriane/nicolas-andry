@@ -120,10 +120,14 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
         ))}
       </GridContainerV>
       {activePost?.remerciements ? (
-        <div style={{ marginTop: "80px" }}>
-          <h2 style={{ marginBottom: "20px" }}>Remerciement</h2>
-          <div style={{ marginLeft: "40px" }} className="rich-text">
-            <PortableText value={activePost ? activePost.remerciements : []} />
+        <div className="thanks_container">
+          <div>
+            <h2>Remerciement</h2>
+            <div className="rich-text">
+              <PortableText
+                value={activePost ? activePost.remerciements : []}
+              />
+            </div>
           </div>
         </div>
       ) : (

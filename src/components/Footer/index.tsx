@@ -16,6 +16,13 @@ const FooterContainer = styled.footer`
   background-color: #1e1e1e;
   color: black;
   font-weight: 700;
+  a {
+    &:hover {
+      rect {
+        fill: ${theme.colors.orangeL};
+      }
+    }
+  }
   .line {
     width: 95%;
     height: 0.5px;
@@ -108,12 +115,9 @@ const Footer = ({ locale }: { locale: string }) => {
   return (
     <FooterContainer>
       <div className="footer_header">
-        <div className="footer_title">
-          <h2 className={playfare.className}>Nicolas Andry</h2>
-        </div>
-
+        <div className="line"></div>
         <div className="logo_container">
-          <div className="logo_container">
+          <Link href={"/"} className="logo_container">
             <svg
               width="55"
               height="72"
@@ -133,9 +137,8 @@ const Footer = ({ locale }: { locale: string }) => {
                 fillOpacity="0.86"
               />
             </svg>
-          </div>
+          </Link>
         </div>
-        <div className="line"></div>
 
         <div className="navigation_container">
           <nav className="footer_nav">

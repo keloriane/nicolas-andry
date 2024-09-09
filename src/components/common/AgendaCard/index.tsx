@@ -18,6 +18,10 @@ const AgendaContainer = styled.div`
   border: 1px solid ${theme.colors.black};
   padding: 20px;
 
+  h3 {
+    font-weight: 700;
+  }
+
   a {
     color: #0000ee;
   }
@@ -42,7 +46,9 @@ const DateContainer = styled.div`
     background-color: ${theme.colors.orange};
     color: ${theme.colors.white};
     padding: 5px;
-    font-weight: 700;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 18px;
     @media screen and (max-width: 760px) {
       position: relative;
       top: 0;

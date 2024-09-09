@@ -6,6 +6,43 @@ export const PostContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: auto;
+  .thanks_container {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    margin-top: 20px;
+    h2 {
+      font-size: 40px;
+      display: inline-block;
+      @media screen and (max-width: 640px) {
+        margin-left: 0px;
+      }
+    }
+    .rich-text {
+      margin-top: 20px;
+      margin-left: 100px;
+      @media screen and (max-width: 640px) {
+        margin-left: 0px;
+      }
+    }
+  }
+
+  .rich-text {
+    ul {
+      margin-top: 15px;
+      margin-left: 30px;
+    }
+    li {
+      line-height: 40px;
+      list-style: disc;
+    }
+    a {
+      color: aliceblue;
+    }
+    p {
+      margin-top: 20px;
+    }
+  }
 
   .image_header_wrapper {
     display: flex;
@@ -59,6 +96,8 @@ export const PostContainer = styled.div`
     display: flex;
     align-items: flex-start;
     position: relative;
+    flex-direction: column;
+    gap: 20px;
     .arrow_link {
       top: 33px;
       left: 0px;
@@ -118,6 +157,7 @@ export const PostContainer = styled.div`
       justify-content: center;
       align-items: center;
       min-height: 400px;
+      gap: 20px;
       h3 {
         display: inline-block;
         margin-top: 20px;
@@ -136,6 +176,17 @@ export const PostContainer = styled.div`
   }
   .post__container {
     margin: 100px auto;
+    ul {
+      margin-top: 15px;
+      margin-left: 50px;
+    }
+    li {
+      line-height: 40px;
+      list-style: disc;
+    }
+    a {
+      color: aliceblue;
+    }
 
     div {
       padding: 3px;

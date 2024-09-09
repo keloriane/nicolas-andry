@@ -15,7 +15,11 @@ const ContactContainer = styled.section`
   text-align: center;
   margin: 120px auto;
   p {
-    font-size: 14px;
+    font-size: 17px;
+  }
+
+  .mail-link {
+    font-size: 20px;
   }
   .contact_info {
     display: flex;
@@ -36,6 +40,7 @@ const ContactContainer = styled.section`
     cursor: pointer;
     display: inline-block;
     border: 1px solid ${theme.colors.black};
+
     &:hover {
       border: 1px solid ${theme.colors.orange};
       color: ${theme.colors.orange};

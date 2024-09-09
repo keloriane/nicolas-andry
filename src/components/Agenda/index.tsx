@@ -82,23 +82,22 @@ const Agenda = ({
 
   return (
     <AgendaSection>
-      {homePage ? (
-        <AgendaTextContainer>
-          <TitleContainer className={playfare}>
-            <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
-              {title}
-            </ResponsiveText>
-          </TitleContainer>
-
+      <AgendaTextContainer>
+        <TitleContainer className={playfare}>
+          <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
+            {title}
+          </ResponsiveText>
+        </TitleContainer>
+        {homePage ? (
           <div className={archivo.className}>
             <div className="rich-text">
               <PortableText value={introductionText} />
             </div>
           </div>
-        </AgendaTextContainer>
-      ) : (
-        ""
-      )}
+        ) : (
+          ""
+        )}
+      </AgendaTextContainer>
 
       <div className="agenda_wrapper">
         <div className="agenda_item">

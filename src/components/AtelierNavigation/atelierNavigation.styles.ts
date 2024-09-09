@@ -49,7 +49,6 @@ export const AtelierNavigationSection = styled.div`
 
     img {
       object-fit: cover;
-      transform: scale(1.4);
     }
   }
 `;

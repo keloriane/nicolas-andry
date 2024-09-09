@@ -38,8 +38,7 @@ export default async function Ateliers({
   const ateliers = await getAteliersData();
   const agendaData = await GetAgendaData(locale);
 
-  const agendaCreation = agendaData[1];
-  const agendaAtelier = agendaData[2];
+  console.log(ateliers);
 
   return (
     <main>
@@ -52,7 +51,6 @@ export default async function Ateliers({
       <div className="slider_container" style={{ paddingTop: "100px" }}>
         <Slider images={ateliers.images} centered={true} />
       </div> */}
-      <Separator />
 
       <div className="atelier_container" style={{ position: "relative" }}>
         {/* <AterlierItem
