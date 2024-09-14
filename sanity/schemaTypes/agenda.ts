@@ -16,6 +16,11 @@ export default defineType({
       type: "blockContent",
     }),
     defineField({
+      name: "agendaCTA",
+      title: "Call to action agenda",
+      type: "blockContent",
+    }),
+    defineField({
       name: "agenda",
       title: "Agenda",
       type: "array",

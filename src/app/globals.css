@@ -226,6 +226,12 @@ h2 {
 .image-slide {
   object-fit: cover;
 }
+
+
+.loading-svg {
+  width: 100%;
+  max-width: 640px;
+}
 body {
   color: #1E1E1E;
 }

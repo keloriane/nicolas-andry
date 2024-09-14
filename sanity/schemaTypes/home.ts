@@ -53,10 +53,16 @@ export default defineType({
               title: "Slug",
               type: "string",
             },
+            {
+              name: "postgridCta",
+              title: "Call to action",
+              type: "string",
+            },
           ],
         },
       ],
     }),
+
     defineField({
       name: "procedureTitle",
       title: "Demarches title",
@@ -115,6 +121,11 @@ export default defineType({
       name: "presentationText",
       title: "Text de présentation",
       type: "blockContent",
+    }),
+    defineField({
+      name: "presentationTextCta",
+      title: "Text de présentation call to action",
+      type: "string",
     }),
     defineField({
       title: "imageProfile",

@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useSwiper } from 'swiper/react';
+import React from "react";
+import styled from "styled-components";
+import { useSwiper } from "swiper/react";
 
 interface SlideButtonProps {
   buttonText: string;
@@ -12,6 +12,7 @@ const ArrowNav = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  border-radius: 50px;
   width: 46px;
   height: 46px;
   &:hover {

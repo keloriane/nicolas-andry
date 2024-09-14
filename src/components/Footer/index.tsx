@@ -187,7 +187,7 @@ const Footer = ({ locale }: { locale: string }) => {
           <span>This website is cookie free.</span>
           <span>
             made by{"    "}
-            <Link href="#">
+            <Link href="pxl-studio.com">
               {" "}
               <img src={pxl.src} alt="pxl-studio" />
             </Link>

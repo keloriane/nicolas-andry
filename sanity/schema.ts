@@ -11,6 +11,7 @@ import recherches from "./schemaTypes/recherches";
 import ateliers from "./schemaTypes/ateliers";
 import atelierItems from "./schemaTypes/atelierItems";
 import menu from "./schemaTypes/menu";
+import contact from "./schemaTypes/contact";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -25,5 +26,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ateliers,
     menu,
     atelierItems,
+    contact,
   ],
 };

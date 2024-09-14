@@ -64,7 +64,7 @@ const CardWrapper = styled.div`
 `;
 
 const PostGridContainer = styled.section`
-  margin-top: 380px;
+  margin-top: 100px;
   padding-top: 80px;
   .image-grid-item {
     width: 100%;
@@ -118,7 +118,7 @@ const PostsGrid = ({
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
-          start: "top 30%",
+          start: "top 50%",
           end: "bottom 40%",
           toggleActions: "play none none none",
         },

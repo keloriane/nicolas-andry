@@ -71,9 +71,9 @@ export default async function Creations({
       <Postgrid locale={locale} creations={research[0].posts} />
       <Separator />
       <AgendaCta locale={locale} />
-      <Separator />
 
       <Contact archivo={archivo.className} />
+
       <Footer locale={locale} />
     </main>
   );
