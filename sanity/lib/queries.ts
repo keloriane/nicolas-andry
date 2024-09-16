@@ -44,6 +44,7 @@ export const AGENDA_QUERY = groq`*[_type == "agenda"][0]`;
 
 export const AGENDA_CREATION_QUERY = groq`*[_type == "agenda"][0].agenda[eventType == "creation"]`;
 export const AGENDA_ATELIER_QUERY = groq`*[_type == "agenda"][0].agenda[eventType == "atelier"]`;
+export const AGENDA_CTA = groq`*[_type == "agenda"][0]{agendaCTA}`;
 
 export async function GetAgendaData(lang: string = "fr") {
   const agendaData = await Promise.all([
@@ -53,6 +54,11 @@ export async function GetAgendaData(lang: string = "fr") {
   ]);
 
   return agendaData;
+}
+
+export async function GetAgendaCTA(lang: string = "fr") {
+  const cta = await client.fetch(AGENDA_CTA);
+  return cta;
 }
 export const ATELIER_QUERY_NAVIGATION = groq`[_type == "ateliers"]{title}`;
 

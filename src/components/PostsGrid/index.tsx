@@ -102,7 +102,15 @@ const PostsGrid = ({
   archivo: string;
   locale: string;
 
-  posts: [{ image: string; title: string; description: []; slug: string }];
+  posts: [
+    {
+      image: string;
+      title: string;
+      description: [];
+      slug: string;
+      postgridCta?: string;
+    },
+  ];
 }) => {
   const builder = useMemo(() => imageUrlBuilder(client), []);
   const urlFor = useMemo(
@@ -152,7 +160,11 @@ const PostsGrid = ({
         colCount={24}
         colGap={20}
         rowGap={20}
-        style={{ padding: "0 20px", maxWidth: "1280px", margin: "100px auto" }}
+        style={{
+          padding: "0 20px",
+          maxWidth: "1280px",
+          margin: "0 auto 100px",
+        }}
       >
         {posts.map((post, index: number) => (
           <Col
@@ -191,7 +203,7 @@ const PostsGrid = ({
                   href={`${locale}/${post.slug}`}
                 >
                   <span style={{ color: "white" }} className={archivo}>
-                    Découvrir
+                    {post.postgridCta}
                   </span>
                 </Link>
               </CardWrapper>

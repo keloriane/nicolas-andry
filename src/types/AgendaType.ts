@@ -12,4 +12,5 @@ export interface AgendaMain {
   agenda: AgendaType[];
   title: string;
   introductionText: [];
+  agendaCTA: string;
 }

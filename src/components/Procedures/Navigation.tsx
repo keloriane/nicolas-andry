@@ -15,8 +15,10 @@ const ArrowNav = styled.div`
   border-radius: 50px;
   width: 46px;
   height: 46px;
+
   &:hover {
     background-color: black;
+    cursor: pointer;
     svg {
       path {
         fill: white;

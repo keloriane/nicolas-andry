@@ -18,7 +18,7 @@ export default defineType({
     defineField({
       name: "agendaCTA",
       title: "Call to action agenda",
-      type: "blockContent",
+      type: "string",
     }),
     defineField({
       name: "agenda",

@@ -1,11 +1,9 @@
-import { client } from "../../../../sanity/lib/client";
-import { groq } from "next-sanity";
-import Agenda from "@/components/Agenda";
 import { archivo, playfare } from "../../font";
 import { GetAgendaData } from "../../../../sanity/lib/queries";
 
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Agenda from "@/components/Agenda";
 
 export default async function AgendaPage({
   params: { locale },
@@ -13,8 +11,6 @@ export default async function AgendaPage({
   params: { locale: string };
 }) {
   const agendaData = await GetAgendaData(locale);
-
-  console.log(agendaData);
 
   const agendaCreation = agendaData[1];
   const agendaAtelier = agendaData[2];
@@ -26,6 +22,7 @@ export default async function AgendaPage({
           locale={locale}
           introductionText={agendaData[0].introductionText}
           title={agendaData[0].title}
+          cta={agendaData[0].agendaCTA}
           agendaCreation={agendaCreation}
           agendaAtelier={agendaAtelier}
           playfare={playfare.className}

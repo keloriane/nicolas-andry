@@ -44,6 +44,8 @@ export default async function Home({
     introductionText,
   } = homeData.data;
 
+  console.log("POSTGRID", postGrid);
+
   const agendaData = await GetAgendaData(locale);
 
   const agendaCreation = agendaData[1];
@@ -71,6 +73,7 @@ export default async function Home({
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
         locale={locale}
+        cta={agendaData[0].agendaCTA}
         homePage
       />
 

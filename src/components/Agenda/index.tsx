@@ -68,6 +68,7 @@ const Agenda = ({
   title = "",
   introductionText,
   locale,
+  cta,
 }: {
   playfare: string;
   agendaPage?: boolean;
@@ -77,9 +78,8 @@ const Agenda = ({
   title: string;
   introductionText: [];
   locale: string;
+  cta?: string;
 }) => {
-  console.log(agendaCreation);
-
   return (
     <AgendaSection>
       <AgendaTextContainer>
@@ -187,7 +187,7 @@ const Agenda = ({
       </div>
       {homePage ? (
         <div className="cta_container" style={{ margin: "100px auto" }}>
-          <CTA href={`/${locale}/agenda`}>Voir plus de date</CTA>
+          <CTA href={`/${locale}/agenda`}>{cta}</CTA>
         </div>
       ) : (
         ""

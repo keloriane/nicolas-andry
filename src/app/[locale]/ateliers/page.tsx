@@ -10,7 +10,7 @@ import AterlierItem from "@/components/AtelierSection";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
 import AtelierNavigation from "@/components/AtelierNavigation";
 import Separator from "@/components/common/Separator";
-import { GetAgendaData } from "../../../../sanity/lib/queries";
+import { GetAgendaCTA, GetAgendaData } from "../../../../sanity/lib/queries";
 import Agenda from "@/components/Agenda";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -35,10 +35,9 @@ export default async function Ateliers({
 }: {
   params: { locale: string };
 }) {
+  const cta = await GetAgendaCTA(locale);
   const ateliers = await getAteliersData();
-  const agendaData = await GetAgendaData(locale);
-
-  console.log(ateliers);
+  console.log("Ateliers", ateliers);
 
   return (
     <main>
@@ -47,10 +46,10 @@ export default async function Ateliers({
         title={ateliers.mainTitle}
         introductionText={ateliers.introductionText[0].children[0].text}
       />
-      {/* 
+
       <div className="slider_container" style={{ paddingTop: "100px" }}>
         <Slider images={ateliers.images} centered={true} />
-      </div> */}
+      </div>
 
       <div className="atelier_container" style={{ position: "relative" }}>
         {/* <AterlierItem
@@ -63,7 +62,7 @@ export default async function Ateliers({
         />
 
         <Separator />
-        <AgendaCta locale={locale} />
+        <AgendaCta text={cta.agendaCTA} locale={locale} />
 
         <Contact archivo={archivo.className} />
         <Footer locale={locale} />

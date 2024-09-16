@@ -14,6 +14,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Link from "next/link";
 import { useFooter } from "@/context/FooterContext";
+import { usePathname } from "next/navigation";
 
 type ImageType = {
   url: string;
@@ -38,6 +39,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const pathname = usePathname();
 
   useLayoutEffect(() => {
     if (activePost) {
@@ -67,14 +69,16 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
 
   const navigation = useFooter();
 
-  const navigationAtelier = navigation?.atelierNavData[0]?.atelierItems;
+  const navigationAtelier = navigation?.atelierNavData?.[0]?.atelierItems;
 
-  const navigationCreation = navigation.navigationData.filter(
-    (nav: any) => nav.categories[0].title === "Creations"
+  const navigationCreation = navigation?.navigationData?.filter(
+    (nav: any) => nav.categories?.[0]?.title === "Creations"
   );
-  const navigationRecherche = navigation.navigationData.filter(
-    (nav: any) => nav.categories[0].title === "Recherches"
+  const navigationRecherche = navigation?.navigationData?.filter(
+    (nav: any) => nav.categories?.[0]?.title === "Recherches"
   );
+
+  const exactPath = pathname.split("/")[2];
 
   return (
     <PostContainer>
@@ -119,28 +123,28 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
           </ImageWrapper>
         ))}
       </GridContainerV>
-      {activePost?.remerciements ? (
+
+      {activePost?.remerciements && (
         <div className="thanks_container">
           <div>
             <h2>Remerciement</h2>
             <div className="rich-text">
-              <PortableText
-                value={activePost ? activePost.remerciements : []}
-              />
+              <PortableText value={activePost.remerciements} />
             </div>
           </div>
         </div>
-      ) : (
-        ""
       )}
 
       <section className="navigation_section">
         <div className="title-navigation_container">
-          <h2>Les autres créations</h2>
+          <h2>Les autres {exactPath.toWellFormed()}</h2>
         </div>
         <div className="navigation_container">
           <ul>
-            {navigationCreation.map((nav: any, index) => (
+            {(exactPath === "creations"
+              ? navigationCreation
+              : navigationRecherche
+            )?.map((nav: any, index) => (
               <li key={index}>
                 <Link href={`/${locale}/creations/${nav.slug.current}`}>
                   {nav.title}
@@ -153,4 +157,5 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
     </PostContainer>
   );
 };
+
 export default PostImageGrid;

@@ -17,8 +17,6 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
   const textContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const pathname = usePathname();
 
-  console.log(creations);
-
   const isMobile = () => window.innerWidth < 768;
 
   const handleMouseEnter = (index: number) => {

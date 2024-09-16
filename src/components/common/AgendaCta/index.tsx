@@ -2,18 +2,20 @@
 import React from "react";
 import { CTA } from "../Button/cta";
 import styled from "styled-components";
+import Link from "next/link";
 
-const CtaContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const AgendaCta = ({ locale }: { locale: string }) => {
+const AgendaCta = ({ locale, text }: { locale: string; text: string }) => {
   return (
-    <CtaContainer className="cta_container" style={{ margin: "100px auto" }}>
-      <CTA href={`/${locale}/agenda`}>Vers l'agenda</CTA>
-    </CtaContainer>
+    <div
+      className="main_cta"
+      style={{ display: "flex", justifyContent: "center", width: "100%" }}
+    >
+      <div className="cta_container">
+        <Link className="cta" href={`/${locale}/agenda`}>
+          <span>{text}</span>
+        </Link>
+      </div>
+    </div>
   );
 };
 

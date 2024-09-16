@@ -4,7 +4,11 @@ import { archivo, playfare } from "../../font";
 
 import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
-import { GetAgendaData, getCreationData } from "../../../../sanity/lib/queries";
+import {
+  GetAgendaCTA,
+  GetAgendaData,
+  getCreationData,
+} from "../../../../sanity/lib/queries";
 import Separator from "@/components/common/Separator";
 
 import Contact from "@/components/Contact";
@@ -23,9 +27,9 @@ export default async function Creations({
   params: { locale: string };
 }) {
   const creations = await getCreationData();
-  const creation = creations[0];
+  const cta = await GetAgendaCTA(locale);
 
-  console.log("CREATION" , creation.imageHeaderLeft.url);
+  const creation = creations[0];
 
   if (!creation) return <div>No creation data found</div>;
 
@@ -40,7 +44,7 @@ export default async function Creations({
       />
       <Postgrid locale={locale} creations={creations[0].posts} />
       <Separator />
-      <AgendaCta locale={locale} />
+      <AgendaCta text={cta.agendaCTA} locale={locale} />
 
       <Contact archivo={archivo.className} />
       <Footer locale={locale} />

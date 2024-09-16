@@ -227,6 +227,23 @@ h2 {
   object-fit: cover;
 }
 
+.contact_cta a {
+  font-weight: 700;
+}
+
+
+.cta {
+  background: transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid black;
+
+}
+.cta:hover {
+  border: 1px solid orange;
+  color: orange;
+}
 
 .loading-svg {
   width: 100%;

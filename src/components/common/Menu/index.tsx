@@ -22,7 +22,7 @@ const Menu = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
   const path = pathname.split("/")[2];
 
-  console.log("PATH", path);
+
 
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
 

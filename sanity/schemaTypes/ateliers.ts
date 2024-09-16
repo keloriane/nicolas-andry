@@ -21,6 +21,19 @@ export default defineField({
       type: "image",
     }),
     defineField({
+      name: "images",
+      title: "Images",
+      validation: (Rule) => Rule.required(),
+      type: "array",
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [{ name: "alt", type: "string" }],
+        },
+      ],
+    }),
+    defineField({
       title: "Atelier Items",
       name: "atelierItems",
       type: "array",
