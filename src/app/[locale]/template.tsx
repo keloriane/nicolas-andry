@@ -10,14 +10,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
-
     function animatePagein() {
       const el = document.querySelector(".content-anim");
       if (el) {
         gsap.set(el, { opacity: 0 });
-
         gsap.to(el, {
           duration: 1,
           opacity: 1,

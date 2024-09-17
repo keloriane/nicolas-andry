@@ -7,6 +7,7 @@ export default function Loading() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        flexDirection: "column",
       }}
     >
       <svg
@@ -32,7 +33,7 @@ export default function Loading() {
           fillOpacity="0.86"
         />
       </svg>
-      <h3>...</h3>
+      <h3>Chargement</h3>
     </div>
   );
 }

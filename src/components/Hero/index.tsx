@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import ResponsiveText from "../common/ResponsiveText";
 import styled from "styled-components";
 import GridContainer from "../common/Container";
@@ -40,12 +40,19 @@ const HeaderContainer = styled.section`
   gap: 24px;
   justify-content: center;
   align-items: center;
+  opacity: 0; // Initially hidden
+  transition: opacity 0.1s ease-in; // Smooth transition
   .svg_cta {
     svg {
       width: 50px;
       height: 50px;
     }
   }
+  /* h1,
+  h2,
+  p {
+    opacity: 0;
+  } */
 `;
 
 const Hero = ({
@@ -60,6 +67,7 @@ const Hero = ({
   subtitle: string;
   presentationText: [];
 }) => {
+  const heroContainer = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     const mainTitle = new SplitType("h1.title-main", {
       types: "words",
@@ -71,9 +79,14 @@ const Hero = ({
       types: "lines",
     });
 
+    gsap.set([mainTitle.words, subTitle.words, paragraphe.lines], {
+      opacity: 0,
+    });
+
     const chars = mainTitle.words;
     const chars2 = subTitle.words;
     const lines = paragraphe.lines;
+    gsap.to(heroContainer.current, { opacity: 1 });
     gsap.fromTo(
       chars,
       {
@@ -121,7 +134,7 @@ const Hero = ({
   });
 
   return (
-    <HeaderContainer>
+    <HeaderContainer ref={heroContainer}>
       <TextContainer className={clash}>
         <ResponsiveText
           sizes={["48px", "36px", "60px"]}
