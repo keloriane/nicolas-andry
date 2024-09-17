@@ -21,6 +21,12 @@ const AgendaSection = styled.section`
     text-align: center;
     padding: 40px 0px;
   }
+  .cta_container {
+    div {
+      min-width: 135px;
+      text-align: center;
+    }
+  }
   .agenda_cta {
     text-align: center;
   }
