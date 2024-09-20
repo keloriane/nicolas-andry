@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
@@ -34,9 +34,6 @@ export default async function Page({
   params: { slug: string; locale: string };
 }) {
   const post: PostDataType[] = await fetchPageData(params.slug);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
 
   return (
     <div style={{ paddingTop: "150px" }}>
