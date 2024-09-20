@@ -21,7 +21,7 @@ const PostPageComponent = ({
 }) => {
   useEffect(() => {
     // Trigger the scroll to top on page load
-    gsap.to(window, { duration: 1, scrollTo: 0 });
+    window.scrollTo(0, 0);
   }, []);
 
   return (

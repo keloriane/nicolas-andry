@@ -34,6 +34,9 @@ export default async function Page({
   params: { slug: string; locale: string };
 }) {
   const post: PostDataType[] = await fetchPageData(params.slug);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <div style={{ paddingTop: "150px" }}>

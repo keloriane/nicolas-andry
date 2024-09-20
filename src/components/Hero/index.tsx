@@ -1,21 +1,16 @@
 "use client";
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import ResponsiveText from "../common/ResponsiveText";
 import styled from "styled-components";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
-import Button from "../common/Button";
 import { theme } from "@/styles/theme";
-import AnimatedText from "../common/AnimatedText";
 import { PortableText } from "next-sanity";
 import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { archivo } from "@/app/font";
-import arrowDown from "@/../public/arrow_down.svg";
+
 import Link from "next/link";
 import ArrowDown from "../common/ArrowDown";
-import { LanguageContext } from "@/context/LanguageContext";
 
 const TextContainer = styled.div`
   text-align: center;
@@ -86,7 +81,7 @@ const Hero = ({
     const chars = mainTitle.words;
     const chars2 = subTitle.words;
     const lines = paragraphe.lines;
-    gsap.to(heroContainer.current, { opacity: 1 });
+    gsap.to(heroContainer.current, { autoAlpha: 1 });
     gsap.fromTo(
       chars,
       {

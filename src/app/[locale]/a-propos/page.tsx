@@ -75,7 +75,7 @@ export default async function AboutPage({
         />
 
         <Separator size={100} />
-        <AgendaCta locale={locale} />
+        <AgendaCta text="" locale={locale} />
         <Separator size={100} />
         <Contact archivo={archivo.className} />
         <Footer locale={locale} />
