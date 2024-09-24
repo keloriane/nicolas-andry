@@ -65,8 +65,8 @@ export default defineType({
           type: "object",
           fields: [
             defineField({
-              title: "Title Content",
-              name: "title_content",
+              title: "Title",
+              name: "title",
               type: "string",
             }),
             defineField({
@@ -83,7 +83,7 @@ export default defineType({
           fields: [
             defineField({
               title: "Title",
-              name: "title_content",
+              name: "title",
               type: "string",
             }),
             defineField({

@@ -3,7 +3,7 @@ import { playfare } from "@/app/font";
 import { urlFor } from "@/lib/imageBuilder";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ArrowLeft from "../common/ArrowLeft";
 import TransitionLink from "../common/TransitionLink";
@@ -19,10 +19,6 @@ const NavSection = styled.nav<{ isFixed: boolean }>`
   display: inline-block;
   width: 100%;
   background-color: white;
-  @media screen and (max-width: 768px) {
-    display: none;
-    background-color: blue;
-  }
   position: ${({ isFixed }) => (isFixed ? "fixed" : "relative")};
   top: ${({ isFixed }) => (isFixed ? "27px" : "auto")};
   z-index: ${({ isFixed }) => (isFixed ? "1000" : "auto")};
@@ -32,6 +28,9 @@ const NavSection = styled.nav<{ isFixed: boolean }>`
     gap: 24px;
     li {
       color: ${theme.colors.black};
+      &.active {
+        color: ${theme.colors.orange};
+      }
       &:hover {
         color: ${theme.colors.orange};
       }
@@ -124,19 +123,45 @@ const BlockSections = ({
   title: string;
 }) => {
   const [isFixed, setIsFixed] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const sectionRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
+      setIsFixed(window.scrollY > 200);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setActiveSection(id);
+          }
+        });
+      },
+      { threshold: 0.9 } // Adjust based on when you want to trigger the active state
+    );
+
+    sectionRefs.current.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      sectionRefs.current.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
     };
   }, []);
 
@@ -152,8 +177,8 @@ const BlockSections = ({
       window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
   };
-
   const router = useRouter();
+  console.log("ATELIERS ", ateliers);
 
   return (
     <MainSection>
@@ -169,7 +194,10 @@ const BlockSections = ({
         <NavSection className="section_nav" isFixed={isFixed}>
           <ul>
             {ateliers.map((section, index) => (
-              <li key={section.title || index}>
+              <li
+                key={section.title || index}
+                className={activeSection === section.title ? "active" : ""}
+              >
                 <a
                   href={`#${section.title || section.title_content}`}
                   onClick={(e) =>
@@ -186,14 +214,16 @@ const BlockSections = ({
       {ateliers.map((section, index) => (
         <BlockSectionWrapper
           key={section.title || index}
+          id={section.title || section.title_content}
           reversed={index % 2 !== 0}
           hasimage={Boolean(section.image)}
-          id={section.title || section.title_content}
+          ref={(el) => {
+            sectionRefs.current[index] = el;
+          }}
         >
           <div className="text_container">
-            <h2 className={playfare.className}>
-              {section.title || section.title_content}
-            </h2>
+            <h2>{section.title || section.title_content}</h2>
+
             <PortableText
               value={
                 section.content_text

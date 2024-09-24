@@ -22,8 +22,6 @@ const Menu = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
   const path = pathname.split("/")[2];
 
-
-
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
 
   useEffect(() => {
@@ -80,11 +78,13 @@ const Menu = ({ locale }: { locale: string }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  console.log("PATH", path);
+
   return (
     <S.MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">
         <TransitionLink href={`/${locale}`}>
-          <Logo />
+          <Logo fill={path === undefined ? "#f59628" : "black"} />
         </TransitionLink>
       </div>
       <div className="agenda_cta">
@@ -98,7 +98,7 @@ const Menu = ({ locale }: { locale: string }) => {
                 >
                   <span
                     style={{
-                      color: path === item.link ? "orange" : "black",
+                      color: path === `${item.link}` ? "orange" : "black",
                     }}
                   >
                     {item.name}
