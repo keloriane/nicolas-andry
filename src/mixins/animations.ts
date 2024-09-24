@@ -37,7 +37,7 @@ export function imageClipAnimation(
   const clipTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: container,
-      start: "top 20%",
+      start: "top 60%",
       end: "bottom 20%",
       toggleActions: "play none none none",
     },

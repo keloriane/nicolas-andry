@@ -50,5 +50,5 @@ export default async function Page({
 
   console.log(cta.agendaCta);
 
-  return <PostPageComponent params={params} cta={cta.agendaCta} post={post} />;
+  return <PostPageComponent params={params} cta={cta.agendaCTA} post={post} />;
 }

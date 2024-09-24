@@ -46,6 +46,9 @@ export const AtelierNavigationSection = styled.div`
     right: 0;
     bottom: 0;
     overflow: hidden;
+    @media screen and (max-width: 840px) {
+      display: none;
+    }
 
     img {
       object-fit: cover;

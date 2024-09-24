@@ -105,7 +105,7 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
             />
           </SwiperSlide>
         ))}
-        <div className="navigation__container">
+        <div className="navigation__container" style={{ marginTop: "80px" }}>
           <Navigation />
         </div>
       </Swiper>
