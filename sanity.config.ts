@@ -19,6 +19,10 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [
+    {
+      name: "Dashboard",
+      path: "/studio",
+    },
     structureTool(),
     vercelDeployTool(),
 

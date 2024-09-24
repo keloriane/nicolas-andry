@@ -220,6 +220,7 @@ const BlockSections = ({
           reversed={index % 2 !== 0}
           hasimage={Boolean(section.image)}
           ref={(el) => {
+            //@ts-ignore
             sectionRefs.current[index] = el;
           }}
         >
