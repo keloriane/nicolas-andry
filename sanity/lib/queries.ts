@@ -21,7 +21,7 @@ export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
 
 }`;
 
-export const DEMARCHE_QUERY = groq`*[_type == "home"][0]{ demarches,procedureTitle }`;
+export const DEMARCHE_QUERY = groq`*[_type == "home"][0]{ demarches,procedureTitle , procedureText }`;
 
 export const NAVIGATION_QUERY = groq`*[_type == "post"]{
   title,

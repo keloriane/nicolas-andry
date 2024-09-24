@@ -61,11 +61,13 @@ const Procedures = ({
   title,
   homePage = false,
   locale,
+  text,
 }: {
   demarche: [{ title: string; description: [] }];
   title: string;
   homePage?: boolean;
   locale: string;
+  text: string;
 }) => {
   return (
     <SectionContainer>
@@ -78,12 +80,7 @@ const Procedures = ({
           >
             {title}
           </ResponsiveText>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae
-            eligendi fugit autem velit accusamus, officia ratione, beatae culpa
-            dicta temporibus voluptatum rem? Tempore dolorem praesentium quam
-            est nihil esse sit.
-          </p>
+          <p>{text}</p>
 
           {homePage ? (
             <Button text="En savoir plus" href={`${locale}/about`} />

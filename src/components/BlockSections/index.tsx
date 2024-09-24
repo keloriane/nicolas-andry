@@ -112,6 +112,7 @@ const BlockSectionWrapper = styled.section<{
 const BlockSections = ({
   ateliers,
   title,
+  locale,
 }: {
   ateliers: Array<{
     title: string;
@@ -121,6 +122,7 @@ const BlockSections = ({
     image?: any;
   }>;
   title: string;
+  locale: string;
 }) => {
   const [isFixed, setIsFixed] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -184,9 +186,9 @@ const BlockSections = ({
     <MainSection>
       <div>
         <div className="headline_section">
-          <span onClick={router.back}>
+          <Link href={`/${locale}/ateliers`}>
             <ArrowLeft />
-          </span>
+          </Link>
           <h1 style={{ fontSize: "43px" }} className={playfare.className}>
             {title}
           </h1>

@@ -20,8 +20,6 @@ import Separator from "@/components/common/Separator";
 
 import { HomeData } from "@/types/HomeData";
 import Agenda from "@/components/Agenda";
-import { AgendaMain, AgendaType } from "@/types/AgendaType";
-import Lenis from "lenis";
 
 async function GetHomeData(lang: string = "fr") {
   const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
@@ -35,14 +33,7 @@ export default async function Home({
   params: { locale: string };
 }) {
   const homeData = await GetHomeData(locale);
-  const {
-    title,
-    subtitle,
-    postGrid,
-    demarches,
-    presentationText,
-    introductionText,
-  } = homeData.data;
+  const { title, subtitle, postGrid, introductionText } = homeData.data;
 
   console.log("POSTGRID", postGrid);
 

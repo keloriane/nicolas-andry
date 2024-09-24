@@ -94,15 +94,12 @@ const Agenda = ({
             {title}
           </ResponsiveText>
         </TitleContainer>
-        {homePage ? (
-          <div className={archivo.className}>
-            <div className="rich-text">
-              <PortableText value={introductionText} />
-            </div>
+
+        <div className={archivo.className}>
+          <div className="rich-text">
+            <PortableText value={introductionText} />
           </div>
-        ) : (
-          ""
-        )}
+        </div>
       </AgendaTextContainer>
 
       <div className="agenda_wrapper">

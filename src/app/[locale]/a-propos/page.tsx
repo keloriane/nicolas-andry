@@ -29,6 +29,7 @@ interface ProceduresData {
   demarches: [{ title: string; description: [] }];
 
   procedureTitle: string;
+  procedureText: string;
 }
 
 export const metadata: Metadata = {
@@ -43,14 +44,7 @@ export default async function AboutPage({
 }) {
   const parcours = await loadQuery<ParcoursData>(PARCOURS_QUERY);
   const procedures = await loadQuery<ProceduresData>(DEMARCHE_QUERY);
-  const agendaData = await Promise.all([
-    loadQuery<AgendaMain>(AGENDA_QUERY),
-    loadQuery<AgendaType[]>(AGENDA_CREATION_QUERY),
-    loadQuery<AgendaType[]>(AGENDA_ATELIER_QUERY),
-  ]);
 
-  const agendaCreation = agendaData[1];
-  const agendaAtelier = agendaData[2];
   return (
     <div>
       <section style={{ paddingTop: "150px" }}>
@@ -64,6 +58,7 @@ export default async function AboutPage({
         <Procedures
           demarche={procedures.data.demarches}
           title={procedures.data.procedureTitle}
+          text={procedures.data.procedureText}
           locale={locale}
         />
 

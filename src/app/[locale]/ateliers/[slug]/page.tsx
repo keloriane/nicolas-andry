@@ -29,7 +29,11 @@ export default async function AtelierPage({
 
   return (
     <div style={{ paddingTop: "100px" }}>
-      <BlockSections ateliers={ateliers.contentBlocks} title={ateliers.title} />
+      <BlockSections
+        ateliers={ateliers.contentBlocks}
+        title={ateliers.title}
+        locale={params.locale}
+      />
       <Footer locale={params.locale} />
     </div>
   );

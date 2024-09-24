@@ -13,7 +13,7 @@ const PostHeader = ({ post, locale }: { post: any; locale: string }) => {
       <GridContainer colCount={24} colGap={20}>
         <Col
           column={[2, 2, 5, 5]}
-          span={[22, 22, 16, 16]}
+          span={[22, 22, 13, 13]}
           className="text_header_wrapper"
         >
           <div className="rich-text">

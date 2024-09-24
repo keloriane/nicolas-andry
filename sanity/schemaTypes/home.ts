@@ -69,6 +69,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "procedureText",
+      title: "Demarches text",
+      type: "text",
+    }),
+    defineField({
       name: "demarches",
       title: "Démarches",
       type: "array",

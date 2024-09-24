@@ -1,7 +1,10 @@
 import React from "react";
 import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import { getCreationData } from "../../../../../sanity/lib/queries";
+import {
+  GetAgendaCTA,
+  getCreationData,
+} from "../../../../../sanity/lib/queries";
 import { Metadata } from "next";
 import PostPageComponent from "@/components/PostPageComponent";
 
@@ -43,6 +46,9 @@ export default async function Page({
   params: { slug: string; locale: string };
 }) {
   const post = await fetchPageData(params.slug);
+  const cta = await GetAgendaCTA();
 
-  return <PostPageComponent params={params} post={post} />;
+  console.log(cta.agendaCta);
+
+  return <PostPageComponent params={params} cta={cta.agendaCta} post={post} />;
 }
