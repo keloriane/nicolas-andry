@@ -38,6 +38,9 @@ export const PostGrid = styled.div`
       h2 {
         font-size: 20px;
         margin: 10px 0;
+        @media screen and (max-width: 840px) {
+          font-size: 16px;
+        }
       }
       p {
         font-size: 12px;
@@ -62,10 +65,21 @@ export const PostGrid = styled.div`
       bottom: -35%;
       left: 0;
       width: 100%;
-
       padding: 20px;
       background-color: #222222bf;
       z-index: 1;
+    }
+    @media screen and (max-width: 840px) {
+      .layer {
+        left: 0 !important;
+        width: 100% !important;
+        /* padding: 20px; */
+        background-color: #222222bf;
+        z-index: 1;
+        top: 82% !important;
+        height: 18% !important;
+        font-size: 12px;
+      }
     }
   }
 `;

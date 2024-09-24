@@ -23,6 +23,10 @@ const NavSection = styled.nav<{ isFixed: boolean }>`
   top: ${({ isFixed }) => (isFixed ? "27px" : "auto")};
   z-index: ${({ isFixed }) => (isFixed ? "1000" : "auto")};
 
+  @media screen and (max-width: 840px) {
+    display: none;
+  }
+
   ul {
     display: flex;
     gap: 24px;
@@ -179,7 +183,6 @@ const BlockSections = ({
       window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
   };
-  const router = useRouter();
   console.log("ATELIERS ", ateliers);
 
   return (
@@ -218,7 +221,7 @@ const BlockSections = ({
           key={section.title || index}
           id={section.title || section.title_content}
           reversed={index % 2 !== 0}
-          hasimage={Boolean(section.image)}
+          hasimage={section.image ? true : undefined}
           ref={(el) => {
             //@ts-ignore
             sectionRefs.current[index] = el;
