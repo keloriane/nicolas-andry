@@ -14,7 +14,7 @@ const PostHeader = ({ post, locale }: { post: any; locale: string }) => {
         <Col
           column={[2, 2, 5, 5]}
           span={[22, 22, 13, 13]}
-          className="text_header_wrapper"
+          className="text_header_wrapper inset"
         >
           <div className="rich-text">
             <Link href={`/${locale}/creations`} className="arrow_link">
