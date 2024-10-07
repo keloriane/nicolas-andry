@@ -8,7 +8,7 @@ import { archivo, playfare } from "../../font";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
 import Postgrid from "@/components/Postgrig";
 import Separator from "@/components/common/Separator";
-import { GetAgendaCTA, GetAgendaData } from "../../../../sanity/lib/queries";
+import { getAgendaCTA } from "../../../../sanity/lib/queries";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AgendaCta from "@/components/common/AgendaCta";
@@ -31,7 +31,7 @@ export default async function Creations({
   params: { locale: string };
 }) {
   const research = await getResearchData();
-  const cta = await GetAgendaCTA(locale);
+  const cta = await getAgendaCTA(locale);
 
   return (
     <main>

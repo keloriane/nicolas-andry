@@ -8,7 +8,7 @@ export const MenuContainer = styled.header`
   align-items: center;
   width: 100%;
   z-index: 200;
-  color: ${theme.colors.black} !important;
+  color: ${theme.colors.black};
   background-color: ${theme.colors.white};
 
   z-index: 100;

@@ -132,6 +132,7 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
           iconClose: () => <button className="yarl__button">fermer</button>,
         }}
         slides={imageSlides}
+        carousel={{ preload: imageSlides.length }}
       />
     </>
   ) : (

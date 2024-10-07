@@ -29,7 +29,7 @@ const PostHeader = ({
     <PostContainer className="dark_bg">
       <div className="hero">
         <div className="hero_layer"></div>
-        <Image src={mainImage} alt="" fill />
+        <Image className="image_hero_layer" src={mainImage} alt="" fill />
         <div className="text_container">
           <ResponsiveText
             as={"h1"}
@@ -58,16 +58,6 @@ const PostHeader = ({
           span={[22, 22, 13, 13]}
           className="text_header_wrapper"
         >
-          <Link
-            href={
-              path[2] === "creations"
-                ? `/${locale}/creations`
-                : `/${locale}/recherches`
-            }
-            className="arrow_link"
-          >
-            <ArrowLeft />
-          </Link>
           <div className="rich-text">
             <div className="inner_text">
               <PortableText value={post?.content || []} />

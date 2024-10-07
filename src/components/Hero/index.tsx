@@ -7,10 +7,8 @@ import { PortableText } from "next-sanity";
 import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { archivo } from "@/app/font";
+import { archivo, playfare } from "@/app/font";
 import imageBackground from "@/../public/hors-series-argentique-08.png";
-import Link from "next/link";
-import ArrowDown from "../common/ArrowDown";
 import Image from "next/image";
 
 const TextContainer = styled.div`
@@ -20,13 +18,17 @@ const TextContainer = styled.div`
   text-align: center;
   font-weight: 100;
   width: 100%;
-  margin: auto;
+  padding: 20px;
+
   position: relative;
   z-index: 10;
+  margin: 150px auto;
   p {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 24px;
-    font-size: 16px;
+    line-height: 36px;
+    font-size: 24px;
+    color: #a5a5a5;
+    font-weight: 100;
+
     @media screen and (max-width: 740px) {
       font-size: 14px;
     }
@@ -43,6 +45,21 @@ const HeaderContainer = styled.section`
   transition: opacity 0.1s ease-in; // Smooth transition
   .title-main {
     color: ${theme.colors.white};
+    font-family: ${playfare.style.fontFamily};
+  }
+  .subtitle-main {
+    font-family: ${playfare.style.fontFamily};
+  }
+
+  .text_wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
   }
   .hero {
     width: 100vw;
@@ -162,11 +179,11 @@ const Hero = ({
   });
 
   return (
-    <HeaderContainer ref={heroContainer} className="dark_bg">
-      <div className="hero">
+    <HeaderContainer ref={heroContainer}>
+      <div className="hero dark_bg">
         <div className="hero_layer"></div>
         <Image src={imageBackground} alt="" fill />
-        <TextContainer className={clash}>
+        <div className={"text_wrapper"}>
           <ResponsiveText
             sizes={["48px", "36px", "110px"]}
             className="title-main"
@@ -181,7 +198,7 @@ const Hero = ({
           >
             <span style={{ color: "#FEB865" }}>{subtitle}</span>
           </ResponsiveText>
-        </TextContainer>
+        </div>
       </div>
 
       <TextContainer className="rich-text text-hero">
@@ -189,10 +206,6 @@ const Hero = ({
           <PortableText value={presentationText} />
         </div>
       </TextContainer>
-
-      <Link href="#post-navigation" className="svg_cta">
-        <ArrowDown />
-      </Link>
     </HeaderContainer>
   );
 };

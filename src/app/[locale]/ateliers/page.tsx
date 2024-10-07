@@ -1,20 +1,13 @@
 import React from "react";
 
-import Menu from "@/components/common/Menu";
-import { archivo, playfare } from "../../font";
+import { playfare } from "../../font";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import Slider from "@/components/Slider";
-import AterlierItem from "@/components/AtelierSection";
 
 import FullHeader from "@/components/common/PageHeader/FullHeader";
 import AtelierNavigation from "@/components/AtelierNavigation";
 import Separator from "@/components/common/Separator";
-import { GetAgendaCTA, GetAgendaData } from "../../../../sanity/lib/queries";
-import Agenda from "@/components/Agenda";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import AgendaCta from "@/components/common/AgendaCta";
 
 async function getAteliersData() {
   return await client.fetch(

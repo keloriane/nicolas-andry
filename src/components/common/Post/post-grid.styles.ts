@@ -8,6 +8,13 @@ export const PostContainer = styled.div`
     z-index: 10;
     padding-bottom: 44px;
   }
+
+  .thanks_container {
+    width: 100%;
+    max-width: 1280px;
+    padding-top: 150px;
+    margin: auto;
+  }
   .creation_title {
     font-family: ${playfare.style.fontFamily};
     color: ${theme.colors.white};
@@ -43,9 +50,9 @@ export const PostContainer = styled.div`
       rgba(102, 102, 102, 0.23) 108%,
       rgba(70, 70, 70, 1) 100%
     );
-    img {
-      object-fit: contain;
-    }
+  }
+  .image_hero_layer {
+    object-fit: cover;
   }
 
   .thanks_container {

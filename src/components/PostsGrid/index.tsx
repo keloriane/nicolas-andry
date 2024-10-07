@@ -124,30 +124,6 @@ const PostsGrid = ({
 
   const maskContainers = useRef<HTMLDivElement[]>([]);
 
-  useGSAP(() => {
-    maskContainers.current.forEach((el) => {
-      gsap.set(el.querySelector(".maskImage"), { scale: 1.4 });
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: "top 50%",
-          end: "bottom 40%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      tl.to(
-        el.querySelector(".maskImage"),
-        {
-          scale: 1,
-          duration: 1.8,
-          ease: "expo.out",
-        },
-        0
-      );
-    });
-  });
-
   return (
     <PostGridContainer id="post-navigation">
       <GridContainer

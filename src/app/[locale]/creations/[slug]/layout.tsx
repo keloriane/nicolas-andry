@@ -1,51 +1,19 @@
-import type { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
-import "./../globals.css";
-import { MenuProvider } from "@/context/MenuContext";
-import { FooterProvider } from "@/context/FooterContext";
-
-import { NextIntlClientProvider } from "next-intl";
-import Menu from "@/components/common/Menu";
-import { LanguageProvider } from "@/context/LanguageContext";
-
-import { AgendaDataProvider } from "@/context/AgendaContext";
-import OGImage from "@/app/opengraph-image.png";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import {
   getAgendaCTA,
   getContactData,
   getFooterData,
-} from "../../../sanity/lib/queries";
-import { archivo } from "../font";
+} from "../../../../../sanity/lib/queries";
+import { NextIntlClientProvider } from "next-intl";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { MenuProvider } from "@/context/MenuContext";
+import { AgendaDataProvider } from "@/context/AgendaContext";
+import { FooterProvider } from "@/context/FooterContext";
+import Menu from "@/components/common/Menu";
 import AgendaCta from "@/components/common/AgendaCta";
-
-export const metadata: Metadata = {
-  title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
-  description: "Nicolas andry photographie",
-  openGraph: {
-    title: "Nicolas Andry",
-    description:
-      "Muer en gestes les questions, besoins, émotions. Pétrir ces matières, qui me pétrissent à leur tour.",
-    url: "https://nicolas-andry.vercel.app",
-    siteName: "Nicolas Andry",
-    images: [
-      {
-        url: OGImage.src,
-        width: 800,
-        height: 600,
-      },
-      {
-        url: OGImage.src,
-        width: 1800,
-        height: 1600,
-        alt: "My custom alt",
-      },
-    ],
-    locale: "fr_BE",
-    type: "website",
-  },
-};
+import Contact from "@/components/Contact";
+import { archivo } from "@/app/font";
+import Footer from "@/components/Footer";
 
 export default async function RootLayout({
   children,
@@ -70,7 +38,6 @@ export default async function RootLayout({
           <MenuProvider locale={locale}>
             <AgendaDataProvider locale={locale}>
               <FooterProvider>
-                <Menu locale={locale} />
                 {children}
                 <AgendaCta text={ctaData.agendaCTA} locale={locale} />
                 <Contact

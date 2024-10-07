@@ -9,7 +9,7 @@ import * as S from "./menu.styles";
 import { usePathname, useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import Logo from "../Logo";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,44 +22,57 @@ const Menu = ({ locale }: { locale: string }) => {
   const path = pathname.split("/")[2];
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
 
-  // Function to change menu background to transparent and text color to white
   const changeMenuStyle = (isDark: boolean) => {
-    if (pathname === "/fr" || path === "creations" || path === "recherches") {
-      if (navBar.current) {
-        gsap.to(navBar.current, {
-          backgroundColor: isDark ? "transparent" : "#FFFFFF",
-          color: isDark ? "#FFFFFF" : `${theme.colors.black}`,
-          duration: 0.5,
-        });
-      }
+    if (navBar.current) {
+      gsap.to(navBar.current, {
+        backgroundColor: isDark ? "transparent" : "#FFFFFF",
+        color: isDark ? "#FFFFFF" : `${theme.colors.black}`,
+        duration: 0.5,
+      });
     }
   };
 
-  // ScrollTrigger setup to re-run on pathname change
   useEffect(() => {
-    const updateScrollTrigger = () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Clean up previous triggers
+    if (pathname === "/fr") {
+      let ctx = gsap.context(() => {
+        const setupScrollTrigger = () => {
+          // Kill any existing ScrollTriggers
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-      ScrollTrigger.create({
-        trigger: ".dark_bg", // Class of the element to watch
-        start: "top center", // Start when top of .dark-bg hits center of the viewport
-        end: "bottom center", // End when bottom of .dark-bg leaves center of the viewport
-        onEnter: () => changeMenuStyle(true), // On entering .dark-bg, set transparent menu and white text
-        onLeave: () => changeMenuStyle(false), // On leaving .dark-bg, revert to original menu style
-        onEnterBack: () => changeMenuStyle(true), // On scrolling back into .dark-bg
-        onLeaveBack: () => changeMenuStyle(false), // On scrolling out of .dark-bg from the bottom
+          // Find all elements with the 'dark_bg' class
+
+          const darkBgElements = document.querySelectorAll(".dark_bg");
+
+          darkBgElements.forEach((element, index) => {
+            ScrollTrigger.create({
+              trigger: element,
+              start: "top center",
+              end: "bottom center",
+              onEnter: () => changeMenuStyle(true),
+              onLeave: () => changeMenuStyle(false),
+              onEnterBack: () => changeMenuStyle(true),
+              onLeaveBack: () => changeMenuStyle(false),
+              id: `dark-bg-${index}`,
+            });
+          });
+        };
+        setupScrollTrigger();
+
+        // Initial setup
+
+        // Re-run setup after a short delay to ensure DOM is updated
+        const timeoutId = setTimeout(setupScrollTrigger, 100);
+
+        return () => {
+          clearTimeout(timeoutId);
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        };
       });
-    };
 
-    updateScrollTrigger();
+      return () => ctx.revert();
+    }
+  }, [pathname, path]);
 
-    // Cleanup function to kill ScrollTriggers
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [pathname]); // Re-run effect whenever pathname changes
-
-  // Handle locale changes
   useEffect(() => {
     const parts = pathname.split("/");
     const detectedLocale = parts[1] || "fr";
@@ -82,6 +95,11 @@ const Menu = ({ locale }: { locale: string }) => {
       opacity: 0,
       x: "100%",
       ease: "power3.in",
+      onComplete: () => {
+        if (fullScreenMenu.current) {
+          fullScreenMenu.current.style.visibility = "hidden";
+        }
+      },
     });
   };
 
@@ -152,7 +170,10 @@ const Menu = ({ locale }: { locale: string }) => {
             </li>
           ))}
           <li>
-            <select value={selectedLocale}>
+            <select
+              value={selectedLocale}
+              onChange={(e) => setSelectedLocale(e.target.value)}
+            >
               <option value="fr">Français</option>
               <option value="en">English</option>
               <option value="nl">Nederlands</option>

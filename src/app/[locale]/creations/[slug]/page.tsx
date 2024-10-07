@@ -1,12 +1,10 @@
 import React from "react";
 import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import {
-  GetAgendaCTA,
-  getCreationData,
-} from "../../../../../sanity/lib/queries";
+import { getCreationData } from "../../../../../sanity/lib/queries";
 import { Metadata } from "next";
 import PostPageComponent from "@/components/PostPageComponent";
+import Menu from "@/components/common/Menu";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
@@ -46,9 +44,11 @@ export default async function Page({
   params: { slug: string; locale: string };
 }) {
   const post = await fetchPageData(params.slug);
-  const cta = await GetAgendaCTA();
 
-
-
-  return <PostPageComponent params={params} post={post} />;
+  return (
+    <>
+      <Menu locale={"fr"} />
+      <PostPageComponent params={params} post={post} />;
+    </>
+  );
 }

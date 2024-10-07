@@ -6,9 +6,8 @@ import { loadQuery } from "@./../../sanity/lib/store";
 import Banner from "@/components/Banner";
 import bannerImage from "@/../public/banner.png";
 import {
-  FOOTER_QUERY,
-  GetAgendaData,
-  getContactData,
+  getAgendaData,
+  getHomeData,
   HOME_QUERY,
 } from "./../../../sanity/lib/queries";
 import AboutSection from "@/components/About";
@@ -16,9 +15,8 @@ import Separator from "@/components/common/Separator";
 import { HomeData } from "@/types/HomeData";
 import { FooterData } from "@/types/ContactData";
 import dynamic from "next/dynamic";
-
-const Contact = dynamic(() => import("@/components/Contact"));
-const Footer = dynamic(() => import("@/components/Footer"));
+import { AgendaMain, AgendaType } from "@/types/AgendaType";
+import Menu from "@/components/common/Menu";
 const Agenda = dynamic(() => import("@/components/Agenda"));
 
 async function GetHomeData(lang: string = "fr") {
@@ -33,17 +31,17 @@ export default async function Home({
   params: { locale: string };
 }) {
   const [homeData, agendaData] = await Promise.all([
-    GetHomeData(locale),
-    GetAgendaData(locale),
+    getHomeData(locale),
+    getAgendaData(locale),
   ]);
 
   const { title, subtitle, postGrid, introductionText } = homeData.data;
-
-  const agendaCreation = agendaData[1];
-  const agendaAtelier = agendaData[2];
+  const agendaCreation = agendaData.creationEvents;
+  const agendaAtelier = agendaData.atelierEvents;
 
   return (
     <main>
+      <Menu locale={locale} />
       <Hero
         title={title}
         subtitle={subtitle}
@@ -58,13 +56,13 @@ export default async function Home({
         locale={locale}
       />
       <Agenda
-        introductionText={agendaData[0].introductionText}
-        title={agendaData[0].title}
+        introductionText={agendaData.agendaMain.introductionText}
+        title={agendaData.agendaMain.title}
         agendaCreation={agendaCreation}
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
         locale={locale}
-        cta={agendaData[0].agendaCTA}
+        cta={agendaData.agendaMain.agendaCTA}
         homePage
       />
 
