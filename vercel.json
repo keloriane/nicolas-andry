@@ -1,6 +1,9 @@
 {
   "version": 2,
   "functions": {
+    "app/api/**/*": {
+      "maxDuration": 20
+    },
     "app/studio/**/*": {
       "maxDuration": 20
     }
