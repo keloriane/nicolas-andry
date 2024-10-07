@@ -9,7 +9,6 @@ export const MenuContainer = styled.header`
   width: 100%;
   z-index: 200;
   color: ${theme.colors.black};
-  background-color: ${theme.colors.white};
 
   z-index: 100;
   @media screen and (max-width: 768px) {

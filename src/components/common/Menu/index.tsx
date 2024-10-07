@@ -33,44 +33,43 @@ const Menu = ({ locale }: { locale: string }) => {
   };
 
   useEffect(() => {
-    if (pathname === "/fr") {
-      let ctx = gsap.context(() => {
-        const setupScrollTrigger = () => {
-          // Kill any existing ScrollTriggers
-          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    console.log(pathname.split("/"));
+    let ctx = gsap.context(() => {
+      const setupScrollTrigger = () => {
+        // Kill any existing ScrollTriggers
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-          // Find all elements with the 'dark_bg' class
+        // Find all elements with the 'dark_bg' class
 
-          const darkBgElements = document.querySelectorAll(".dark_bg");
+        const darkBgElements = document.querySelectorAll(".dark_bg");
 
-          darkBgElements.forEach((element, index) => {
-            ScrollTrigger.create({
-              trigger: element,
-              start: "top center",
-              end: "bottom center",
-              onEnter: () => changeMenuStyle(true),
-              onLeave: () => changeMenuStyle(false),
-              onEnterBack: () => changeMenuStyle(true),
-              onLeaveBack: () => changeMenuStyle(false),
-              id: `dark-bg-${index}`,
-            });
+        darkBgElements.forEach((element, index) => {
+          ScrollTrigger.create({
+            trigger: element,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => changeMenuStyle(true),
+            onLeave: () => changeMenuStyle(false),
+            onEnterBack: () => changeMenuStyle(true),
+            onLeaveBack: () => changeMenuStyle(false),
+            id: `dark-bg-${index}`,
           });
-        };
-        setupScrollTrigger();
+        });
+      };
+      setupScrollTrigger();
 
-        // Initial setup
+      // Initial setup
 
-        // Re-run setup after a short delay to ensure DOM is updated
-        const timeoutId = setTimeout(setupScrollTrigger, 100);
+      // Re-run setup after a short delay to ensure DOM is updated
+      const timeoutId = setTimeout(setupScrollTrigger, 100);
 
-        return () => {
-          clearTimeout(timeoutId);
-          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        };
-      });
+      return () => {
+        clearTimeout(timeoutId);
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    });
 
-      return () => ctx.revert();
-    }
+    return () => ctx.revert();
   }, [pathname, path]);
 
   useEffect(() => {
