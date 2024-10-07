@@ -8,16 +8,21 @@ import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { archivo } from "@/app/font";
-
+import imageBackground from "@/../public/hors-series-argentique-08.png";
 import Link from "next/link";
 import ArrowDown from "../common/ArrowDown";
+import Image from "next/image";
 
 const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   text-align: center;
   font-weight: 100;
   width: 100%;
-  max-width: 800px;
   margin: auto;
+  position: relative;
+  z-index: 10;
   p {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     line-height: 24px;
@@ -29,7 +34,6 @@ const TextContainer = styled.div`
 `;
 
 const HeaderContainer = styled.section`
-  padding-top: 150px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -37,6 +41,35 @@ const HeaderContainer = styled.section`
   align-items: center;
   opacity: 0; // Initially hidden
   transition: opacity 0.1s ease-in; // Smooth transition
+  .title-main {
+    color: ${theme.colors.white};
+  }
+  .hero {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    display: flex;
+  }
+  .hero_layer {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 99%;
+    background: rgb(255, 255, 255);
+    z-index: 1;
+    background: linear-gradient(
+      75deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 41%,
+      rgba(21, 21, 21, 0.32) 71%,
+      rgba(102, 102, 102, 0.23) 108%,
+      rgba(70, 70, 70, 1) 100%
+    );
+    img {
+      object-fit: contain;
+    }
+  }
   .svg_cta {
     svg {
       width: 50px;
@@ -129,23 +162,27 @@ const Hero = ({
   });
 
   return (
-    <HeaderContainer ref={heroContainer}>
-      <TextContainer className={clash}>
-        <ResponsiveText
-          sizes={["48px", "36px", "60px"]}
-          className="title-main"
-          as="h1"
-        >
-          <span>{title}</span>
-        </ResponsiveText>
-        <ResponsiveText
-          sizes={["48px", "36px", "55px"]}
-          className="subtitle-main"
-          as="h2"
-        >
-          <span style={{ color: theme.colors.orange }}>{subtitle}</span>
-        </ResponsiveText>
-      </TextContainer>
+    <HeaderContainer ref={heroContainer} className="dark_bg">
+      <div className="hero">
+        <div className="hero_layer"></div>
+        <Image src={imageBackground} alt="" fill />
+        <TextContainer className={clash}>
+          <ResponsiveText
+            sizes={["48px", "36px", "110px"]}
+            className="title-main"
+            as="h1"
+          >
+            <span>{title}</span>
+          </ResponsiveText>
+          <ResponsiveText
+            sizes={["48px", "36px", "110px"]}
+            className="subtitle-main"
+            as="h2"
+          >
+            <span style={{ color: "#FEB865" }}>{subtitle}</span>
+          </ResponsiveText>
+        </TextContainer>
+      </div>
 
       <TextContainer className="rich-text text-hero">
         <div className={archivo.className}>

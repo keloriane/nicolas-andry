@@ -1,25 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import AgendaCard from "../common/AgendaCard";
 import styled from "styled-components";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
-import Button from "../common/Button";
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo } from "@/app/font";
 import { AgendaType } from "@/types/AgendaType";
 import { PortableText } from "next-sanity";
-import home from "../../../sanity/schemaTypes/home";
 import { CTA } from "../common/Button/cta";
+import PrelineTitle from "../common/PrelineTitle";
 
 const AgendaSection = styled.section`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 480px) {
+    padding: 25px;
+  }
 
+  padding-top: 50px;
   padding-bottom: 75px;
   .agenda_title {
     text-align: center;
-    padding: 40px 0px;
+    padding: 30px 0px;
   }
   .cta_container {
     div {
@@ -34,6 +35,7 @@ const AgendaSection = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+
     @media screen and (max-width: 768px) {
       grid-template-columns: 1fr;
     }
@@ -57,11 +59,11 @@ const AgendaTextContainer = styled.div`
   max-width: 600px;
   padding: 20px;
   margin: 0 auto;
-  div {
-    margin-bottom: 20px;
-  }
+
   p {
     text-align: center;
+    height: 17px;
+    display: inline-block;
   }
 `;
 
@@ -86,12 +88,15 @@ const Agenda = ({
   locale: string;
   cta?: string;
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <AgendaSection>
       <AgendaTextContainer>
         <TitleContainer className={playfare}>
           <ResponsiveText as="h2" sizes={["20", "24", "45"]}>
-            {title}
+            <PrelineTitle>{title}</PrelineTitle>
           </ResponsiveText>
         </TitleContainer>
 
@@ -165,13 +170,6 @@ const Agenda = ({
                   date={agendaAtelier[0].date}
                   details={agendaAtelier[0].descriptionB}
                 />
-                {/* <AgendaCard
-                  contact={agendaAtelier[1].contact}
-                  title={agendaAtelier[1].title}
-                  location={agendaAtelier[1].location}
-                  date={agendaAtelier[1].date}
-                  details={agendaAtelier[1].descriptionB}
-                /> */}
               </>
             ) : (
               agendaAtelier.map((agenda: AgendaType, i: number) => (

@@ -12,6 +12,7 @@ import ateliers from "./schemaTypes/ateliers";
 import atelierItems from "./schemaTypes/atelierItems";
 import menu from "./schemaTypes/menu";
 import contact from "./schemaTypes/contact";
+import footer from "./schemaTypes/footer";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,5 +28,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     menu,
     atelierItems,
     contact,
+    footer,
   ],
 };

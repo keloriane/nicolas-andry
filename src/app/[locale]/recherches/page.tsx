@@ -44,11 +44,6 @@ export default async function Creations({
       />
       <Postgrid locale={locale} creations={research[0].posts} />
       <Separator />
-      <AgendaCta text={cta.agendaCTA} locale={locale} />
-
-      <Contact archivo={archivo.className} />
-
-      <Footer locale={locale} />
     </main>
   );
 }

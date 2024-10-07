@@ -16,12 +16,18 @@ const FooterContainer = styled.footer`
   background-color: #1e1e1e;
   color: black;
   font-weight: 700;
+  position: relative;
   a {
     &:hover {
       rect {
         fill: ${theme.colors.orangeL};
       }
     }
+  }
+
+  .logo_item {
+    position: absolute;
+    top: 10%;
   }
   .line {
     width: 95%;
@@ -35,6 +41,9 @@ const FooterContainer = styled.footer`
     display: flex;
     justify-content: space-around;
     width: 100%;
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
   }
 
   .footer_header {
@@ -100,7 +109,15 @@ const FooterContainer = styled.footer`
   }
 `;
 
-const Footer = ({ locale }: { locale: string }) => {
+const Footer = ({
+  locale,
+  cookie,
+  droit,
+}: {
+  locale: string;
+  cookie: string;
+  droit: string;
+}) => {
   const navigation = useFooter();
 
   const navigationAtelier = navigation?.atelierNavData[0]?.atelierItems;
@@ -117,7 +134,7 @@ const Footer = ({ locale }: { locale: string }) => {
       <div className="footer_header">
         <div className="line"></div>
         <div className="logo_container">
-          <Link href={"/"} className="logo_container">
+          <Link href={"/"} className="logo_item">
             <svg
               width="55"
               height="72"
@@ -183,8 +200,8 @@ const Footer = ({ locale }: { locale: string }) => {
       </div>
       <div className="footer_wrapper">
         <div className="footer_copyright">
-          <span className={archivo.className}>Tout droit réservé.</span>
-          <span>This website is cookie free.</span>
+          <span className={archivo.className}>{droit}</span>
+          <span>{cookie}</span>
           <span>
             made by{"    "}
             <Link href="https://www.pxl-studio.com">

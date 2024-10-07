@@ -19,7 +19,7 @@ const ArrowLeft: React.FC = () => {
         fill="#525252"
       />
       {/* Animated orange stroke */}
-      <circle cx="20" cy="20" r="19.5" stroke={theme.colors.orange} />
+      <circle cx="20" cy="20" r="19.5" stroke={theme.colors.black} />
     </svg>
   );
 };

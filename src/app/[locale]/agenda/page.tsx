@@ -28,8 +28,6 @@ export default async function AgendaPage({
           playfare={playfare.className}
           homePage={false}
         />
-        <Contact archivo={archivo.className} />
-        <Footer locale={locale} />
       </div>
     </div>
   );

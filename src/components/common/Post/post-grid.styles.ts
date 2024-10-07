@@ -3,27 +3,62 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  margin: auto;
+  .text_container {
+    position: relative;
+    z-index: 10;
+    padding-bottom: 44px;
+  }
+  .creation_title {
+    font-family: ${playfare.style.fontFamily};
+    color: ${theme.colors.white};
+  }
+  .creation_subtitle {
+    font-family: ${playfare.style.fontFamily};
+    color: ${theme.colors.orangeL};
+  }
+  .hero {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: flex-end;
+    color: white;
+  }
+
+  .hero_layer {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    z-index: 1;
+    background: linear-gradient(
+      75deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 41%,
+      rgba(21, 21, 21, 0.32) 71%,
+      rgba(102, 102, 102, 0.23) 108%,
+      rgba(70, 70, 70, 1) 100%
+    );
+    img {
+      object-fit: contain;
+    }
+  }
+
   .thanks_container {
     display: flex;
     gap: 20px;
     flex-direction: column;
     margin-top: 20px;
     h2 {
-      font-size: 40px;
+      font-size: 30px;
       display: inline-block;
-      @media screen and (max-width: 640px) {
-        margin-left: 0px;
-      }
     }
     .rich-text {
       margin-top: 20px;
-      margin-left: 100px;
-      @media screen and (max-width: 640px) {
-        margin-left: 0px;
-      }
     }
   }
 
@@ -67,12 +102,12 @@ export const PostContainer = styled.div`
     margin-top: 100px;
     margin-bottom: 100px;
     font-weight: 400;
+    @media screen and (max-width: 480px) {
+      padding: 25px;
+    }
     a:hover {
       color: ${theme.colors.orange};
     }
-  }
-  h3 {
-    margin-left: 54px;
   }
 
   .navigation_container {
@@ -81,6 +116,7 @@ export const PostContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+
     ul {
       width: 100%;
       max-width: 960px;
@@ -92,33 +128,9 @@ export const PostContainer = styled.div`
     }
   }
 
-  .rich-text {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    flex-direction: column;
-    gap: 20px;
-    .arrow_link {
-      top: 33px;
-      left: 0px;
-      position: absolute;
-    }
-    .inner_text {
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      color: ${theme.colors.orange};
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
   .image_wrapper {
     opacity: 0;
-    transition: opacity 0.5s ease-in-out; /* Add transition effect */
+    transition: opacity 0.5s ease-in-out;
   }
 
   .image_wrapper.loaded {
@@ -128,23 +140,14 @@ export const PostContainer = styled.div`
   h3 {
     font-family: ${playfare.style.fontFamily};
   }
-  h3 {
-    color: ${theme.colors.orange};
-    font-size: 34px;
-  }
+
   h2 {
     font-size: 47px;
-    margin-left: 50px;
   }
 
   p {
     font-size: 16px;
     line-height: 30px;
-  }
-  nav {
-    width: 100%;
-    border-top: 1px solid #1e1e1e;
-    padding-top: 55px;
   }
 
   .header_info {
@@ -153,7 +156,6 @@ export const PostContainer = styled.div`
     height: 400px;
     .text_header_wrapper {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 400px;
@@ -205,6 +207,9 @@ export const GridContainerV = styled.div`
   column-count: 4;
   margin-top: 100px;
   padding: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
   figure {
     margin-bottom: 20px;
   }

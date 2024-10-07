@@ -1,7 +1,6 @@
 "use client";
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import styled from "styled-components";
 import { theme } from "@/styles/theme";
 import { archivo } from "@/app/font";
 import { useMenu } from "@/context/MenuContext";
@@ -10,39 +9,62 @@ import * as S from "./menu.styles";
 import { usePathname, useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import Logo from "../Logo";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Menu = ({ locale }: { locale: string }) => {
   const navBar = useRef<HTMLHeadElement>(null);
   const fullScreenMenu = useRef<HTMLDivElement>(null);
   const menuTrigger = useRef<HTMLButtonElement>(null);
-  const [navItem, setNavItem] = useState([{ name: "home", link: "" }]);
   const { menuItems } = useMenu();
-
-  const router = useRouter();
   const pathname = usePathname();
   const path = pathname.split("/")[2];
-
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
 
+  // Function to change menu background to transparent and text color to white
+  const changeMenuStyle = (isDark: boolean) => {
+    if (pathname === "/fr" || path === "creations" || path === "recherches") {
+      if (navBar.current) {
+        gsap.to(navBar.current, {
+          backgroundColor: isDark ? "transparent" : "#FFFFFF",
+          color: isDark ? "#FFFFFF" : `${theme.colors.black}`,
+          duration: 0.5,
+        });
+      }
+    }
+  };
+
+  // ScrollTrigger setup to re-run on pathname change
+  useEffect(() => {
+    const updateScrollTrigger = () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Clean up previous triggers
+
+      ScrollTrigger.create({
+        trigger: ".dark_bg", // Class of the element to watch
+        start: "top center", // Start when top of .dark-bg hits center of the viewport
+        end: "bottom center", // End when bottom of .dark-bg leaves center of the viewport
+        onEnter: () => changeMenuStyle(true), // On entering .dark-bg, set transparent menu and white text
+        onLeave: () => changeMenuStyle(false), // On leaving .dark-bg, revert to original menu style
+        onEnterBack: () => changeMenuStyle(true), // On scrolling back into .dark-bg
+        onLeaveBack: () => changeMenuStyle(false), // On scrolling out of .dark-bg from the bottom
+      });
+    };
+
+    updateScrollTrigger();
+
+    // Cleanup function to kill ScrollTriggers
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [pathname]); // Re-run effect whenever pathname changes
+
+  // Handle locale changes
   useEffect(() => {
     const parts = pathname.split("/");
     const detectedLocale = parts[1] || "fr";
     setSelectedLocale(detectedLocale);
-    setNavItem(menuItems);
   }, [pathname]);
-
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = e.target.value;
-    const segments = pathname.split("/").filter(Boolean);
-    if (segments[0] === selectedLocale) {
-      segments[0] = newLocale;
-    } else {
-      segments.unshift(newLocale);
-    }
-
-    const newPathname = `/${segments.join("/")}`;
-    router.push(newPathname);
-  };
 
   const openMenu = () => {
     gsap.to(fullScreenMenu.current, {
@@ -59,26 +81,9 @@ const Menu = ({ locale }: { locale: string }) => {
       duration: 0.5,
       opacity: 0,
       x: "100%",
-
       ease: "power3.in",
     });
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        fullScreenMenu.current &&
-        !fullScreenMenu.current.contains(event.target as Node)
-      ) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  console.log("PATH", path);
 
   return (
     <S.MenuContainer ref={navBar} className={archivo.className}>
@@ -98,7 +103,7 @@ const Menu = ({ locale }: { locale: string }) => {
                 >
                   <span
                     style={{
-                      color: path === `${item.link}` ? "orange" : "black",
+                      color: path === `${item.link}` ? "orange" : "",
                     }}
                   >
                     {item.name}
@@ -106,17 +111,18 @@ const Menu = ({ locale }: { locale: string }) => {
                 </TransitionLink>
               </li>
             ))}
-            {/* <li>
-              <select value={selectedLocale} onChange={handleLanguageChange}>
-                <option value="fr">Français</option>
-                <option value="en">English</option>
-                <option value="nl">Nederlands</option>
-              </select>
-            </li> */}
           </ul>
         </nav>
         <div className="cta_container">
-          <Link href={`/${locale}/agenda`} className="cta">
+          <Link
+            href={`/${locale}/agenda`}
+            className="cta"
+            style={
+              path === "agenda"
+                ? { backgroundColor: theme.colors.orange }
+                : { backgroundColor: "" }
+            }
+          >
             Agenda
           </Link>
         </div>
@@ -146,7 +152,7 @@ const Menu = ({ locale }: { locale: string }) => {
             </li>
           ))}
           <li>
-            <select value={selectedLocale} onChange={handleLanguageChange}>
+            <select value={selectedLocale}>
               <option value="fr">Français</option>
               <option value="en">English</option>
               <option value="nl">Nederlands</option>

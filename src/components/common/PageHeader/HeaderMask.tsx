@@ -21,8 +21,8 @@ const HeaderMask: React.FC<PageHeaderType> = ({
   imageRight,
 }) => {
   return (
-    <>
-      <GridContainer colCount={24} style={{ paddingTop: "150px" }}>
+    <div style={{ paddingTop: "150px" }}>
+      <GridContainer colCount={24}>
         <Col
           column={[3, 3, 7, 7, 3]}
           span={[21, 21, 21, 21, 10]}
@@ -63,12 +63,7 @@ const HeaderMask: React.FC<PageHeaderType> = ({
           />
         </Col>
       </GridContainer>
-      <S.ArrowDown className="ar_cta">
-        <Link href="#creations" className="svg_cta">
-          <ArrowDown />
-        </Link>
-      </S.ArrowDown>
-    </>
+    </div>
   );
 };
 

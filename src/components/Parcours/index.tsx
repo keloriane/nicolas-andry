@@ -56,11 +56,11 @@ const ParcoursContainer = styled.section`
   }
   .year-wrapper {
     background-color: ${theme.colors.orange};
+    color: ${theme.colors.black};
 
     padding: 2px 10px;
     font-size: 18px;
     font-weight: 400;
-    color: ${theme.colors.white};
     max-width: 65px;
     font-weight: 600;
     p {
@@ -85,7 +85,7 @@ const Parcours = ({
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
         <Col
           column={[2, 2, 3]}
-          span={[24, 20, 20]}
+          span={[24, 20, 14]}
           className="parcours-wrapper"
         >
           <ResponsiveText
@@ -95,7 +95,7 @@ const Parcours = ({
           >
             Parcour
           </ResponsiveText>
-          <div className="parcour-container">
+          <div className="parcour-container" style={{ marginTop: "50px" }}>
             {parcours.map((parcour, index) => (
               <div className={"parcour-card rich-text"} key={index}>
                 <span className={"year-wrapper"}>

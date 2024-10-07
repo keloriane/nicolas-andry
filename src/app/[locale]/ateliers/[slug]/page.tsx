@@ -34,7 +34,6 @@ export default async function AtelierPage({
         title={ateliers.title}
         locale={params.locale}
       />
-      <Footer locale={params.locale} />
     </div>
   );
 }

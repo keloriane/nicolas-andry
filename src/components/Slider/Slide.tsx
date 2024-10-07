@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const SlideContainer = styled.div`
   width: 300px;
-  height: 410px;
+  height: 340px;
   position: relative;
   cursor: pointer;
 `;

@@ -8,7 +8,7 @@ const Line = styled.div`
   height: 1px;
   background-color: ${theme.colors.black};
 `;
-const Separator = ({ size = 200 }: { size?: number }) => {
+const Separator = ({ size = 100 }: { size?: number }) => {
   return <Line style={{ margin: `${size}px auto` }} />;
 };
 

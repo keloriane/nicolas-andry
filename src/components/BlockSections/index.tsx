@@ -47,6 +47,7 @@ const MainSection = styled.section`
   max-width: 1340px;
   margin: auto;
   position: relative;
+  padding: 10px;
 
   .headline_section {
     display: flex;
@@ -183,7 +184,6 @@ const BlockSections = ({
       window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
   };
-  console.log("ATELIERS ", ateliers);
 
   return (
     <MainSection>

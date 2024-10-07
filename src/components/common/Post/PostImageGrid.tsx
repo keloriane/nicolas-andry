@@ -71,11 +71,18 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
 
   const navigationAtelier = navigation?.atelierNavData?.[0]?.atelierItems;
 
+  const pathSlug = pathname.split("/")[3];
+
   const navigationCreation = navigation?.navigationData?.filter(
-    (nav: any) => nav.categories?.[0]?.title === "Creations"
+    (nav: any) =>
+      nav.categories?.[0]?.title === "Creations" &&
+      nav.slug.current !== pathSlug
   );
+
   const navigationRecherche = navigation?.navigationData?.filter(
-    (nav: any) => nav.categories?.[0]?.title === "Recherches"
+    (nav: any) =>
+      nav.categories?.[0]?.title === "Recherches" &&
+      nav.slug.current !== pathSlug
   );
 
   const exactPath = pathname.split("/")[2];

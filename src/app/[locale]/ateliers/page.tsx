@@ -35,9 +35,7 @@ export default async function Ateliers({
 }: {
   params: { locale: string };
 }) {
-  const cta = await GetAgendaCTA(locale);
   const ateliers = await getAteliersData();
-  console.log("Ateliers", ateliers);
 
   return (
     <main>
@@ -52,20 +50,12 @@ export default async function Ateliers({
       </div>
 
       <div className="atelier_container" style={{ position: "relative" }}>
-        {/* <AterlierItem
-          mainSection={ateliers.globalSection}
-          sections={ateliers.globalSection[0].sections}
-        /> */}
         <AtelierNavigation
           atelierItems={ateliers.atelierItems}
           locale={locale}
         />
 
         <Separator />
-        <AgendaCta text={cta.agendaCTA} locale={locale} />
-
-        <Contact archivo={archivo.className} />
-        <Footer locale={locale} />
       </div>
     </main>
   );

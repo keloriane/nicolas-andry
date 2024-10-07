@@ -8,8 +8,10 @@ export const MenuContainer = styled.header`
   align-items: center;
   width: 100%;
   z-index: 200;
+  color: ${theme.colors.black} !important;
   background-color: ${theme.colors.white};
-  border-bottom: 1px solid rgba(240, 240, 240);
+
+  z-index: 100;
   @media screen and (max-width: 768px) {
     position: unset;
   }
@@ -51,7 +53,6 @@ export const MenuContainer = styled.header`
         display: none;
       }
       .link_transition_menu {
-        color: ${theme.colors.black};
         font-weight: 400;
 
         &:hover {

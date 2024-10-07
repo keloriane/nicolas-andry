@@ -6,15 +6,16 @@ export const AboutWrapper = styled.section`
   align-items: center;
   justify-content: center;
   gap: 24px;
+  .about-grid {
+    margin: auto;
+    max-width: 1320px;
+  }
 
   p {
     overflow: hidden;
   }
 
   .profile_pic {
-    overflow: hidden;
-    background: transparent;
-    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
     object-fit: cover;
   }
 

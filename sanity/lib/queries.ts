@@ -5,8 +5,10 @@ import { HomeData } from "@/types/HomeData";
 import { MenuType } from "@/types/MenuType";
 import { AgendaMain, AgendaType } from "@/types/AgendaType";
 import { Creation } from "@/types/Creations";
+import { ContactDataType, FooterData } from "@/types/ContactData";
 
 export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;
+export const FOOTER_QUERY = groq`*[_type == "footer"][0]`;
 
 export async function GetHomeData(lang: string = "fr") {
   const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
@@ -38,6 +40,7 @@ export const ATELIER_NAV = groq`*[_type == "ateliers"]{
   }
   `;
 
+export const CONTACT_QUERY = groq`*[_type == "contact"][0]`;
 export const ATELIER_QUERY = groq`*[_type == "ateliers"]`;
 export const RECHERCHES_QUERY = groq`*[_type == "recherches"][0]`;
 export const AGENDA_QUERY = groq`*[_type == "agenda"][0]`;
@@ -54,6 +57,11 @@ export async function GetAgendaData(lang: string = "fr") {
   ]);
 
   return agendaData;
+}
+
+export async function getContactData(lang: string) {
+  const res = await client.fetch<ContactDataType>(CONTACT_QUERY, { lang });
+  return res;
 }
 
 export async function GetAgendaCTA(lang: string = "fr") {
@@ -111,4 +119,8 @@ export async function getCreationData() {
       "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt }}
     }
   `);
+}
+
+export async function getFooterData() {
+  return await client.fetch<FooterData>(FOOTER_QUERY);
 }

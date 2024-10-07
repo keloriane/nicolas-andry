@@ -3,18 +3,12 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  margin: auto;
-  .rich-text {
-    a {
-      color: ${theme.colors.orange};
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+  .grid-section-header {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
   }
+
   li:hover {
     color: ${theme.colors.orange};
     color: blue;
@@ -31,10 +25,7 @@ export const PostContainer = styled.div`
   h3 {
     font-family: ${playfare.style.fontFamily};
   }
-  h3 {
-    color: ${theme.colors.orange};
-    font-size: 34px;
-  }
+
   h2 {
     font-size: 47px;
   }
@@ -42,11 +33,7 @@ export const PostContainer = styled.div`
     font-size: 18px;
     line-height: 30px;
   }
-  nav {
-    width: 100%;
-    border-top: 1px solid #1e1e1e;
-    padding-top: 55px;
-  }
+
   ul {
     display: flex;
     justify-content: space-around;

@@ -48,7 +48,19 @@ const ContactContainer = styled.section`
   }
 `;
 
-const Contact = ({ archivo }: { archivo: string }) => {
+const Contact = ({
+  archivo,
+  title,
+  description,
+  mail,
+  cta,
+}: {
+  archivo: string;
+  title: string;
+  description: string;
+  mail: string;
+  cta: string;
+}) => {
   return (
     <ContactContainer>
       <div className="contact_info">
@@ -73,20 +85,16 @@ const Contact = ({ archivo }: { archivo: string }) => {
             />
           </svg>
         </div>
-        <h2 className={playfare.className}>Me contacter</h2>
-        <p className={archivo}>
-          *Pour recevoir mes nouvelles d'activités, merci de m'envoyer un
-          courriel avec mention PROJETS et/ou ATELIERS selon le(s) contenu(s)
-          souhaité(s).
-        </p>
+        <h2 className={playfare.className}>{title}</h2>
+        <p className={archivo}>{description}</p>
         <div className="contact-cta">
-          <Link className="mail-link" href={"mailto:contact@nicolas-andry.com"}>
-            contact@nicolas-andry.com
+          <Link className="mail-link" href={`mailto:${mail}`}>
+            {mail}
           </Link>
         </div>
         <div className="cta_container">
-          <Link className="cta" href={"mailto:contact@nicolas-andry.com"}>
-            <span>Me contacter</span>
+          <Link className="cta" href={`mailto:${mail}`}>
+            <span>{cta}</span>
           </Link>
         </div>
       </div>

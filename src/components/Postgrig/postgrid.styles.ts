@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const PostGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }

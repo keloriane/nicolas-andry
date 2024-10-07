@@ -4,12 +4,10 @@ import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import PostHeader from "@/components/common/Post/PostHeader";
 import PostImageGrid from "@/components/common/Post/PostImageGrid";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import { archivo } from "@/app/font";
 import { PostDataType } from "@/types";
 import Separator from "../common/Separator";
-import AgendaCta from "../common/AgendaCta";
+import { urlFor } from "@/lib/imageBuilder";
+import { urlForImage } from "../../../sanity/lib/image";
 
 // Register the ScrollToPlugin with GSAP
 gsap.registerPlugin(ScrollToPlugin);
@@ -17,11 +15,9 @@ gsap.registerPlugin(ScrollToPlugin);
 const PostPageComponent = ({
   params,
   post,
-  cta,
 }: {
   params: { slug: string; locale: string };
   post: PostDataType[];
-  cta: string;
 }) => {
   useEffect(() => {
     // Trigger the scroll to top on page load
@@ -29,13 +25,14 @@ const PostPageComponent = ({
   }, []);
 
   return (
-    <div style={{ paddingTop: "150px" }}>
-      <PostHeader locale={params.locale} post={post[0]} />
+    <div>
+      <PostHeader
+        mainImage={urlForImage(post[0].mainImage)}
+        locale={params.locale}
+        post={post[0]}
+      />
       <PostImageGrid activePost={post[0]} locale={params.locale} />
       <Separator />
-      <AgendaCta text={cta} locale={params.locale} />
-      <Contact archivo={archivo.className} />
-      <Footer locale={params.locale} />
     </div>
   );
 };

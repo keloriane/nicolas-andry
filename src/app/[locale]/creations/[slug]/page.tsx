@@ -48,7 +48,7 @@ export default async function Page({
   const post = await fetchPageData(params.slug);
   const cta = await GetAgendaCTA();
 
-  console.log(cta.agendaCta);
 
-  return <PostPageComponent params={params} cta={cta.agendaCTA} post={post} />;
+
+  return <PostPageComponent params={params} post={post} />;
 }

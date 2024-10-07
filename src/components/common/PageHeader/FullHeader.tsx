@@ -22,10 +22,7 @@ const SectionContainer = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  h3 {
-    color: ${theme.colors.orange};
-    font-size: 34px;
-  }
+
   h1 {
     font-size: 64px;
     margin-left: 30px;
@@ -46,10 +43,6 @@ const FullHeader: React.FC<FullHeaderProps> = ({
   introductionText,
   playfare,
 }) => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const layerRef = useRef<HTMLDivElement>(null);
-
   return (
     <SectionContainer style={{ paddingTop: "180px", textAlign: "center" }}>
       <div className="title_container">
