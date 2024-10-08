@@ -93,7 +93,7 @@ const Parcours = ({
             sizes={["24px", "32px", "47px", "47px"]}
             className={playfare.className}
           >
-            Parcour
+            {presentationTitle}
           </ResponsiveText>
           <div className="parcour-container" style={{ marginTop: "50px" }}>
             {parcours.map((parcour, index) => (
