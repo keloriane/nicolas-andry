@@ -38,6 +38,7 @@ export default async function Page({
         mainImage={urlForImage(post[0].mainImage)}
         locale={params.locale}
         post={post[0]}
+        titleContent={post[0].title}
       />
       <PostImageGrid activePost={post[0]} locale={params.locale} />
     </div>

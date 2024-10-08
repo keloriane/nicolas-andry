@@ -17,7 +17,7 @@ async function getAteliersData() {
       imageHeader,
       introductionText,
       images,
-      "atelierItems": atelierItems[] -> {title , slug , image }
+      "atelierItems": atelierItems[] -> {title , slug , image , introductionText }
     }
   `
   );
@@ -29,7 +29,6 @@ export default async function Ateliers({
   params: { locale: string };
 }) {
   const ateliers = await getAteliersData();
-
   return (
     <main>
       <FullHeader

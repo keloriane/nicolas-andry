@@ -9,6 +9,16 @@ export const PostContainer = styled.div`
     padding-bottom: 44px;
   }
 
+  .breadcrumb {
+    font-size: 24px;
+    color: #919191;
+    width: 100%;
+    margin: 100px 0px;
+    .active_item {
+      color: ${theme.colors.orange};
+    }
+  }
+
   .thanks_container {
     width: 100%;
     max-width: 1280px;
@@ -75,10 +85,6 @@ export const PostContainer = styled.div`
       font-size: 30px;
       display: inline-block;
     }
-
-    .rich-text {
-      margin-top: 20px;
-    }
   }
 
   .rich-text {
@@ -92,9 +98,6 @@ export const PostContainer = styled.div`
     }
     a {
       color: aliceblue;
-    }
-    p {
-      margin-top: 20px;
     }
   }
 

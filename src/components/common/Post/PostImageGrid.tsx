@@ -85,6 +85,8 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
 
   const exactPath = pathname.split("/")[2];
 
+  const creationPath = pathname.split("/")[3];
+
   return (
     <PostContainer>
       <GridContainerV>

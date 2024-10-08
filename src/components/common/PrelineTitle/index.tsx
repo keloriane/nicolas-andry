@@ -21,6 +21,7 @@ const TitlePrelineStyle = styled.div`
     width: 55px;
     height: 1px;
     background-color: ${theme.colors.orange};
+    margin-top: 10px;
   }
   .word {
     display: flex;

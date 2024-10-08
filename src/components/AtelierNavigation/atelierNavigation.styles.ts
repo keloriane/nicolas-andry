@@ -1,4 +1,3 @@
-import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const AtelierNavigationSection = styled.div`
@@ -11,6 +10,9 @@ export const AtelierNavigationSection = styled.div`
   margin: 200px auto;
 
   flex-direction: column;
+  .introductionText {
+    margin-top: 25px;
+  }
   @media screen and (max-width: 1280px) {
     max-width: 840px;
   }
@@ -42,7 +44,7 @@ export const AtelierNavigationSection = styled.div`
     max-width: 327px;
     height: 433px;
     position: absolute;
-    top: -43%;
+    top: -7%;
     right: 0;
     bottom: 0;
     overflow: hidden;

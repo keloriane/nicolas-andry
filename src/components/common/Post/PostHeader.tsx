@@ -4,12 +4,12 @@ import GridContainer from "../Container";
 import Col from "../Col";
 import { PortableText } from "next-sanity";
 import { PostContainer } from "./post-grid.styles";
-import ArrowLeft from "../ArrowLeft";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import Image from "next/image";
-import PostContent from "../PostContent";
+
 import ResponsiveText from "../ResponsiveText";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const PostHeader = ({
   post,
@@ -24,8 +24,9 @@ const PostHeader = ({
 }) => {
   const pathname = usePathname();
 
-  console.log(post);
+  const exactPath = pathname.split("/")[2];
 
+  const creationPath = pathname.split("/")[3];
   return (
     <PostContainer className="dark_bg">
       <div className="hero">
@@ -39,8 +40,6 @@ const PostHeader = ({
           >
             {titleContent ? titleContent : ""}
           </ResponsiveText>
-          <PortableText value={post?.content || []} />
-
           {/* <ResponsiveText
             as={"h2"}
             sizes={["36px", "48px", "56px"]}
@@ -58,6 +57,13 @@ const PostHeader = ({
           span={[22, 22, 22, 22]}
           className="text_header_wrapper"
         >
+          <div className="breadcrumb">
+            <Link href={`/${locale}/${exactPath}`}>{exactPath}</Link>/
+            <Link className="active_item" href={`/${locale}/${exactPath}`}>
+              {titleContent}
+            </Link>
+          </div>
+
           <div className="rich-text">
             <div className="inner_text">
               <PortableText value={post?.content || []} />
