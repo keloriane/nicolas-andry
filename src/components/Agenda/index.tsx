@@ -77,6 +77,8 @@ const Agenda = ({
   introductionText,
   locale,
   cta,
+  titleAgendaCreation,
+  titleAgendaAtelier,
 }: {
   playfare: string;
   agendaPage?: boolean;
@@ -87,6 +89,8 @@ const Agenda = ({
   introductionText: [];
   locale: string;
   cta?: string;
+  titleAgendaCreation: string;
+  titleAgendaAtelier: string;
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -115,7 +119,7 @@ const Agenda = ({
               sizes={["18px", "24px", "30px"]}
               className={archivo.className}
             >
-              Agenda Creations
+              {titleAgendaCreation}
             </ResponsiveText>
           </div>
           <AgendaContainer>
@@ -127,6 +131,7 @@ const Agenda = ({
                   location={agendaCreation[0].location}
                   date={agendaCreation[0].date}
                   details={agendaCreation[0].descriptionB}
+                  accent
                 />
                 <AgendaCard
                   contact={agendaCreation[1].contact}
@@ -134,6 +139,7 @@ const Agenda = ({
                   location={agendaCreation[1].location}
                   date={agendaCreation[1].date}
                   details={agendaCreation[1].descriptionB}
+                  accent
                 />
               </>
             ) : (
@@ -145,6 +151,7 @@ const Agenda = ({
                   location={agenda.location}
                   date={agenda.date}
                   details={agenda.descriptionB}
+                  accent
                 />
               ))
             )}
@@ -157,7 +164,7 @@ const Agenda = ({
               sizes={["18px", "24px", "30px"]}
               className={archivo.className}
             >
-              Agenda Atelier
+              {titleAgendaAtelier}
             </ResponsiveText>
           </div>
           <AgendaContainer>
@@ -169,6 +176,7 @@ const Agenda = ({
                   location={agendaAtelier[0].location}
                   date={agendaAtelier[0].date}
                   details={agendaAtelier[0].descriptionB}
+                  accent={false}
                 />
               </>
             ) : (
@@ -180,6 +188,7 @@ const Agenda = ({
                   location={agenda.location}
                   date={agenda.date}
                   details={agenda.descriptionB}
+                  accent={false}
                 />
               ))
             )}

@@ -69,8 +69,6 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
 
   const navigation = useFooter();
 
-  const navigationAtelier = navigation?.atelierNavData?.[0]?.atelierItems;
-
   const pathSlug = pathname.split("/")[3];
 
   const navigationCreation = navigation?.navigationData?.filter(

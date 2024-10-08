@@ -13,4 +13,6 @@ export interface AgendaMain {
   title: string;
   introductionText: [];
   agendaCTA: string;
+  titleAgendaAtelier: string;
+  titleAgendaCreation: string;
 }

@@ -8,7 +8,7 @@ import { PortableText } from "next-sanity";
 
 const AgendaContainer = styled.div`
   display: flex;
-  gap: 25px;
+
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -36,18 +36,13 @@ const AgendaContainer = styled.div`
 `;
 
 const DateContainer = styled.div`
-  color: #fff2e3;
-  display: inline-flex;
-  position: relative;
+  max-width: 300px;
+  top: -30px;
+  left: -30px;
   p {
     font-size: 24px;
     padding: 9px;
     font-weight: 500;
-    position: absolute;
-    top: -30px;
-    left: -30px;
-    background-color: ${theme.colors.orange};
-    color: ${theme.colors.white};
     text-transform: capitalize;
     font-size: 18px;
     @media screen and (max-width: 760px) {
@@ -82,16 +77,34 @@ const AgendaCard = ({
   location,
   title,
   contact,
+  accent,
 }: {
   date: string;
   details: [];
   location: string;
   title: string;
   contact: [];
+  accent: boolean;
 }) => {
   return (
     <AgendaContainer className={archivo.className}>
-      <DateContainer>
+      <DateContainer
+        style={
+          accent
+            ? {
+                backgroundColor: theme.colors.orangeL,
+                color: theme.colors.black,
+                display: "inline-flex",
+                position: "relative",
+              }
+            : {
+                backgroundColor: theme.colors.black,
+                color: theme.colors.orangeL,
+                display: "inline-flex",
+                position: "relative",
+              }
+        }
+      >
         <ResponsiveText sizes={["12"]}>{date}</ResponsiveText>
       </DateContainer>
       <TextContainer>

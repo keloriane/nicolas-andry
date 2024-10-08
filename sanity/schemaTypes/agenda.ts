@@ -11,6 +11,16 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "titleAgendaCreation",
+      title: "Title Creation",
+      type: "string",
+    }),
+    defineField({
+      name: "titleAgendaAtelier",
+      title: "Title Atelier",
+      type: "string",
+    }),
+    defineField({
       name: "introductionText",
       title: "texte d'introduction",
       type: "blockContent",

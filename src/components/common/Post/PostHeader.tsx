@@ -15,16 +15,17 @@ const PostHeader = ({
   post,
   locale,
   mainImage,
+  titleContent,
 }: {
   post: any;
   locale: string;
   mainImage: string;
+  titleContent?: string;
 }) => {
   const pathname = usePathname();
 
-  const path = pathname.split("/");
+  console.log(post);
 
-  console.log(post.content);
   return (
     <PostContainer className="dark_bg">
       <div className="hero">
@@ -36,12 +37,11 @@ const PostHeader = ({
             sizes={["36px", "48px", "110px"]}
             className="creation_title"
           >
-            {post.content[0].children[0].text
-              ? post.content[0].children[0].text
-              : ""}
+            {titleContent ? titleContent : ""}
           </ResponsiveText>
+          <PortableText value={post?.content || []} />
 
-          <ResponsiveText
+          {/* <ResponsiveText
             as={"h2"}
             sizes={["36px", "48px", "56px"]}
             className="creation_subtitle"
@@ -49,13 +49,13 @@ const PostHeader = ({
             {post.content[1].children[0].text
               ? post.content[1].children[0].text
               : ""}
-          </ResponsiveText>
+          </ResponsiveText> */}
         </div>
       </div>
       <GridContainer colCount={24} colGap={20} className="grid-section-header">
         <Col
-          column={[2, 2, 5, 5]}
-          span={[22, 22, 13, 13]}
+          column={[2, 2, 2, 2]}
+          span={[22, 22, 22, 22]}
           className="text_header_wrapper"
         >
           <div className="rich-text">

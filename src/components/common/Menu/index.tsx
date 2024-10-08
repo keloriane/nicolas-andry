@@ -33,7 +33,6 @@ const Menu = ({ locale }: { locale: string }) => {
   };
 
   useEffect(() => {
-    console.log(pathname.split("/"));
     let ctx = gsap.context(() => {
       const setupScrollTrigger = () => {
         // Kill any existing ScrollTriggers

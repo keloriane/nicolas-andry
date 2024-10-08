@@ -14,6 +14,14 @@ export const PostContainer = styled.div`
     max-width: 1280px;
     padding-top: 150px;
     margin: auto;
+    h2 {
+      font-size: 36px;
+    }
+    blockquote {
+      font-weight: 100;
+      font-size: 18px;
+      line-height: 32px;
+    }
   }
   .creation_title {
     font-family: ${playfare.style.fontFamily};
@@ -25,13 +33,16 @@ export const PostContainer = styled.div`
   }
   .hero {
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-content: flex-end;
-    justify-content: flex-end;
+    align-content: center;
+    justify-content: center;
     color: white;
+    font-weight: 400;
+    text-align: center;
+    gap: 24px;
   }
 
   .hero_layer {
@@ -64,6 +75,7 @@ export const PostContainer = styled.div`
       font-size: 30px;
       display: inline-block;
     }
+
     .rich-text {
       margin-top: 20px;
     }
@@ -146,6 +158,10 @@ export const PostContainer = styled.div`
   h2,
   h3 {
     font-family: ${playfare.style.fontFamily};
+  }
+  h3 {
+    font-size: 24px;
+    color: ${theme.colors.orange};
   }
 
   h2 {

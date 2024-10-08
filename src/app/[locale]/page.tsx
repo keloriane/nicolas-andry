@@ -56,14 +56,16 @@ export default async function Home({
         locale={locale}
       />
       <Agenda
+        titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
+        titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}
+        locale={locale}
         introductionText={agendaData.agendaMain.introductionText}
         title={agendaData.agendaMain.title}
+        cta={agendaData.agendaMain.agendaCTA}
         agendaCreation={agendaCreation}
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
-        locale={locale}
-        cta={agendaData.agendaMain.agendaCTA}
-        homePage
+        homePage={false}
       />
 
       <Banner src={bannerImage} width={1120} height={316} />
