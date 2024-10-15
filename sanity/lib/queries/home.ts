@@ -13,7 +13,7 @@ export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
 export const DEMARCHE_QUERY = groq`*[_type == "home"][0]{ demarches, procedureTitle, procedureText }`;
 
 export async function getHomeData(lang: string = "fr") {
-  return loadQuery<HomeData>(HOME_QUERY, { lang });
+  return client.fetch<HomeData>(HOME_QUERY, { lang });
 }
 
 export async function getParcoursData() {

@@ -43,16 +43,20 @@ export const PostContainer = styled.div`
   }
   .hero {
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    align-content: flex-end;
+    justify-content: flex-end;
     color: white;
     font-weight: 400;
-    text-align: center;
+    text-align: left;
     gap: 24px;
+    h1 {
+      -webkit-text-stroke: 0.5px black;
+      text-stroke: 0.5px black;
+    }
   }
 
   .hero_layer {
@@ -63,14 +67,15 @@ export const PostContainer = styled.div`
     height: 100%;
     background: rgb(255, 255, 255);
     z-index: 1;
-    background: linear-gradient(
+    background: 100%;
+    /* background: linear-gradient(
       75deg,
       rgba(0, 0, 0, 0.6) 0%,
       rgba(0, 0, 0, 0.6) 41%,
       rgba(21, 21, 21, 0.32) 71%,
       rgba(102, 102, 102, 0.23) 108%,
       rgba(70, 70, 70, 1) 100%
-    );
+    ); */
   }
   .image_hero_layer {
     object-fit: cover;

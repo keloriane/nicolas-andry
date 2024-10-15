@@ -2,28 +2,17 @@ import React from "react";
 import Hero from "@/components/Hero";
 import PostsGrid from "@/components/PostsGrid";
 import { playfare, archivo } from "./../font";
-import { loadQuery } from "@./../../sanity/lib/store";
+
 import Banner from "@/components/Banner";
 import bannerImage from "@/../public/banner.png";
-import {
-  getAgendaData,
-  getHomeData,
-  HOME_QUERY,
-} from "./../../../sanity/lib/queries";
+import { getAgendaData, getHomeData } from "./../../../sanity/lib/queries";
 import AboutSection from "@/components/About";
 import Separator from "@/components/common/Separator";
-import { HomeData } from "@/types/HomeData";
-import { FooterData } from "@/types/ContactData";
+
 import dynamic from "next/dynamic";
-import { AgendaMain, AgendaType } from "@/types/AgendaType";
+
 import Menu from "@/components/common/Menu";
 const Agenda = dynamic(() => import("@/components/Agenda"));
-
-async function GetHomeData(lang: string = "fr") {
-  const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
-
-  return res;
-}
 
 export default async function Home({
   params: { locale },
@@ -35,7 +24,7 @@ export default async function Home({
     getAgendaData(locale),
   ]);
 
-  const { title, subtitle, postGrid, introductionText } = homeData.data;
+  const { title, subtitle, postGrid, introductionText } = homeData;
   const agendaCreation = agendaData.creationEvents;
   const agendaAtelier = agendaData.atelierEvents;
 
@@ -45,7 +34,6 @@ export default async function Home({
       <Hero
         title={title}
         subtitle={subtitle}
-        clash={playfare.className}
         satoshi={archivo.className}
         presentationText={introductionText}
       />
@@ -71,9 +59,9 @@ export default async function Home({
       <Banner src={bannerImage} width={1120} height={316} />
 
       <AboutSection
-        presentationTitle={homeData.data.presentationTitle}
-        imageProfile={homeData.data.imageProfile}
-        presentationText={homeData.data.presentationText}
+        presentationTitle={homeData.presentationTitle}
+        imageProfile={homeData.imageProfile}
+        presentationText={homeData.presentationText}
         homePage
         locale={locale}
       />

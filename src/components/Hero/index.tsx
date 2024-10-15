@@ -93,20 +93,13 @@ const HeaderContainer = styled.section`
       height: 50px;
     }
   }
-  /* h1,
-  h2,
-  p {
-    opacity: 0;
-  } */
 `;
 
 const Hero = ({
-  clash,
   title,
   subtitle,
   presentationText,
 }: {
-  clash: string;
   satoshi: string;
   title: string;
   subtitle: string;

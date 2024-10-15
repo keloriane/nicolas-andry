@@ -24,6 +24,7 @@ const PostPageComponent = ({
     window.scrollTo(0, 0);
   }, []);
 
+  console.log(post[0]);
   return (
     <div>
       <PostHeader

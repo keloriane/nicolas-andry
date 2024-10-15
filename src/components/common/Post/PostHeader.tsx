@@ -25,42 +25,34 @@ const PostHeader = ({
   const pathname = usePathname();
 
   const exactPath = pathname.split("/")[2];
-
-  const creationPath = pathname.split("/")[3];
   return (
     <PostContainer className="dark_bg">
       <div className="hero">
         <div className="hero_layer"></div>
         <Image className="image_hero_layer" src={mainImage} alt="" fill />
         <div className="text_container">
-          <ResponsiveText
+          {/* <ResponsiveText
             as={"h1"}
             sizes={["36px", "48px", "110px"]}
             className="creation_title"
           >
             {titleContent ? titleContent : ""}
-          </ResponsiveText>
-          {/* <ResponsiveText
-            as={"h2"}
-            sizes={["36px", "48px", "56px"]}
-            className="creation_subtitle"
-          >
-            {post.content[1].children[0].text
-              ? post.content[1].children[0].text
-              : ""}
           </ResponsiveText> */}
         </div>
       </div>
       <GridContainer colCount={24} colGap={20} className="grid-section-header">
         <Col
-          column={[2, 2, 2, 2]}
-          span={[22, 22, 22, 22]}
+          column={[2, 2, 2, 4]}
+          span={[22, 22, 22, 18]}
           className="text_header_wrapper"
         >
           <div className="breadcrumb">
-            <Link href={`/${locale}/${exactPath}`}>{exactPath}</Link>/
+            <Link href={`/${locale}/${exactPath}`}>
+              {exactPath.toUpperCase()}
+            </Link>
+            /
             <Link className="active_item" href={`/${locale}/${exactPath}`}>
-              {titleContent}
+              {titleContent?.toUpperCase()}
             </Link>
           </div>
 
