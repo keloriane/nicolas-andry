@@ -24,7 +24,7 @@ const PostPageComponent = ({
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(post[0]);
+  console.log(post);
   return (
     <div>
       <PostHeader
@@ -32,6 +32,8 @@ const PostPageComponent = ({
         locale={params.locale}
         post={post[0]}
         titleContent={post[0].title}
+        subtitleContent={post[0].subtitleContent}
+        date={post[0].date}
       />
       <PostImageGrid activePost={post[0]} locale={params.locale} />
       <Separator />

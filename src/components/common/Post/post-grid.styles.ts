@@ -3,6 +3,15 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
+  padding-top: 58px;
+  img {
+    max-width: 1280px;
+    margin: auto;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 0;
+  }
+
   .text_container {
     position: relative;
     z-index: 10;
@@ -10,10 +19,12 @@ export const PostContainer = styled.div`
   }
 
   .breadcrumb {
-    font-size: 24px;
+    font-size: 15px;
     color: #919191;
     width: 100%;
-    margin: 100px 0px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
     .active_item {
       color: ${theme.colors.orange};
     }
@@ -21,11 +32,15 @@ export const PostContainer = styled.div`
 
   .thanks_container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 640px;
     padding-top: 150px;
     margin: auto;
+
     h2 {
       font-size: 36px;
+      text-align: center;
+      display: inline-block;
+      width: 100%;
     }
     blockquote {
       font-weight: 100;
@@ -42,46 +57,38 @@ export const PostContainer = styled.div`
     color: ${theme.colors.orangeL};
   }
   .hero {
-    width: 100vw;
-    height: 70vh;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-end;
-    justify-content: flex-end;
-    color: white;
-    font-weight: 400;
-    text-align: left;
-    gap: 24px;
-    h1 {
-      -webkit-text-stroke: 0.5px black;
-      text-stroke: 0.5px black;
+    width: 100%;
+  }
+
+  .image_hero_wrapper {
+    position: relative;
+    width: 100%;
+    @media screen and (max-width: 1300px) {
+      padding-top: 54%;
+    }
+    padding-top: 56.25%; /* This maintains a 16:9 aspect ratio */
+  }
+
+  h1 {
+    font-size: 72px;
+    text-align: center;
+    @media screen and (max-width: 760px) {
+      font-size: 36px;
     }
   }
 
-  .hero_layer {
+  .image_hero_layer {
+    position: absolute;
     top: 0;
     left: 0;
-    position: absolute;
     width: 100%;
     height: 100%;
-    background: rgb(255, 255, 255);
-    z-index: 1;
-    background: 100%;
-    /* background: linear-gradient(
-      75deg,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.6) 41%,
-      rgba(21, 21, 21, 0.32) 71%,
-      rgba(102, 102, 102, 0.23) 108%,
-      rgba(70, 70, 70, 1) 100%
-    ); */
-  }
-  .image_hero_layer {
-    object-fit: cover;
+    object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
   }
 
   .thanks_container {
+    padding: 10px;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -92,7 +99,18 @@ export const PostContainer = styled.div`
     }
   }
 
+  .title_container {
+    text-align: center;
+    h2 {
+      color: ${theme.colors.orange};
+    }
+  }
   .rich-text {
+    margin: auto;
+    max-width: 640px;
+    width: 100%;
+    margin-top: 24px;
+    padding: 20px;
     ul {
       margin-top: 15px;
       margin-left: 30px;

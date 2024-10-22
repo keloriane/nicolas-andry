@@ -25,9 +25,14 @@ const FooterContainer = styled.footer`
     }
   }
 
+  .kf-logo {
+    width: 30px;
+  }
+
   .logo_item {
     position: absolute;
     top: 10%;
+    right: 48%;
   }
   .line {
     width: 95%;
@@ -91,9 +96,11 @@ const FooterContainer = styled.footer`
     text-align: center;
     font-weight: 300;
     color: ${theme.colors.white};
+    background-color: ${theme.colors.black};
     display: flex;
     gap: 24px;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
     height: 40px;
     span {
@@ -206,7 +213,44 @@ const Footer = ({
             made by{"    "}
             <Link href="https://www.pxl-studio.com">
               {" "}
-              <img src={pxl.src} alt="PXL Studio" />
+              <svg
+                className="kf-logo"
+                width="52"
+                height="59"
+                viewBox="0 0 52 59"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  y="-6.10352e-05"
+                  width="22.6982"
+                  height="52.3676"
+                  rx="8.53275"
+                  fill={"white"} // Set initial color
+                />
+                <rect
+                  x="29.8389"
+                  y="0.390137"
+                  width="22.6982"
+                  height="46.7931"
+                  rx="8.53275"
+                  transform="rotate(39.6189 29.8389 0.390137)"
+                  fill={"white"} // Set initial color
+                />
+                <rect
+                  x="51.4866"
+                  y="42.8381"
+                  width="22.6982"
+                  height="46.7931"
+                  rx="8.53275"
+                  transform="rotate(134.599 51.4866 42.8381)"
+                  fill={"white"} // Set initial color
+                />
+                <path
+                  d="M4.95863 37.4443V20.215H9.63612V27.1807H9.87167L15.0539 20.215H20.5054L14.6838 27.8874L20.64 37.4443H15.0539L11.1841 30.9833L9.63612 33.0023V37.4443H4.95863ZM21.8935 37.4443V20.215H34.0078V23.9839H26.571V26.9452H33.2675V30.7141H26.571V37.4443H21.8935Z"
+                  fill="black"
+                />
+              </svg>
             </Link>
           </span>
         </div>

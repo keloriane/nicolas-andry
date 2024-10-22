@@ -30,7 +30,6 @@ export default async function Home({
 
   return (
     <main>
-      <Menu locale={locale} />
       <Hero
         title={title}
         subtitle={subtitle}

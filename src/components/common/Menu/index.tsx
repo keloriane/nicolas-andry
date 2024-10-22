@@ -22,55 +22,6 @@ const Menu = ({ locale }: { locale: string }) => {
   const path = pathname.split("/")[2];
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
 
-  const changeMenuStyle = (isDark: boolean) => {
-    if (navBar.current) {
-      gsap.to(navBar.current, {
-        backgroundColor: isDark ? "transparent" : "#FFFFFF",
-        color: isDark ? "#FFFFFF" : `${theme.colors.black}`,
-        duration: 0.5,
-      });
-    }
-  };
-
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      const setupScrollTrigger = () => {
-        // Kill any existing ScrollTriggers
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
-        // Find all elements with the 'dark_bg' class
-
-        const darkBgElements = document.querySelectorAll(".dark_bg");
-
-        darkBgElements.forEach((element, index) => {
-          ScrollTrigger.create({
-            trigger: element,
-            start: "top center",
-            end: "bottom center",
-            onEnter: () => changeMenuStyle(true),
-            onLeave: () => changeMenuStyle(false),
-            onEnterBack: () => changeMenuStyle(true),
-            onLeaveBack: () => changeMenuStyle(false),
-            id: `dark-bg-${index}`,
-          });
-        });
-      };
-      setupScrollTrigger();
-
-      // Initial setup
-
-      // Re-run setup after a short delay to ensure DOM is updated
-      const timeoutId = setTimeout(setupScrollTrigger, 100);
-
-      return () => {
-        clearTimeout(timeoutId);
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
-    });
-
-    return () => ctx.revert();
-  }, [pathname, path]);
-
   useEffect(() => {
     const parts = pathname.split("/");
     const detectedLocale = parts[1] || "fr";

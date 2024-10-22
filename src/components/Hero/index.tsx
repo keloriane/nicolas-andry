@@ -43,6 +43,10 @@ const HeaderContainer = styled.section`
   align-items: center;
   opacity: 0; // Initially hidden
   transition: opacity 0.1s ease-in; // Smooth transition
+  padding-top: 58px;
+  @media screen and (max-width: 760px) {
+    padding-top: 0px;
+  }
   .title-main {
     color: ${theme.colors.white};
     font-family: ${playfare.style.fontFamily};
@@ -84,7 +88,7 @@ const HeaderContainer = styled.section`
       rgba(70, 70, 70, 1) 100%
     );
     img {
-      object-fit: contain;
+      object-fit: cover;
     }
   }
   .svg_cta {
@@ -175,8 +179,16 @@ const Hero = ({
     <HeaderContainer ref={heroContainer}>
       <div className="hero dark_bg">
         <div className="hero_layer"></div>
-        <Image src={imageBackground} alt="" fill />
-        <div className={"text_wrapper"}>
+        <div className="image_wrapper">
+          <Image
+            src={imageBackground}
+            alt=""
+            fill
+            className="image_background"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div className="text_wrapper">
           <ResponsiveText
             sizes={["48px", "36px", "110px"]}
             className="title-main"

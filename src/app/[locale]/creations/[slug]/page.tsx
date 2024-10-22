@@ -13,6 +13,9 @@ async function fetchPageData(slug: string) {
     content,
     remerciements,
     mainImage,
+    titleContent,
+    date,
+    subtitleContent,
     'images': images[]{
       "url": asset->url,
       "alt": asset->alt,
@@ -47,7 +50,6 @@ export default async function Page({
 
   return (
     <>
-      <Menu locale={"fr"} />
       <PostPageComponent params={params} post={post} />;
     </>
   );

@@ -28,6 +28,8 @@ export interface PostDataType {
     current: string;
     _type: string;
   };
+  subtitleContent: string;
+  date: string;
   publishedAt: string;
   author: {
     _ref: string;
