@@ -13,6 +13,7 @@ async function fetchPageData(slug: string) {
             categories,
             content,
             remerciements,
+            otherTitle,
             mainImage,
             'images': images[]{
               "url": asset->url,
@@ -25,12 +26,22 @@ async function fetchPageData(slug: string) {
   return data;
 }
 
+async function getOtherCta() {
+  return await client.fetch(groq`
+    *[_type == "recherches"] {
+      otherTitle
+      }
+    `);
+}
+
 export default async function Page({
   params,
 }: {
   params: { slug: string; locale: string };
 }) {
   const post: PostDataType[] = await fetchPageData(params.slug);
+
+  const otherTitle = await getOtherCta();
 
   return (
     <div>
@@ -40,7 +51,11 @@ export default async function Page({
         post={post[0]}
         titleContent={post[0].title}
       />
-      <PostImageGrid activePost={post[0]} locale={params.locale} />
+      <PostImageGrid
+        activePost={post[0]}
+        locale={params.locale}
+        otherTitle={otherTitle}
+      />
     </div>
   );
 }

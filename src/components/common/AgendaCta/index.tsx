@@ -3,19 +3,29 @@ import React from "react";
 import { CTA } from "../Button/cta";
 import styled from "styled-components";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const AgendaCta = ({ locale, text }: { locale: string; text: string }) => {
+  const pathname = usePathname();
+
+  const path = pathname.split("/")[2];
   return (
-    <div
-      className="main_cta"
-      style={{ display: "flex", justifyContent: "center", width: "100%" }}
-    >
-      <div className="cta_container">
-        <Link className="cta" href={`/${locale}/agenda`}>
-          <span>{text}</span>
-        </Link>
-      </div>
-    </div>
+    <>
+      {path === "agenda" ? (
+        ""
+      ) : (
+        <div
+          className="main_cta"
+          style={{ display: "flex", justifyContent: "center", width: "100%" }}
+        >
+          <div className="cta_container">
+            <Link className="cta" href={`/${locale}/agenda`}>
+              <span>{text}</span>
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

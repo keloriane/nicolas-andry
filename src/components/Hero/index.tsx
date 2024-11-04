@@ -8,7 +8,7 @@ import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { archivo, playfare } from "@/app/font";
-import imageBackground from "@/../public/hors-series-argentique-08.png";
+
 import Image from "next/image";
 
 const TextContainer = styled.div`
@@ -24,9 +24,9 @@ const TextContainer = styled.div`
   z-index: 10;
   margin: 150px auto;
   p {
-    line-height: 36px;
+    line-height: 42px;
     font-size: 24px;
-    color: #a5a5a5;
+    color: #606060;
     font-weight: 100;
 
     @media screen and (max-width: 740px) {
@@ -76,7 +76,7 @@ const HeaderContainer = styled.section`
     left: 0;
     position: absolute;
     width: 100%;
-    height: 99%;
+    height: 100%;
     background: rgb(255, 255, 255);
     z-index: 1;
     background: linear-gradient(
@@ -103,11 +103,13 @@ const Hero = ({
   title,
   subtitle,
   presentationText,
+  image,
 }: {
   satoshi: string;
   title: string;
   subtitle: string;
   presentationText: [];
+  image: string;
 }) => {
   const heroContainer = useRef<HTMLDivElement>(null);
   useGSAP(() => {
@@ -181,7 +183,7 @@ const Hero = ({
         <div className="hero_layer"></div>
         <div className="image_wrapper">
           <Image
-            src={imageBackground}
+            src={image}
             alt=""
             fill
             className="image_background"
@@ -190,14 +192,14 @@ const Hero = ({
         </div>
         <div className="text_wrapper">
           <ResponsiveText
-            sizes={["48px", "36px", "110px"]}
+            sizes={["48px", "36px", "90px"]}
             className="title-main"
             as="h1"
           >
             <span>{title}</span>
           </ResponsiveText>
           <ResponsiveText
-            sizes={["48px", "36px", "110px"]}
+            sizes={["48px", "36px", "90px"]}
             className="subtitle-main"
             as="h2"
           >

@@ -44,13 +44,7 @@ const AboutSection = ({
             <h3>
               <PrelineTitle>Nicolas Andry</PrelineTitle>
             </h3>
-            <ResponsiveText
-              sizes={["20px", "24px", "45px"]}
-              as="h2"
-              className={`${playfare.className} about_title `}
-            >
-              À propos de moi
-            </ResponsiveText>
+      
             <div className={archivo.className}>
               <div className="rich-text">
                 <PortableText value={presentationText} />

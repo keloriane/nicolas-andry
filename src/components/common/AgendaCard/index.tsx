@@ -39,12 +39,13 @@ const DateContainer = styled.div`
   max-width: 300px;
   top: -30px;
   left: -30px;
+
   p {
     font-size: 24px;
     padding: 9px;
     font-weight: 500;
     text-transform: capitalize;
-    font-size: 18px;
+    font-size: 22px;
     @media screen and (max-width: 760px) {
       position: relative;
       top: 0;
@@ -93,12 +94,12 @@ const AgendaCard = ({
           accent
             ? {
                 backgroundColor: theme.colors.orangeL,
-                color: theme.colors.black,
+                color: "rgb(1, 22, 26)",
                 display: "inline-flex",
                 position: "relative",
               }
             : {
-                backgroundColor: theme.colors.black,
+                backgroundColor: "rgb(1, 22, 26)",
                 color: theme.colors.orangeL,
                 display: "inline-flex",
                 position: "relative",

@@ -49,7 +49,7 @@ const AgendaContainer = styled.div`
 
 const TitleContainer = styled.div`
   text-align: center;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 `;
 
 const AgendaTextContainer = styled.div`
@@ -64,6 +64,7 @@ const AgendaTextContainer = styled.div`
     text-align: center;
     height: 17px;
     display: inline-block;
+    margin-top: 30px;
   }
 `;
 
@@ -178,6 +179,14 @@ const Agenda = ({
                   details={agendaAtelier[0].descriptionB}
                   accent={false}
                 />
+                <AgendaCard
+                  contact={agendaAtelier[1].contact}
+                  title={agendaAtelier[1].title}
+                  location={agendaAtelier[1].location}
+                  date={agendaAtelier[1].date}
+                  details={agendaAtelier[1].descriptionB}
+                  accent={false}
+                />
               </>
             ) : (
               agendaAtelier.map((agenda: AgendaType, i: number) => (
@@ -195,12 +204,12 @@ const Agenda = ({
           </AgendaContainer>
         </div>
       </div>
-      {homePage ? (
+      {agendaPage ? (
+        ""
+      ) : (
         <div className="cta_container" style={{ margin: "100px auto" }}>
           <CTA href={`/${locale}/agenda`}>{cta}</CTA>
         </div>
-      ) : (
-        ""
       )}
     </AgendaSection>
   );

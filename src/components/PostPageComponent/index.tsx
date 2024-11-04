@@ -8,23 +8,24 @@ import { PostDataType } from "@/types";
 import Separator from "../common/Separator";
 import { urlFor } from "@/lib/imageBuilder";
 import { urlForImage } from "../../../sanity/lib/image";
+import { client } from "../../../sanity/lib/client";
+import { groq } from "next-sanity";
 
-// Register the ScrollToPlugin with GSAP
-gsap.registerPlugin(ScrollToPlugin);
+async function getOtherCta() {
+  return await client.fetch(groq`
+    *[_type == "recherches"] {
+      otherTitle
+      }
+    `);
+}
 
-const PostPageComponent = ({
+const PostPageComponent = async ({
   params,
   post,
 }: {
   params: { slug: string; locale: string };
   post: PostDataType[];
 }) => {
-  useEffect(() => {
-    // Trigger the scroll to top on page load
-    window.scrollTo(0, 0);
-  }, []);
-
-  console.log(post);
   return (
     <div>
       <PostHeader
@@ -35,7 +36,11 @@ const PostPageComponent = ({
         subtitleContent={post[0].subtitleContent}
         date={post[0].date}
       />
-      <PostImageGrid activePost={post[0]} locale={params.locale} />
+      {/* <PostImageGrid
+        otherTitle={otherTitle}
+        activePost={post[0]}
+        locale={params.locale}
+      /> */}
       <Separator />
     </div>
   );

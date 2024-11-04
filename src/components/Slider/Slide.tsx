@@ -6,7 +6,16 @@ const SlideContainer = styled.div`
   width: 300px;
   height: 340px;
   position: relative;
+  overflow: hidden;
   cursor: pointer;
+  img {
+    transition: all 0.3s ease-in;
+  }
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
 `;
 
 interface SlideProps {

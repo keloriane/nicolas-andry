@@ -65,6 +65,7 @@ const ParcoursContainer = styled.section`
     font-weight: 600;
     p {
       font-weight: 700;
+      font-size: 18px;
     }
   }
 `;
@@ -82,19 +83,15 @@ const Parcours = ({
 }) => {
   return (
     <ParcoursContainer>
+      <ResponsiveText
+        as="h2"
+        sizes={["24px", "32px", "47px", "47px"]}
+        className={playfare.className}
+      >
+        {presentationTitle}
+      </ResponsiveText>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
-        <Col
-          column={[2, 2, 3]}
-          span={[24, 20, 14]}
-          className="parcours-wrapper"
-        >
-          <ResponsiveText
-            as="h2"
-            sizes={["24px", "32px", "47px", "47px"]}
-            className={playfare.className}
-          >
-            {presentationTitle}
-          </ResponsiveText>
+        <Col column={[2, 6]} span={[24, 14]} className="parcours-wrapper">
           <div className="parcour-container" style={{ marginTop: "50px" }}>
             {parcours.map((parcour, index) => (
               <div className={"parcour-card rich-text"} key={index}>

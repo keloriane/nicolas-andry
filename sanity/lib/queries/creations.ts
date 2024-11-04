@@ -6,6 +6,7 @@ const CREATION_QUERY = groq`
 *[_type == "creations"] {
   title,
   introductionText,
+  gridCTA,
   imageHeader,
   imageHeaderLeft{ "url": asset->url, "alt": asset->alt },
   imageHeaderRight{ "url": asset->url, "alt": asset->alt },

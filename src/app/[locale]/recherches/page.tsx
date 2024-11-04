@@ -12,18 +12,22 @@ import { getAgendaCTA } from "../../../../sanity/lib/queries";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AgendaCta from "@/components/common/AgendaCta";
+import PostGridItem from "@/components/Postgrig/PostGridItem";
 
 async function getResearchData() {
   return await client.fetch(groq`
     *[_type == "recherches"] {
       title,
       introductionText,
+      gridCTA,
+      otherTitle,
       imageHeaderLeft{ "url": asset->url, "alt": asset->alt }, 
       imageHeaderRight{ "url": asset->url, "alt": asset->alt },
       "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt } }
     }
   `);
 }
+
 
 export default async function Creations({
   params: { locale },
@@ -32,6 +36,7 @@ export default async function Creations({
 }) {
   const research = await getResearchData();
   const cta = await getAgendaCTA(locale);
+
 
   return (
     <main>
@@ -42,7 +47,11 @@ export default async function Creations({
         title={research[0].title}
         introductionText={research[0].introductionText}
       />
-      <Postgrid locale={locale} creations={research[0].posts} />
+      <PostGridItem
+        locale={locale}
+        creations={research[0].posts}
+        cta={research[0].gridCTA}
+      />
       <Separator />
     </main>
   );

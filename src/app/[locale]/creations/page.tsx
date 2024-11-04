@@ -7,6 +7,7 @@ import HeaderMask from "@/components/common/PageHeader/HeaderMask";
 import { getCreationData } from "../../../../sanity/lib/queries";
 import Separator from "@/components/common/Separator";
 import { Metadata } from "next";
+import PostGridItem from "@/components/Postgrig/PostGridItem";
 
 export const metadata: Metadata = {
   title: "Créations",
@@ -33,7 +34,12 @@ export default async function Creations({
         title={creation.title}
         introductionText={creation.introductionText}
       />
-      <Postgrid locale={locale} creations={creations[0].posts} />
+      <PostGridItem
+        locale={locale}
+        creations={creations[0].posts}
+        cta={creation.gridCTA}
+      />
+
       <Separator />
     </main>
   );

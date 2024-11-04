@@ -28,7 +28,7 @@ export default async function AgendaPage({
           agendaCreation={agendaCreation}
           agendaAtelier={agendaAtelier}
           playfare={playfare.className}
-          homePage={false}
+          agendaPage={true}
         />
       </div>
     </div>

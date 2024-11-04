@@ -3,7 +3,7 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-  padding-top: 58px;
+  padding-top: 158px;
   img {
     max-width: 1280px;
     margin: auto;
@@ -25,8 +25,14 @@ export const PostContainer = styled.div`
     margin: auto;
     display: flex;
     justify-content: center;
+    align-items: center;
+    a {
+      text-decoration: underline;
+    }
+
     .active_item {
       color: ${theme.colors.orange};
+      font-weight: 500;
     }
   }
 
@@ -44,7 +50,7 @@ export const PostContainer = styled.div`
     }
     blockquote {
       font-weight: 100;
-      font-size: 18px;
+
       line-height: 32px;
     }
   }
@@ -63,11 +69,13 @@ export const PostContainer = styled.div`
 
   .image_hero_wrapper {
     position: relative;
-    width: 100%;
+    width: 50%;
+    margin: auto;
+    height: 50%;
     @media screen and (max-width: 1300px) {
-      padding-top: 54%;
+      padding-top: 31%;
     }
-    padding-top: 56.25%; /* This maintains a 16:9 aspect ratio */
+    padding-top: 26.25%; /* This maintains a 16:9 aspect ratio */
   }
 
   h1 {
@@ -103,14 +111,24 @@ export const PostContainer = styled.div`
     text-align: center;
     h2 {
       color: ${theme.colors.orange};
+      @media screen and (max-width: 760px) {
+        font-size: 24px;
+      }
+    }
+    h3 {
+      color: ${theme.colors.black};
+      @media screen and (max-width: 760px) {
+        font-size: 24px;
+      }
     }
   }
   .rich-text {
     margin: auto;
-    max-width: 640px;
+    max-width: 1280px;
     width: 100%;
     margin-top: 24px;
     padding: 20px;
+
     ul {
       margin-top: 15px;
       margin-left: 30px;
@@ -120,7 +138,7 @@ export const PostContainer = styled.div`
       list-style: disc;
     }
     a {
-      color: aliceblue;
+      color: #0000ee;
     }
   }
 
@@ -186,7 +204,7 @@ export const PostContainer = styled.div`
     font-family: ${playfare.style.fontFamily};
   }
   h3 {
-    font-size: 24px;
+    font-size: 32px;
     color: ${theme.colors.orange};
   }
 

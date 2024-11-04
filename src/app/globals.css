@@ -273,6 +273,21 @@ span {
 }
 
 
+.arrow-back path {
+  fill: black;
+
+}
+
+.arrow-back:hover circle {
+  stroke: black;
+  fill: black;
+
+}
+
+.arrow-back:hover path {
+  fill: white;
+
+}
 
 
 html.lenis, html.lenis body {

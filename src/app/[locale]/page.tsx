@@ -12,6 +12,7 @@ import Separator from "@/components/common/Separator";
 import dynamic from "next/dynamic";
 
 import Menu from "@/components/common/Menu";
+import { urlFor } from "@/lib/imageBuilder";
 const Agenda = dynamic(() => import("@/components/Agenda"));
 
 export default async function Home({
@@ -24,7 +25,8 @@ export default async function Home({
     getAgendaData(locale),
   ]);
 
-  const { title, subtitle, postGrid, introductionText } = homeData;
+  const { title, subtitle, postGrid, introductionText, imageHeader } = homeData;
+
   const agendaCreation = agendaData.creationEvents;
   const agendaAtelier = agendaData.atelierEvents;
 
@@ -35,6 +37,7 @@ export default async function Home({
         subtitle={subtitle}
         satoshi={archivo.className}
         presentationText={introductionText}
+        image={urlFor(imageHeader).url()}
       />
       <PostsGrid
         posts={postGrid}
@@ -52,7 +55,7 @@ export default async function Home({
         agendaCreation={agendaCreation}
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
-        homePage={false}
+        homePage={true}
       />
 
       <Banner src={bannerImage} width={1120} height={316} />

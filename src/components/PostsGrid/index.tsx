@@ -68,9 +68,6 @@ const CardWrapper = styled.div`
 `;
 
 const PostGridContainer = styled.section`
-  margin-top: 100px;
-  padding-top: 80px;
-
   .grid-wrapper {
     display: flex;
     flex-direction: column;

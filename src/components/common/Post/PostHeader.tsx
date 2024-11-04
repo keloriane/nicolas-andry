@@ -29,9 +29,9 @@ const PostHeader = ({
 }) => {
   const pathname = usePathname();
 
-  console.log(date);
-
   const exactPath = pathname.split("/")[2];
+
+  console.log(date);
   return (
     <PostContainer className="dark_bg">
       <div className="hero">
@@ -46,16 +46,6 @@ const PostHeader = ({
         className="info_container"
         style={{ display: "flex", flexDirection: "column", gap: "24px" }}
       >
-        <div className="breadcrumb">
-          <Link href={`/${locale}/${exactPath}`}>
-            {exactPath.toUpperCase()}
-          </Link>
-          /
-          <Link className="active_item" href={`/${locale}/${exactPath}`}>
-            {titleContent?.toUpperCase()}
-          </Link>
-        </div>
-
         <div className="title_container">
           <h1 className={playfare.className}>{titleContent}</h1>
           <h2>{subtitleContent ? subtitleContent : ""}</h2>

@@ -23,6 +23,8 @@ export const PostGrid = styled.div`
     height: 340px;
     overflow: hidden;
 
+    border: 1px solid ${theme.colors.black};
+
     position: relative;
     display: flex;
     align-items: flex-end;

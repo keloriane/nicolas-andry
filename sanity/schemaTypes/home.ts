@@ -11,6 +11,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "imageHeader",
+      title: "Image Header",
+      type: "image",
+    }),
+    defineField({
       name: "language",
       title: "Language",
       type: "string",
