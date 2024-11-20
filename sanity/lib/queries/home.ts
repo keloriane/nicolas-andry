@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import { client } from "../client";
-import { loadQuery } from "@sanity/react-loader";
+
 import { HomeData } from "@/types/HomeData";
 
 export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;

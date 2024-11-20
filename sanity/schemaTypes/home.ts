@@ -142,5 +142,10 @@ export default defineType({
       name: "imageProfile",
       type: "image",
     }),
+    defineField({
+      title: "imageBanner",
+      name: "imageBanner",
+      type: "image",
+    }),
   ],
 });

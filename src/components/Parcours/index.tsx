@@ -5,8 +5,7 @@ import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import { theme } from "@/styles/theme";
 import { PortableText } from "next-sanity";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
+
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo, playfare } from "@/app/font";
 

@@ -9,18 +9,19 @@ import { urlForImage } from "../../../../../sanity/lib/image";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
-            title,
-            categories,
-            content,
-            remerciements,
-            otherTitle,
-            mainImage,
-            'images': images[]{
-              "url": asset->url,
-              "alt": asset->alt,
-              "metadata": asset->ref
-            }
-          
+    title,
+    categories,
+    content,
+    remerciements,
+    mainImage,
+    titleContent,
+    date,
+    subtitleContent,
+    'images': images[]{
+      "url": asset->url,
+      "alt": asset->alt,
+      "metadata": asset->ref
+    }
   }`;
   const data = await client.fetch(query, { slug });
   return data;
@@ -43,6 +44,8 @@ export default async function Page({
 
   const otherTitle = await getOtherCta();
 
+  console.log(post);
+
   return (
     <div>
       <PostHeader
@@ -50,6 +53,8 @@ export default async function Page({
         locale={params.locale}
         post={post[0]}
         titleContent={post[0].title}
+        date={post[0].date}
+        subtitleContent={post[0].subtitleContent}
       />
       <PostImageGrid
         activePost={post[0]}

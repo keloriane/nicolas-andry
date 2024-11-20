@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import splitType from "split-type";
+import React, { useRef } from "react";
+
 import * as S from "./../PageHeader/page-header.styles";
 import { PortableText } from "next-sanity";
 import { TypedObject } from "sanity";
@@ -37,7 +36,7 @@ const HeaderText: React.FC<HeaderTextProps> = ({
         <PortableText value={introductionText} />
       </div>
       <S.ArrowDown className="ar_cta">
-        <Link href="#creations" className="svg_cta">
+        <Link href="#photo-items" className="svg_cta">
           <ArrowDown />
         </Link>
       </S.ArrowDown>

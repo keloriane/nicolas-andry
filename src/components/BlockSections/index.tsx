@@ -6,10 +6,9 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ArrowLeft from "../common/ArrowLeft";
-import TransitionLink from "../common/TransitionLink";
+
 import { theme } from "@/styles/theme";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const NavSection = styled.nav<{ isFixed: boolean }>`
   border-top: 1px solid black;

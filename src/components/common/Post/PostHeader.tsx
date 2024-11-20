@@ -1,15 +1,13 @@
 "use client";
 import React from "react";
-import GridContainer from "../Container";
-import Col from "../Col";
+
 import { PortableText } from "next-sanity";
 import { PostContainer } from "./post-grid.styles";
 
 import Image from "next/image";
 
-import ResponsiveText from "../ResponsiveText";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+
 import { playfare } from "@/app/font";
 
 const PostHeader = ({

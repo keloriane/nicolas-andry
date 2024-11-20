@@ -10,11 +10,11 @@ import { CTA } from "../common/Button/cta";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import * as S from "./about.styles";
-import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap";
-import SplitType from "split-type";
+
 import { ScrollTrigger } from "gsap/all";
-import { imageClipAnimation } from "@/mixins/animations";
+
 import PrelineTitle from "../common/PrelineTitle";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -44,7 +44,7 @@ const AboutSection = ({
             <h3>
               <PrelineTitle>Nicolas Andry</PrelineTitle>
             </h3>
-      
+
             <div className={archivo.className}>
               <div className="rich-text">
                 <PortableText value={presentationText} />

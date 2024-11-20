@@ -3,15 +3,13 @@ import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
-import { archivo, playfare } from "../../font";
+import { playfare } from "../../font";
 
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
-import Postgrid from "@/components/Postgrig";
+
 import Separator from "@/components/common/Separator";
 import { getAgendaCTA } from "../../../../sanity/lib/queries";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import AgendaCta from "@/components/common/AgendaCta";
+
 import PostGridItem from "@/components/Postgrig/PostGridItem";
 
 async function getResearchData() {
@@ -28,7 +26,6 @@ async function getResearchData() {
   `);
 }
 
-
 export default async function Creations({
   params: { locale },
 }: {
@@ -36,7 +33,6 @@ export default async function Creations({
 }) {
   const research = await getResearchData();
   const cta = await getAgendaCTA(locale);
-
 
   return (
     <main>

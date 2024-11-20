@@ -1,18 +1,13 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import { PageHeaderType } from "@/types";
-import styled from "styled-components";
+
 import GridContainer from "../Container";
 import Col from "../Col";
 
 import MaskedImage from "../MaskedImage";
 import HeaderText from "../HeaderText";
 import * as S from "./page-header.styles";
-import arrowDown from "@/../public/arrow_down.svg";
-import Image from "next/image";
-import ArrowDown from "../ArrowDown";
-import Link from "next/link";
-import { urlForImage } from "../../../../sanity/lib/image";
 const HeaderMask: React.FC<PageHeaderType> = ({
   title,
   introductionText,

@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import React from "react";
+
 import PostHeader from "@/components/common/Post/PostHeader";
-import PostImageGrid from "@/components/common/Post/PostImageGrid";
+
 import { PostDataType } from "@/types";
 import Separator from "../common/Separator";
-import { urlFor } from "@/lib/imageBuilder";
+
 import { urlForImage } from "../../../sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 import styled from "styled-components";
 import imageUrlBuilder from "@sanity/image-url";
-import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { client } from "../../../sanity/lib/client";

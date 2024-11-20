@@ -28,20 +28,20 @@ const CardGrid = styled.div`
     gap: 20px;
     align-items: center;
     padding: 20px;
+    border: 1px solid black;
   }
 `;
 
 const CardItem = styled.div`
-  border: 1px solid ${theme.colors.black};
   img {
     transition: all 0.5s ease-in;
   }
-  &:hover {
+  /* &:hover {
     img {
       transition: all 0.5s ease-in;
       transform: scale(1.2);
     }
-  }
+  } */
   .image_container {
     width: 390px;
     position: relative;
@@ -81,7 +81,7 @@ const PostGridItem: React.FC<PostgridProps> = ({ creations, locale, cta }) => {
   const pathname = usePathname();
 
   return (
-    <CardGrid className="card-grid">
+    <CardGrid className="card-grid" id="photo-items">
       {creations.map((post: PostExcerpt, index) => (
         <CardItem key={index}>
           <div className="image_container">

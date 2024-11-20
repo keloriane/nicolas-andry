@@ -2,7 +2,6 @@ import React from "react";
 
 import { playfare } from "../../font";
 
-import Postgrid from "@/components/Postgrig";
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
 import { getCreationData } from "../../../../sanity/lib/queries";
 import Separator from "@/components/common/Separator";

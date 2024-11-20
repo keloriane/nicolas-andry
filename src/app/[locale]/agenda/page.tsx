@@ -1,8 +1,6 @@
-import { archivo, playfare } from "../../font";
+import { playfare } from "../../font";
 import { getAgendaData } from "../../../../sanity/lib/queries";
 
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import Agenda from "@/components/Agenda";
 
 export default async function AgendaPage({

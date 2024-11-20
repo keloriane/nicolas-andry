@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { CTA } from "../Button/cta";
-import styled from "styled-components";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

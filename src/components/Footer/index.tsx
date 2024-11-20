@@ -3,13 +3,10 @@ import { theme } from "@/styles/theme";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import Logo from "@/../public/Footer/4/Group 41.svg";
-import Image from "next/image";
-import { WebsiteCarbonBadge } from "react-websitecarbon-badge";
-import { archivo, playfare } from "@/app/font";
-import TransitionLink from "../common/TransitionLink";
+
+import { archivo } from "@/app/font";
+
 import { useFooter } from "@/context/FooterContext";
-import pxl from "@/../public/pxl.svg";
 
 const FooterContainer = styled.footer`
   width: 100vw;

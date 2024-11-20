@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
+import React from "react";
+
 import { theme } from "@/styles/theme";
 
 const ArrowLeft: React.FC = () => {

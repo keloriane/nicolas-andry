@@ -3,8 +3,7 @@ import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 import { getCreationData } from "../../../../../sanity/lib/queries";
 import { Metadata } from "next";
-import PostPageComponent from "@/components/PostPageComponent";
-import Menu from "@/components/common/Menu";
+
 import PostHeader from "@/components/common/Post/PostHeader";
 import { urlForImage } from "../../../../../sanity/lib/image";
 import PostImageGrid from "@/components/common/Post/PostImageGrid";

@@ -11,7 +11,6 @@ import Separator from "@/components/common/Separator";
 
 import dynamic from "next/dynamic";
 
-import Menu from "@/components/common/Menu";
 import { urlFor } from "@/lib/imageBuilder";
 const Agenda = dynamic(() => import("@/components/Agenda"));
 
