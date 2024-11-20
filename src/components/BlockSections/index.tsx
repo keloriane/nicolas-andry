@@ -79,6 +79,9 @@ const BlockSectionWrapper = styled.section<{
   .text_container {
     width: ${({ hasimage }) => (hasimage ? "95%" : "100%")};
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     @media screen and(max-width: 768px) {
       max-width: 640px;
     }

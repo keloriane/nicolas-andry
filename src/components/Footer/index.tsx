@@ -30,6 +30,10 @@ const FooterContainer = styled.footer`
     position: absolute;
     top: 10%;
     right: 48%;
+    @media screen and (max-width: 480px) {
+      top: 33%;
+      right: 43%;
+    }
   }
   .line {
     width: 95%;
