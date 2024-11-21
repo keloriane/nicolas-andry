@@ -19,6 +19,7 @@ import {
 } from "../../../sanity/lib/queries";
 import { archivo } from "../font";
 import AgendaCta from "@/components/common/AgendaCta";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
@@ -70,6 +71,7 @@ export default async function RootLayout({
           <MenuProvider locale={locale}>
             <AgendaDataProvider locale={locale}>
               <FooterProvider>
+                <Analytics />
                 <Menu locale={locale} />
                 {children}
                 <AgendaCta text={ctaData.agendaCTA} locale={locale} />
