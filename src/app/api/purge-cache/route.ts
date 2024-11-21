@@ -1,12 +1,19 @@
-"use server";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  console.log("paoen");
   const { VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_TEAM_ID } = process.env;
 
+  console.log(VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_TEAM_ID);
+
   try {
+    if (!VERCEL_TOKEN || !VERCEL_PROJECT_ID || !VERCEL_TEAM_ID) {
+      console.error("Missing required environment variables");
+      return NextResponse.json(
+        { message: "Server configuration error" },
+        { status: 500 }
+      );
+    }
     // Validate the webhook payload (optional)
     const payload = await request.json();
     // Perform validation logic here (e.g., verify payload structure or use a secret token)
@@ -17,7 +24,7 @@ export async function POST(request: Request) {
     // If you still want to purge the entire Vercel cache (not recommended as a first option)
     if (VERCEL_TOKEN && VERCEL_PROJECT_ID) {
       const response = await fetch(
-        `https://api.vercel.com/v1/projects/${VERCEL_PROJECT_ID}/cache`,
+        `https://api.vercel.com/v1/projects/${VERCEL_PROJECT_ID}/cache?teamId=${VERCEL_TEAM_ID}`,
         {
           method: "DELETE",
           headers: {
@@ -27,8 +34,14 @@ export async function POST(request: Request) {
         }
       );
 
+      console.log("Vercel API Response:", await response.text());
+
       if (!response.ok) {
-        throw new Error(`Failed to purge Vercel cache: ${response.statusText}`);
+        const errorText = await response.text();
+        console.error("Vercel API Error:", errorText);
+        throw new Error(
+          `Failed to purge Vercel cache: ${response.status} ${response.statusText}. Details: ${errorText}`
+        );
       }
     }
 

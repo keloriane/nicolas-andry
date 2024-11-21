@@ -217,7 +217,7 @@ const Footer = ({
               <svg
                 className="kf-logo"
                 width="52"
-                height="59"
+                height="35"
                 viewBox="0 0 52 59"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
