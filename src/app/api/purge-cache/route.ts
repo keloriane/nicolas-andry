@@ -4,8 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const { VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_TEAM_ID } = process.env;
 
-  console.log(VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_TEAM_ID);
-
   try {
     if (!VERCEL_TOKEN || !VERCEL_PROJECT_ID || !VERCEL_TEAM_ID) {
       console.error("Missing required environment variables");
@@ -14,6 +12,7 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+
     // Validate the webhook payload (optional)
     const payload = await request.json();
     // Perform validation logic here (e.g., verify payload structure or use a secret token)
@@ -34,13 +33,13 @@ export async function POST(request: Request) {
         }
       );
 
-      console.log("Vercel API Response:", await response.text());
+      const responseText = await response.text();
+      console.log("Vercel API Response:", responseText);
 
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Vercel API Error:", errorText);
+        console.error("Vercel API Error:", responseText);
         throw new Error(
-          `Failed to purge Vercel cache: ${response.status} ${response.statusText}. Details: ${errorText}`
+          `Failed to purge Vercel cache: ${response.status} ${response.statusText}. Details: ${responseText}`
         );
       }
     }
@@ -56,4 +55,11 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+}
+
+export async function GET() {
+  return NextResponse.json(
+    { message: "This endpoint only accepts POST requests" },
+    { status: 405 }
+  );
 }
