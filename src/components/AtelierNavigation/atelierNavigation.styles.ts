@@ -16,6 +16,10 @@ export const AtelierNavigationSection = styled.div`
   @media screen and (max-width: 1280px) {
     max-width: 840px;
   }
+
+  a:hover {
+    text-decoration: underline;
+  }
   position: relative;
   .atelier_wrapper {
     display: flex;

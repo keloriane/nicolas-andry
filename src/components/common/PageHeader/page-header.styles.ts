@@ -75,6 +75,10 @@ export const TextWrapper = styled(Col)`
       "__Playfair_Display_Fallback_e3a538";
     font-style: normal;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    @media screen and (max-width: 480px) {
+      font-size: 3rem;
+      text-align: center;
+    }
   }
 
   p {

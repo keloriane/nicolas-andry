@@ -44,7 +44,7 @@ export default async function Page({
 
   const otherTitle = await getOtherCta();
 
-  console.log(post);
+  console.log("POST", post.length);
 
   return (
     <div>

@@ -11,6 +11,7 @@ import Separator from "@/components/common/Separator";
 import { getAgendaCTA } from "../../../../sanity/lib/queries";
 
 import PostGridItem from "@/components/Postgrig/PostGridItem";
+import Postgrid from "@/components/Postgrig";
 
 async function getResearchData() {
   return await client.fetch(groq`
@@ -43,11 +44,13 @@ export default async function Creations({
         title={research[0].title}
         introductionText={research[0].introductionText}
       />
-      <PostGridItem
+      {/* <PostGridItem
         locale={locale}
         creations={research[0].posts}
         cta={research[0].gridCTA}
-      />
+      /> */}
+
+      <Postgrid locale={locale} creations={research[0].posts} />
       <Separator />
     </main>
   );
