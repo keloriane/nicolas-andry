@@ -96,6 +96,67 @@ const Agenda = ({
   useEffect(() => {
     window.scrollTo(0, 0);
   });
+
+  const renderAgendaSection = (agenda: any[], title: string, accent = true) => {
+    if (!agenda || agenda.length === 0) return null;
+
+    return (
+      <div className="agenda_item">
+        <div className="agenda_title">
+          <ResponsiveText
+            as="h3"
+            sizes={["18px", "24px", "30px"]}
+            className={archivo.className}
+          >
+            {title}
+          </ResponsiveText>
+        </div>
+        <AgendaContainer>
+          {homePage ? (
+            <>
+              {agenda[0] && (
+                <AgendaCard
+                  contact={agenda[0].contact}
+                  title={agenda[0].title}
+                  location={agenda[0].location}
+                  date={agenda[0].date}
+                  details={agenda[0].descriptionB}
+                  accent={accent}
+                />
+              )}
+              {agenda[1] && (
+                <AgendaCard
+                  contact={agenda[1].contact}
+                  title={agenda[1].title}
+                  location={agenda[1].location}
+                  date={agenda[1].date}
+                  details={agenda[1].descriptionB}
+                  accent={accent}
+                />
+              )}
+            </>
+          ) : (
+            agenda.map((item: AgendaType, i: number) => (
+              <AgendaCard
+                key={i}
+                contact={item.contact}
+                title={item.title}
+                location={item.location}
+                date={item.date}
+                details={item.descriptionB}
+                accent={accent}
+              />
+            ))
+          )}
+        </AgendaContainer>
+      </div>
+    );
+  };
+
+  const hasEvents =
+    (agendaCreation && agendaCreation.length > 0) ||
+    (agendaAtelier && agendaAtelier.length > 0);
+
   return (
     <AgendaSection>
       <AgendaTextContainer>
@@ -112,109 +173,18 @@ const Agenda = ({
         </div>
       </AgendaTextContainer>
 
-      <div className="agenda_wrapper">
-        <div className="agenda_item">
-          <div className="agenda_title">
-            <ResponsiveText
-              as="h3"
-              sizes={["18px", "24px", "30px"]}
-              className={archivo.className}
-            >
-              {titleAgendaCreation}
-            </ResponsiveText>
-          </div>
-          <AgendaContainer>
-            {homePage ? (
-              <>
-                <AgendaCard
-                  contact={agendaCreation[0].contact}
-                  title={agendaCreation[0].title}
-                  location={agendaCreation[0].location}
-                  date={agendaCreation[0].date}
-                  details={agendaCreation[0].descriptionB}
-                  accent
-                />
-                <AgendaCard
-                  contact={agendaCreation[1].contact}
-                  title={agendaCreation[1].title}
-                  location={agendaCreation[1].location}
-                  date={agendaCreation[1].date}
-                  details={agendaCreation[1].descriptionB}
-                  accent
-                />
-              </>
-            ) : (
-              agendaCreation.map((agenda: AgendaType, i: number) => (
-                <AgendaCard
-                  key={i}
-                  contact={agenda.contact}
-                  title={agenda.title}
-                  location={agenda.location}
-                  date={agenda.date}
-                  details={agenda.descriptionB}
-                  accent
-                />
-              ))
-            )}
-          </AgendaContainer>
+      {hasEvents ? (
+        <div className="agenda_wrapper">
+          {renderAgendaSection(agendaCreation, titleAgendaCreation)}
+          {renderAgendaSection(agendaAtelier, titleAgendaAtelier, false)}
         </div>
-        <div className="agenda_item">
-          <div className="agenda_title">
-            <ResponsiveText
-              as="h3"
-              sizes={["18px", "24px", "30px"]}
-              className={archivo.className}
-            >
-              {titleAgendaAtelier}
-            </ResponsiveText>
-          </div>
-          <AgendaContainer>
-            {homePage ? (
-              <>
-                <AgendaCard
-                  contact={agendaAtelier[0].contact}
-                  title={agendaAtelier[0].title}
-                  location={agendaAtelier[0].location}
-                  date={agendaAtelier[0].date}
-                  details={agendaAtelier[0].descriptionB}
-                  accent={false}
-                />
-                {/* <AgendaCard
-                  contact={
-                    agendaAtelier[1].contact ? agendaAtelier[1].contact : ""
-                  }
-                  title={agendaAtelier[1].title ? agendaAtelier[1].title : ""}
-                  location={
-                    agendaAtelier[1].location ? agendaAtelier[1].location : ""
-                  }
-                  date={agendaAtelier[1].date ? agendaAtelier[1].date : ""}
-                  details={
-                    agendaAtelier[1].descriptionB
-                      ? agendaAtelier[1].descriptionB
-                      : ""
-                  }
-                  accent={false}
-                /> */}
-              </>
-            ) : (
-              agendaAtelier.map((agenda: AgendaType, i: number) => (
-                <AgendaCard
-                  key={i}
-                  contact={agenda.contact}
-                  title={agenda.title}
-                  location={agenda.location}
-                  date={agenda.date}
-                  details={agenda.descriptionB}
-                  accent={false}
-                />
-              ))
-            )}
-          </AgendaContainer>
-        </div>
-      </div>
-      {agendaPage ? (
-        ""
       ) : (
+        <p style={{ textAlign: "center", marginTop: "50px" }}>
+          aucun événement à afficher
+        </p>
+      )}
+
+      {!agendaPage && cta && (
         <div className="cta_container" style={{ margin: "100px auto" }}>
           <CTA href={`/${locale}/agenda`}>{cta}</CTA>
         </div>
@@ -222,4 +192,5 @@ const Agenda = ({
     </AgendaSection>
   );
 };
+
 export default Agenda;
