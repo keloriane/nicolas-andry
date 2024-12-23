@@ -12,7 +12,7 @@ import Separator from "@/components/common/Separator";
 import dynamic from "next/dynamic";
 
 import { urlFor } from "@/lib/imageBuilder";
-const Agenda = dynamic(() => import("@/components/Agenda"));
+import Agenda from "@/components/Agenda";
 
 export default async function Home({
   params: { locale },
@@ -44,7 +44,7 @@ export default async function Home({
         archivo={archivo.className}
         locale={locale}
       />
-      {/* <Agenda
+      <Agenda
         titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
         titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}
         locale={locale}
@@ -55,7 +55,7 @@ export default async function Home({
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
         homePage={true}
-      /> */}
+      />
 
       <Banner src={bannerImage} width={1120} height={316} />
 
