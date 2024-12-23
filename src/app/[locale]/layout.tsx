@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
-import "./../globals.css";
+// import "./../globals.css";
 import { MenuProvider } from "@/context/MenuContext";
 import { FooterProvider } from "@/context/FooterContext";
 
