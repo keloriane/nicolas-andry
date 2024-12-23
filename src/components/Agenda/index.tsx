@@ -180,11 +180,19 @@ const Agenda = ({
                   accent={false}
                 />
                 <AgendaCard
-                  contact={agendaAtelier[1].contact}
-                  title={agendaAtelier[1].title}
-                  location={agendaAtelier[1].location}
-                  date={agendaAtelier[1].date}
-                  details={agendaAtelier[1].descriptionB}
+                  contact={
+                    agendaAtelier[1].contact ? agendaAtelier[1].contact : ""
+                  }
+                  title={agendaAtelier[1].title ? agendaAtelier[1].title : ""}
+                  location={
+                    agendaAtelier[1].location ? agendaAtelier[1].location : ""
+                  }
+                  date={agendaAtelier[1].date ? agendaAtelier[1].date : ""}
+                  details={
+                    agendaAtelier[1].descriptionB
+                      ? agendaAtelier[1].descriptionB
+                      : ""
+                  }
                   accent={false}
                 />
               </>
