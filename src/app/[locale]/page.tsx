@@ -44,7 +44,7 @@ export default async function Home({
         archivo={archivo.className}
         locale={locale}
       />
-      <Agenda
+      {/* <Agenda
         titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
         titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}
         locale={locale}
@@ -55,7 +55,7 @@ export default async function Home({
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
         homePage={true}
-      />
+      /> */}
 
       <Banner src={bannerImage} width={1120} height={316} />
 
