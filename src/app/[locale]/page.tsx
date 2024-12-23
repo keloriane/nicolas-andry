@@ -35,8 +35,6 @@ export default async function Home({
   const homeData = await GetHomeData(locale);
   const { title, subtitle, postGrid, introductionText } = homeData.data;
 
-  console.log("POSTGRID", postGrid);
-
   const agendaData = await GetAgendaData(locale);
 
   const agendaCreation = agendaData[1];
@@ -79,7 +77,7 @@ export default async function Home({
       />
       <Separator />
 
-      <Contact archivo={archivo.className} />
+      {/* <Contact archivo={archivo.className} /> */}
       <Footer locale={locale} />
     </main>
   );

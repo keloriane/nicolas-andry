@@ -3,13 +3,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
-import Logo from "@/../public/logo.svg";
-import Image from "next/image";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
 import { playfare } from "@/app/font";
-import { CTA } from "../common/Button/cta";
-import Button from "../common/Button";
 
 const ContactContainer = styled.section`
   text-align: center;
