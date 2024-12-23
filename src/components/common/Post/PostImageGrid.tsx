@@ -15,6 +15,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Link from "next/link";
 import { useFooter } from "@/context/FooterContext";
 import { usePathname } from "next/navigation";
+import Separator from "../Separator";
 
 type ImageType = {
   url: string;
@@ -30,11 +31,13 @@ type PostType = {
 type PostImageGridProps = {
   activePost: PostType | null;
   locale: string;
+  otherTitle: any;
 };
 
 const PostImageGrid: React.FC<PostImageGridProps> = ({
   activePost,
   locale,
+  otherTitle,
 }) => {
   const [index, setIndex] = useState<number>(-1);
   const [open, setOpen] = useState<boolean>(false);
@@ -69,16 +72,23 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
 
   const navigation = useFooter();
 
-  const navigationAtelier = navigation?.atelierNavData?.[0]?.atelierItems;
+  const pathSlug = pathname.split("/")[3];
 
   const navigationCreation = navigation?.navigationData?.filter(
-    (nav: any) => nav.categories?.[0]?.title === "Creations"
+    (nav: any) =>
+      nav.categories?.[0]?.title === "Creations" &&
+      nav.slug.current !== pathSlug
   );
+
   const navigationRecherche = navigation?.navigationData?.filter(
-    (nav: any) => nav.categories?.[0]?.title === "Recherches"
+    (nav: any) =>
+      nav.categories?.[0]?.title === "Recherches" &&
+      nav.slug.current !== pathSlug
   );
 
   const exactPath = pathname.split("/")[2];
+
+  const creationPath = pathname.split("/")[3];
 
   return (
     <PostContainer>
@@ -125,19 +135,23 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
       </GridContainerV>
 
       {activePost?.remerciements && (
-        <div className="thanks_container">
+        <div
+          className="thanks_container"
+          style={{ marginTop: "100px", textAlign: "center" }}
+        >
           <div>
             <h2>Remerciement</h2>
-            <div className="rich-text">
+            <div className="rich-text" style={{ fontSize: "16px" }}>
               <PortableText value={activePost.remerciements} />
             </div>
           </div>
         </div>
       )}
 
+      <Separator />
       <section className="navigation_section">
         <div className="title-navigation_container">
-          <h2>Les autres {exactPath.toWellFormed()}</h2>
+          <h2>{otherTitle[0].otherTitle[0].children[0].text}</h2>
         </div>
         <div className="navigation_container">
           <ul>

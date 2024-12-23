@@ -12,4 +12,5 @@ export interface HomeData {
   presentationTitle: string;
   navigation: NAVIGATION_QUERYType[];
   introductionText: [];
+  imageHeader: [];
 }

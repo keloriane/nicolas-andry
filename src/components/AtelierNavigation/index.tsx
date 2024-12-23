@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { urlFor } from "@/lib/imageBuilder";
 import { usePathname } from "next/navigation";
+import { PortableText } from "next-sanity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +16,14 @@ const AtelierNavigation = ({
   atelierItems,
   locale,
 }: {
-  atelierItems: [{ title: string; slug: { current: string }; image: [] }];
+  atelierItems: [
+    {
+      title: string;
+      slug: { current: string };
+      image: [];
+      introductionText: [];
+    },
+  ];
   locale: string;
 }) => {
   const [activeSection, setActiveSection] = React.useState<string>(
@@ -68,6 +76,9 @@ const AtelierNavigation = ({
               >
                 {atelier.title}
               </Link>
+              <div className="introductionText">
+                <PortableText value={atelier.introductionText} />
+              </div>
             </div>
             <hr />
           </div>

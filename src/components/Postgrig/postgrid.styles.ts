@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const PostGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -21,6 +22,8 @@ export const PostGrid = styled.div`
     width: 100%;
     height: 340px;
     overflow: hidden;
+
+    /* border: 1px solid ${theme.colors.black}; */
 
     position: relative;
     display: flex;

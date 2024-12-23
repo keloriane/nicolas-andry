@@ -90,6 +90,10 @@ table {
   --card-border-rgb: 131, 134, 135;
 }
 
+
+body {
+  height: 100%;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -162,14 +166,7 @@ table {
   background: none !important;
 }
 
-.rich-text a {
-    color: #FEB865 ;
-    text-decoration: none;
-  }
-.rich-text a:hover {
-   
-    text-decoration: underline;
-  }
+
 
 .yarl__thumbnails_thumbnail {
   border: none !important;
@@ -189,7 +186,7 @@ table {
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+
 }
 a {
   color: inherit;
@@ -256,9 +253,7 @@ body {
   background: linear-gradient(to right, var(--yarl__color_backdrop, rgb(1, 22, 26)) 0, transparent var(--yarl__thumbnails_vignette_size, 12%) calc(100% - var(--yarl__thumbnails_vignette_size, 12%)), var(--yarl__color_backdrop, rgb(1, 22, 26)) 100%);
 }
 
-.arrow-next {
-  margin-top: 25px;
-}
+
 
 .section_container {
   display: flex;
@@ -281,12 +276,21 @@ span {
   display: inline-block;
 }
 
-.rich-text h4 {
-  margin-top: 40px;
+
+.arrow-back path {
+  fill: black;
+
 }
 
-.rich-text .arrow-link {
-  top: 12px;
+.arrow-back:hover circle {
+  stroke: black;
+  fill: black;
+
+}
+
+.arrow-back:hover path {
+  fill: white;
+
 }
 
 

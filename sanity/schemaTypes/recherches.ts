@@ -16,6 +16,16 @@ export default defineType({
       type: "blockContent",
     }),
     defineField({
+      name: "otherTitle",
+      title: "Titre autre Recherche/Creaction",
+      type: "blockContent",
+    }),
+    defineField({
+      name: "gridCTA",
+      title: "Call to action grille",
+      type: "string",
+    }),
+    defineField({
       name: "imageHeaderLeft",
       title: "Image Header Left",
       type: "image",

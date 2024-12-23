@@ -3,24 +3,36 @@ import { theme } from "@/styles/theme";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import Logo from "@/../public/Footer/4/Group 41.svg";
-import Image from "next/image";
-import { WebsiteCarbonBadge } from "react-websitecarbon-badge";
-import { archivo, playfare } from "@/app/font";
-import TransitionLink from "../common/TransitionLink";
+
+import { archivo } from "@/app/font";
+
 import { useFooter } from "@/context/FooterContext";
-import pxl from "@/../public/pxl.svg";
 
 const FooterContainer = styled.footer`
   width: 100vw;
   background-color: #1e1e1e;
   color: black;
   font-weight: 700;
+  position: relative;
   a {
     &:hover {
       rect {
         fill: ${theme.colors.orangeL};
       }
+    }
+  }
+
+  .kf-logo {
+    width: 30px;
+  }
+
+  .logo_item {
+    position: absolute;
+    top: 10%;
+    right: 48%;
+    @media screen and (max-width: 480px) {
+      top: 33%;
+      right: 43%;
     }
   }
   .line {
@@ -35,6 +47,9 @@ const FooterContainer = styled.footer`
     display: flex;
     justify-content: space-around;
     width: 100%;
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
   }
 
   .footer_header {
@@ -82,9 +97,11 @@ const FooterContainer = styled.footer`
     text-align: center;
     font-weight: 300;
     color: ${theme.colors.white};
+    background-color: ${theme.colors.black};
     display: flex;
     gap: 24px;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
     height: 40px;
     span {
@@ -100,7 +117,15 @@ const FooterContainer = styled.footer`
   }
 `;
 
-const Footer = ({ locale }: { locale: string }) => {
+const Footer = ({
+  locale,
+  cookie,
+  droit,
+}: {
+  locale: string;
+  cookie: string;
+  droit: string;
+}) => {
   const navigation = useFooter();
 
   const navigationAtelier = navigation?.atelierNavData[0]?.atelierItems;
@@ -117,7 +142,7 @@ const Footer = ({ locale }: { locale: string }) => {
       <div className="footer_header">
         <div className="line"></div>
         <div className="logo_container">
-          <Link href={"/"} className="logo_container">
+          <Link href={"/"} className="logo_item">
             <svg
               width="55"
               height="72"
@@ -183,13 +208,50 @@ const Footer = ({ locale }: { locale: string }) => {
       </div>
       <div className="footer_wrapper">
         <div className="footer_copyright">
-          <span className={archivo.className}>Tout droit réservé.</span>
-          <span>This website is cookie free.</span>
+          <span className={archivo.className}>{droit}</span>
+          <span>{cookie}</span>
           <span>
             made by{"    "}
             <Link href="https://www.pxl-studio.com">
               {" "}
-              <img src={pxl.src} alt="PXL Studio" />
+              <svg
+                className="kf-logo"
+                width="52"
+                height="35"
+                viewBox="0 0 52 59"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  y="-6.10352e-05"
+                  width="22.6982"
+                  height="52.3676"
+                  rx="8.53275"
+                  fill={"white"} // Set initial color
+                />
+                <rect
+                  x="29.8389"
+                  y="0.390137"
+                  width="22.6982"
+                  height="46.7931"
+                  rx="8.53275"
+                  transform="rotate(39.6189 29.8389 0.390137)"
+                  fill={"white"} // Set initial color
+                />
+                <rect
+                  x="51.4866"
+                  y="42.8381"
+                  width="22.6982"
+                  height="46.7931"
+                  rx="8.53275"
+                  transform="rotate(134.599 51.4866 42.8381)"
+                  fill={"white"} // Set initial color
+                />
+                <path
+                  d="M4.95863 37.4443V20.215H9.63612V27.1807H9.87167L15.0539 20.215H20.5054L14.6838 27.8874L20.64 37.4443H15.0539L11.1841 30.9833L9.63612 33.0023V37.4443H4.95863ZM21.8935 37.4443V20.215H34.0078V23.9839H26.571V26.9452H33.2675V30.7141H26.571V37.4443H21.8935Z"
+                  fill="black"
+                />
+              </svg>
             </Link>
           </span>
         </div>

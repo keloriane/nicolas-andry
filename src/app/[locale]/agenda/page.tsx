@@ -1,8 +1,6 @@
-import { archivo, playfare } from "../../font";
-import { GetAgendaData } from "../../../../sanity/lib/queries";
+import { playfare } from "../../font";
+import { getAgendaData } from "../../../../sanity/lib/queries";
 
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import Agenda from "@/components/Agenda";
 
 export default async function AgendaPage({
@@ -10,26 +8,26 @@ export default async function AgendaPage({
 }: {
   params: { locale: string };
 }) {
-  const agendaData = await GetAgendaData(locale);
+  const agendaData = await getAgendaData(locale);
 
-  const agendaCreation = agendaData[1];
-  const agendaAtelier = agendaData[2];
+  const agendaCreation = agendaData.creationEvents;
+  const agendaAtelier = agendaData.atelierEvents;
 
   return (
     <div>
-      <div style={{ paddingTop: "150px" }}>
+      <div style={{ padding: "150px 25px" }}>
         <Agenda
+          titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
+          titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}
           locale={locale}
-          introductionText={agendaData[0].introductionText}
-          title={agendaData[0].title}
-          cta={agendaData[0].agendaCTA}
+          introductionText={agendaData.agendaMain.introductionText}
+          title={agendaData.agendaMain.title}
+          cta={agendaData.agendaMain.agendaCTA}
           agendaCreation={agendaCreation}
           agendaAtelier={agendaAtelier}
           playfare={playfare.className}
-          homePage={false}
+          agendaPage={true}
         />
-        <Contact archivo={archivo.className} />
-        <Footer locale={locale} />
       </div>
     </div>
   );

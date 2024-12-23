@@ -10,11 +10,12 @@ import { CTA } from "../common/Button/cta";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import * as S from "./about.styles";
-import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap";
-import SplitType from "split-type";
+
 import { ScrollTrigger } from "gsap/all";
-import { imageClipAnimation } from "@/mixins/animations";
+
+import PrelineTitle from "../common/PrelineTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,40 +31,8 @@ const AboutSection = ({
   homePage: boolean;
   locale?: string;
 }) => {
-  const aboutWrapper = useRef<HTMLDivElement>(null);
-  const paragraphRef = useRef<HTMLDivElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-
-  useGSAP(() => {
-    if (
-      paragraphRef.current &&
-      imageRef.current &&
-      aboutWrapper.current &&
-      imageContainerRef &&
-      imageContainerRef.current
-    ) {
-      const mainTitle = new SplitType("h2.about_title", {
-        types: "words",
-      });
-
-      const aboutText = new SplitType(
-        paragraphRef.current.children as HTMLCollectionOf<HTMLElement>,
-        {
-          types: "lines",
-        }
-      );
-
-      imageClipAnimation(
-        imageContainerRef.current,
-        imageRef.current,
-        aboutWrapper.current
-      );
-    }
-  });
-
   return (
-    <S.AboutWrapper ref={aboutWrapper}>
+    <S.AboutWrapper>
       <GridContainer
         colCount={24}
         colGap={24}
@@ -72,19 +41,12 @@ const AboutSection = ({
       >
         <Col column={[3, 3, 3, 3, 3]} span={[20, 20, 20, 9, 9]}>
           <div className="text_container">
-            <div className="name_wrapper">
-              <div className="preline"></div>
-              <h3 className={`${playfare.className} `}>Nicolas Andry</h3>
-            </div>
-            <ResponsiveText
-              sizes={["20px", "24px", "45px"]}
-              as="h2"
-              className={`${playfare.className} about_title `}
-            >
-              À propos de moi
-            </ResponsiveText>
+            <h3>
+              <PrelineTitle>Nicolas Andry</PrelineTitle>
+            </h3>
+
             <div className={archivo.className}>
-              <div className="rich-text" ref={paragraphRef}>
+              <div className="rich-text">
                 <PortableText value={presentationText} />
               </div>
             </div>
@@ -99,11 +61,10 @@ const AboutSection = ({
         </Col>
         <Col column={[3, 3, 3, 15, 15, 15]} span={[20, 20, 18, 9, 9, 7]}>
           <div className="image_container">
-            <div className="profile_pic" ref={imageContainerRef}>
+            <div className="profile_pic">
               <Image
                 src={urlFor(imageProfile).url()}
                 alt={"post.title"}
-                ref={imageRef}
                 width={381}
                 height={477}
                 style={{ objectFit: "cover", width: "100%", height: "auto" }}

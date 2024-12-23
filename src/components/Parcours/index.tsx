@@ -5,8 +5,7 @@ import GridContainer from "../common/Container";
 import Col from "../common/Col";
 import { theme } from "@/styles/theme";
 import { PortableText } from "next-sanity";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
+
 import ResponsiveText from "../common/ResponsiveText";
 import { archivo, playfare } from "@/app/font";
 
@@ -56,15 +55,16 @@ const ParcoursContainer = styled.section`
   }
   .year-wrapper {
     background-color: ${theme.colors.orange};
+    color: ${theme.colors.black};
 
     padding: 2px 10px;
     font-size: 18px;
     font-weight: 400;
-    color: ${theme.colors.white};
     max-width: 65px;
     font-weight: 600;
     p {
       font-weight: 700;
+      font-size: 18px;
     }
   }
 `;
@@ -82,20 +82,16 @@ const Parcours = ({
 }) => {
   return (
     <ParcoursContainer>
+      <ResponsiveText
+        as="h2"
+        sizes={["24px", "32px", "47px", "47px"]}
+        className={playfare.className}
+      >
+        {presentationTitle}
+      </ResponsiveText>
       <GridContainer colCount={24} colGap={20} className="main-wrapper">
-        <Col
-          column={[2, 2, 3]}
-          span={[24, 20, 20]}
-          className="parcours-wrapper"
-        >
-          <ResponsiveText
-            as="h2"
-            sizes={["24px", "32px", "47px", "47px"]}
-            className={playfare.className}
-          >
-            Parcour
-          </ResponsiveText>
-          <div className="parcour-container">
+        <Col column={[2, 6]} span={[24, 14]} className="parcours-wrapper">
+          <div className="parcour-container" style={{ marginTop: "50px" }}>
             {parcours.map((parcour, index) => (
               <div className={"parcour-card rich-text"} key={index}>
                 <span className={"year-wrapper"}>

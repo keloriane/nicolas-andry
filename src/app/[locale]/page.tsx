@@ -2,52 +2,41 @@ import React from "react";
 import Hero from "@/components/Hero";
 import PostsGrid from "@/components/PostsGrid";
 import { playfare, archivo } from "./../font";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import { loadQuery } from "@./../../sanity/lib/store";
+
 import Banner from "@/components/Banner";
 import bannerImage from "@/../public/banner.png";
-import {
-  AGENDA_ATELIER_QUERY,
-  AGENDA_CREATION_QUERY,
-  AGENDA_QUERY,
-  GetAgendaData,
-  HOME_QUERY,
-} from "./../../../sanity/lib/queries";
-
+import { getAgendaData, getHomeData } from "./../../../sanity/lib/queries";
 import AboutSection from "@/components/About";
 import Separator from "@/components/common/Separator";
 
-import { HomeData } from "@/types/HomeData";
-import Agenda from "@/components/Agenda";
+import dynamic from "next/dynamic";
 
-async function GetHomeData(lang: string = "fr") {
-  const res = await loadQuery<HomeData>(HOME_QUERY, { lang });
-
-  return res;
-}
+import { urlFor } from "@/lib/imageBuilder";
+const Agenda = dynamic(() => import("@/components/Agenda"));
 
 export default async function Home({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const homeData = await GetHomeData(locale);
-  const { title, subtitle, postGrid, introductionText } = homeData.data;
+  const [homeData, agendaData] = await Promise.all([
+    getHomeData(locale),
+    getAgendaData(locale),
+  ]);
 
-  const agendaData = await GetAgendaData(locale);
+  const { title, subtitle, postGrid, introductionText, imageHeader } = homeData;
 
-  const agendaCreation = agendaData[1];
-  const agendaAtelier = agendaData[2];
+  const agendaCreation = agendaData.creationEvents;
+  const agendaAtelier = agendaData.atelierEvents;
 
   return (
     <main>
       <Hero
         title={title}
         subtitle={subtitle}
-        clash={playfare.className}
         satoshi={archivo.className}
         presentationText={introductionText}
+        image={urlFor(imageHeader).url()}
       />
       <PostsGrid
         posts={postGrid}
@@ -56,29 +45,28 @@ export default async function Home({
         locale={locale}
       />
       <Agenda
-        introductionText={agendaData[0].introductionText}
-        title={agendaData[0].title}
+        titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
+        titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}
+        locale={locale}
+        introductionText={agendaData.agendaMain.introductionText}
+        title={agendaData.agendaMain.title}
+        cta={agendaData.agendaMain.agendaCTA}
         agendaCreation={agendaCreation}
         agendaAtelier={agendaAtelier}
         playfare={playfare.className}
-        locale={locale}
-        cta={agendaData[0].agendaCTA}
-        homePage
+        homePage={true}
       />
 
       <Banner src={bannerImage} width={1120} height={316} />
 
       <AboutSection
-        presentationTitle={homeData.data.presentationTitle}
-        imageProfile={homeData.data.imageProfile}
-        presentationText={homeData.data.presentationText}
+        presentationTitle={homeData.presentationTitle}
+        imageProfile={homeData.imageProfile}
+        presentationText={homeData.presentationText}
         homePage
         locale={locale}
       />
       <Separator />
-
-      {/* <Contact archivo={archivo.className} /> */}
-      <Footer locale={locale} />
     </main>
   );
 }

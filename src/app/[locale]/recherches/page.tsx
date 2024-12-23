@@ -3,21 +3,23 @@ import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
-import { archivo, playfare } from "../../font";
+import { playfare } from "../../font";
 
 import HeaderMask from "@/components/common/PageHeader/HeaderMask";
-import Postgrid from "@/components/Postgrig";
+
 import Separator from "@/components/common/Separator";
-import { GetAgendaCTA, GetAgendaData } from "../../../../sanity/lib/queries";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import AgendaCta from "@/components/common/AgendaCta";
+import { getAgendaCTA } from "../../../../sanity/lib/queries";
+
+import PostGridItem from "@/components/Postgrig/PostGridItem";
+import Postgrid from "@/components/Postgrig";
 
 async function getResearchData() {
   return await client.fetch(groq`
     *[_type == "recherches"] {
       title,
       introductionText,
+      gridCTA,
+      otherTitle,
       imageHeaderLeft{ "url": asset->url, "alt": asset->alt }, 
       imageHeaderRight{ "url": asset->url, "alt": asset->alt },
       "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt } }
@@ -31,7 +33,7 @@ export default async function Creations({
   params: { locale: string };
 }) {
   const research = await getResearchData();
-  const cta = await GetAgendaCTA(locale);
+  const cta = await getAgendaCTA(locale);
 
   return (
     <main>
@@ -42,13 +44,14 @@ export default async function Creations({
         title={research[0].title}
         introductionText={research[0].introductionText}
       />
+      {/* <PostGridItem
+        locale={locale}
+        creations={research[0].posts}
+        cta={research[0].gridCTA}
+      /> */}
+
       <Postgrid locale={locale} creations={research[0].posts} />
       <Separator />
-      <AgendaCta text={cta.agendaCTA} locale={locale} />
-
-      <Contact archivo={archivo.className} />
-
-      <Footer locale={locale} />
     </main>
   );
 }

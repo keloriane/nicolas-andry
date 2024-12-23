@@ -24,6 +24,21 @@ export default defineType({
       },
     }),
     defineField({
+      name: "titleContent",
+      title: "Titre de contenu",
+      type: "string",
+    }),
+    defineField({
+      name: "subtitleContent",
+      title: "Soutitre de contenu",
+      type: "string",
+    }),
+    defineField({
+      name: "date",
+      title: "Date",
+      type: "string",
+    }),
+    defineField({
       name: "author",
       title: "Author",
       type: "reference",

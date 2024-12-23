@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { PostExcerpt } from "@/types/postExcerpt";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+
 import * as S from "./postgrid.styles";
 import { usePathname } from "next/navigation";
 

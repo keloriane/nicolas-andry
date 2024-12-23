@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -42,10 +42,16 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
     openLightbox(index);
   };
 
-  const slides: SlideImage[] = images.map((image, index) => ({
-    src: urlFor(image).url(),
-    alt: `Image ${index + 1}`,
-  }));
+  const imageSlides = useMemo(() => {
+    return (
+      images.map((image, index) => ({
+        props: "image.metadata",
+        index: index,
+        src: urlFor(image).url(),
+        alt: `Image ${index + 1}`,
+      })) || []
+    );
+  }, [images]);
 
   return images.length ? (
     <>
@@ -105,7 +111,7 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
             />
           </SwiperSlide>
         ))}
-        <div className="navigation__container" style={{ marginTop: "80px" }}>
+        <div className="navigation__container" style={{ marginTop: "40px" }}>
           <Navigation />
         </div>
       </Swiper>
@@ -114,7 +120,6 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
         open={lightboxOpen}
         close={() => setLightboxOpen(false)}
         index={lightboxIndex}
-        slides={slides}
         plugins={[Thumbnails]}
         thumbnails={{ vignette: true, gap: 10, imageFit: "cover" }}
         styles={{
@@ -126,6 +131,8 @@ const Slider: React.FC<SliderProps> = ({ images, centered = true }) => {
         render={{
           iconClose: () => <button className="yarl__button">fermer</button>,
         }}
+        slides={imageSlides}
+        carousel={{ preload: imageSlides.length }}
       />
     </>
   ) : (

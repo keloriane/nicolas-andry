@@ -3,29 +3,36 @@ import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
 import { PostDataType, PostType } from "@/types";
-import Image from "next/image";
-import { urlFor } from "@/lib/imageBuilder";
 import PostHeader from "@/components/common/Post/PostHeader";
-import PostsGrid from "@/components/PostsGrid";
 import PostImageGrid from "@/components/common/Post/PostImageGrid";
-import Footer from "@/components/Footer";
+import { urlForImage } from "../../../../../sanity/lib/image";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
-            title,
-            categories,
-            content,
-            remerciements,
-            mainImage,
-            'images': images[]{
-              "url": asset->url,
-              "alt": asset->alt,
-              "metadata": asset->ref
-            }
-          
+    title,
+    categories,
+    content,
+    remerciements,
+    mainImage,
+    titleContent,
+    date,
+    subtitleContent,
+    'images': images[]{
+      "url": asset->url,
+      "alt": asset->alt,
+      "metadata": asset->ref
+    }
   }`;
   const data = await client.fetch(query, { slug });
   return data;
+}
+
+async function getOtherCta() {
+  return await client.fetch(groq`
+    *[_type == "recherches"] {
+      otherTitle
+      }
+    `);
 }
 
 export default async function Page({
@@ -35,11 +42,25 @@ export default async function Page({
 }) {
   const post: PostDataType[] = await fetchPageData(params.slug);
 
+  const otherTitle = await getOtherCta();
+
+  console.log("POST", post.length);
+
   return (
-    <div style={{ paddingTop: "150px" }}>
-      <PostHeader locale={params.locale} post={post[0]} />
-      <PostImageGrid activePost={post[0]} locale={params.locale} />
-      <Footer locale={params.locale} />
+    <div>
+      <PostHeader
+        mainImage={urlForImage(post[0].mainImage)}
+        locale={params.locale}
+        post={post[0]}
+        titleContent={post[0].title}
+        date={post[0].date}
+        subtitleContent={post[0].subtitleContent}
+      />
+      <PostImageGrid
+        activePost={post[0]}
+        locale={params.locale}
+        otherTitle={otherTitle}
+      />
     </div>
   );
 }

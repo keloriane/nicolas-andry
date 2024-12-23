@@ -1,49 +1,61 @@
 "use client";
 import React from "react";
-import GridContainer from "../Container";
-import Col from "../Col";
+
 import { PortableText } from "next-sanity";
 import { PostContainer } from "./post-grid.styles";
-import ArrowLeft from "../ArrowLeft";
-import Link from "next/link";
 
-const PostHeader = ({ post, locale }: { post: any; locale: string }) => {
+import Image from "next/image";
+
+import { usePathname } from "next/navigation";
+
+import { playfare } from "@/app/font";
+
+const PostHeader = ({
+  post,
+  locale,
+  mainImage,
+  titleContent,
+  subtitleContent,
+  date,
+}: {
+  post: any;
+  locale: string;
+  mainImage: string;
+  titleContent?: string;
+  subtitleContent?: string;
+  date?: string;
+}) => {
+  const pathname = usePathname();
+
+  const exactPath = pathname.split("/")[2];
+
+  console.log(date);
   return (
-    <PostContainer>
-      <GridContainer colCount={24} colGap={20}>
-        <Col
-          column={[2, 2, 5, 5]}
-          span={[22, 22, 13, 13]}
-          className="text_header_wrapper inset"
-        >
-          <div className="rich-text">
-            <Link href={`/${locale}/creations`} className="arrow_link">
-              <ArrowLeft />
-            </Link>
-            <div className="inner_text">
-              <PortableText value={post?.content || []} />
-            </div>
+    <PostContainer className="dark_bg">
+      <div className="hero">
+        <div className="hero_layer"></div>
+        <div className="image_hero_wrapper">
+          <Image className="image_hero_layer" src={mainImage} alt="" fill />
+        </div>
+        <div className="text_container"></div>
+      </div>
+
+      <div
+        className="info_container"
+        style={{ display: "flex", flexDirection: "column", gap: "24px" }}
+      >
+        <div className="title_container">
+          <h1 className={playfare.className}>{titleContent}</h1>
+          <h2>{subtitleContent ? subtitleContent : ""}</h2>
+          <h3>{date}</h3>
+        </div>
+
+        <div className="rich-text">
+          <div className="inner_text">
+            <PortableText value={post?.content || []} />
           </div>
-        </Col>
-        {/* <Col
-          column={[2, 2, 13, 13]}
-          span={[22, 22, 10, 10]}
-          className="image_header_wrapper"
-        >
-          {post ? (
-            <Image
-              src={urlFor(post.mainImage).url() as string}
-              fill
-              style={{ objectFit: "contain" }}
-              alt={post.title as string}
-              priority
-              sizes="100%"
-            />
-          ) : (
-            <p>Loading main image...</p>
-          )}
-        </Col> */}
-      </GridContainer>
+        </div>
+      </div>
     </PostContainer>
   );
 };

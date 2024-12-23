@@ -1,12 +1,12 @@
 import React from "react";
 import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import {
-  GetAgendaCTA,
-  getCreationData,
-} from "../../../../../sanity/lib/queries";
+import { getCreationData } from "../../../../../sanity/lib/queries";
 import { Metadata } from "next";
-import PostPageComponent from "@/components/PostPageComponent";
+
+import PostHeader from "@/components/common/Post/PostHeader";
+import { urlForImage } from "../../../../../sanity/lib/image";
+import PostImageGrid from "@/components/common/Post/PostImageGrid";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
@@ -15,6 +15,9 @@ async function fetchPageData(slug: string) {
     content,
     remerciements,
     mainImage,
+    titleContent,
+    date,
+    subtitleContent,
     'images': images[]{
       "url": asset->url,
       "alt": asset->alt,
@@ -23,6 +26,14 @@ async function fetchPageData(slug: string) {
   }`;
   const data = await client.fetch(query, { slug });
   return data;
+}
+
+async function getOtherCta() {
+  return await client.fetch(groq`
+    *[_type == "creations"] {
+      otherTitle
+      }
+    `);
 }
 
 export async function generateStaticParams() {
@@ -46,9 +57,22 @@ export default async function Page({
   params: { slug: string; locale: string };
 }) {
   const post = await fetchPageData(params.slug);
-  const cta = await GetAgendaCTA();
-
-  console.log(cta.agendaCta);
-
-  return <PostPageComponent params={params} cta={cta.agendaCTA} post={post} />;
+  const otherTitle = await getOtherCta();
+  return (
+    <>
+      <PostHeader
+        mainImage={urlForImage(post[0].mainImage)}
+        locale={params.locale}
+        post={post[0]}
+        titleContent={post[0].title}
+        date={post[0].date}
+        subtitleContent={post[0].subtitleContent}
+      />
+      <PostImageGrid
+        activePost={post[0]}
+        locale={params.locale}
+        otherTitle={otherTitle}
+      />
+    </>
+  );
 }

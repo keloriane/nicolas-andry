@@ -1,57 +1,61 @@
 "use client";
+
 import React, { useMemo, useRef } from "react";
-import GridContainer from "../common/Container";
-import Col from "../common/Col";
-import styled from "styled-components";
-import imageUrlBuilder from "@sanity/image-url";
-import { client } from "../../../sanity/lib/client";
-import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { theme } from "@/styles/theme";
-import { useGSAP } from "@gsap/react";
+import { PortableText } from "next-sanity";
+import styled from "styled-components";
+import imageUrlBuilder from "@sanity/image-url";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { client } from "../../../sanity/lib/client";
+import { theme } from "@/styles/theme";
+import GridContainer from "../common/Container";
+import Col from "../common/Col";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const LayerCard = styled.div`
   width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0%;
-  left: 1px;
-  background: rgb(42, 24, 18);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 20px;
-  background: linear-gradient(0deg, #121c2a 0%, rgba(0, 212, 255, 0) 100%);
-  z-index: 2;
-  color: white;
-  text-align: center;
-  h3 {
-    font-size: 30px;
-  }
-`;
-
-const CardWrapper = styled.div`
-  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  p {
-    font-size: 19px;
+  padding: 20px;
+  text-align: center;
+`;
+
+const CardWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  h3 {
+    font-size: 24px;
+    @media (min-width: 768px) {
+      font-size: 30px;
+    }
   }
-  a {
-    font-size: 19px;
+
+  p {
+    font-size: 16px;
+    @media (min-width: 768px) {
+      font-size: 19px;
+    }
   }
 
   .link-post-grid {
     padding: 10px;
-    border: 1px solid white;
+    border: 1px solid black;
     font-weight: 100;
+    font-size: 16px;
+    @media (min-width: 768px) {
+      font-size: 19px;
+    }
     &:hover {
       border: 1px solid ${theme.colors.orange};
       span {
@@ -64,30 +68,30 @@ const CardWrapper = styled.div`
 `;
 
 const PostGridContainer = styled.section`
-  margin-top: 100px;
-  padding-top: 80px;
-  .image-grid-item {
-    width: 100%;
-    height: 600px;
+  .grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    color: ${theme.colors.black};
+    border: 1px solid black;
+    max-height: 775px;
+    height: 100%;
+    @media screen and (max-width: 640px) {
+      max-height: 1200px;
+    }
   }
 
-  @media screen and (max-width: 1100px) {
-    .image-grid-item {
-      height: 400px;
-    }
-  }
-  @media screen and (max-width: 640px) {
-    .image-grid-item {
-      height: 424px;
-      max-width: 315px;
-      margin: auto;
-    }
-  }
   .mask-anim {
     overflow: hidden;
     background: transparent;
+  }
 
-    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  .image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 133.33%; // This creates a 3:4 aspect ratio
+  }
+
+  .maskImage {
     object-fit: cover;
   }
 `;
@@ -101,16 +105,13 @@ const PostsGrid = ({
   playfare: string;
   archivo: string;
   locale: string;
-
-  posts: [
-    {
-      image: string;
-      title: string;
-      description: [];
-      slug: string;
-      postgridCta?: string;
-    },
-  ];
+  posts: Array<{
+    image: string;
+    title: string;
+    description: any[];
+    slug: string;
+    postgridCta?: string;
+  }>;
 }) => {
   const builder = useMemo(() => imageUrlBuilder(client), []);
   const urlFor = useMemo(
@@ -120,40 +121,6 @@ const PostsGrid = ({
 
   const maskContainers = useRef<HTMLDivElement[]>([]);
 
-  useGSAP((context) => {
-    maskContainers.current.forEach((el, index) => {
-      gsap.set(el.querySelector(".maskImage"), { scale: 1.4 });
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: "top 50%",
-          end: "bottom 40%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      gsap.set(".maskImage", { scale: 1.4 });
-      tl.to(
-        maskContainers.current,
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          duration: 2,
-          stagger: 0.15,
-          ease: "expo.out",
-        },
-        0
-      ).to(
-        ".maskImage",
-        {
-          scale: 1,
-          duration: 1.8,
-          stagger: 0.15,
-          ease: "expo.out",
-        },
-        0
-      );
-    });
-  });
   return (
     <PostGridContainer id="post-navigation">
       <GridContainer
@@ -166,9 +133,9 @@ const PostsGrid = ({
           margin: "0 auto 100px",
         }}
       >
-        {posts.map((post, index: number) => (
+        {posts.map((post, index) => (
           <Col
-            className={`image-grid-item item-${index} mask-anim`}
+            className={`item-${index} mask-anim`}
             key={index}
             reactRef={(el: any) => {
               if (el) maskContainers.current[index] = el;
@@ -182,32 +149,33 @@ const PostsGrid = ({
             }
             span={[24, 24, 8, 8]}
           >
-            <Image
-              src={urlFor(post.image).url()}
-              alt={post.title}
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 100%, (max-width: 1200px) 50%, 33%"
-              fill
-              priority={index < 3}
-              loading={index < 3 ? "eager" : "lazy"}
-              className="maskImage"
-            />
-            <LayerCard>
-              <CardWrapper className="rich-text">
-                <h3 className={playfare}>{post.title}</h3>
-                <div className={archivo}>
-                  <PortableText value={post.description} />
-                </div>
-                <Link
-                  className={"link-post-grid"}
-                  href={`${locale}/${post.slug}`}
-                >
-                  <span style={{ color: "white" }} className={archivo}>
-                    {post.postgridCta}
-                  </span>
-                </Link>
-              </CardWrapper>
-            </LayerCard>
+            <div className="grid-wrapper">
+              <div className="image-container">
+                <Image
+                  src={urlFor(post.image).url()}
+                  alt={post.title}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  fill
+                  priority={index < 3}
+                  loading={index < 3 ? "eager" : "lazy"}
+                  className="maskImage"
+                />
+              </div>
+              <LayerCard>
+                <CardWrapper className="rich-text">
+                  <h3 className={playfare}>{post.title}</h3>
+                  <div className={archivo}>
+                    <PortableText value={post.description} />
+                  </div>
+                  <Link
+                    className="link-post-grid"
+                    href={`${locale}/${post.slug}`}
+                  >
+                    <span className={archivo}>{post.postgridCta}</span>
+                  </Link>
+                </CardWrapper>
+              </LayerCard>
+            </div>
           </Col>
         ))}
       </GridContainer>

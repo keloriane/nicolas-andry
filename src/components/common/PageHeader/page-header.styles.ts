@@ -75,6 +75,10 @@ export const TextWrapper = styled(Col)`
       "__Playfair_Display_Fallback_e3a538";
     font-style: normal;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    @media screen and (max-width: 480px) {
+      font-size: 3rem;
+      text-align: center;
+    }
   }
 
   p {
@@ -82,18 +86,6 @@ export const TextWrapper = styled(Col)`
   }
 
   .title-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    .preline {
-      height: 2px;
-      width: 10%;
-      background: ${theme.colors.orange};
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-    }
-
     @media screen and (max-width: 1200px) {
       h2 {
         font-size: 3rem;
@@ -164,6 +156,6 @@ export const ArrowDown = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 100px auto;
+
   cursor: pointer;
 `;

@@ -1,18 +1,13 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import { PageHeaderType } from "@/types";
-import styled from "styled-components";
+
 import GridContainer from "../Container";
 import Col from "../Col";
 
 import MaskedImage from "../MaskedImage";
 import HeaderText from "../HeaderText";
 import * as S from "./page-header.styles";
-import arrowDown from "@/../public/arrow_down.svg";
-import Image from "next/image";
-import ArrowDown from "../ArrowDown";
-import Link from "next/link";
-import { urlForImage } from "../../../../sanity/lib/image";
 const HeaderMask: React.FC<PageHeaderType> = ({
   title,
   introductionText,
@@ -21,8 +16,8 @@ const HeaderMask: React.FC<PageHeaderType> = ({
   imageRight,
 }) => {
   return (
-    <>
-      <GridContainer colCount={24} style={{ paddingTop: "150px" }}>
+    <div style={{ paddingTop: "150px" }}>
+      <GridContainer colCount={24}>
         <Col
           column={[3, 3, 7, 7, 3]}
           span={[21, 21, 21, 21, 10]}
@@ -63,12 +58,7 @@ const HeaderMask: React.FC<PageHeaderType> = ({
           />
         </Col>
       </GridContainer>
-      <S.ArrowDown className="ar_cta">
-        <Link href="#creations" className="svg_cta">
-          <ArrowDown />
-        </Link>
-      </S.ArrowDown>
-    </>
+    </div>
   );
 };
 

@@ -3,31 +3,132 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  margin: auto;
+  padding-top: 158px;
+  img {
+    max-width: 1280px;
+    margin: auto;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 0;
+  }
+
+  .text_container {
+    position: relative;
+    z-index: 10;
+    padding-bottom: 44px;
+  }
+
+  .breadcrumb {
+    font-size: 15px;
+    color: #919191;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      text-decoration: underline;
+    }
+
+    .active_item {
+      color: ${theme.colors.orange};
+      font-weight: 500;
+    }
+  }
+
   .thanks_container {
+    width: 100%;
+    max-width: 640px;
+    padding-top: 150px;
+    margin: auto;
+
+    h2 {
+      font-size: 36px;
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+    }
+    blockquote {
+      font-weight: 100;
+
+      line-height: 32px;
+    }
+  }
+  .creation_title {
+    font-family: ${playfare.style.fontFamily};
+    color: ${theme.colors.white};
+  }
+  .creation_subtitle {
+    font-family: ${playfare.style.fontFamily};
+    color: ${theme.colors.orangeL};
+  }
+  .hero {
+    position: relative;
+    width: 100%;
+  }
+
+  .image_hero_wrapper {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    height: 50%;
+    @media screen and (max-width: 1300px) {
+      padding-top: 31%;
+    }
+    padding-top: 26.25%; /* This maintains a 16:9 aspect ratio */
+  }
+
+  h1 {
+    font-size: 72px;
+    text-align: center;
+    @media screen and (max-width: 760px) {
+      font-size: 36px;
+    }
+  }
+
+  .image_hero_layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+  }
+
+  .thanks_container {
+    padding: 10px;
     display: flex;
     gap: 20px;
     flex-direction: column;
     margin-top: 20px;
     h2 {
-      font-size: 40px;
+      font-size: 30px;
       display: inline-block;
-      @media screen and (max-width: 640px) {
-        margin-left: 0px;
-      }
-    }
-    .rich-text {
-      margin-top: 20px;
-      margin-left: 100px;
-      @media screen and (max-width: 640px) {
-        margin-left: 0px;
-      }
     }
   }
 
+  .title_container {
+    text-align: center;
+    h2 {
+      color: ${theme.colors.orange};
+      @media screen and (max-width: 760px) {
+        font-size: 24px;
+      }
+    }
+    h3 {
+      color: ${theme.colors.black};
+      @media screen and (max-width: 760px) {
+        font-size: 24px;
+      }
+    }
+  }
   .rich-text {
+    margin: auto;
+    max-width: 1280px;
+    width: 100%;
+    margin-top: 24px;
+    padding: 20px;
+
     ul {
       margin-top: 15px;
       margin-left: 30px;
@@ -37,10 +138,7 @@ export const PostContainer = styled.div`
       list-style: disc;
     }
     a {
-      color: aliceblue;
-    }
-    p {
-      margin-top: 20px;
+      color: #0000ee;
     }
   }
 
@@ -67,12 +165,12 @@ export const PostContainer = styled.div`
     margin-top: 100px;
     margin-bottom: 100px;
     font-weight: 400;
+    @media screen and (max-width: 480px) {
+      padding: 25px;
+    }
     a:hover {
       color: ${theme.colors.orange};
     }
-  }
-  h3 {
-    margin-left: 54px;
   }
 
   .navigation_container {
@@ -81,6 +179,7 @@ export const PostContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+
     ul {
       width: 100%;
       max-width: 960px;
@@ -92,33 +191,9 @@ export const PostContainer = styled.div`
     }
   }
 
-  .rich-text {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    flex-direction: column;
-    gap: 20px;
-    .arrow_link {
-      top: 33px;
-      left: 0px;
-      position: absolute;
-    }
-    .inner_text {
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      color: ${theme.colors.orange};
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
   .image_wrapper {
     opacity: 0;
-    transition: opacity 0.5s ease-in-out; /* Add transition effect */
+    transition: opacity 0.5s ease-in-out;
   }
 
   .image_wrapper.loaded {
@@ -129,22 +204,17 @@ export const PostContainer = styled.div`
     font-family: ${playfare.style.fontFamily};
   }
   h3 {
+    font-size: 32px;
     color: ${theme.colors.orange};
-    font-size: 34px;
   }
+
   h2 {
     font-size: 47px;
-    margin-left: 50px;
   }
 
   p {
     font-size: 16px;
     line-height: 30px;
-  }
-  nav {
-    width: 100%;
-    border-top: 1px solid #1e1e1e;
-    padding-top: 55px;
   }
 
   .header_info {
@@ -153,7 +223,6 @@ export const PostContainer = styled.div`
     height: 400px;
     .text_header_wrapper {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 400px;
@@ -205,6 +274,9 @@ export const GridContainerV = styled.div`
   column-count: 4;
   margin-top: 100px;
   padding: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
   figure {
     margin-bottom: 20px;
   }

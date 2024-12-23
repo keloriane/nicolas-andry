@@ -11,6 +11,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "imageHeader",
+      title: "Image Header",
+      type: "image",
+    }),
+    defineField({
       name: "language",
       title: "Language",
       type: "string",
@@ -135,6 +140,11 @@ export default defineType({
     defineField({
       title: "imageProfile",
       name: "imageProfile",
+      type: "image",
+    }),
+    defineField({
+      title: "imageBanner",
+      name: "imageBanner",
       type: "image",
     }),
   ],
