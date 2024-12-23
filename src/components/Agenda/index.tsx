@@ -179,7 +179,7 @@ const Agenda = ({
                   details={agendaAtelier[0].descriptionB}
                   accent={false}
                 />
-                <AgendaCard
+                {/* <AgendaCard
                   contact={
                     agendaAtelier[1].contact ? agendaAtelier[1].contact : ""
                   }
@@ -194,7 +194,7 @@ const Agenda = ({
                       : ""
                   }
                   accent={false}
-                />
+                /> */}
               </>
             ) : (
               agendaAtelier.map((agenda: AgendaType, i: number) => (
