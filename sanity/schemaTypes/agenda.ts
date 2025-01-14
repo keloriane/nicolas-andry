@@ -39,6 +39,11 @@ export default defineType({
           type: "document",
           fields: [
             {
+              name: "date",
+              title: "Date",
+              type: "string",
+            },
+            {
               name: "title",
               title: "Title",
               type: "string",
@@ -57,11 +62,6 @@ export default defineType({
               name: "contact",
               title: "Contact",
               type: "blockContent",
-            },
-            {
-              name: "date",
-              title: "Date",
-              type: "string",
             },
             {
               name: "location",
