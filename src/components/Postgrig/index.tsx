@@ -62,8 +62,13 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
     }
   };
 
+  const isRecherchesPath = pathname === "/recherches" && creations.length === 1;
+
   return (
-    <S.PostGrid id={"creations"}>
+    <S.PostGridCenter
+      id={"creations"}
+      className={isRecherchesPath ? "single-centered" : ""}
+    >
       {creations.map((post: PostExcerpt, index) => (
         <div
           key={post.slug.current}
@@ -105,7 +110,7 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
           </Link>
         </div>
       ))}
-    </S.PostGrid>
+    </S.PostGridCenter>
   );
 };
 

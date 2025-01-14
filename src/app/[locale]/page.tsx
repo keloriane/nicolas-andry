@@ -9,8 +9,6 @@ import { getAgendaData, getHomeData } from "./../../../sanity/lib/queries";
 import AboutSection from "@/components/About";
 import Separator from "@/components/common/Separator";
 
-import dynamic from "next/dynamic";
-
 import { urlFor } from "@/lib/imageBuilder";
 import Agenda from "@/components/Agenda";
 
