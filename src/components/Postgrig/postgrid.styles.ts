@@ -94,14 +94,32 @@ export const PostGridCenter = styled.div`
 export const PostGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  &.single-centered {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
 
-    .card {
-      grid-column: 2;
-    }
+  .card {
+    position: relative;
+    overflow: hidden; /* Ensures the hover layer doesn't spill out */
+  }
+
+  .card .hover-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 165, 0, 0.6); /* Orange color with opacity */
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+    pointer-events: none; /* Prevents blocking clicks */
+  }
+
+  .card:hover .hover-layer {
+    opacity: 1; /* Fully visible on hover */
+  }
+
+  .text_container {
+    position: relative;
+    z-index: 2; /* Ensures text appears above the hover layer */
+    pointer-events: none;
   }
 
   @media screen and (max-width: 768px) {
@@ -121,6 +139,12 @@ export const PostGrid = styled.div`
     width: 100%;
     height: 340px;
     overflow: hidden;
+    &:hover {
+      .layer {
+        background-color: rgba(255, 159, 3, 0.75);
+        transition: 0.2s ease-in;
+      }
+    }
 
     /* border: 1px solid ${theme.colors.black}; */
 
@@ -171,17 +195,17 @@ export const PostGrid = styled.div`
       background-color: #222222bf;
       z-index: 1;
     }
-    @media screen and (max-width: 840px) {
-      .layer {
-        left: 0 !important;
-        width: 100% !important;
-        /* padding: 20px; */
-        background-color: #222222bf;
-        z-index: 1;
-        top: 82% !important;
-        height: 18% !important;
-        font-size: 12px;
-      }
+
+    .layer {
+      left: 0 !important;
+      width: 100% !important;
+      /* padding: 20px; */
+
+      border-color: none;
+      z-index: 1;
+      top: 82% !important;
+      height: 18% !important;
+      font-size: 12px;
     }
   }
 `;
