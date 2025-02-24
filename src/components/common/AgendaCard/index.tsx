@@ -93,15 +93,17 @@ const AgendaCard = ({
           accent
             ? {
                 backgroundColor: theme.colors.orangeL,
-                color: "rgb(1, 22, 26)",
+                color: "#01171A",
                 display: "inline-flex",
                 position: "relative",
+                justifyContent: "center",
               }
             : {
-                backgroundColor: "rgb(1, 22, 26)",
+                backgroundColor: "#01171A",
                 color: theme.colors.orangeL,
                 display: "inline-flex",
                 position: "relative",
+                justifyContent: "center",
               }
         }
       >

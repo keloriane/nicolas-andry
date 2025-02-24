@@ -3,19 +3,29 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-  padding-top: 158px;
+  padding-top: 50px;
   img {
     max-width: 1280px;
     margin: auto;
   }
   @media screen and (max-width: 768px) {
     padding-top: 0;
+    .info_container {
+      max-width: 320px;
+      margin: auto;
+      padding: 10px;
+    }
   }
 
   .text_container {
     position: relative;
     z-index: 10;
     padding-bottom: 44px;
+  }
+
+  .info_container {
+    max-width: 720px;
+    margin: auto;
   }
 
   .breadcrumb {

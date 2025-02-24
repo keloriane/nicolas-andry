@@ -22,7 +22,7 @@ const TextContainer = styled.div`
 
   position: relative;
   z-index: 10;
-  margin: 150px auto;
+  margin: 100px auto;
   p {
     line-height: 42px;
     font-size: 24px;

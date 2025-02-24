@@ -4,6 +4,7 @@ import { client } from "../client";
 import { HomeData } from "@/types/HomeData";
 
 export const HOME_QUERY = groq`*[_type == "home" && language == $lang][0]`;
+
 export const PARCOURS_QUERY = groq`*[_type == "home"][0]{
   parcours,
   presentationTitle,
@@ -14,6 +15,9 @@ export const DEMARCHE_QUERY = groq`*[_type == "home"][0]{ demarches, procedureTi
 
 export async function getHomeData(lang: string = "fr") {
   return client.fetch<HomeData>(HOME_QUERY, { lang });
+}
+export async function getBanner() {
+  return client.fetch(groq`*[_type == "banner"]`);
 }
 
 export async function getParcoursData() {

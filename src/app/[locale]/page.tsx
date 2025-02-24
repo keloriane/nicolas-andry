@@ -5,27 +5,35 @@ import { playfare, archivo } from "./../font";
 
 import Banner from "@/components/Banner";
 import bannerImage from "@/../public/banner.png";
-import { getAgendaData, getHomeData } from "./../../../sanity/lib/queries";
+import {
+  getAgendaData,
+  getBanner,
+  getHomeData,
+} from "./../../../sanity/lib/queries";
 import AboutSection from "@/components/About";
 import Separator from "@/components/common/Separator";
 
 import { urlFor } from "@/lib/imageBuilder";
 import Agenda from "@/components/Agenda";
+import { urlForImage } from "../../../sanity/lib/image";
 
 export default async function Home({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const [homeData, agendaData] = await Promise.all([
+  const [homeData, agendaData, bannerData] = await Promise.all([
     getHomeData(locale),
     getAgendaData(locale),
+    getBanner(),
   ]);
 
   const { title, subtitle, postGrid, introductionText, imageHeader } = homeData;
 
   const agendaCreation = agendaData.creationEvents;
   const agendaAtelier = agendaData.atelierEvents;
+
+  console.log(urlFor(bannerData[0].image).url());
 
   return (
     <main>
@@ -55,7 +63,11 @@ export default async function Home({
         homePage={true}
       />
 
-      <Banner src={bannerImage} width={1120} height={316} />
+      <Banner
+        src={urlFor(bannerData[0].image).url()}
+        width={1120}
+        height={316}
+      />
 
       <AboutSection
         presentationTitle={homeData.presentationTitle}

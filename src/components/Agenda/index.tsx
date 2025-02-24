@@ -45,11 +45,12 @@ const AgendaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 20px;
 `;
 
 const TitleContainer = styled.div`
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 `;
 
 const AgendaTextContainer = styled.div`

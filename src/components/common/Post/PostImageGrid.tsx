@@ -140,7 +140,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
           style={{ marginTop: "100px", textAlign: "center" }}
         >
           <div>
-            <h2>Remerciement</h2>
+            <h2>Remerciements</h2>
             <div className="rich-text" style={{ fontSize: "16px" }}>
               <PortableText value={activePost.remerciements} />
             </div>

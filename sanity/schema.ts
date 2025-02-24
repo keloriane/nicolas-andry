@@ -13,6 +13,7 @@ import atelierItems from "./schemaTypes/atelierItems";
 import menu from "./schemaTypes/menu";
 import contact from "./schemaTypes/contact";
 import footer from "./schemaTypes/footer";
+import bannerType from "./schemaTypes/bannerType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -29,5 +30,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     atelierItems,
     contact,
     footer,
+    bannerType,
   ],
 };

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { urlFor } from "@/lib/imageBuilder";
 import { usePathname } from "next/navigation";
 import { PortableText } from "next-sanity";
+import Button from "../common/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,40 +27,11 @@ const AtelierNavigation = ({
   ];
   locale: string;
 }) => {
-  const [activeSection, setActiveSection] = React.useState<string>(
-    atelierItems[0].slug.current
-  );
-
   const pathname = usePathname();
-
-  const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const imageElementRefs = useRef<Array<HTMLImageElement | null>>([]);
-
-  useEffect(() => {
-    if (activeSection !== null) {
-      const activeImageIndex = atelierItems.findIndex(
-        (atelier) => atelier.slug.current === activeSection
-      );
-
-      // Hide other images
-      imageRefs.current.forEach((ref, index) => {
-        if (index !== activeImageIndex && ref) {
-          gsap.to(ref, {
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        }
-      });
-    }
-  }, [activeSection]);
-
-  const handleHoverSection = (slug: string) => {
-    setActiveSection(slug);
-  };
 
   return (
     <S.AtelierNavigationSection>
-      {atelierItems.map((atelier, index) => (
+      {/* {atelierItems.map((atelier, index) => (
         <div className="atelier_wrapper" key={index}>
           <div className="title_container">
             <div>
@@ -102,6 +74,21 @@ const AtelierNavigation = ({
               }}
             />
           </div>
+        </div>
+      ))} */}
+      {atelierItems.map((atelier, i) => (
+        <div className="atelier_item" key={i}>
+          <Image
+            width={327}
+            height={440}
+            src={urlFor(atelier.image).url()}
+            alt={atelier.title}
+          />
+          <h4>{atelier.title}</h4>
+          <Button
+            text={"Découvrir"}
+            href={`${pathname}/${atelier.slug.current}`}
+          />
         </div>
       ))}
     </S.AtelierNavigationSection>

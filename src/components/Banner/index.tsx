@@ -1,6 +1,5 @@
 "use client";
-import { imageClipAnimation } from "@/mixins/animations";
-import { useGSAP } from "@gsap/react";
+
 import Image, { StaticImageData } from "next/image";
 import React, { useMemo, useRef } from "react";
 import styled from "styled-components";

@@ -63,7 +63,7 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
   };
 
   return (
-    <S.PostGrid id={"creations"}>
+    <S.PostGrid id={"photo-items"}>
       {creations.map((post: PostExcerpt, index) => (
         <div
           key={post.slug.current}

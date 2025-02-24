@@ -67,7 +67,7 @@ const MainSection = styled.section`
 
 const BlockSectionWrapper = styled.section<{
   reversed?: boolean;
-  hasimage?: boolean;
+  $hasImage?: boolean;
 }>`
   display: flex;
   width: 100%;
@@ -77,12 +77,12 @@ const BlockSectionWrapper = styled.section<{
   align-items: center;
 
   .text_container {
-    width: ${({ hasimage }) => (hasimage ? "95%" : "100%")};
+    width: ${({ $hasImage }) => ($hasImage ? "95%" : "100%")};
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: 5px;
-    @media screen and(max-width: 768px) {
+    @media screen and (max-width: 768px) {
       max-width: 640px;
     }
   }
@@ -223,7 +223,7 @@ const BlockSections = ({
           key={section.title || index}
           id={section.title || section.title_content}
           reversed={index % 2 !== 0}
-          hasimage={section.image ? true : undefined}
+          $hasImage={!!section.image}
           ref={(el) => {
             //@ts-ignore
             sectionRefs.current[index] = el;
