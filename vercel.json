@@ -2,10 +2,10 @@
   "version": 2,
   "functions": {
     "app/api/**/*": {
-      "maxDuration": 20
+      "maxDuration": 60
     },
     "app/studio/**/*": {
-      "maxDuration": 20
+      "maxDuration": 60
     }
   },
   "rewrites": [
