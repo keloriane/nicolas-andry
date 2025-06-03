@@ -35,7 +35,7 @@ const AgendaContainer = styled.div`
 `;
 
 const DateContainer = styled.div`
-  max-width: 300px;
+  max-width: 320px;
   top: -30px;
   left: -30px;
 
