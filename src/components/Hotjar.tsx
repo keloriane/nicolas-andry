@@ -2,8 +2,17 @@
 
 "use client";
 import Script from "next/script";
+import { useEffect } from "react";
+import Hotjar from "@hotjar/browser";
 
 const HotJar = () => {
+  useEffect(() => {
+    const siteId = 6422640;
+    const hotjarVersion = 6;
+
+    Hotjar.init(siteId, hotjarVersion);
+  });
+
   if (
     process.env.NODE_ENV === "production" &&
     process.env.NEXT_PUBLIC_HOTJAR_ID
