@@ -46,9 +46,9 @@ export default function RootLayout({
     <html lang={locale || "fr"}>
       <Head>
         <link rel="shortcut icon" href="#" />
-        <HotJar />
       </Head>
       <body className={archivo.className}>{children}</body>
+      <HotJar />
     </html>
   );
 }
