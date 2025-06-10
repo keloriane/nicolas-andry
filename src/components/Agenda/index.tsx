@@ -169,7 +169,31 @@ const Agenda = ({
 
         <div className={archivo.className}>
           <div className="rich-text">
-            <PortableText value={introductionText} />
+            <PortableText
+              value={introductionText}
+              components={{
+                marks: {
+                  link: ({ children, value }) => {
+                    const target = (value?.href || "").startsWith("http")
+                      ? "_blank"
+                      : undefined;
+                    return (
+                      <a
+                        href={value?.href}
+                        target={target}
+                        rel={
+                          target === "_blank"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                },
+              }}
+            />
           </div>
         </div>
       </AgendaTextContainer>

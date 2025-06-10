@@ -7,7 +7,7 @@ import Hotjar from "@hotjar/browser";
 
 const HotJar = () => {
   useEffect(() => {
-    const siteId = 6422640;
+    const siteId = Number(process.env.HOTJAR_ID);
     const hotjarVersion = 6;
 
     Hotjar.init(siteId, hotjarVersion);
