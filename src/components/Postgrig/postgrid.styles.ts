@@ -9,18 +9,17 @@ export const PostGridCenter = styled.div`
     width: 100%;
     height: 100%;
   }
+  gap: 20px;
+  padding: 80px 20px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 200px auto;
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media screen and (max-width: 528px) {
     grid-template-columns: 1fr;
   }
-  gap: 20px;
-  padding: 80px 20px;
-  width: 100%;
-  max-width: 1280px;
-  margin: 200px auto;
-  justify-items: center;
 
   .card {
     width: 400px;
@@ -91,9 +90,11 @@ export const PostGridCenter = styled.div`
   }
 `;
 
-export const PostGrid = styled.div`
+export const PostGrid = styled.div<{ $singleItem?: boolean }>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${(props) =>
+    props.$singleItem ? "1fr" : "repeat(3, 1fr)"};
+  justify-items: center;
 
   .card {
     position: relative;
@@ -123,7 +124,8 @@ export const PostGrid = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: ${(props) =>
+      props.$singleItem ? "1fr" : "repeat(2, 1fr)"};
   }
   @media screen and (max-width: 528px) {
     grid-template-columns: 1fr;
@@ -132,13 +134,17 @@ export const PostGrid = styled.div`
   padding: 80px 20px;
   width: 100%;
   max-width: 1280px;
-  margin: 200px auto;
-  justify-items: center;
+  margin: 200px auto 80px;
+  @media screen and (max-width: 888px) {
+    grid-template-columns: 1fr;
+    margin: 0px auto;
+  }
 
   .card {
     width: 100%;
     height: 340px;
     overflow: hidden;
+    max-width: ${(props) => (props.$singleItem ? "600px" : "none")};
     &:hover {
       .layer {
         background-color: rgba(255, 159, 3, 0.75);

@@ -23,7 +23,8 @@ import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
-  description: "Nicolas Andry photographie",
+  description:
+    "Nicolas Andry - Photographe spécialisé en photographie argentique et développement naturel. Découvrez son travail artistique unique et ses techniques artisanales.",
   keywords: [
     "acide",
     "acide acétique",
@@ -65,6 +66,61 @@ export const metadata: Metadata = {
     "végétal",
     "vitamine C",
   ].join(", "),
+  authors: [{ name: "Nicolas Andry" }],
+  creator: "Nicolas Andry",
+  publisher: "Nicolas Andry",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://nicolas-andry.com"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "fr-FR": "/fr",
+      "en-US": "/en",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://nicolas-andry.com",
+    siteName: "Nicolas Andry",
+    title: "Nicolas Andry - Photographe",
+    description:
+      "Nicolas Andry - Photographe spécialisé en photographie argentique et développement naturel. Découvrez son travail artistique unique et ses techniques artisanales.",
+    images: [
+      {
+        url: OGImage.src,
+        width: 1200,
+        height: 630,
+        alt: "Nicolas Andry - Photographe",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nicolas Andry - Photographe",
+    description:
+      "Nicolas Andry - Photographe spécialisé en photographie argentique et développement naturel.",
+    images: [OGImage.src],
+    creator: "@nicolasandry",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-site-verification",
+  },
 };
 
 export default async function RootLayout({

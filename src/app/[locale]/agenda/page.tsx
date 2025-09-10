@@ -15,7 +15,7 @@ export default async function AgendaPage({
 
   return (
     <div>
-      <div style={{ padding: "150px 25px" }}>
+      <div style={{ padding: "50px 25px" }}>
         <Agenda
           titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
           titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}

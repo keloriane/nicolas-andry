@@ -22,18 +22,55 @@ export default async function Home({
 }: {
   params: { locale: string };
 }) {
+  // Validate locale and provide fallback
+  const validLocales = ["fr", "en", "nl"];
+  const currentLocale = validLocales.includes(locale) ? locale : "fr";
+
   const [homeData, agendaData, bannerData] = await Promise.all([
-    getHomeData(locale),
-    getAgendaData(locale),
+    getHomeData(currentLocale),
+    getAgendaData(currentLocale),
     getBanner(),
   ]);
 
+  // Handle case where homeData is null - provide fallback data
+  if (!homeData) {
+    console.warn(
+      `No home data found for locale: ${currentLocale}, using fallback`
+    );
+    // Return a fallback page or redirect
+    return (
+      <main>
+        <div style={{ padding: "2rem", textAlign: "center" }}>
+          <h1>Page en cours de construction</h1>
+          <p>Cette page n'est pas encore disponible dans cette langue.</p>
+        </div>
+      </main>
+    );
+  }
+
+  // Handle case where agendaData is null - provide fallback
+  if (!agendaData) {
+    console.warn(
+      `No agenda data found for locale: ${currentLocale}, using fallback`
+    );
+  }
+
+  // Handle case where bannerData is null or empty - provide fallback
+  if (!bannerData || bannerData.length === 0) {
+    console.warn("No banner data found, using fallback");
+  }
+
   const { title, subtitle, postGrid, introductionText, imageHeader } = homeData;
 
-  const agendaCreation = agendaData.creationEvents;
-  const agendaAtelier = agendaData.atelierEvents;
+  // Safe access to agenda data
+  const agendaCreation = agendaData?.creationEvents || [];
+  const agendaAtelier = agendaData?.atelierEvents || [];
 
-  console.log(urlFor(bannerData[0].image).url());
+  // Safe access to banner data
+  const bannerImageUrl =
+    bannerData && bannerData.length > 0
+      ? urlFor(bannerData[0].image).url()
+      : bannerImage;
 
   return (
     <main>
@@ -48,33 +85,42 @@ export default async function Home({
         posts={postGrid}
         playfare={playfare.className}
         archivo={archivo.className}
-        locale={locale}
-      />
-      <Agenda
-        titleAgendaCreation={agendaData.agendaMain.titleAgendaCreation}
-        titleAgendaAtelier={agendaData.agendaMain.titleAgendaAtelier}
-        locale={locale}
-        introductionText={agendaData.agendaMain.introductionText}
-        title={agendaData.agendaMain.title}
-        cta={agendaData.agendaMain.agendaCTA}
-        agendaCreation={agendaCreation}
-        agendaAtelier={agendaAtelier}
-        playfare={playfare.className}
-        homePage={true}
+        locale={currentLocale}
       />
 
-      <Banner
-        src={urlFor(bannerData[0].image).url()}
-        width={1120}
-        height={316}
-      />
+      {agendaData && (
+        <Agenda
+          titleAgendaCreation={
+            agendaData.agendaMain?.titleAgendaCreation || "Agenda"
+          }
+          titleAgendaAtelier={
+            agendaData.agendaMain?.titleAgendaAtelier || "Ateliers"
+          }
+          locale={currentLocale}
+          introductionText={agendaData.agendaMain?.introductionText || []}
+          title={agendaData.agendaMain?.title || "Agenda"}
+          cta={agendaData.agendaMain?.agendaCTA || "Voir l'agenda"}
+          agendaCreation={agendaCreation}
+          agendaAtelier={agendaAtelier}
+          playfare={playfare.className}
+          homePage={true}
+        />
+      )}
+
+      {bannerData && bannerData.length > 0 && (
+        <Banner
+          src={urlFor(bannerData[0].image).url()}
+          width={1120}
+          height={316}
+        />
+      )}
 
       <AboutSection
         presentationTitle={homeData.presentationTitle}
         imageProfile={homeData.imageProfile}
         presentationText={homeData.presentationText}
         homePage
-        locale={locale}
+        locale={currentLocale}
       />
       <Separator />
     </main>

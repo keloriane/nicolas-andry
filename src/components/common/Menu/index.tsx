@@ -10,6 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import Logo from "../Logo";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HamburgerIcon from "../HamburgerIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +22,7 @@ const Menu = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
   const path = pathname.split("/")[2];
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const parts = pathname.split("/");
@@ -29,6 +31,7 @@ const Menu = ({ locale }: { locale: string }) => {
   }, [pathname]);
 
   const openMenu = () => {
+    setIsMenuOpen(true);
     gsap.to(fullScreenMenu.current, {
       duration: 0.5,
       opacity: 1,
@@ -39,6 +42,7 @@ const Menu = ({ locale }: { locale: string }) => {
   };
 
   const closeMenu = () => {
+    setIsMenuOpen(false);
     gsap.to(fullScreenMenu.current, {
       duration: 0.5,
       opacity: 0,
@@ -95,9 +99,7 @@ const Menu = ({ locale }: { locale: string }) => {
         </div>
       </div>
       <div className="mobile_cta">
-        <button ref={menuTrigger} onClick={openMenu}>
-          menu
-        </button>
+        <HamburgerIcon isOpen={isMenuOpen} onClick={openMenu} />
       </div>
       <div
         className="fullscreen_menu"
@@ -105,7 +107,7 @@ const Menu = ({ locale }: { locale: string }) => {
         style={{ visibility: "hidden", opacity: 0 }}
       >
         <div className="fs_menu">
-          <button onClick={closeMenu}>fermer</button>
+          <HamburgerIcon isOpen={isMenuOpen} onClick={closeMenu} />
         </div>
         <ul>
           {menuItems.map((item, i) => (

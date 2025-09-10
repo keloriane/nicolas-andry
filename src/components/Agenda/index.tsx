@@ -106,7 +106,7 @@ const Agenda = ({
         <div className="agenda_title">
           <ResponsiveText
             as="h3"
-            sizes={["18px", "24px", "30px"]}
+            sizes={["22px", "24px", "30px"]}
             className={archivo.className}
           >
             {title}

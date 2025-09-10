@@ -111,6 +111,7 @@ const Hero = ({
   presentationText: [];
   image: string;
 }) => {
+  console.log(title, "====================>");
   const heroContainer = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     const mainTitle = new SplitType("h1.title-main", {
