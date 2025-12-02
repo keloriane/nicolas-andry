@@ -19,7 +19,14 @@ async function getAteliersData() {
       images,
       "atelierItems": atelierItems[] -> {title , slug , image , introductionText }
     }
-  `
+  `,
+    {},
+    {
+      next: { 
+        tags: ["sanity-content"],
+        revalidate: 3600,
+      },
+    }
   );
 }
 

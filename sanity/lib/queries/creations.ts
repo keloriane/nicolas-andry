@@ -15,5 +15,10 @@ const CREATION_QUERY = groq`
 `;
 
 export async function getCreationData() {
-  return client.fetch<Creation[]>(CREATION_QUERY);
+  return client.fetch<Creation[]>(CREATION_QUERY, {}, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
 }

@@ -25,11 +25,21 @@ export const MENU_QUERY = groq`
 `;
 
 export async function getNavigationData() {
-  return client.fetch(NAVIGATION_QUERY);
+  return client.fetch(NAVIGATION_QUERY, {}, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
 }
 
 export async function getAtelierNavData() {
-  return client.fetch(ATELIER_NAV);
+  return client.fetch(ATELIER_NAV, {}, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
 }
 
 export function getMenuData(lang = "fr") {

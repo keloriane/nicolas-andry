@@ -24,16 +24,26 @@ async function fetchPageData(slug: string) {
       "metadata": asset->ref
     }
   }`;
-  const data = await client.fetch(query, { slug });
+  const data = await client.fetch(query, { slug }, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
   return data;
 }
 
 async function getOtherCta() {
   return await client.fetch(groq`
-    *[_type == "creations"] {
+    *[_type == "creations"][0] {
       otherTitle
-      }
-    `);
+    }
+  `, {}, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
 }
 
 export async function generateStaticParams() {

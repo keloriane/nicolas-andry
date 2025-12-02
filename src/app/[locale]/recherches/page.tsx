@@ -24,7 +24,12 @@ async function getResearchData() {
       imageHeaderRight{ "url": asset->url, "alt": asset->alt },
       "posts": posts[] -> {title, slug, mainImage{ "url": asset->url, "alt": asset->alt } }
     }
-  `);
+  `, {}, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
 }
 
 export default async function Creations({

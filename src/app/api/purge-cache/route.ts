@@ -1,29 +1,32 @@
 import { revalidateTag } from "next/cache";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: Request) {
-  const { VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_TEAM_ID } = process.env;
+export async function POST(request: NextRequest) {
+  const { VERCEL_TOKEN, VERCEL_PROJECT_ID, VERCEL_TEAM_ID, PURGE_CACHE_SECRET } = process.env;
 
   try {
-    if (!VERCEL_TOKEN || !VERCEL_PROJECT_ID || !VERCEL_TEAM_ID) {
-      console.error("Missing required environment variables");
-      return NextResponse.json(
-        { message: "Server configuration error" },
-        { status: 500 }
-      );
+    // Optional: Validate secret token if provided
+    if (PURGE_CACHE_SECRET) {
+      const secret = request.headers.get("x-purge-secret");
+      if (secret !== PURGE_CACHE_SECRET) {
+        return NextResponse.json(
+          { message: "Unauthorized" },
+          { status: 401 }
+        );
+      }
     }
 
     // Validate the webhook payload (optional)
-    const payload = await request.json();
-    // Perform validation logic here (e.g., verify payload structure or use a secret token)
+    const payload = await request.json().catch(() => ({}));
 
     // Revalidate the cache for specific tags
     revalidateTag("sanity-content");
 
     // If you still want to purge the entire Vercel cache (not recommended as a first option)
     if (VERCEL_TOKEN && VERCEL_PROJECT_ID) {
+      const teamIdParam = VERCEL_TEAM_ID ? `?teamId=${VERCEL_TEAM_ID}` : "";
       const response = await fetch(
-        `https://api.vercel.com/v1/projects/${VERCEL_PROJECT_ID}/cache?teamId=${VERCEL_TEAM_ID}`,
+        `https://api.vercel.com/v1/projects/${VERCEL_PROJECT_ID}/cache${teamIdParam}`,
         {
           method: "DELETE",
           headers: {
@@ -33,14 +36,10 @@ export async function POST(request: Request) {
         }
       );
 
-      const responseText = await response.text();
-      console.log("Vercel API Response:", responseText);
-
       if (!response.ok) {
+        const responseText = await response.text();
         console.error("Vercel API Error:", responseText);
-        throw new Error(
-          `Failed to purge Vercel cache: ${response.status} ${response.statusText}. Details: ${responseText}`
-        );
+        // Don't fail the request if Vercel cache purge fails
       }
     }
 

@@ -6,8 +6,8 @@ export const client = createClient({
   apiVersion,
   dataset,
   projectId,
-  useCdn,
-  perspective: "published",
+  useCdn, // CDN enabled for faster responses
+  perspective: "published", // Only fetch published content
   stega: {
     enabled: false,
     studioUrl: "/studio",

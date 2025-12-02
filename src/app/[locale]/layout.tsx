@@ -147,7 +147,7 @@ export default async function RootLayout({
             <AgendaDataProvider locale={locale}>
               <FooterProvider>
                 <Analytics />
-                <Menu locale={locale} />
+                <Menu locale={locale} agendaCtaText={ctaData.agendaCTA} />
                 {children}
                 <AgendaCta text={ctaData.agendaCTA} locale={locale} />
                 <Contact

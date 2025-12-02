@@ -7,7 +7,6 @@ import { PortableText } from "next-sanity";
 
 const AgendaContainer = styled.div`
   display: flex;
-
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -17,8 +16,22 @@ const AgendaContainer = styled.div`
   border: 1px solid ${theme.colors.black};
   padding: 20px;
 
+  @media screen and (max-width: 768px) {
+    padding: 16px;
+    margin: 16px auto;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 12px;
+    margin: 12px auto;
+  }
+
   h3 {
     font-weight: 700;
+    @media screen and (max-width: 480px) {
+      font-size: 18px;
+      margin-top: 8px;
+    }
   }
 
   a {
@@ -38,6 +51,20 @@ const DateContainer = styled.div`
   max-width: 320px;
   top: -30px;
   left: -30px;
+  position: absolute;
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    margin-bottom: 12px;
+    align-self: flex-start;
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-bottom: 10px;
+  }
 
   p {
     font-size: 24px;
@@ -45,10 +72,16 @@ const DateContainer = styled.div`
     font-weight: 500;
     text-transform: capitalize;
     font-size: 22px;
-    @media screen and (max-width: 760px) {
-      position: relative;
-      top: 0;
-      left: 0;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+      padding: 8px 12px;
+      margin: 0;
+    }
+    
+    @media screen and (max-width: 480px) {
+      font-size: 16px;
+      padding: 6px 10px;
     }
   }
 `;
@@ -56,6 +89,37 @@ const LocationContainer = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
+
+  @media screen and (max-width: 480px) {
+    gap: 4px;
+    
+    svg {
+      width: 8px;
+      height: 11px;
+    }
+    
+    p {
+      font-size: 14px;
+    }
+  }
+`;
+
+const ContactContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 480px) {
+    gap: 8px;
+    
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+    
+    font-size: 14px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -64,12 +128,33 @@ const TextContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+
+  @media screen and (max-width: 768px) {
+    padding: 12px 0;
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 8px 0;
+    gap: 12px;
+  }
 `;
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 5px;
+  gap: 12px;
+
+  @media screen and (max-width: 768px) {
+    padding: 8px 0;
+    gap: 10px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 6px 0;
+    gap: 8px;
+  }
 `;
 
 const AgendaCard = ({
@@ -96,14 +181,12 @@ const AgendaCard = ({
                 backgroundColor: theme.colors.orangeL,
                 color: "#01171A",
                 display: "inline-flex",
-                position: "relative",
                 justifyContent: "center",
               }
             : {
                 backgroundColor: "#01171A",
                 color: theme.colors.orangeL,
                 display: "inline-flex",
-                position: "relative",
                 justifyContent: "center",
               }
         }
@@ -137,10 +220,7 @@ const AgendaCard = ({
         ) : (
           ""
         )}
-        <div
-          className="rich-text"
-          style={{ display: "flex", gap: "10px", alignItems: "center" }}
-        >
+        <ContactContainer className="rich-text">
           <svg
             shapeRendering="geometricPrecision"
             textRendering="geometricPrecision"
@@ -156,7 +236,7 @@ const AgendaCard = ({
             />
           </svg>
           {contact ? <PortableText value={contact} /> : ""}
-        </div>
+        </ContactContainer>
       </InfoContainer>
     </AgendaContainer>
   );

@@ -9,5 +9,9 @@ const imageBuilder = createImageUrlBuilder({
 });
 
 export const urlForImage = (source: Image | string) => {
-  return imageBuilder?.image(source).auto("format").fit("max").url();
+  return imageBuilder?.image(source)
+    .auto("format") // Auto-optimize format (WebP when supported)
+    .fit("max") // Maintain aspect ratio
+    .quality(85) // Optimize quality for web
+    .url();
 };

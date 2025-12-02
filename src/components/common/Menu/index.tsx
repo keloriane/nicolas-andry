@@ -14,7 +14,7 @@ import HamburgerIcon from "../HamburgerIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Menu = ({ locale }: { locale: string }) => {
+const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: string }) => {
   const navBar = useRef<HTMLHeadElement>(null);
   const fullScreenMenu = useRef<HTMLDivElement>(null);
   const menuTrigger = useRef<HTMLButtonElement>(null);
@@ -120,6 +120,20 @@ const Menu = ({ locale }: { locale: string }) => {
               </TransitionLink>
             </li>
           ))}
+          <li>
+            <Link
+              href={`/${locale}/agenda`}
+              className="mobile_agenda_cta"
+              onClick={closeMenu}
+              style={
+                path === "agenda"
+                  ? { backgroundColor: theme.colors.orange, color: "white" }
+                  : { backgroundColor: theme.colors.black, color: "white" }
+              }
+            >
+              {agendaCtaText || "Agenda"}
+            </Link>
+          </li>
           <li>
             <select
               value={selectedLocale}

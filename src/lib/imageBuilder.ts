@@ -9,5 +9,8 @@ interface ImageType {
 }
 const builder = imageUrlBuilder(client);
 export function urlFor(source: string | [] | ImageType) {
-  return builder.image(source);
+  return builder
+    .image(source)
+    .auto("format") // Auto-optimize format (WebP when supported)
+    .quality(85); // Optimize quality for web
 }

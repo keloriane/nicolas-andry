@@ -15,7 +15,16 @@ async function getAteliersData(slug: string) {
   }
   }`;
 
-  const data = await client.fetch(query, { slug });
+  const data = await client.fetch(
+    query,
+    { slug },
+    {
+      next: {
+        tags: ["sanity-content"],
+        revalidate: 3600,
+      },
+    }
+  );
   return data;
 }
 

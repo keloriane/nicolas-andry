@@ -38,6 +38,11 @@ const AgendaSection = styled.section`
 
     @media screen and (max-width: 768px) {
       grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media screen and (max-width: 480px) {
+      gap: 12px;
     }
   }
 `;
@@ -46,6 +51,16 @@ const AgendaContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;
+
+  @media screen and (max-width: 768px) {
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  @media screen and (max-width: 480px) {
+    gap: 12px;
+    margin-top: 12px;
+  }
 `;
 
 const TitleContainer = styled.div`

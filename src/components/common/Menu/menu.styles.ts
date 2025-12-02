@@ -101,6 +101,22 @@ export const MenuContainer = styled.header`
     }
     li {
       font-size: 22px;
+      
+      .mobile_agenda_cta {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease-in;
+        text-align: center;
+        min-width: 150px;
+        
+        &:hover {
+          background-color: ${theme.colors.orange} !important;
+          color: white !important;
+        }
+      }
     }
   }
 

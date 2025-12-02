@@ -12,10 +12,15 @@ import { groq } from "next-sanity";
 
 async function getOtherCta() {
   return await client.fetch(groq`
-    *[_type == "recherches"] {
+    *[_type == "recherches"][0] {
       otherTitle
-      }
-    `);
+    }
+  `, {}, {
+    next: { 
+      tags: ["sanity-content"],
+      revalidate: 3600,
+    },
+  });
 }
 
 const PostPageComponent = async ({
