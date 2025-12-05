@@ -31,7 +31,13 @@ type PostType = {
 type PostImageGridProps = {
   activePost: PostType | null;
   locale: string;
-  otherTitle: any;
+  otherTitle?: {
+    otherTitle?: Array<{
+      children?: Array<{
+        text?: string;
+      }>;
+    }>;
+  } | null;
 };
 
 const PostImageGrid: React.FC<PostImageGridProps> = ({
@@ -149,25 +155,36 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
       )}
 
       <Separator />
-      <section className="navigation_section">
-        <div className="title-navigation_container">
-          <h2>{otherTitle[0].otherTitle[0].children[0].text}</h2>
-        </div>
-        <div className="navigation_container">
-          <ul>
-            {(exactPath === "creations"
-              ? navigationCreation
-              : navigationRecherche
-            )?.map((nav: any, index) => (
-              <li key={index}>
-                <Link href={`/${locale}/creations/${nav.slug.current}`}>
-                  {nav.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {otherTitle?.otherTitle && otherTitle.otherTitle.length > 0 && (
+        <section className="navigation_section">
+          <div className="title-navigation_container">
+            <h2>
+              {otherTitle.otherTitle[0]?.children?.[0]?.text || ""}
+            </h2>
+          </div>
+          <div className="navigation_container">
+            <ul>
+              {((exactPath === "creations"
+                ? navigationCreation
+                : navigationRecherche
+              ) || []).length > 0 ? (
+                (exactPath === "creations"
+                  ? navigationCreation
+                  : navigationRecherche
+                )?.map((nav: any, index) => (
+                  <li key={index}>
+                    <Link href={`/${locale}/${exactPath}/${nav.slug.current}`}>
+                      {nav.title}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li>No other items available</li>
+              )}
+            </ul>
+          </div>
+        </section>
+      )}
     </PostContainer>
   );
 };
