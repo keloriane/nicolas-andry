@@ -108,7 +108,40 @@ const AterlierItem = ({
                       )}
 
                       <div className="text_wrapper rich-text">
-                        <PortableText value={section.content} />
+                        <PortableText
+                          value={section.content}
+                          components={{
+                            marks: {
+                              link: ({ children, value }) => {
+                                const target = (value?.href || "").startsWith(
+                                  "http"
+                                )
+                                  ? "_blank"
+                                  : undefined;
+                                const isPdf = (value?.href || "")
+                                  .toLowerCase()
+                                  .endsWith(".pdf");
+                                return (
+                                  <a
+                                    href={value?.href}
+                                    target={target}
+                                    rel={
+                                      target === "_blank"
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                    }
+                                    style={{
+                                      color: "#0000ee",
+                                      textDecoration: "underline",
+                                    }}
+                                  >
+                                    {children}
+                                  </a>
+                                );
+                              },
+                            },
+                          }}
+                        />
                       </div>
                     </div>
                     {section.image ? (

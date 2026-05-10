@@ -90,6 +90,9 @@ const Postgrid: React.FC<PostgridProps> = ({ creations, locale }) => {
                 position: "absolute",
               }}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading={index === 0 ? "eager" : "lazy"}
+              priority={index === 0}
             />
             <div
               className="layer"

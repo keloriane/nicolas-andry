@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import PostsGrid from "@/components/PostsGrid";
 import { playfare, archivo } from "./../font";
@@ -16,6 +17,16 @@ import Separator from "@/components/common/Separator";
 import { urlFor } from "@/lib/imageBuilder";
 import Agenda from "@/components/Agenda";
 import { urlForImage } from "../../../sanity/lib/image";
+import { DEFAULT_LOCALE, getAlternates, isLocale } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return { alternates: getAlternates(locale) };
+}
 
 export default async function Home({
   params: { locale },

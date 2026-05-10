@@ -5,7 +5,11 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true,
+    // Sanity CDN handles resize/format on its own edge — no Vercel image cost.
+    // Local assets in /public are returned unchanged by the loader.
+    loader: "custom",
+    loaderFile: "./src/lib/sanityImageLoader.ts",
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

@@ -1,38 +1,36 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+import { DEFAULT_LOCALE, LOCALES } from "@/lib/seo";
+
+const PREFIXED_LOCALES = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const segments = pathname.split("/").filter(Boolean);
+  const first = segments[0];
 
-  // Redirect `/` to `/fr` as the default locale
-  if (pathname === "/") {
-    return NextResponse.redirect(new URL("/fr", request.url));
+  // 1. /fr or /fr/* → 301 redirect to /* (default locale lives at the root)
+  if (first === DEFAULT_LOCALE) {
+    const url = request.nextUrl.clone();
+    const rest = segments.slice(1).join("/");
+    url.pathname = rest ? `/${rest}` : "/";
+    return NextResponse.redirect(url, 301);
   }
 
-  // Handle invalid routes that might be interpreted as locales
-  const validLocales = ["fr", "en", "nl"];
-  const pathSegments = pathname.split("/").filter(Boolean);
-
-  // If the first segment looks like a locale but isn't valid, redirect to fr
-  if (pathSegments.length > 0 && !validLocales.includes(pathSegments[0])) {
-    // Check if it's a static file or API route
-    if (
-      pathSegments[0].includes(".") ||
-      pathSegments[0] === "api" ||
-      pathSegments[0] === "studio"
-    ) {
-      return NextResponse.next();
-    }
-
-    // For other invalid routes, redirect to fr
-    return NextResponse.redirect(new URL("/fr", request.url));
+  // 2. /en, /en/*, /nl, /nl/* → leave untouched, [locale] route handles them
+  if (first && PREFIXED_LOCALES.includes(first as (typeof PREFIXED_LOCALES)[number])) {
+    return NextResponse.next();
   }
+
+  // 3. Anything else (including /) → rewrite to /fr/<path> so Next renders the
+  //    French page from app/[locale]/. The browser keeps the original URL.
+  const url = request.nextUrl.clone();
+  url.pathname = `/${DEFAULT_LOCALE}${pathname === "/" ? "" : pathname}`;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
-  matcher: [
-    "/",
-    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|opengraph-image.png).*)",
-  ],
+  // Skip Next internals, API, Studio, and any file with an extension.
+  matcher: ["/((?!api|_next/static|_next/image|studio|.*\\.).*)"],
 };

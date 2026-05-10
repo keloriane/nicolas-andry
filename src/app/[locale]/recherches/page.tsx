@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 
 import { client } from "../../../../sanity/lib/client";
 import { groq } from "next-sanity";
@@ -12,6 +13,16 @@ import { getAgendaCTA } from "../../../../sanity/lib/queries";
 
 import PostGridItem from "@/components/Postgrig/PostGridItem";
 import Postgrid from "@/components/Postgrig";
+import { DEFAULT_LOCALE, getAlternates, isLocale } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return { alternates: getAlternates(locale, "recherches") };
+}
 
 async function getResearchData() {
   return await client.fetch(groq`

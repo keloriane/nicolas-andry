@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useFooter } from "@/context/FooterContext";
 import { usePathname } from "next/navigation";
 import Separator from "../Separator";
+import { localePath } from "@/lib/seo";
 
 type ImageType = {
   url: string;
@@ -133,8 +134,6 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
               height={620}
               loading="lazy"
               className={loading ? "" : "image_wrapper loaded image_grid_item"}
-              placeholder="blur"
-              blurDataURL={img.src}
             />
           </ImageWrapper>
         ))}
@@ -173,7 +172,7 @@ const PostImageGrid: React.FC<PostImageGridProps> = ({
                   : navigationRecherche
                 )?.map((nav: any, index) => (
                   <li key={index}>
-                    <Link href={`/${locale}/${exactPath}/${nav.slug.current}`}>
+                    <Link href={localePath(locale, `${exactPath}/${nav.slug.current}`)}>
                       {nav.title}
                     </Link>
                   </li>

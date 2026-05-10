@@ -7,15 +7,17 @@ const archivo = Archivo({ subsets: ["latin"] });
 
 import OGImage from "@/app/opengraph-image.png";
 import { HotJar } from "@/components/Hotjar";
+import { SITE_URL } from "@/lib/seo";
+
 export const metadata: Metadata = {
   title: { default: "Nicolas Andry", template: "%s - Nicolas Andry" },
   description: "Nicolas andry photographie",
-  metadataBase: new URL("https://nicolas-andry.com"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "Nicolas Andry",
     description:
       "Muer en gestes les questions, besoins, émotions. Pétrir ces matières, qui me pétrissent à leur tour.",
-    url: "https://nicolas-andry.com",
+    url: SITE_URL,
     siteName: "Nicolas Andry",
     images: [
       {

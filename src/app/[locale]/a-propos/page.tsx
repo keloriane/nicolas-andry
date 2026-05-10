@@ -6,6 +6,7 @@ import { loadQuery } from "../../../../sanity/lib/store";
 import AboutSection from "@/components/About";
 import Separator from "@/components/common/Separator";
 import { Metadata } from "next";
+import { DEFAULT_LOCALE, getAlternates, isLocale } from "@/lib/seo";
 
 interface ParcoursData {
   parcours: [{ year: string; description: [] }];
@@ -20,10 +21,18 @@ interface ProceduresData {
   procedureText: string;
 }
 
-export const metadata: Metadata = {
-  title: "A propos",
-  description: "Photography",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return {
+    title: "A propos",
+    description: "Photography",
+    alternates: getAlternates(locale, "a-propos"),
+  };
+}
 
 export default async function AboutPage({
   params: { locale },

@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import { client } from "../../../../../sanity/lib/client";
 import { groq } from "next-sanity";
 
@@ -6,6 +7,18 @@ import { PostDataType, PostType } from "@/types";
 import PostHeader from "@/components/common/Post/PostHeader";
 import PostImageGrid from "@/components/common/Post/PostImageGrid";
 import { urlForImage } from "../../../../../sanity/lib/image";
+import { DEFAULT_LOCALE, isLocale, localeUrl } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return {
+    alternates: { canonical: localeUrl(locale, `recherches/${params.slug}`) },
+  };
+}
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{

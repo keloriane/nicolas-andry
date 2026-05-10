@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import PostHeader from "@/components/common/Post/PostHeader";
 import { urlForImage } from "../../../../../sanity/lib/image";
 import PostImageGrid from "@/components/common/Post/PostImageGrid";
+import { DEFAULT_LOCALE, isLocale, localeUrl } from "@/lib/seo";
 
 async function fetchPageData(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug]{
@@ -56,10 +57,18 @@ export async function generateStaticParams() {
   );
 }
 
-export const metadata: Metadata = {
-  title: "Créations",
-  description: "Photography",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return {
+    title: "Créations",
+    description: "Photography",
+    alternates: { canonical: localeUrl(locale, `creations/${params.slug}`) },
+  };
+}
 
 export default async function Page({
   params,

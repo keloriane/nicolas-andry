@@ -13,6 +13,7 @@ import Button from "../common/Button";
 import Navigation from "./Navigation";
 // import required modules
 import { FreeMode, Pagination } from "swiper/modules";
+import { localePath } from "@/lib/seo";
 
 const SectionContainer = styled.section`
   padding: 100px 20px;
@@ -83,7 +84,7 @@ const Procedures = ({
           <p>{text}</p>
 
           {homePage ? (
-            <Button text="En savoir plus" href={`${locale}/about`} />
+            <Button text="En savoir plus" href={localePath(locale, "a-propos")} />
           ) : (
             ""
           )}

@@ -1,9 +1,7 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { client } from "../../sanity/lib/client";
-import { getMenuData, MENU_QUERY } from "../../sanity/lib/queries";
-import { MenuType } from "@/types/MenuType";
-import { loadQuery } from "@sanity/react-loader";
+import React, { createContext, useContext, useMemo } from "react";
+
+import type { MenuType } from "@/types/MenuType";
 
 interface MenuContextType {
   menuItems: MenuType[];
@@ -19,35 +17,14 @@ export const useMenu = () => {
   return context;
 };
 
+/**
+ * Receives the menu items already fetched server-side and exposes them via
+ * context so deeply-nested client components don't need prop drilling.
+ */
 export const MenuProvider: React.FC<{
   children: React.ReactNode;
-  locale: string;
-}> = ({ children, locale }) => {
-  const [menuItems, setMenuItems] = useState<MenuType[]>([]);
-
-  useEffect(() => {
-    const fetchMenuData = async () => {
-      if (!client || !MENU_QUERY) {
-        console.error("Sanity client or MENU_QUERY is not defined");
-        return;
-      }
-
-      try {
-        const res: any = await client.fetch(MENU_QUERY, { lang: locale });
-        if (res) {
-          setMenuItems(res.menuItem);
-        }
-      } catch (error) {
-        console.error("Error loading menu data:", error);
-      }
-    };
-
-    fetchMenuData();
-  }, [locale]);
-
-  return (
-    <MenuContext.Provider value={{ menuItems }}>
-      {children}
-    </MenuContext.Provider>
-  );
+  menuItems: MenuType[];
+}> = ({ children, menuItems }) => {
+  const value = useMemo(() => ({ menuItems }), [menuItems]);
+  return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
 };

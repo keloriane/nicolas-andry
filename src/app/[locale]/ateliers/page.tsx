@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 
 import { playfare } from "../../font";
 import { client } from "../../../../sanity/lib/client";
@@ -8,6 +9,16 @@ import Slider from "@/components/Slider";
 import FullHeader from "@/components/common/PageHeader/FullHeader";
 import AtelierNavigation from "@/components/AtelierNavigation";
 import Separator from "@/components/common/Separator";
+import { DEFAULT_LOCALE, getAlternates, isLocale } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return { alternates: getAlternates(locale, "ateliers") };
+}
 
 async function getAteliersData() {
   return await client.fetch(

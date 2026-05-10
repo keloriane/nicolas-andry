@@ -1,20 +1,16 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 import styled from "styled-components";
-import imageUrlBuilder from "@sanity/image-url";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import { client } from "../../../sanity/lib/client";
 import { theme } from "@/styles/theme";
 import GridContainer from "../common/Container";
 import Col from "../common/Col";
-
-gsap.registerPlugin(ScrollTrigger);
+import { localePath } from "@/lib/seo";
+import { urlFor } from "@/lib/imageBuilder";
 
 const LayerCard = styled.div`
   width: 100%;
@@ -113,14 +109,6 @@ const PostsGrid = ({
     postgridCta?: string;
   }>;
 }) => {
-  const builder = useMemo(() => imageUrlBuilder(client), []);
-  const urlFor = useMemo(
-    () => (source: string) => builder.image(source),
-    [builder]
-  );
-
-  const maskContainers = useRef<HTMLDivElement[]>([]);
-
   return (
     <PostGridContainer id="post-navigation">
       <GridContainer
@@ -137,9 +125,6 @@ const PostsGrid = ({
           <Col
             className={`item-${index} mask-anim`}
             key={index}
-            reactRef={(el: any) => {
-              if (el) maskContainers.current[index] = el;
-            }}
             column={
               index === 0
                 ? [1, 1, 1, 1]
@@ -169,7 +154,7 @@ const PostsGrid = ({
                   </div>
                   <Link
                     className="link-post-grid"
-                    href={`${locale}/${post.slug}`}
+                    href={localePath(locale, post.slug)}
                   >
                     <span className={archivo}>{post.postgridCta}</span>
                   </Link>

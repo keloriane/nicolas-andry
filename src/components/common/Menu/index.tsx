@@ -11,6 +11,7 @@ import { gsap } from "gsap";
 import Logo from "../Logo";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HamburgerIcon from "../HamburgerIcon";
+import { DEFAULT_LOCALE, isLocale, localePath } from "@/lib/seo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,13 +21,17 @@ const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: strin
   const menuTrigger = useRef<HTMLButtonElement>(null);
   const { menuItems } = useMenu();
   const pathname = usePathname();
-  const path = pathname.split("/")[2];
+  // Default locale is served at the root, so the first segment is the page name.
+  // Other locales keep a /<locale>/<page> prefix.
+  const segments = pathname.split("/").filter(Boolean);
+  const path =
+    segments.length > 0 && isLocale(segments[0]) ? segments[1] : segments[0];
   const [selectedLocale, setSelectedLocale] = useState<string>(locale);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const parts = pathname.split("/");
-    const detectedLocale = parts[1] || "fr";
+    const parts = pathname.split("/").filter(Boolean);
+    const detectedLocale = parts[0] && isLocale(parts[0]) ? parts[0] : DEFAULT_LOCALE;
     setSelectedLocale(detectedLocale);
   }, [pathname]);
 
@@ -59,7 +64,7 @@ const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: strin
   return (
     <S.MenuContainer ref={navBar} className={archivo.className}>
       <div className="logo-container">
-        <TransitionLink href={`/${locale}`}>
+        <TransitionLink href={localePath(locale)}>
           <Logo fill={path === undefined ? "#f59628" : "black"} />
         </TransitionLink>
       </div>
@@ -70,7 +75,7 @@ const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: strin
               <li key={i}>
                 <TransitionLink
                   className="link_transition_menu"
-                  href={`/${locale}/${item.link}`}
+                  href={localePath(locale, item.link)}
                 >
                   <span
                     style={{
@@ -86,7 +91,7 @@ const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: strin
         </nav>
         <div className="cta_container">
           <Link
-            href={`/${locale}/agenda`}
+            href={localePath(locale, "agenda")}
             className="cta"
             style={
               path === "agenda"
@@ -114,7 +119,7 @@ const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: strin
             <li key={i} onClick={closeMenu}>
               <TransitionLink
                 className="link_transition_menu"
-                href={`/${locale}/${item.link}`}
+                href={localePath(locale, item.link)}
               >
                 {item.name}
               </TransitionLink>
@@ -122,7 +127,7 @@ const Menu = ({ locale, agendaCtaText }: { locale: string; agendaCtaText?: strin
           ))}
           <li>
             <Link
-              href={`/${locale}/agenda`}
+              href={localePath(locale, "agenda")}
               className="mobile_agenda_cta"
               onClick={closeMenu}
               style={

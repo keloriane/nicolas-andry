@@ -1,7 +1,20 @@
 import { groq, PortableText } from "next-sanity";
 import React from "react";
+import type { Metadata } from "next";
 import { client } from "../../../../../sanity/lib/client";
 import BlockSections from "@/components/BlockSections";
+import { DEFAULT_LOCALE, isLocale, localeUrl } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return {
+    alternates: { canonical: localeUrl(locale, `ateliers/${params.slug}`) },
+  };
+}
 
 async function getAteliersData(slug: string) {
   const query = groq`*[_type == "ateliers_items" && slug.current == "${slug}" ][0]{

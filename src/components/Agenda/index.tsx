@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import AgendaCard from "../common/AgendaCard";
 import styled from "styled-components";
 import ResponsiveText from "../common/ResponsiveText";
@@ -8,6 +8,7 @@ import { AgendaType } from "@/types/AgendaType";
 import { PortableText } from "next-sanity";
 import { CTA } from "../common/Button/cta";
 import PrelineTitle from "../common/PrelineTitle";
+import { localePath } from "@/lib/seo";
 
 const AgendaSection = styled.section`
   display: flex;
@@ -109,10 +110,6 @@ const Agenda = ({
   titleAgendaCreation: string;
   titleAgendaAtelier: string;
 }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
-
   const renderAgendaSection = (agenda: any[], title: string, accent = true) => {
     if (!agenda || agenda.length === 0) return null;
 
@@ -226,7 +223,7 @@ const Agenda = ({
 
       {!agendaPage && cta && (
         <div className="cta_container" style={{ margin: "100px auto" }}>
-          <CTA href={`/${locale}/agenda`}>{cta}</CTA>
+          <CTA href={localePath(locale, "agenda")}>{cta}</CTA>
         </div>
       )}
     </AgendaSection>

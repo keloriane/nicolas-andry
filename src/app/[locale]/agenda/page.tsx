@@ -1,7 +1,18 @@
+import type { Metadata } from "next";
 import { playfare } from "../../font";
 import { getAgendaData } from "../../../../sanity/lib/queries";
 
 import Agenda from "@/components/Agenda";
+import { DEFAULT_LOCALE, getAlternates, isLocale } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return { alternates: getAlternates(locale, "agenda") };
+}
 
 export default async function AgendaPage({
   params: { locale },

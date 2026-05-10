@@ -1,43 +1,37 @@
-"use client";
-
 import Image, { StaticImageData } from "next/image";
-import React, { useMemo, useRef } from "react";
-import styled from "styled-components";
+import React from "react";
 
-const BannerWrapper = styled.div`
-  max-width: 100%;
-  margin-right: 0;
-  display: flex;
-  justify-content: flex-end;
-  overflow: hidden;
-  padding-bottom: 100px;
-  img {
-    width: 90%;
-  }
-`;
+const wrapperStyle: React.CSSProperties = {
+  maxWidth: "100%",
+  display: "flex",
+  justifyContent: "flex-end",
+  overflow: "hidden",
+  paddingBottom: 100,
+};
 
 const Banner = ({
   src,
   width,
   height,
+  alt = "banner image",
 }: {
   src: string | StaticImageData;
   width: number;
   height: number;
-}) => {
-  return (
-    <div>
-      <BannerWrapper>
-        <Image
-          src={src}
-          alt="banner image"
-          height={height}
-          width={width}
-          style={{ objectFit: "cover", width: "90%", height: "auto" }}
-        />
-      </BannerWrapper>
+  alt?: string;
+}) => (
+  <div>
+    <div style={wrapperStyle}>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        sizes="(max-width: 768px) 90vw, 1120px"
+        style={{ objectFit: "cover", width: "90%", height: "auto" }}
+      />
     </div>
-  );
-};
+  </div>
+);
 
 export default Banner;

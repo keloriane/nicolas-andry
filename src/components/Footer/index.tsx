@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { archivo } from "@/app/font";
 
 import { useFooter } from "@/context/FooterContext";
+import { localePath } from "@/lib/seo";
 
 const FooterContainer = styled.footer`
   width: 100vw;
@@ -171,7 +172,7 @@ const Footer = ({
             <ul>
               {navigationCreation.map((nav: any, index) => (
                 <li key={index}>
-                  <Link href={`/${locale}/creations/${nav.slug.current}`}>
+                  <Link href={localePath(locale, `creations/${nav.slug.current}`)}>
                     {nav.title}
                   </Link>
                 </li>
@@ -183,7 +184,7 @@ const Footer = ({
             <ul>
               {navigationRecherche.map((nav: any, index) => (
                 <li key={index}>
-                  <Link href={`/${locale}/recherches/${nav.slug.current}`}>
+                  <Link href={localePath(locale, `recherches/${nav.slug.current}`)}>
                     {nav.title}
                   </Link>
                 </li>
@@ -196,7 +197,7 @@ const Footer = ({
               {navigationAtelier &&
                 navigationAtelier.map((nav: any, index: number) => (
                   <li key={index}>
-                    <Link href={`/${locale}/ateliers/${nav.slug.current}`}>
+                    <Link href={localePath(locale, `ateliers/${nav.slug.current}`)}>
                       {nav.title}
                     </Link>
                   </li>

@@ -1,30 +1,25 @@
 import type { MetadataRoute } from "next";
 
+import { LOCALES, localeUrl } from "@/lib/seo";
+
+const ROUTES: { path: string; changeFrequency: "yearly" | "monthly" | "weekly"; priority: number }[] = [
+  { path: "", changeFrequency: "yearly", priority: 1 },
+  { path: "creations", changeFrequency: "monthly", priority: 0.8 },
+  { path: "ateliers", changeFrequency: "weekly", priority: 0.5 },
+  { path: "a-propos", changeFrequency: "weekly", priority: 0.5 },
+  { path: "agenda", changeFrequency: "weekly", priority: 0.5 },
+  { path: "recherches", changeFrequency: "monthly", priority: 0.5 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://nicolas-andry.be/fr",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: "https://nicolas-andry/fr/creations",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://nicolas-andre/fr/ateliers",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.5,
-    },
-    {
-      url: "https://nicolas-andre/fr/a-propos",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.5,
-    },
-  ];
+  const lastModified = new Date();
+
+  return ROUTES.flatMap(({ path, changeFrequency, priority }) =>
+    LOCALES.map((locale) => ({
+      url: localeUrl(locale, path),
+      lastModified,
+      changeFrequency,
+      priority,
+    }))
+  );
 }

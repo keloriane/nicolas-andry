@@ -9,6 +9,7 @@ import ArrowLeft from "../common/ArrowLeft";
 
 import { theme } from "@/styles/theme";
 import Link from "next/link";
+import { localePath } from "@/lib/seo";
 
 const NavSection = styled.nav<{ isFixed: boolean }>`
   border-top: 1px solid black;
@@ -191,7 +192,7 @@ const BlockSections = ({
     <MainSection>
       <div>
         <div className="headline_section">
-          <Link href={`/${locale}/ateliers`}>
+          <Link href={localePath(locale, "ateliers")}>
             <ArrowLeft />
           </Link>
           <h1 style={{ fontSize: "43px" }} className={playfare.className}>

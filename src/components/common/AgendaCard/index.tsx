@@ -48,7 +48,7 @@ const AgendaContainer = styled.div`
 `;
 
 const DateContainer = styled.div`
-  max-width: 320px;
+  max-width: 100%;
   top: -30px;
   left: -30px;
   position: absolute;
@@ -72,13 +72,13 @@ const DateContainer = styled.div`
     font-weight: 500;
     text-transform: capitalize;
     font-size: 22px;
-    
+
     @media screen and (max-width: 768px) {
       font-size: 18px;
       padding: 8px 12px;
       margin: 0;
     }
-    
+
     @media screen and (max-width: 480px) {
       font-size: 16px;
       padding: 6px 10px;
@@ -92,12 +92,12 @@ const LocationContainer = styled.div`
 
   @media screen and (max-width: 480px) {
     gap: 4px;
-    
+
     svg {
       width: 8px;
       height: 11px;
     }
-    
+
     p {
       font-size: 14px;
     }
@@ -112,12 +112,12 @@ const ContactContainer = styled.div`
 
   @media screen and (max-width: 480px) {
     gap: 8px;
-    
+
     svg {
       width: 10px;
       height: 10px;
     }
-    
+
     font-size: 14px;
   }
 `;

@@ -33,6 +33,20 @@ export const SectionItem = styled.div`
   }
   .text_wrapper {
     margin-left: 20px;
+
+    a {
+      color: #0000ee;
+      text-decoration: underline;
+
+      &:visited {
+        color: #551a8b;
+      }
+
+      &:hover {
+        color: ${theme.colors.orange};
+        text-decoration: underline;
+      }
+    }
   }
 
   .image_container {

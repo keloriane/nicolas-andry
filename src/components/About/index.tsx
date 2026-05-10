@@ -16,6 +16,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 import PrelineTitle from "../common/PrelineTitle";
+import { localePath } from "@/lib/seo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,7 +53,7 @@ const AboutSection = ({
             </div>
             {homePage ? (
               <div className="cta_container">
-                <CTA href={`/${locale}/a-propos`}>En savoir plus</CTA>
+                <CTA href={localePath(locale, "a-propos")}>En savoir plus</CTA>
               </div>
             ) : (
               ""
@@ -64,9 +65,10 @@ const AboutSection = ({
             <div className="profile_pic">
               <Image
                 src={urlFor(imageProfile).url()}
-                alt={"post.title"}
+                alt="Nicolas Andry"
                 width={381}
                 height={477}
+                sizes="(max-width: 768px) 80vw, 381px"
                 style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>

@@ -8,11 +8,20 @@ import Separator from "@/components/common/Separator";
 import { Metadata } from "next";
 import PostGridItem from "@/components/Postgrig/PostGridItem";
 import Postgrid from "@/components/Postgrig";
+import { DEFAULT_LOCALE, getAlternates, isLocale } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Créations",
-  description: "Photography",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
+  return {
+    title: "Créations",
+    description: "Photography",
+    alternates: getAlternates(locale, "creations"),
+  };
+}
 
 export default async function Creations({
   params: { locale },
